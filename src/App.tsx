@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import AthletesPage from "./pages/AthletesPage";
 import AthletePage from "./pages/AthletePage";
 import FeedPage from "./pages/FeedPage";
+import FanHomePage from "./pages/FanHomePage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import CausePage from "./pages/CausePage";
@@ -29,6 +30,7 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/home" element={<FanHomePage />} />
               <Route path="/athletes" element={<AthletesPage />} />
               <Route path="/athlete/:id" element={<AthletePage />} />
               <Route path="/athlete/:id/cause" element={<CausePage />} />
