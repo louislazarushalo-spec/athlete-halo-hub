@@ -48,7 +48,7 @@ const Index = () => {
 
             {/* Subtitle */}
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-up opacity-0 stagger-2" style={{ animationFillMode: 'forwards' }}>
-              Discover how they train, live, and what they wear — and support them directly.
+              Step inside the real lives, routines, and gear of the world's best athletes — and get closer than ever.
             </p>
 
             {/* CTAs */}
