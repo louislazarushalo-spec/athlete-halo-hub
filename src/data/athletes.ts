@@ -7,6 +7,24 @@ import teddyRinerImg from "@/assets/teddy-riner.png";
 import pierreGaslyImg from "@/assets/pierre-gasly.png";
 import julianAlaphilippeImg from "@/assets/julian-alaphilippe.png";
 
+export interface MediaFeedItem {
+  id: string;
+  type: 'social' | 'article' | 'video';
+  platform: 'instagram' | 'twitter' | 'youtube' | 'lequipe' | 'espn' | 'bbc';
+  title?: string;
+  content: string;
+  image: string;
+  timestamp: string;
+  stats?: {
+    likes?: number;
+    comments?: number;
+    shares?: number;
+    views?: number;
+    readTime?: string;
+    duration?: string;
+  };
+}
+
 export interface Athlete {
   id: string;
   name: string;
@@ -21,6 +39,7 @@ export interface Athlete {
   gear: Post[];
   products: Product[];
   cause: Cause;
+  mediaFeed: MediaFeedItem[];
 }
 
 export interface Post {
@@ -149,7 +168,67 @@ export const athletes: Athlete[] = [
       raised: 9400,
       currency: "€",
       image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop"
-    }
+    },
+    mediaFeed: [
+      {
+        id: "ad-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Back to the grind. Six Nations prep starts now! Nothing beats the feeling of being back with the team. 💪🇫🇷",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=800&fit=crop",
+        timestamp: "2 hours ago",
+        stats: { likes: 24500, comments: 892 }
+      },
+      {
+        id: "ad-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Antoine Dupont - Best Moments & Highlights 2024",
+        content: "Watch the best tries, assists, and game-changing plays from the world's best scrum-half.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=450&fit=crop",
+        timestamp: "3 days ago",
+        stats: { views: 1200000, duration: "12:34" }
+      },
+      {
+        id: "ad-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Antoine Dupont: \"I'm in the best shape of my career\"",
+        content: "In an exclusive interview, Antoine Dupont discusses preparation methods, mental strength, and ambitious goals for the upcoming Six Nations...",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop",
+        timestamp: "5 hours ago",
+        stats: { readTime: "5 min read" }
+      },
+      {
+        id: "ad-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "What an incredible match! Thank you to all the fans who came out to support us. This is just the beginning. 🔥🏆",
+        image: "",
+        timestamp: "1 day ago",
+        stats: { likes: 32000, comments: 1200, shares: 4500 }
+      },
+      {
+        id: "ad-mf5",
+        type: "video",
+        platform: "espn",
+        title: "Inside Antoine Dupont's Training Routine | ESPN Exclusive",
+        content: "Get an exclusive look at how the world's best rugby player prepares for international competition.",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 856000, duration: "8:21" }
+      },
+      {
+        id: "ad-mf6",
+        type: "article",
+        platform: "bbc",
+        title: "How Antoine Dupont became a global icon in rugby",
+        content: "From Toulouse to the world stage: the remarkable journey of France's rugby superstar and how he's transforming the sport...",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "8 min read" }
+      }
+    ]
   },
   {
     id: "paul-pogba",
@@ -246,7 +325,67 @@ export const athletes: Athlete[] = [
       raised: 21300,
       currency: "€",
       image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=400&fit=crop"
-    }
+    },
+    mediaFeed: [
+      {
+        id: "pp-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Family first, always. Blessed to have this support system. Every goal, every assist, it's for them. 🙏❤️",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=800&fit=crop",
+        timestamp: "4 hours ago",
+        stats: { likes: 156000, comments: 3200 }
+      },
+      {
+        id: "pp-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Paul Pogba - Skills, Goals & Assists 2024",
+        content: "The most creative moments from one of football's most entertaining players.",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=450&fit=crop",
+        timestamp: "5 days ago",
+        stats: { views: 3400000, duration: "15:42" }
+      },
+      {
+        id: "pp-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Paul Pogba: \"I still have so much to give to football\"",
+        content: "The French midfielder opens up about his journey, challenges, and his determination to return to the top level...",
+        image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "7 min read" }
+      },
+      {
+        id: "pp-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "The comeback is always stronger than the setback. Stay patient, stay focused, stay hungry. 💪⚽",
+        image: "",
+        timestamp: "8 hours ago",
+        stats: { likes: 89000, comments: 2100, shares: 12000 }
+      },
+      {
+        id: "pp-mf5",
+        type: "video",
+        platform: "espn",
+        title: "Pogba's Road to Recovery | ESPN Documentary",
+        content: "An intimate look at Paul Pogba's journey back to professional football.",
+        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&h=450&fit=crop",
+        timestamp: "2 weeks ago",
+        stats: { views: 1800000, duration: "22:15" }
+      },
+      {
+        id: "pp-mf6",
+        type: "article",
+        platform: "bbc",
+        title: "The many sides of Paul Pogba: footballer, fashion icon, philanthropist",
+        content: "Beyond the pitch, Paul Pogba has built an empire spanning fashion, music, and charitable work...",
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&h=400&fit=crop",
+        timestamp: "4 days ago",
+        stats: { readTime: "6 min read" }
+      }
+    ]
   },
   {
     id: "iga-swiatek",
@@ -343,7 +482,67 @@ export const athletes: Athlete[] = [
       raised: 17800,
       currency: "€",
       image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=400&fit=crop"
-    }
+    },
+    mediaFeed: [
+      {
+        id: "is-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Another tournament, another chapter. Grateful for every moment on this court. The journey continues! 🎾💜",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 89000, comments: 1800 }
+      },
+      {
+        id: "is-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Iga Świątek - Best Points & Championship Moments 2024",
+        content: "Relive the most spectacular shots from the world number one.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 2100000, duration: "18:27" }
+      },
+      {
+        id: "is-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Iga Świątek on mental health: \"It's okay to not be okay\"",
+        content: "The tennis star opens up about the pressures of being number one and her advocacy for mental health awareness...",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "6 min read" }
+      },
+      {
+        id: "is-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "Music is my escape. Currently obsessed with the new Taylor Swift album. What are you all listening to? 🎵",
+        image: "",
+        timestamp: "6 hours ago",
+        stats: { likes: 45000, comments: 8900, shares: 2300 }
+      },
+      {
+        id: "is-mf5",
+        type: "video",
+        platform: "youtube",
+        title: "A Day in the Life of Iga Świątek | Behind the Scenes",
+        content: "From morning routines to intense training sessions, see how a world champion prepares.",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=450&fit=crop",
+        timestamp: "3 weeks ago",
+        stats: { views: 980000, duration: "14:52" }
+      },
+      {
+        id: "is-mf6",
+        type: "article",
+        platform: "bbc",
+        title: "How Iga Świątek is redefining women's tennis",
+        content: "With her powerful game and humble attitude, the Polish star is changing what it means to dominate the WTA tour...",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=400&fit=crop",
+        timestamp: "5 days ago",
+        stats: { readTime: "7 min read" }
+      }
+    ]
   },
   {
     id: "leon-marchand",
@@ -440,7 +639,67 @@ export const athletes: Athlete[] = [
       raised: 7600,
       currency: "€",
       image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=400&fit=crop"
-    }
+    },
+    mediaFeed: [
+      {
+        id: "lm-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "World record pace in training today. Coach Bob keeps pushing me to new limits. The best is yet to come! 🏊‍♂️🇫🇷",
+        image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=800&h=800&fit=crop",
+        timestamp: "5 hours ago",
+        stats: { likes: 67000, comments: 1400 }
+      },
+      {
+        id: "lm-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Léon Marchand - World Record Breaking Swims 2024",
+        content: "Watch every world record-breaking moment from swimming's newest superstar.",
+        image: "https://images.unsplash.com/photo-1560090995-01632a28895b?w=800&h=450&fit=crop",
+        timestamp: "2 weeks ago",
+        stats: { views: 4500000, duration: "11:18" }
+      },
+      {
+        id: "lm-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Léon Marchand: The making of a swimming legend",
+        content: "From Toulouse to Arizona, how the young French swimmer became the most talked-about athlete in his sport...",
+        image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "8 min read" }
+      },
+      {
+        id: "lm-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "Thank you Arizona for becoming my second home. The Sun Devil spirit is real! 🔱 #ForksUp",
+        image: "",
+        timestamp: "1 day ago",
+        stats: { likes: 34000, comments: 890, shares: 5600 }
+      },
+      {
+        id: "lm-mf5",
+        type: "video",
+        platform: "espn",
+        title: "Training with Bob Bowman: Léon Marchand's Secret Weapon",
+        content: "How the coach of Michael Phelps is shaping the next generation of swimming greatness.",
+        image: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&h=450&fit=crop",
+        timestamp: "1 month ago",
+        stats: { views: 1200000, duration: "16:45" }
+      },
+      {
+        id: "lm-mf6",
+        type: "article",
+        platform: "bbc",
+        title: "Can Léon Marchand break Michael Phelps' Olympic records?",
+        content: "The swimming world is buzzing about the French phenomenon who might just rewrite the history books...",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop",
+        timestamp: "1 week ago",
+        stats: { readTime: "5 min read" }
+      }
+    ]
   },
   {
     id: "victor-wembanyama",
@@ -537,7 +796,67 @@ export const athletes: Athlete[] = [
       raised: 28500,
       currency: "€",
       image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=400&fit=crop"
-    }
+    },
+    mediaFeed: [
+      {
+        id: "vw-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "7'4\" and still learning every day. San Antonio has become home. Let's keep building! 🏀🖤",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=800&fit=crop",
+        timestamp: "2 hours ago",
+        stats: { likes: 234000, comments: 5600 }
+      },
+      {
+        id: "vw-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Victor Wembanyama - NBA Rookie Highlights 2024",
+        content: "Every block, every three-pointer, every moment of brilliance from the generational talent.",
+        image: "https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?w=800&h=450&fit=crop",
+        timestamp: "4 days ago",
+        stats: { views: 8900000, duration: "20:33" }
+      },
+      {
+        id: "vw-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Victor Wembanyama: \"I want to change the game\"",
+        content: "The French phenom discusses his unique skillset, NBA adaptation, and his vision for the future of basketball...",
+        image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "9 min read" }
+      },
+      {
+        id: "vw-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "First triple-double of the season! Couldn't have done it without my teammates. We're just getting started 🔥",
+        image: "",
+        timestamp: "12 hours ago",
+        stats: { likes: 156000, comments: 4200, shares: 28000 }
+      },
+      {
+        id: "vw-mf5",
+        type: "video",
+        platform: "youtube",
+        title: "Wemby's Journey: From France to NBA Stardom",
+        content: "The complete documentary on Victor Wembanyama's rise to basketball greatness.",
+        image: "https://images.unsplash.com/photo-1506798946479-e7d0c1d5d6f3?w=800&h=450&fit=crop",
+        timestamp: "2 months ago",
+        stats: { views: 12000000, duration: "45:12" }
+      },
+      {
+        id: "vw-mf6",
+        type: "article",
+        platform: "bbc",
+        title: "Is Victor Wembanyama the future of basketball?",
+        content: "At 7'4\" with guard skills, the French teenager is redefining what's possible on the basketball court...",
+        image: "https://images.unsplash.com/photo-1515523110800-9415d13b84a8?w=800&h=400&fit=crop",
+        timestamp: "6 days ago",
+        stats: { readTime: "6 min read" }
+      }
+    ]
   },
   {
     id: "teddy-riner",
@@ -634,7 +953,67 @@ export const athletes: Athlete[] = [
       raised: 16200,
       currency: "€",
       image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&h=400&fit=crop"
-    }
+    },
+    mediaFeed: [
+      {
+        id: "tr-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "10 world titles and counting. The hunger never stops. Ready for whatever comes next. 🥋🥇",
+        image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&h=800&fit=crop",
+        timestamp: "6 hours ago",
+        stats: { likes: 78000, comments: 2100 }
+      },
+      {
+        id: "tr-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Teddy Riner - Greatest Throws & Ippon Collection",
+        content: "Witness the devastating power of the most decorated judoka in history.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 2300000, duration: "14:56" }
+      },
+      {
+        id: "tr-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Teddy Riner: \"My legacy is about more than medals\"",
+        content: "The judo legend discusses his upcoming projects, mentoring the next generation, and life after competition...",
+        image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "7 min read" }
+      },
+      {
+        id: "tr-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "Respect the art. Respect your opponent. Respect yourself. That's what judo taught me. 🙏",
+        image: "",
+        timestamp: "1 day ago",
+        stats: { likes: 45000, comments: 890, shares: 6700 }
+      },
+      {
+        id: "tr-mf5",
+        type: "video",
+        platform: "espn",
+        title: "The Legend of Teddy Riner | ESPN 30 for 30",
+        content: "An in-depth look at the career of judo's most dominant heavyweight.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=450&fit=crop",
+        timestamp: "3 months ago",
+        stats: { views: 890000, duration: "28:42" }
+      },
+      {
+        id: "tr-mf6",
+        type: "article",
+        platform: "bbc",
+        title: "Teddy Riner: The gentle giant transforming judo",
+        content: "How France's most beloved athlete is using his platform to grow the sport worldwide...",
+        image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&h=400&fit=crop",
+        timestamp: "4 days ago",
+        stats: { readTime: "5 min read" }
+      }
+    ]
   },
   {
     id: "pierre-gasly",
@@ -731,7 +1110,67 @@ export const athletes: Athlete[] = [
       raised: 19800,
       currency: "€",
       image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&h=400&fit=crop"
-    }
+    },
+    mediaFeed: [
+      {
+        id: "pg-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "P5 today! Great points for the team. Every race we're getting stronger. Next one, we push even harder! 🏎️💙",
+        image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&h=800&fit=crop",
+        timestamp: "1 hour ago",
+        stats: { likes: 134000, comments: 3400 }
+      },
+      {
+        id: "pg-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Pierre Gasly - Best Overtakes & Racing Moments 2024",
+        content: "The most thrilling wheel-to-wheel action from France's F1 star.",
+        image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&h=450&fit=crop",
+        timestamp: "5 days ago",
+        stats: { views: 1800000, duration: "12:08" }
+      },
+      {
+        id: "pg-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Pierre Gasly: \"Alpine can fight for podiums\"",
+        content: "The French driver shares his optimism about the team's development and his championship ambitions...",
+        image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "6 min read" }
+      },
+      {
+        id: "pg-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "Nothing beats the feeling of racing in front of the French fans. Merci for your incredible support! 🇫🇷❤️",
+        image: "",
+        timestamp: "2 days ago",
+        stats: { likes: 67000, comments: 1500, shares: 8900 }
+      },
+      {
+        id: "pg-mf5",
+        type: "video",
+        platform: "espn",
+        title: "Pierre Gasly: From Monza Glory to Alpine Dreams",
+        content: "The journey of France's most exciting F1 talent.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=450&fit=crop",
+        timestamp: "2 weeks ago",
+        stats: { views: 650000, duration: "18:33" }
+      },
+      {
+        id: "pg-mf6",
+        type: "article",
+        platform: "bbc",
+        title: "Pierre Gasly on life, speed, and French F1 renaissance",
+        content: "With Alpine's rise, Gasly is leading a new golden era for French motorsport...",
+        image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&h=400&fit=crop",
+        timestamp: "1 week ago",
+        stats: { readTime: "8 min read" }
+      }
+    ]
   },
   {
     id: "julian-alaphilippe",
@@ -828,7 +1267,67 @@ export const athletes: Athlete[] = [
       raised: 12400,
       currency: "€",
       image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=400&fit=crop"
-    }
+    },
+    mediaFeed: [
+      {
+        id: "ja-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Cols, pain, glory. This is what we live for. Tour de France preparation in full swing! 🚴‍♂️⛰️",
+        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=800&fit=crop",
+        timestamp: "4 hours ago",
+        stats: { likes: 56000, comments: 1200 }
+      },
+      {
+        id: "ja-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Julian Alaphilippe - Best Attacks & Stage Wins",
+        content: "The most explosive moments from cycling's greatest attacker.",
+        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 1400000, duration: "16:24" }
+      },
+      {
+        id: "ja-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Julian Alaphilippe: \"The yellow jersey was my destiny\"",
+        content: "The two-time world champion reflects on his iconic Tour de France moments and what drives him...",
+        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "6 min read" }
+      },
+      {
+        id: "ja-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "Two rainbows. Forever grateful. But the hunger for more never stops. Let's go! 🌈🌈",
+        image: "",
+        timestamp: "1 day ago",
+        stats: { likes: 38000, comments: 780, shares: 4500 }
+      },
+      {
+        id: "ja-mf5",
+        type: "video",
+        platform: "espn",
+        title: "The Heart of a Champion: Julian Alaphilippe Story",
+        content: "From amateur racer to world champion - the incredible journey of France's cycling hero.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=450&fit=crop",
+        timestamp: "1 month ago",
+        stats: { views: 520000, duration: "22:18" }
+      },
+      {
+        id: "ja-mf6",
+        type: "article",
+        platform: "bbc",
+        title: "Julian Alaphilippe: The most exciting rider in cycling",
+        content: "Why the French attacker has captured the hearts of cycling fans worldwide...",
+        image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=400&fit=crop",
+        timestamp: "5 days ago",
+        stats: { readTime: "7 min read" }
+      }
+    ]
   }
 ];
 
