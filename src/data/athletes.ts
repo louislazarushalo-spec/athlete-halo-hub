@@ -6,6 +6,12 @@ import victorWembanyamaImg from "@/assets/victor-wembanyama.png";
 import teddyRinerImg from "@/assets/teddy-riner.png";
 import pierreGaslyImg from "@/assets/pierre-gasly.png";
 import julianAlaphilippeImg from "@/assets/julian-alaphilippe.png";
+import arthurRinderknechImg from "@/assets/arthur-rinderknech.png";
+import gaelMonfilsImg from "@/assets/gael-monfils.png";
+import arthurFilsImg from "@/assets/arthur-fils.png";
+import arthurCazauxImg from "@/assets/arthur-cazaux.png";
+import corentinMoutetImg from "@/assets/corentin-moutet.png";
+import ugoHumbertImg from "@/assets/ugo-humbert.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -1324,6 +1330,655 @@ export const athletes: Athlete[] = [
         title: "Julian Alaphilippe: The most exciting rider in cycling",
         content: "Why the French attacker has captured the hearts of cycling fans worldwide...",
         image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=400&fit=crop",
+        timestamp: "5 days ago",
+        stats: { readTime: "7 min read" }
+      }
+    ]
+  },
+  {
+    id: "arthur-rinderknech",
+    name: "Arthur Rinderknech",
+    sport: "Tennis",
+    bio: "Big server. Fighter. French flair on the ATP Tour.",
+    tagline: "Power tennis with French style",
+    avatar: arthurRinderknechImg,
+    banner: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&h=600&fit=crop",
+    followers: 89000,
+    training: [
+      {
+        id: "ar-t1",
+        title: "Serve Power Development",
+        description: "Building the explosive power behind my biggest weapon.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-01"
+      },
+      {
+        id: "ar-t2",
+        title: "Court Coverage Drills",
+        description: "Moving efficiently to cover every angle.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-22"
+      }
+    ],
+    life: [
+      {
+        id: "ar-l1",
+        title: "Life on the ATP Tour",
+        description: "Behind the scenes of a traveling tennis pro.",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-03-05"
+      }
+    ],
+    gear: [
+      {
+        id: "ar-g1",
+        title: "My Match Equipment",
+        description: "Rackets, strings, and everything I need on court.",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-28"
+      }
+    ],
+    products: [
+      {
+        id: "ar-p1",
+        name: "Serve Power Program",
+        price: 49,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=600&h=600&fit=crop",
+        description: "Develop a powerful, consistent serve.",
+        category: "athlete",
+        athleteId: "arthur-rinderknech"
+      }
+    ],
+    cause: {
+      id: "ar-c1",
+      title: "Tennis for All Kids",
+      story: "Making tennis accessible to children in underserved communities across France.",
+      target: 15000,
+      raised: 4200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "ar-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Another day grinding on the practice courts. The work never stops! 💪🎾",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=800&fit=crop",
+        timestamp: "4 hours ago",
+        stats: { likes: 8500, comments: 230 }
+      },
+      {
+        id: "ar-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Arthur Rinderknech - Best Aces & Serves 2024",
+        content: "Watch the biggest serves from one of France's hardest hitters.",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 125000, duration: "8:42" }
+      },
+      {
+        id: "ar-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Rinderknech: \"I'm ready for the big stage\"",
+        content: "The French player discusses his ambitions and preparation for the Grand Slams...",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "4 min read" }
+      }
+    ]
+  },
+  {
+    id: "gael-monfils",
+    name: "Gaël Monfils",
+    sport: "Tennis",
+    bio: "The Entertainer. Acrobatic. Electric. Pure showmanship.",
+    tagline: "La Monf - Tennis's greatest showman",
+    avatar: gaelMonfilsImg,
+    banner: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&h=600&fit=crop",
+    followers: 1250000,
+    training: [
+      {
+        id: "gm-t1",
+        title: "Explosive Movement Training",
+        description: "The athletic foundation behind my acrobatic style.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-08"
+      },
+      {
+        id: "gm-t2",
+        title: "Defense to Offense Transitions",
+        description: "Turning defense into spectacular winners.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-01"
+      }
+    ],
+    life: [
+      {
+        id: "gm-l1",
+        title: "Family Life with Elina",
+        description: "Balancing tennis with being a dad and husband.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-03-10"
+      }
+    ],
+    gear: [
+      {
+        id: "gm-g1",
+        title: "My Court Setup",
+        description: "The equipment that helps me put on a show.",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-03-05"
+      }
+    ],
+    products: [
+      {
+        id: "gm-p1",
+        name: "Athletic Tennis Masterclass",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop",
+        description: "Learn the athletic foundations of showstopping tennis.",
+        category: "athlete",
+        athleteId: "gael-monfils"
+      },
+      {
+        id: "gm-p2",
+        name: "Signed La Monf Jersey",
+        price: 120,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=600&fit=crop",
+        description: "Official match jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "gael-monfils"
+      }
+    ],
+    cause: {
+      id: "gm-c1",
+      title: "Sport & Joy Foundation",
+      story: "Bringing the joy of sport to children worldwide through tennis camps and equipment donations.",
+      target: 50000,
+      raised: 28500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "gm-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "When you love what you do, the crowd feels it! Thank you for the energy today! 🔥🎾",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=800&fit=crop",
+        timestamp: "2 hours ago",
+        stats: { likes: 156000, comments: 4200 }
+      },
+      {
+        id: "gm-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Gaël Monfils - Most Incredible Shots of His Career",
+        content: "The most acrobatic and entertaining points from La Monf.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=450&fit=crop",
+        timestamp: "2 weeks ago",
+        stats: { views: 4500000, duration: "15:28" }
+      },
+      {
+        id: "gm-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Monfils: Still entertaining at 38",
+        content: "The French showman continues to delight crowds and compete at the highest level...",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "6 min read" }
+      },
+      {
+        id: "gm-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "Family time is the best time. Grateful for every moment off the court with my girls ❤️",
+        image: "",
+        timestamp: "5 hours ago",
+        stats: { likes: 45000, comments: 890, shares: 3200 }
+      }
+    ]
+  },
+  {
+    id: "arthur-fils",
+    name: "Arthur Fils",
+    sport: "Tennis",
+    bio: "Rising star. Powerful baseline game. France's next big hope.",
+    tagline: "The future of French tennis",
+    avatar: arthurFilsImg,
+    banner: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&h=600&fit=crop",
+    followers: 125000,
+    training: [
+      {
+        id: "af-t1",
+        title: "Power Baseline Training",
+        description: "Building the heavy groundstrokes that define my game.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-12"
+      },
+      {
+        id: "af-t2",
+        title: "Mental Toughness Sessions",
+        description: "Developing the champion mindset at a young age.",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-05"
+      }
+    ],
+    life: [
+      {
+        id: "af-l1",
+        title: "A Day in Training",
+        description: "My daily routine as a young pro on the rise.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-03-15"
+      }
+    ],
+    gear: [
+      {
+        id: "af-g1",
+        title: "My Asics Setup",
+        description: "The gear that supports my powerful game.",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-03-08"
+      }
+    ],
+    products: [
+      {
+        id: "af-p1",
+        name: "Young Pro Training Guide",
+        price: 39,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=600&h=600&fit=crop",
+        description: "Training principles for aspiring young players.",
+        category: "athlete",
+        athleteId: "arthur-fils"
+      }
+    ],
+    cause: {
+      id: "af-c1",
+      title: "Youth Tennis Development",
+      story: "Supporting young tennis talents who lack resources to pursue their dreams.",
+      target: 20000,
+      raised: 7800,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "af-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "First ATP final! Just the beginning. Hungry for more 🔥💪",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=800&fit=crop",
+        timestamp: "6 hours ago",
+        stats: { likes: 34000, comments: 890 }
+      },
+      {
+        id: "af-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Arthur Fils - The Rise of France's Next Star",
+        content: "Highlights and breakthrough moments from the young French talent.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 320000, duration: "10:15" }
+      },
+      {
+        id: "af-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Arthur Fils: \"I want to be number one\"",
+        content: "The young French star shares his ambitious goals and the work he's putting in...",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "5 min read" }
+      }
+    ]
+  },
+  {
+    id: "arthur-cazaux",
+    name: "Arthur Cazaux",
+    sport: "Tennis",
+    bio: "Young talent. Lacoste ambassador. All-court game.",
+    tagline: "French elegance on the ATP Tour",
+    avatar: arthurCazauxImg,
+    banner: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&h=600&fit=crop",
+    followers: 78000,
+    training: [
+      {
+        id: "ac-t1",
+        title: "All-Court Development",
+        description: "Building a complete game for every surface.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-10"
+      }
+    ],
+    life: [
+      {
+        id: "ac-l1",
+        title: "Growing Up on Tour",
+        description: "The journey of a young French professional.",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-03-12"
+      }
+    ],
+    gear: [
+      {
+        id: "ac-g1",
+        title: "Lacoste Collection",
+        description: "My signature style on and off the court.",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-03-08"
+      }
+    ],
+    products: [
+      {
+        id: "ac-p1",
+        name: "Complete Game Blueprint",
+        price: 45,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=600&h=600&fit=crop",
+        description: "Develop an all-court tennis game.",
+        category: "athlete",
+        athleteId: "arthur-cazaux"
+      }
+    ],
+    cause: {
+      id: "ac-c1",
+      title: "Tennis & Education",
+      story: "Helping young athletes balance sports and academics.",
+      target: 12000,
+      raised: 3400,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "ac-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Hard work pays off. New career high ranking! Thank you for all the support 🙏🎾",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 12000, comments: 340 }
+      },
+      {
+        id: "ac-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Arthur Cazaux - Best Moments 2024",
+        content: "Highlights from the young Frenchman's breakthrough season.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=450&fit=crop",
+        timestamp: "5 days ago",
+        stats: { views: 85000, duration: "7:33" }
+      },
+      {
+        id: "ac-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Cazaux: \"I'm learning every match\"",
+        content: "The young French talent discusses his development and goals for the season...",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "4 min read" }
+      }
+    ]
+  },
+  {
+    id: "corentin-moutet",
+    name: "Corentin Moutet",
+    sport: "Tennis",
+    bio: "Fiery competitor. Creative shot-maker. Never backs down.",
+    tagline: "French fire on the tennis court",
+    avatar: corentinMoutetImg,
+    banner: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&h=600&fit=crop",
+    followers: 156000,
+    training: [
+      {
+        id: "cm-t1",
+        title: "Creative Shot Practice",
+        description: "Developing the unorthodox shots that make my game unique.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-15"
+      },
+      {
+        id: "cm-t2",
+        title: "Intensity & Focus Training",
+        description: "Channeling my competitive fire into winning tennis.",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-08"
+      }
+    ],
+    life: [
+      {
+        id: "cm-l1",
+        title: "Behind the Intensity",
+        description: "What drives my passion and fire on court.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-03-18"
+      }
+    ],
+    gear: [
+      {
+        id: "cm-g1",
+        title: "My Battle Equipment",
+        description: "The gear I trust for every fight on court.",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-03-12"
+      }
+    ],
+    products: [
+      {
+        id: "cm-p1",
+        name: "Creative Tennis Playbook",
+        price: 55,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=600&h=600&fit=crop",
+        description: "Learn unorthodox shots and creative tactics.",
+        category: "athlete",
+        athleteId: "corentin-moutet"
+      }
+    ],
+    cause: {
+      id: "cm-c1",
+      title: "Tennis Passion Project",
+      story: "Inspiring the next generation of passionate tennis players.",
+      target: 18000,
+      raised: 6200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "cm-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Fight until the last point. That's who I am. 🔥💪",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=800&fit=crop",
+        timestamp: "1 hour ago",
+        stats: { likes: 28000, comments: 780 }
+      },
+      {
+        id: "cm-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Corentin Moutet - Most Intense Moments",
+        content: "The passion and fire that makes Moutet one of tennis's most exciting players.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=450&fit=crop",
+        timestamp: "3 days ago",
+        stats: { views: 450000, duration: "11:45" }
+      },
+      {
+        id: "cm-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Moutet: \"I play with my heart\"",
+        content: "The French firebrand discusses his emotional style and what drives his competitive spirit...",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop",
+        timestamp: "4 days ago",
+        stats: { readTime: "5 min read" }
+      },
+      {
+        id: "cm-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "Roland Garros is coming. Ready to give everything for the home crowd 🇫🇷❤️",
+        image: "",
+        timestamp: "8 hours ago",
+        stats: { likes: 18000, comments: 560, shares: 2100 }
+      }
+    ]
+  },
+  {
+    id: "ugo-humbert",
+    name: "Ugo Humbert",
+    sport: "Tennis",
+    bio: "Smooth lefty. Elegant game. Masters 1000 champion.",
+    tagline: "The elegant left-hander",
+    avatar: ugoHumbertImg,
+    banner: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&h=600&fit=crop",
+    followers: 234000,
+    training: [
+      {
+        id: "uh-t1",
+        title: "Lefty Advantage Training",
+        description: "Maximizing the tactical benefits of being left-handed.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-20"
+      },
+      {
+        id: "uh-t2",
+        title: "Smooth Stroke Development",
+        description: "Refining the technique behind my fluid game.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-12"
+      }
+    ],
+    life: [
+      {
+        id: "uh-l1",
+        title: "Life After a Masters Title",
+        description: "How winning in Dubai changed everything.",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-03-22"
+      }
+    ],
+    gear: [
+      {
+        id: "uh-g1",
+        title: "My Lacoste Partnership",
+        description: "The elegant style that matches my game.",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-03-18"
+      }
+    ],
+    products: [
+      {
+        id: "uh-p1",
+        name: "Lefty Tennis Mastery",
+        price: 65,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=600&h=600&fit=crop",
+        description: "Tactical guide for left-handed players.",
+        category: "athlete",
+        athleteId: "ugo-humbert"
+      },
+      {
+        id: "uh-p2",
+        name: "Signed Champions Racket",
+        price: 189,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=600&h=600&fit=crop",
+        description: "Match-used racket from Masters 1000 victory.",
+        category: "athlete",
+        athleteId: "ugo-humbert"
+      }
+    ],
+    cause: {
+      id: "uh-c1",
+      title: "Green Tennis Initiative",
+      story: "Making professional tennis more environmentally sustainable.",
+      target: 25000,
+      raised: 11200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "uh-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Masters 1000 champion! Dreams do come true. Merci à tous! 🏆🇫🇷",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=800&fit=crop",
+        timestamp: "1 day ago",
+        stats: { likes: 89000, comments: 3400 }
+      },
+      {
+        id: "uh-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Ugo Humbert - Road to Masters 1000 Glory",
+        content: "The complete journey to Humbert's biggest career title.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=450&fit=crop",
+        timestamp: "3 days ago",
+        stats: { views: 890000, duration: "18:22" }
+      },
+      {
+        id: "uh-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Humbert: \"This is just the beginning\"",
+        content: "After his historic Masters 1000 win, the French lefty sets his sights even higher...",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "6 min read" }
+      },
+      {
+        id: "uh-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "Top 15 and climbing! Thank you for believing in me from day one 🙏💚",
+        image: "",
+        timestamp: "4 hours ago",
+        stats: { likes: 34000, comments: 890, shares: 4500 }
+      },
+      {
+        id: "uh-mf5",
+        type: "article",
+        platform: "bbc",
+        title: "Ugo Humbert: France's elegant left-handed hope",
+        content: "How the smooth-stroking Frenchman rose to become one of tennis's most watchable players...",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=400&fit=crop",
         timestamp: "5 days ago",
         stats: { readTime: "7 min read" }
       }
