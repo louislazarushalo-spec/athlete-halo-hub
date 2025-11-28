@@ -2,6 +2,8 @@ import antoineDupontImg from "@/assets/antoine-dupont.png";
 import paulPogbaImg from "@/assets/paul-pogba.png";
 import igaSwiatekImg from "@/assets/iga-swiatek.png";
 import leonMarchandImg from "@/assets/leon-marchand.png";
+import victorWembanyamaImg from "@/assets/victor-wembanyama.png";
+import teddyRinerImg from "@/assets/teddy-riner.png";
 
 export interface Athlete {
   id: string;
@@ -436,6 +438,200 @@ export const athletes: Athlete[] = [
       raised: 7600,
       currency: "€",
       image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=400&fit=crop"
+    }
+  },
+  {
+    id: "victor-wembanyama",
+    name: "Victor Wembanyama",
+    sport: "Basketball",
+    bio: "7'4\" phenomenon changing the game. Welcome to my universe.",
+    tagline: "Redefining basketball at 7'4\"",
+    avatar: victorWembanyamaImg,
+    banner: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600&h=600&fit=crop",
+    followers: 678000,
+    training: [
+      {
+        id: "vw-t1",
+        title: "My Height & Mobility Training",
+        description: "How I maintain agility and speed at 7'4\".",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-20"
+      },
+      {
+        id: "vw-t2",
+        title: "Shooting Form & Range Work",
+        description: "Developing my outside shot and three-point range.",
+        image: "https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-12"
+      }
+    ],
+    life: [
+      {
+        id: "vw-l1",
+        title: "Life in San Antonio",
+        description: "Adapting to the NBA and American culture.",
+        image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-18"
+      },
+      {
+        id: "vw-l2",
+        title: "Representing France on the World Stage",
+        description: "Pride, pressure, and playing for my country.",
+        image: "https://images.unsplash.com/photo-1506798946479-e7d0c1d5d6f3?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      }
+    ],
+    gear: [
+      {
+        id: "vw-g1",
+        title: "My Game Day Essentials",
+        description: "Custom shoes, sleeves, and court gear designed for my frame.",
+        image: "https://images.unsplash.com/photo-1515523110800-9415d13b84a8?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-15"
+      }
+    ],
+    products: [
+      {
+        id: "vw-p1",
+        name: "Length & Mobility Program",
+        price: 75,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=600&fit=crop",
+        description: "Training program for tall athletes to maximize mobility.",
+        category: "athlete",
+        athleteId: "victor-wembanyama"
+      },
+      {
+        id: "vw-p2",
+        name: "Signed Spurs Jersey",
+        price: 249,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1515523110800-9415d13b84a8?w=600&h=600&fit=crop",
+        description: "Official San Antonio Spurs jersey with signature.",
+        category: "athlete",
+        athleteId: "victor-wembanyama"
+      },
+      {
+        id: "vw-p3",
+        name: "Nike Signature Collection",
+        price: 179,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+        description: "Exclusive basketball gear from Nike.",
+        category: "partner",
+        athleteId: "victor-wembanyama"
+      }
+    ],
+    cause: {
+      id: "vw-c1",
+      title: "Basketball Without Borders",
+      story: "Bringing basketball opportunities and education to underserved youth worldwide.",
+      target: 60000,
+      raised: 28500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=400&fit=crop"
+    }
+  },
+  {
+    id: "teddy-riner",
+    name: "Teddy Riner",
+    sport: "Judo",
+    bio: "10-time World Champion. Olympic Gold. Discipline defines greatness.",
+    tagline: "The most decorated judoka in history",
+    avatar: teddyRinerImg,
+    banner: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=1600&h=600&fit=crop",
+    followers: 445000,
+    training: [
+      {
+        id: "tr-t1",
+        title: "My Strength & Power Routine",
+        description: "The training that made me a heavyweight champion.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-22"
+      },
+      {
+        id: "tr-t2",
+        title: "Technical Judo Mastery",
+        description: "Perfecting throws, grips, and tactical awareness.",
+        image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-14"
+      }
+    ],
+    life: [
+      {
+        id: "tr-l1",
+        title: "Road to Paris 2024",
+        description: "Preparing for the Olympics on home soil.",
+        image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-25"
+      },
+      {
+        id: "tr-l2",
+        title: "A Champion's Mindset",
+        description: "Mental discipline and the warrior spirit of judo.",
+        image: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-16"
+      }
+    ],
+    gear: [
+      {
+        id: "tr-g1",
+        title: "My Dojo Essentials",
+        description: "Judogi, belt, training equipment, and recovery tools.",
+        image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-18"
+      }
+    ],
+    products: [
+      {
+        id: "tr-p1",
+        name: "Champion's Judo Program",
+        price: 69,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=600&h=600&fit=crop",
+        description: "Complete judo training system for all levels.",
+        category: "athlete",
+        athleteId: "teddy-riner"
+      },
+      {
+        id: "tr-p2",
+        name: "Signed Competition Judogi",
+        price: 299,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=600&h=600&fit=crop",
+        description: "Official competition gi with authentic signature.",
+        category: "athlete",
+        athleteId: "teddy-riner"
+      },
+      {
+        id: "tr-p3",
+        name: "Mizuno Judo Elite Pack",
+        price: 159,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Professional judo equipment from Mizuno.",
+        category: "partner",
+        athleteId: "teddy-riner"
+      }
+    ],
+    cause: {
+      id: "tr-c1",
+      title: "Judo for Peace & Respect",
+      story: "Using judo to teach discipline, respect, and self-confidence to at-risk youth across France.",
+      target: 35000,
+      raised: 16200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&h=400&fit=crop"
     }
   }
 ];
