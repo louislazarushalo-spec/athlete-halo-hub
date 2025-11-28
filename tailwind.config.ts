@@ -51,10 +51,10 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          light: "hsl(var(--gold-light))",
-          dark: "hsl(var(--gold-dark))",
+        blue: {
+          DEFAULT: "hsl(var(--blue))",
+          light: "hsl(var(--blue-light))",
+          dark: "hsl(var(--blue-dark))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -98,13 +98,13 @@ export default {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-dark': 'linear-gradient(180deg, hsl(0 0% 9%) 0%, hsl(0 0% 5%) 100%)',
-        'gradient-gold': 'linear-gradient(135deg, hsl(43 96% 56%) 0%, hsl(35 100% 45%) 100%)',
-        'gradient-card': 'linear-gradient(145deg, hsl(0 0% 12%) 0%, hsl(0 0% 8%) 100%)',
+        'gradient-dark': 'linear-gradient(180deg, hsl(0 0% 6%) 0%, hsl(0 0% 2%) 100%)',
+        'gradient-space': 'linear-gradient(135deg, hsl(230 70% 25%) 0%, hsl(217 91% 60%) 50%, hsl(200 100% 70%) 100%)',
+        'gradient-card': 'linear-gradient(145deg, hsl(0 0% 10%) 0%, hsl(0 0% 6%) 100%)',
       },
       boxShadow: {
-        'glow-gold': '0 0 40px hsl(43 96% 56% / 0.3)',
-        'glow-soft': '0 0 60px hsl(43 96% 56% / 0.15)',
+        'glow-blue': '0 0 40px hsl(217 91% 60% / 0.4)',
+        'glow-soft': '0 0 60px hsl(217 91% 60% / 0.2)',
         'inner-glow': 'inset 0 1px 0 0 hsl(0 0% 100% / 0.05)',
       },
     },
