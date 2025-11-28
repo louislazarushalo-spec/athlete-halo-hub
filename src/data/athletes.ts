@@ -12,6 +12,8 @@ import arthurFilsImg from "@/assets/arthur-fils.png";
 import arthurCazauxImg from "@/assets/arthur-cazaux.png";
 import corentinMoutetImg from "@/assets/corentin-moutet.png";
 import ugoHumbertImg from "@/assets/ugo-humbert.png";
+import arynaSabalenkaImg from "@/assets/aryna-sabalenka.png";
+import jasminePaoliniImg from "@/assets/jasmine-paolini.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -1981,6 +1983,280 @@ export const athletes: Athlete[] = [
         image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=400&fit=crop",
         timestamp: "5 days ago",
         stats: { readTime: "7 min read" }
+      }
+    ]
+  },
+  {
+    id: "aryna-sabalenka",
+    name: "Aryna Sabalenka",
+    sport: "Tennis",
+    bio: "Power. Passion. Champion. Welcome to my world.",
+    tagline: "Two-time Australian Open champion",
+    avatar: arynaSabalenkaImg,
+    banner: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&h=600&fit=crop",
+    followers: 723000,
+    training: [
+      {
+        id: "as-t1",
+        title: "My Power Serve Technique",
+        description: "The mechanics behind one of the most powerful serves on tour.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "as-t2",
+        title: "Strength Training for Tennis",
+        description: "My gym routine that builds explosive power on court.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-05"
+      }
+    ],
+    life: [
+      {
+        id: "as-l1",
+        title: "Grand Slam Champion's Mindset",
+        description: "How I overcame mental barriers to reach the top.",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-12"
+      },
+      {
+        id: "as-l2",
+        title: "Life Between Tournaments",
+        description: "Recovery, relaxation, and recharging for the next challenge.",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      }
+    ],
+    gear: [
+      {
+        id: "as-g1",
+        title: "My Match Day Setup",
+        description: "Rackets, strings, shoes, and everything I need to compete.",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-06"
+      }
+    ],
+    products: [
+      {
+        id: "as-p1",
+        name: "Power Tennis Masterclass",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1599586120429-48281b6f0ece?w=600&h=600&fit=crop",
+        description: "Learn to hit with controlled aggression like a champion.",
+        category: "athlete",
+        athleteId: "aryna-sabalenka"
+      },
+      {
+        id: "as-p2",
+        name: "Signed Champion Racket",
+        price: 249,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=600&h=600&fit=crop",
+        description: "Match-used racket with authentic signature.",
+        category: "athlete",
+        athleteId: "aryna-sabalenka"
+      },
+      {
+        id: "as-p3",
+        name: "Nike Training Collection",
+        price: 159,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Complete training kit from Nike.",
+        category: "partner",
+        athleteId: "aryna-sabalenka"
+      }
+    ],
+    cause: {
+      id: "as-c1",
+      title: "Support for Belarusian Athletes",
+      story: "Helping athletes who face challenges pursuing their dreams, providing resources and opportunities.",
+      target: 40000,
+      raised: 18500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "as-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Two-time champion! Dreams do come true when you believe and work hard. 🏆🇦🇺",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 189000, comments: 4200 }
+      },
+      {
+        id: "as-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Aryna Sabalenka - Most Powerful Shots 2024",
+        content: "Watch the most devastating winners from the hardest hitter in women's tennis.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=450&fit=crop",
+        timestamp: "4 days ago",
+        stats: { views: 2100000, duration: "14:18" }
+      },
+      {
+        id: "as-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Sabalenka's transformation into a Grand Slam champion",
+        content: "How Aryna Sabalenka evolved her game and mindset to become one of tennis's most dominant forces...",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "6 min read" }
+      },
+      {
+        id: "as-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "Ready for the next challenge. Let's go! 💪🔥",
+        image: "",
+        timestamp: "6 hours ago",
+        stats: { likes: 67000, comments: 1800, shares: 8900 }
+      }
+    ]
+  },
+  {
+    id: "jasmine-paolini",
+    name: "Jasmine Paolini",
+    sport: "Tennis",
+    bio: "Heart. Hustle. History-maker. Benvenuti nel mio mondo.",
+    tagline: "Italian tennis history-maker",
+    avatar: jasminePaoliniImg,
+    banner: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&h=600&fit=crop",
+    followers: 412000,
+    training: [
+      {
+        id: "jp-t1",
+        title: "Speed & Agility on Clay",
+        description: "My footwork secrets for the red dirt.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "jp-t2",
+        title: "Building Endurance for Five-Setters",
+        description: "How I prepare my body for the toughest matches.",
+        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-04"
+      }
+    ],
+    life: [
+      {
+        id: "jp-l1",
+        title: "My Roland Garros Journey",
+        description: "From dreams to the final - the most incredible weeks of my life.",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-11"
+      },
+      {
+        id: "jp-l2",
+        title: "Italian Roots, Global Dreams",
+        description: "How my family and culture shaped who I am today.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-07"
+      }
+    ],
+    gear: [
+      {
+        id: "jp-g1",
+        title: "My Court Essentials",
+        description: "Every piece of gear that helps me compete at the highest level.",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-05"
+      }
+    ],
+    products: [
+      {
+        id: "jp-p1",
+        name: "Fighter's Footwork Program",
+        price: 59,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1599586120429-48281b6f0ece?w=600&h=600&fit=crop",
+        description: "8-week agility program for all court surfaces.",
+        category: "athlete",
+        athleteId: "jasmine-paolini"
+      },
+      {
+        id: "jp-p2",
+        name: "Signed Match Outfit",
+        price: 149,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=600&fit=crop",
+        description: "Match-worn outfit with authentic signature.",
+        category: "athlete",
+        athleteId: "jasmine-paolini"
+      },
+      {
+        id: "jp-p3",
+        name: "Asics Performance Pack",
+        price: 129,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Complete performance kit from Asics.",
+        category: "partner",
+        athleteId: "jasmine-paolini"
+      }
+    ],
+    cause: {
+      id: "jp-c1",
+      title: "Tennis for All in Italy",
+      story: "Bringing tennis to underserved communities across Italy, giving every child the chance to play.",
+      target: 30000,
+      raised: 12800,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "jp-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Still dreaming, still fighting, still believing. Grazie a tutti per il supporto! 🇮🇹❤️",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=800&fit=crop",
+        timestamp: "5 hours ago",
+        stats: { likes: 98000, comments: 2800 }
+      },
+      {
+        id: "jp-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Jasmine Paolini - The Underdog Story",
+        content: "How the Italian fighter rose to become a Grand Slam finalist.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=450&fit=crop",
+        timestamp: "2 days ago",
+        stats: { views: 1400000, duration: "16:45" }
+      },
+      {
+        id: "jp-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Paolini: \"Roland Garros changed my life\"",
+        content: "The Italian reflects on her breakthrough run to the French Open final...",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "5 min read" }
+      },
+      {
+        id: "jp-mf4",
+        type: "social",
+        platform: "twitter",
+        content: "Every match is a new opportunity. Let's make it count! 💪🎾",
+        image: "",
+        timestamp: "8 hours ago",
+        stats: { likes: 42000, comments: 980, shares: 5600 }
       }
     ]
   }
