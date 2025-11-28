@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { useState } from "react";
 
-const sportFilters = ["All", "Rugby", "Football", "Tennis", "Swimming", "Basketball", "Judo"];
+const sportFilters = ["All", "Rugby", "Football", "Tennis", "Swimming", "Basketball", "Judo", "F1", "Cycling"];
 const sortOptions = ["Trending", "Most Followed", "New"];
 
 const AthletesPage = () => {
