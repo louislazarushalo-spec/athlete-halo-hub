@@ -5,26 +5,35 @@ import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
-    // Simulate login
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await login(email, password);
       toast({
         title: "Welcome back!",
         description: "You've successfully logged in.",
       });
-      navigate("/feed");
-    }, 1000);
+      navigate("/home");
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to log in. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
