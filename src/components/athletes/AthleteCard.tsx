@@ -32,21 +32,9 @@ export const AthleteCard = ({ athlete, index = 0 }: AthleteCardProps) => {
 
         {/* Content */}
         <div className="p-5">
-          <h3 className="font-display text-xl font-semibold mb-1 group-hover:text-primary transition-colors">
+          <h3 className="font-display text-xl font-semibold group-hover:text-primary transition-colors">
             {athlete.name}
           </h3>
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-            {athlete.tagline}
-          </p>
-          
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground">
-              {athlete.followers.toLocaleString()} followers
-            </span>
-            <Button variant="gold" size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity">
-              Explore Halo
-            </Button>
-          </div>
         </div>
       </article>
     </Link>
