@@ -14,7 +14,7 @@ export const Footer = () => {
               <span className="font-display text-xl font-semibold">Halo Collective</span>
             </div>
             <p className="text-muted-foreground text-sm max-w-md">
-              Step inside your favorite athletes' worlds. Discover how they train, live, and what they wear — and support them directly.
+              Step inside the real lives, routines, and gear of the world's best athletes — and get closer than ever.
             </p>
           </div>
 
