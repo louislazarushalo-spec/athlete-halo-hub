@@ -36,7 +36,7 @@ const SignupPage = () => {
             <div className="glass-card p-8">
               {/* Logo */}
               <div className="text-center mb-8">
-                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-gold-dark flex items-center justify-center">
+                <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-dark via-primary to-blue-light flex items-center justify-center shadow-glow-blue">
                   <span className="text-primary-foreground font-bold text-lg">H</span>
                 </div>
                 <h1 className="font-display text-2xl font-bold mb-2">Create Account</h1>
