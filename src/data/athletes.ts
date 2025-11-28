@@ -1,3 +1,8 @@
+import antoineDupontImg from "@/assets/antoine-dupont.png";
+import paulPogbaImg from "@/assets/paul-pogba.png";
+import igaSwiatekImg from "@/assets/iga-swiatek.png";
+import leonMarchandImg from "@/assets/leon-marchand.png";
+
 export interface Athlete {
   id: string;
   name: string;
@@ -51,7 +56,7 @@ export const athletes: Athlete[] = [
     sport: "Rugby",
     bio: "Scrum-half. Captain. Game-changer. Step inside my world.",
     tagline: "The world's best scrum-half",
-    avatar: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=400&h=400&fit=crop&crop=face",
+    avatar: antoineDupontImg,
     banner: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&h=600&fit=crop",
     followers: 245000,
     training: [
@@ -148,7 +153,7 @@ export const athletes: Athlete[] = [
     sport: "Football",
     bio: "Midfielder. Creator. Champion. Welcome to my Halo.",
     tagline: "World Cup winner & creative genius",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+    avatar: paulPogbaImg,
     banner: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&h=600&fit=crop",
     followers: 892000,
     training: [
@@ -245,7 +250,7 @@ export const athletes: Athlete[] = [
     sport: "Tennis",
     bio: "World No. 1 mindset. Welcome to my training, life, and gear.",
     tagline: "Dominating the court with power & precision",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face",
+    avatar: igaSwiatekImg,
     banner: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&h=600&fit=crop",
     followers: 567000,
     training: [
@@ -342,7 +347,7 @@ export const athletes: Athlete[] = [
     sport: "Swimming",
     bio: "World record holder. Precision, passion, performance.",
     tagline: "Breaking records, making history",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+    avatar: leonMarchandImg,
     banner: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=1600&h=600&fit=crop",
     followers: 324000,
     training: [
