@@ -1,20 +1,34 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
-import { PostCard } from "@/components/posts/PostCard";
-import { ProductCard } from "@/components/products/ProductCard";
 import { getAthleteById } from "@/data/athletes";
-import { UserPlus, Users, Heart, Dumbbell, Package } from "lucide-react";
+import { 
+  UserPlus, 
+  Users, 
+  Heart, 
+  Dumbbell, 
+  Package, 
+  Play, 
+  Lock, 
+  Trophy, 
+  MessageCircle,
+  Camera,
+  ShoppingCart,
+  Check
+} from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
 
 const AthletePage = () => {
   const { id } = useParams<{ id: string }>();
   const athlete = getAthleteById(id || "");
   const [isFollowing, setIsFollowing] = useState(false);
+  const [activeLifeTab, setActiveLifeTab] = useState<"feed" | "media" | "community">("feed");
+  const { addToCart } = useCart();
+  const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
 
   if (!athlete) {
     return (
@@ -39,146 +53,501 @@ const AthletePage = () => {
     });
   };
 
-  const progressPercent = (athlete.cause.raised / athlete.cause.target) * 100;
+  const handleAddToCart = (product: typeof athlete.products[0]) => {
+    addToCart(product);
+    setAddedProducts(prev => new Set([...prev, product.id]));
+    toast({
+      title: "Added to cart",
+      description: `${product.name} has been added to your cart.`,
+    });
+  };
+
+  // Sample media items for the Media section
+  const mediaItems = [
+    { id: 1, type: "photo", image: athlete.banner, caption: "Match day vibes" },
+    { id: 2, type: "photo", image: athlete.life[0]?.image || athlete.banner, caption: "Behind the scenes" },
+    { id: 3, type: "photo", image: athlete.training[0]?.image || athlete.banner, caption: "Training session" },
+    { id: 4, type: "photo", image: athlete.gear[0]?.image || athlete.banner, caption: "Gear check" },
+  ];
 
   return (
     <Layout>
-      {/* Banner */}
-      <section className="relative h-64 sm:h-80 overflow-hidden">
+      {/* Hero Banner - Full Width */}
+      <section className="relative h-[50vh] min-h-[400px] max-h-[600px] overflow-hidden">
         <img
           src={athlete.banner}
           alt={`${athlete.name} banner`}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-      </section>
+        {/* Grey transparent gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-muted/40" />
+        
+        {/* Hero Content Overlay */}
+        <div className="absolute inset-0 flex items-end">
+          <div className="container mx-auto px-4 pb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-end gap-6">
+              {/* Large Avatar */}
+              <div className="relative">
+                <img
+                  src={athlete.avatar}
+                  alt={athlete.name}
+                  className="w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-2xl object-cover border-4 border-background shadow-2xl"
+                />
+                <Badge className="absolute -bottom-2 -right-2 bg-primary text-primary-foreground">
+                  {athlete.sport}
+                </Badge>
+              </div>
 
-      {/* Profile Header */}
-      <section className="relative -mt-20 pb-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end gap-6">
-            {/* Avatar */}
-            <div className="relative">
-              <img
-                src={athlete.avatar}
-                alt={athlete.name}
-                className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover border-4 border-background shadow-xl"
-              />
-              <span className="absolute -bottom-2 -right-2 px-3 py-1 bg-primary text-primary-foreground text-xs font-medium rounded-full">
-                {athlete.sport}
-              </span>
-            </div>
-
-            {/* Info */}
-            <div className="flex-1">
-              <h1 className="font-display text-3xl sm:text-4xl font-bold mb-2">
-                {athlete.name}
-              </h1>
-              <p className="text-muted-foreground text-lg mb-4 max-w-2xl">
-                {athlete.bio}
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Users className="h-4 w-4" />
-                  <span className="text-sm">
-                    {athlete.followers.toLocaleString()} followers
-                  </span>
+              {/* Athlete Info */}
+              <div className="flex-1 pb-2">
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-foreground drop-shadow-lg">
+                  {athlete.name}
+                </h1>
+                <p className="text-foreground/90 text-lg sm:text-xl mb-4 max-w-2xl drop-shadow-md">
+                  {athlete.tagline}
+                </p>
+                <div className="flex flex-wrap items-center gap-4">
+                  <div className="flex items-center gap-2 text-foreground/80">
+                    <Users className="h-5 w-5" />
+                    <span className="text-sm font-medium">
+                      {athlete.followers.toLocaleString()} followers
+                    </span>
+                  </div>
+                  <Button
+                    variant={isFollowing ? "secondary" : "gold"}
+                    size="lg"
+                    onClick={handleFollow}
+                    className="shadow-lg"
+                  >
+                    {isFollowing ? <Check className="h-4 w-4" /> : <UserPlus className="h-4 w-4" />}
+                    {isFollowing ? "Following" : "Follow Athlete"}
+                  </Button>
                 </div>
-                <Button
-                  variant={isFollowing ? "secondary" : "gold"}
-                  onClick={handleFollow}
-                >
-                  <UserPlus className="h-4 w-4" />
-                  {isFollowing ? "Following" : "Follow Athlete"}
-                </Button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Content Tabs */}
-      <section className="py-8">
+      {/* Main Content Tabs */}
+      <section className="py-8 bg-background sticky-tabs">
         <div className="container mx-auto px-4">
-          <Tabs defaultValue="training" className="w-full">
-            <TabsList className="grid w-full max-w-lg grid-cols-3 mb-8">
-              <TabsTrigger value="training" className="flex items-center gap-2">
-                <Dumbbell className="h-4 w-4" />
-                <span className="hidden sm:inline">My Training</span>
-                <span className="sm:hidden">Training</span>
+          <Tabs defaultValue="life" className="w-full">
+            {/* Main Tab Navigation */}
+            <TabsList className="w-full max-w-2xl mx-auto grid grid-cols-3 mb-8 h-14 bg-muted/50">
+              <TabsTrigger value="life" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Heart className="h-5 w-5" />
+                <span>My Life</span>
               </TabsTrigger>
-              <TabsTrigger value="life" className="flex items-center gap-2">
-                <Heart className="h-4 w-4" />
-                <span className="hidden sm:inline">My Life</span>
-                <span className="sm:hidden">Life</span>
+              <TabsTrigger value="gear" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Package className="h-5 w-5" />
+                <span>My Gear</span>
               </TabsTrigger>
-              <TabsTrigger value="gear" className="flex items-center gap-2">
-                <Package className="h-4 w-4" />
-                <span className="hidden sm:inline">My Gear</span>
-                <span className="sm:hidden">Gear</span>
+              <TabsTrigger value="training" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Dumbbell className="h-5 w-5" />
+                <span>My Training</span>
               </TabsTrigger>
             </TabsList>
 
-            {/* Training Content */}
-            <TabsContent value="training">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {athlete.training.length > 0 ? (
-                  athlete.training.map(post => (
-                    <PostCard key={post.id} post={post} />
-                  ))
-                ) : (
-                  <p className="col-span-full text-center text-muted-foreground py-12">
-                    No posts yet.
-                  </p>
-                )}
-              </div>
-            </TabsContent>
-
-            {/* Life Content */}
-            <TabsContent value="life">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {athlete.life.length > 0 ? (
-                  athlete.life.map(post => (
-                    <PostCard key={post.id} post={post} />
-                  ))
-                ) : (
-                  <p className="col-span-full text-center text-muted-foreground py-12">
-                    No posts yet.
-                  </p>
-                )}
-              </div>
-            </TabsContent>
-
-            {/* Gear Content */}
-            <TabsContent value="gear">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-                {athlete.gear.length > 0 ? (
-                  athlete.gear.map(post => (
-                    <PostCard key={post.id} post={post} />
-                  ))
-                ) : (
-                  <p className="col-span-full text-center text-muted-foreground py-12">
-                    No posts yet.
-                  </p>
-                )}
+            {/* MY LIFE TAB */}
+            <TabsContent value="life" className="animate-fade-in">
+              {/* Sub-tabs for Life section */}
+              <div className="flex gap-2 mb-8 border-b border-border pb-4">
+                <Button
+                  variant={activeLifeTab === "feed" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setActiveLifeTab("feed")}
+                  className="rounded-full"
+                >
+                  Lifestyle Feed
+                </Button>
+                <Button
+                  variant={activeLifeTab === "media" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setActiveLifeTab("media")}
+                  className="rounded-full"
+                >
+                  <Camera className="h-4 w-4 mr-1" />
+                  Media
+                </Button>
+                <Button
+                  variant={activeLifeTab === "community" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setActiveLifeTab("community")}
+                  className="rounded-full"
+                >
+                  <Lock className="h-4 w-4 mr-1" />
+                  Community & Rewards
+                </Button>
               </div>
 
-              {/* Products */}
-              <div>
-                <h3 className="font-display text-2xl font-semibold mb-6">
-                  Shop {athlete.name}'s Gear
-                </h3>
-                {athlete.products.length > 0 ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {athlete.products.map(product => (
-                      <ProductCard key={product.id} product={product} />
+              {/* Lifestyle Feed */}
+              {activeLifeTab === "feed" && (
+                <div className="space-y-8">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Latest Updates</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {athlete.life.map(post => (
+                        <article key={post.id} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
+                          <div className="relative h-48 overflow-hidden">
+                            <img
+                              src={post.image}
+                              alt={post.title}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <Badge className="absolute top-3 left-3 bg-primary/90">Life</Badge>
+                          </div>
+                          <div className="p-4">
+                            <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                              {post.title}
+                            </h4>
+                            <p className="text-muted-foreground text-sm line-clamp-2">
+                              {post.description}
+                            </p>
+                          </div>
+                        </article>
+                      ))}
+                      {/* Additional seeded posts */}
+                      {[
+                        { title: "Inside a match week", desc: "A glimpse into my routine during competition week." },
+                        { title: "Behind the scenes at training camp", desc: "What happens when cameras aren't rolling." },
+                        { title: "What I eat on a recovery day", desc: "Nutrition is key to peak performance." },
+                        { title: "Travel diary: tournament week", desc: "Life on the road as a professional athlete." },
+                        { title: "Race day rituals", desc: "The habits that help me perform my best." }
+                      ].slice(0, Math.max(0, 6 - athlete.life.length)).map((post, idx) => (
+                        <article key={`seed-${idx}`} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
+                          <div className="relative h-48 overflow-hidden bg-muted">
+                            <img
+                              src={athlete.banner}
+                              alt={post.title}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-70"
+                            />
+                            <Badge className="absolute top-3 left-3 bg-primary/90">Life</Badge>
+                          </div>
+                          <div className="p-4">
+                            <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                              {post.title}
+                            </h4>
+                            <p className="text-muted-foreground text-sm line-clamp-2">
+                              {post.desc}
+                            </p>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Media Gallery */}
+              {activeLifeTab === "media" && (
+                <div>
+                  <h3 className="text-xl font-semibold mb-4">Photos & Moments</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {mediaItems.map(item => (
+                      <div key={item.id} className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer">
+                        <img
+                          src={item.image}
+                          alt={item.caption}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                          <p className="text-sm text-foreground font-medium">{item.caption}</p>
+                        </div>
+                      </div>
+                    ))}
+                    {/* More media placeholders */}
+                    {[...Array(4)].map((_, idx) => (
+                      <div key={`placeholder-${idx}`} className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer">
+                        <img
+                          src={athlete.training[idx % athlete.training.length]?.image || athlete.banner}
+                          alt="Gallery item"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                          <p className="text-sm text-foreground font-medium">Behind the scenes</p>
+                        </div>
+                      </div>
                     ))}
                   </div>
-                ) : (
-                  <p className="text-center text-muted-foreground py-12">
-                    No products available.
-                  </p>
+                </div>
+              )}
+
+              {/* Community & Rewards (Premium Locked) */}
+              {activeLifeTab === "community" && (
+                <div className="relative">
+                  {/* Blurred preview content */}
+                  <div className="blur-sm pointer-events-none select-none">
+                    <div className="grid md:grid-cols-2 gap-8">
+                      {/* Prize Contests */}
+                      <div className="glass-card p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <Trophy className="h-6 w-6 text-primary" />
+                          <h3 className="text-xl font-semibold">Prize Contests</h3>
+                        </div>
+                        <div className="space-y-4">
+                          <div className="p-4 bg-muted/50 rounded-lg">
+                            <h4 className="font-medium mb-1">Win Signed Gear</h4>
+                            <p className="text-sm text-muted-foreground">Enter for a chance to win authentic signed equipment.</p>
+                          </div>
+                          <div className="p-4 bg-muted/50 rounded-lg">
+                            <h4 className="font-medium mb-1">Training Session Giveaway</h4>
+                            <p className="text-sm text-muted-foreground">Exclusive 1-on-1 virtual training session.</p>
+                          </div>
+                          <div className="p-4 bg-muted/50 rounded-lg">
+                            <h4 className="font-medium mb-1">Meet & Greet Opportunity</h4>
+                            <p className="text-sm text-muted-foreground">VIP access to meet the athlete in person.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Fan Discussions */}
+                      <div className="glass-card p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <MessageCircle className="h-6 w-6 text-primary" />
+                          <h3 className="text-xl font-semibold">Fan Discussions</h3>
+                        </div>
+                        <div className="space-y-4">
+                          <div className="p-4 bg-muted/50 rounded-lg">
+                            <h4 className="font-medium mb-1">Match Analysis Thread</h4>
+                            <p className="text-sm text-muted-foreground">Discuss recent performances with other fans.</p>
+                          </div>
+                          <div className="p-4 bg-muted/50 rounded-lg">
+                            <h4 className="font-medium mb-1">Training Tips Q&A</h4>
+                            <p className="text-sm text-muted-foreground">Community discussion on training methods.</p>
+                          </div>
+                          <div className="p-4 bg-muted/50 rounded-lg">
+                            <h4 className="font-medium mb-1">Fan Meetup Planning</h4>
+                            <p className="text-sm text-muted-foreground">Organize meetups with fellow supporters.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Lock Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-background/60 backdrop-blur-sm rounded-xl">
+                    <div className="text-center p-8 max-w-md">
+                      <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
+                        <Lock className="h-8 w-8 text-muted-foreground" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">Premium Exclusive</h3>
+                      <p className="text-muted-foreground mb-6">
+                        Unlock contests, discussions, and deeper access to {athlete.name}'s world.
+                      </p>
+                      <Button variant="gold" size="lg">
+                        Upgrade to Premium
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </TabsContent>
+
+            {/* MY GEAR TAB */}
+            <TabsContent value="gear" className="animate-fade-in">
+              <div className="space-y-10">
+                {/* Gear Posts */}
+                {athlete.gear.length > 0 && (
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Gear Highlights</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {athlete.gear.map(post => (
+                        <article key={post.id} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
+                          <div className="relative h-48 overflow-hidden">
+                            <img
+                              src={post.image}
+                              alt={post.title}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <Badge className="absolute top-3 left-3 bg-secondary">Gear</Badge>
+                          </div>
+                          <div className="p-4">
+                            <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                              {post.title}
+                            </h4>
+                            <p className="text-muted-foreground text-sm line-clamp-2">
+                              {post.description}
+                            </p>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
                 )}
+
+                {/* Products Grid */}
+                <div>
+                  <h3 className="text-xl font-semibold mb-4">Shop {athlete.name}'s Collection</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {athlete.products.map(product => (
+                      <article key={product.id} className="glass-card overflow-hidden group">
+                        <div className="relative h-48 overflow-hidden">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                          <Badge className="absolute top-3 left-3 bg-primary/90">
+                            {product.category === "partner" ? "Partner Product" : "Athlete Collection"}
+                          </Badge>
+                        </div>
+                        <div className="p-4">
+                          <h4 className="font-semibold text-lg mb-2">{product.name}</h4>
+                          <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+                            {product.description}
+                          </p>
+                          <div className="flex items-center justify-between">
+                            <span className="text-xl font-bold text-primary">
+                              {product.currency}{product.price}
+                            </span>
+                            <div className="flex gap-2">
+                              <Button
+                                size="sm"
+                                variant={addedProducts.has(product.id) ? "secondary" : "gold"}
+                                onClick={() => handleAddToCart(product)}
+                              >
+                                {addedProducts.has(product.id) ? (
+                                  <>
+                                    <Check className="h-4 w-4" />
+                                    Added
+                                  </>
+                                ) : (
+                                  <>
+                                    <ShoppingCart className="h-4 w-4" />
+                                    Add to Cart
+                                  </>
+                                )}
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+                    ))}
+                    {/* Seed additional products if needed */}
+                    {athlete.products.length < 4 && (
+                      <>
+                        <article className="glass-card overflow-hidden group">
+                          <div className="relative h-48 overflow-hidden bg-muted">
+                            <img
+                              src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop"
+                              alt="Signature Boots Pack"
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <Badge className="absolute top-3 left-3 bg-primary/90">Partner Product</Badge>
+                          </div>
+                          <div className="p-4">
+                            <h4 className="font-semibold text-lg mb-2">Signature Boots Pack</h4>
+                            <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+                              Professional-grade footwear from our official partner.
+                            </p>
+                            <div className="flex items-center justify-between">
+                              <span className="text-xl font-bold text-primary">€159</span>
+                              <Button size="sm" variant="gold">
+                                <ShoppingCart className="h-4 w-4" />
+                                Add to Cart
+                              </Button>
+                            </div>
+                          </div>
+                        </article>
+                        <article className="glass-card overflow-hidden group">
+                          <div className="relative h-48 overflow-hidden bg-muted">
+                            <img
+                              src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=600&fit=crop"
+                              alt="Training Apparel Set"
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <Badge className="absolute top-3 left-3 bg-secondary">Athlete Collection</Badge>
+                          </div>
+                          <div className="p-4">
+                            <h4 className="font-semibold text-lg mb-2">Training Apparel Set</h4>
+                            <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+                              Premium training gear curated by the athlete.
+                            </p>
+                            <div className="flex items-center justify-between">
+                              <span className="text-xl font-bold text-primary">€89</span>
+                              <Button size="sm" variant="gold">
+                                <ShoppingCart className="h-4 w-4" />
+                                Add to Cart
+                              </Button>
+                            </div>
+                          </div>
+                        </article>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* MY TRAINING TAB */}
+            <TabsContent value="training" className="animate-fade-in">
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {athlete.training.map(post => (
+                    <article key={post.id} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
+                      <div className="relative h-48 overflow-hidden">
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
+                            <Play className="h-6 w-6 text-primary-foreground ml-1" />
+                          </div>
+                        </div>
+                        <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                          {post.title}
+                        </h4>
+                        <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+                          {post.description}
+                        </p>
+                        <Button variant="outline" size="sm" className="w-full">
+                          View Program
+                        </Button>
+                      </div>
+                    </article>
+                  ))}
+                  {/* Seed additional training content */}
+                  {[
+                    { title: "Explosive Speed & Agility Routine", desc: "Build game-changing acceleration and quick feet." },
+                    { title: "Strength & Mobility Session", desc: "Balance power with flexibility for peak performance." },
+                    { title: "Recovery & Regeneration Protocol", desc: "Essential recovery techniques for optimal readiness." },
+                    { title: "Mental Performance Workshop", desc: "Develop focus and resilience under pressure." }
+                  ].slice(0, Math.max(0, 6 - athlete.training.length)).map((item, idx) => (
+                    <article key={`seed-training-${idx}`} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
+                      <div className="relative h-48 overflow-hidden">
+                        <img
+                          src={`https://images.unsplash.com/photo-${['1571019614242-c5c5dee9f50b', '1534438327276-14e5300c3a48', '1544367567-0f2fcb009e0b', '1517836357463-d25dfeac3438'][idx]}?w=800&h=500&fit=crop`}
+                          alt={item.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
+                            <Play className="h-6 w-6 text-primary-foreground ml-1" />
+                          </div>
+                        </div>
+                        <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                          {item.title}
+                        </h4>
+                        <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+                          {item.desc}
+                        </p>
+                        <Button variant="outline" size="sm" className="w-full">
+                          View Program
+                        </Button>
+                      </div>
+                    </article>
+                  ))}
+                </div>
               </div>
             </TabsContent>
           </Tabs>
@@ -204,7 +573,7 @@ const AthletePage = () => {
                 {/* Content */}
                 <div className="p-8">
                   <span className="text-xs text-primary font-medium uppercase tracking-wide mb-2 block">
-                    Cause Campaign
+                    Support Their Cause
                   </span>
                   <h3 className="font-display text-2xl font-semibold mb-4">
                     {athlete.cause.title}
@@ -221,9 +590,14 @@ const AthletePage = () => {
                         {athlete.cause.currency}{athlete.cause.raised.toLocaleString()} / {athlete.cause.currency}{athlete.cause.target.toLocaleString()}
                       </span>
                     </div>
-                    <Progress value={progressPercent} className="h-3" />
+                    <div className="h-3 bg-muted rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-primary rounded-full transition-all duration-500"
+                        style={{ width: `${Math.min(100, (athlete.cause.raised / athlete.cause.target) * 100)}%` }}
+                      />
+                    </div>
                     <p className="text-xs text-muted-foreground mt-2">
-                      {progressPercent.toFixed(0)}% of goal reached
+                      {((athlete.cause.raised / athlete.cause.target) * 100).toFixed(0)}% of goal reached
                     </p>
                   </div>
 
