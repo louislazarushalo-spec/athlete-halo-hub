@@ -181,61 +181,216 @@ const AthletePage = () => {
                 </Button>
               </div>
 
-              {/* Lifestyle Feed */}
+              {/* Media Feed */}
               {activeLifeTab === "feed" && (
-                <div className="space-y-8">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">Latest Updates</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {athlete.life.map(post => (
-                        <article key={post.id} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
-                          <div className="relative h-48 overflow-hidden">
-                            <img
-                              src={post.image}
-                              alt={post.title}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <Badge className="absolute top-3 left-3 bg-primary/90">Life</Badge>
-                          </div>
-                          <div className="p-4">
-                            <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                              {post.title}
-                            </h4>
-                            <p className="text-muted-foreground text-sm line-clamp-2">
-                              {post.description}
-                            </p>
-                          </div>
-                        </article>
-                      ))}
-                      {/* Additional seeded posts */}
-                      {[
-                        { title: "Inside a match week", desc: "A glimpse into my routine during competition week." },
-                        { title: "Behind the scenes at training camp", desc: "What happens when cameras aren't rolling." },
-                        { title: "What I eat on a recovery day", desc: "Nutrition is key to peak performance." },
-                        { title: "Travel diary: tournament week", desc: "Life on the road as a professional athlete." },
-                        { title: "Race day rituals", desc: "The habits that help me perform my best." }
-                      ].slice(0, Math.max(0, 6 - athlete.life.length)).map((post, idx) => (
-                        <article key={`seed-${idx}`} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
-                          <div className="relative h-48 overflow-hidden bg-muted">
-                            <img
-                              src={athlete.banner}
-                              alt={post.title}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-70"
-                            />
-                            <Badge className="absolute top-3 left-3 bg-primary/90">Life</Badge>
-                          </div>
-                          <div className="p-4">
-                            <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                              {post.title}
-                            </h4>
-                            <p className="text-muted-foreground text-sm line-clamp-2">
-                              {post.desc}
-                            </p>
-                          </div>
-                        </article>
-                      ))}
+                <div className="max-w-3xl mx-auto space-y-6">
+                  {/* Social Media Post */}
+                  <article className="glass-card overflow-hidden">
+                    <div className="p-4 flex items-center gap-3 border-b border-border">
+                      <img src={athlete.avatar} alt={athlete.name} className="w-10 h-10 rounded-full object-cover" />
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold">{athlete.name}</span>
+                          <Badge variant="secondary" className="text-xs">Instagram</Badge>
+                        </div>
+                        <span className="text-xs text-muted-foreground">2 hours ago</span>
+                      </div>
                     </div>
-                  </div>
+                    <div className="relative aspect-square">
+                      <img src={athlete.life[0]?.image || athlete.banner} alt="Post" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-center gap-4 mb-3">
+                        <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+                          <Heart className="h-5 w-5" />
+                          <span className="text-sm">24.5K</span>
+                        </button>
+                        <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+                          <MessageCircle className="h-5 w-5" />
+                          <span className="text-sm">892</span>
+                        </button>
+                      </div>
+                      <p className="text-sm">
+                        <span className="font-semibold">{athlete.name.toLowerCase().replace(' ', '')}</span>{' '}
+                        {athlete.life[0]?.description || "Another day, another grind. Stay focused on your goals! 💪"}
+                      </p>
+                    </div>
+                  </article>
+
+                  {/* YouTube Highlight */}
+                  <article className="glass-card overflow-hidden">
+                    <div className="p-4 flex items-center gap-3 border-b border-border">
+                      <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
+                        <Play className="h-5 w-5 text-white" fill="white" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold">YouTube</span>
+                          <Badge variant="secondary" className="text-xs bg-red-600/20 text-red-400">Video</Badge>
+                        </div>
+                        <span className="text-xs text-muted-foreground">Official Highlights</span>
+                      </div>
+                    </div>
+                    <div className="relative aspect-video group cursor-pointer">
+                      <img src={athlete.training[0]?.image || athlete.banner} alt="Video thumbnail" className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-background/40 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                          <Play className="h-7 w-7 text-white ml-1" fill="white" />
+                        </div>
+                      </div>
+                      <div className="absolute bottom-3 right-3 px-2 py-1 bg-background/80 rounded text-xs font-medium">
+                        12:34
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-semibold mb-1">{athlete.name} - Best Moments & Highlights 2024</h4>
+                      <p className="text-sm text-muted-foreground">1.2M views • 3 days ago</p>
+                    </div>
+                  </article>
+
+                  {/* Sports Article */}
+                  <article className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
+                    <div className="p-4 flex items-center gap-3 border-b border-border">
+                      <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white text-sm">
+                        L'É
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold">L'Équipe</span>
+                          <Badge variant="secondary" className="text-xs">Article</Badge>
+                        </div>
+                        <span className="text-xs text-muted-foreground">Sports News</span>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 p-4">
+                      <div className="flex-1">
+                        <h4 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                          {athlete.name}: "I'm in the best shape of my career"
+                        </h4>
+                        <p className="text-sm text-muted-foreground line-clamp-2">
+                          In an exclusive interview, {athlete.name} discusses preparation methods, mental strength, and ambitious goals for the upcoming season...
+                        </p>
+                        <span className="text-xs text-muted-foreground mt-2 block">5 min read</span>
+                      </div>
+                      <img src={athlete.banner} alt="Article" className="w-24 h-24 rounded-lg object-cover" />
+                    </div>
+                  </article>
+
+                  {/* Twitter/X Post */}
+                  <article className="glass-card overflow-hidden">
+                    <div className="p-4 flex items-center gap-3 border-b border-border">
+                      <img src={athlete.avatar} alt={athlete.name} className="w-10 h-10 rounded-full object-cover" />
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold">{athlete.name}</span>
+                          <Badge variant="secondary" className="text-xs">X</Badge>
+                        </div>
+                        <span className="text-xs text-muted-foreground">@{athlete.name.toLowerCase().replace(' ', '_')}</span>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <p className="text-base mb-3">
+                        What an incredible match! Thank you to all the fans who came out to support us. This is just the beginning. 🔥🏆
+                      </p>
+                      <div className="flex items-center gap-6 text-muted-foreground">
+                        <span className="text-sm">💬 1.2K</span>
+                        <span className="text-sm">🔄 4.5K</span>
+                        <span className="text-sm">❤️ 32K</span>
+                      </div>
+                    </div>
+                  </article>
+
+                  {/* Another YouTube Video */}
+                  <article className="glass-card overflow-hidden">
+                    <div className="p-4 flex items-center gap-3 border-b border-border">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center font-bold text-white text-sm">
+                        ESPN
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold">ESPN</span>
+                          <Badge variant="secondary" className="text-xs bg-red-600/20 text-red-400">Video</Badge>
+                        </div>
+                        <span className="text-xs text-muted-foreground">Sports Coverage</span>
+                      </div>
+                    </div>
+                    <div className="relative aspect-video group cursor-pointer">
+                      <img src={athlete.life[1]?.image || athlete.banner} alt="Video thumbnail" className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-background/40 flex items-center justify-center">
+                        <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                          <Play className="h-7 w-7 text-white ml-1" fill="white" />
+                        </div>
+                      </div>
+                      <div className="absolute bottom-3 right-3 px-2 py-1 bg-background/80 rounded text-xs font-medium">
+                        8:21
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-semibold mb-1">Inside {athlete.name}'s Training Routine | ESPN Exclusive</h4>
+                      <p className="text-sm text-muted-foreground">856K views • 1 week ago</p>
+                    </div>
+                  </article>
+
+                  {/* Sports Article 2 */}
+                  <article className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
+                    <div className="p-4 flex items-center gap-3 border-b border-border">
+                      <div className="w-10 h-10 rounded-full bg-orange-600 flex items-center justify-center font-bold text-white text-xs">
+                        BBC
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold">BBC Sport</span>
+                          <Badge variant="secondary" className="text-xs">Article</Badge>
+                        </div>
+                        <span className="text-xs text-muted-foreground">Sports News</span>
+                      </div>
+                    </div>
+                    <div className="flex gap-4 p-4">
+                      <div className="flex-1">
+                        <h4 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+                          How {athlete.name} became a global icon in {athlete.sport.toLowerCase()}
+                        </h4>
+                        <p className="text-sm text-muted-foreground line-clamp-2">
+                          From humble beginnings to world-class performances, we trace the remarkable journey of one of {athlete.sport.toLowerCase()}'s brightest stars...
+                        </p>
+                        <span className="text-xs text-muted-foreground mt-2 block">8 min read</span>
+                      </div>
+                      <img src={athlete.gear[0]?.image || athlete.banner} alt="Article" className="w-24 h-24 rounded-lg object-cover" />
+                    </div>
+                  </article>
+
+                  {/* Instagram Post 2 */}
+                  <article className="glass-card overflow-hidden">
+                    <div className="p-4 flex items-center gap-3 border-b border-border">
+                      <img src={athlete.avatar} alt={athlete.name} className="w-10 h-10 rounded-full object-cover" />
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold">{athlete.name}</span>
+                          <Badge variant="secondary" className="text-xs">Instagram</Badge>
+                        </div>
+                        <span className="text-xs text-muted-foreground">1 day ago</span>
+                      </div>
+                    </div>
+                    <div className="relative aspect-[4/5]">
+                      <img src={athlete.life[1]?.image || athlete.training[0]?.image || athlete.banner} alt="Post" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-center gap-4 mb-3">
+                        <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+                          <Heart className="h-5 w-5" />
+                          <span className="text-sm">18.2K</span>
+                        </button>
+                        <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+                          <MessageCircle className="h-5 w-5" />
+                          <span className="text-sm">456</span>
+                        </button>
+                      </div>
+                      <p className="text-sm">
+                        <span className="font-semibold">{athlete.name.toLowerCase().replace(' ', '')}</span>{' '}
+                        Recovery day essentials. Taking care of body and mind. Rest is part of the journey! 🧘‍♂️
+                      </p>
+                    </div>
+                  </article>
                 </div>
               )}
 
