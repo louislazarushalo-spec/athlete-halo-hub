@@ -6,7 +6,7 @@ import { CauseCard } from "@/components/causes/CauseCard";
 import { athletes } from "@/data/athletes";
 import { Search, Dumbbell, Heart, Package, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 const sportFilters = ["All", "Rugby", "Football", "Tennis", "Swimming"];
 
@@ -14,7 +14,13 @@ const Index = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredAthletes = athletes.filter(athlete => {
+  // Randomize athletes on each page load and limit to 6
+  const randomAthletes = useMemo(() => {
+    const shuffled = [...athletes].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 6);
+  }, []);
+
+  const filteredAthletes = randomAthletes.filter(athlete => {
     const matchesFilter = activeFilter === "All" || athlete.sport === activeFilter;
     const matchesSearch = athlete.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          athlete.sport.toLowerCase().includes(searchQuery.toLowerCase());
@@ -118,7 +124,7 @@ const Index = () => {
           </div>
 
           {/* Athletes Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredAthletes.map((athlete, index) => (
               <AthleteCard key={athlete.id} athlete={athlete} index={index} />
             ))}
@@ -129,6 +135,16 @@ const Index = () => {
               <p className="text-muted-foreground">No athletes found matching your search.</p>
             </div>
           )}
+
+          {/* Discover More CTA */}
+          <div className="text-center mt-10">
+            <Link to="/athletes">
+              <Button variant="hero" size="lg">
+                Discover more
+                <ChevronRight className="h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
