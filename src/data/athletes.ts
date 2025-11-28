@@ -4,6 +4,8 @@ import igaSwiatekImg from "@/assets/iga-swiatek.png";
 import leonMarchandImg from "@/assets/leon-marchand.png";
 import victorWembanyamaImg from "@/assets/victor-wembanyama.png";
 import teddyRinerImg from "@/assets/teddy-riner.png";
+import pierreGaslyImg from "@/assets/pierre-gasly.png";
+import julianAlaphilippeImg from "@/assets/julian-alaphilippe.png";
 
 export interface Athlete {
   id: string;
@@ -632,6 +634,200 @@ export const athletes: Athlete[] = [
       raised: 16200,
       currency: "€",
       image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?w=800&h=400&fit=crop"
+    }
+  },
+  {
+    id: "pierre-gasly",
+    name: "Pierre Gasly",
+    sport: "F1",
+    bio: "Formula 1 driver. Speed, precision, passion. Welcome to my cockpit.",
+    tagline: "French F1 star pushing the limits",
+    avatar: pierreGaslyImg,
+    banner: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&h=600&fit=crop",
+    followers: 512000,
+    training: [
+      {
+        id: "pg-t1",
+        title: "G-Force & Neck Training",
+        description: "How I build strength to handle extreme racing forces.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-28"
+      },
+      {
+        id: "pg-t2",
+        title: "Reaction Time & Focus Drills",
+        description: "Milliseconds matter — here's how I stay sharp.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-20"
+      }
+    ],
+    life: [
+      {
+        id: "pg-l1",
+        title: "Life on the F1 Circuit",
+        description: "Behind the scenes of a race weekend.",
+        image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-03-01"
+      },
+      {
+        id: "pg-l2",
+        title: "Fashion & Style Off-Track",
+        description: "My passion for fashion and personal style.",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-22"
+      }
+    ],
+    gear: [
+      {
+        id: "pg-g1",
+        title: "My Racing Essentials",
+        description: "Helmet, race suit, gloves, and tech gear for every Grand Prix.",
+        image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-25"
+      }
+    ],
+    products: [
+      {
+        id: "pg-p1",
+        name: "Driver Fitness Program",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=600&fit=crop",
+        description: "Complete F1-style fitness and reaction training.",
+        category: "athlete",
+        athleteId: "pierre-gasly"
+      },
+      {
+        id: "pg-p2",
+        name: "Signed Alpine Cap",
+        price: 65,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&h=600&fit=crop",
+        description: "Official team cap with authentic signature.",
+        category: "athlete",
+        athleteId: "pierre-gasly"
+      },
+      {
+        id: "pg-p3",
+        name: "Alpine Team Collection",
+        price: 149,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&h=600&fit=crop",
+        description: "Official Alpine F1 team merchandise.",
+        category: "partner",
+        athleteId: "pierre-gasly"
+      }
+    ],
+    cause: {
+      id: "pg-c1",
+      title: "Racing for Education",
+      story: "Supporting STEM education and motorsport opportunities for underprivileged youth in France.",
+      target: 45000,
+      raised: 19800,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&h=400&fit=crop"
+    }
+  },
+  {
+    id: "julian-alaphilippe",
+    name: "Julian Alaphilippe",
+    sport: "Cycling",
+    bio: "World Champion. Attacker. Heart of a lion. Climb into my world.",
+    tagline: "Two-time World Champion cyclist",
+    avatar: julianAlaphilippeImg,
+    banner: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=1600&h=600&fit=crop",
+    followers: 389000,
+    training: [
+      {
+        id: "ja-t1",
+        title: "Climbing Power Training",
+        description: "Building explosive power for mountain stages.",
+        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-02"
+      },
+      {
+        id: "ja-t2",
+        title: "Recovery & Endurance Base",
+        description: "How I build the foundation for Grand Tour success.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-24"
+      }
+    ],
+    life: [
+      {
+        id: "ja-l1",
+        title: "Life in the Peloton",
+        description: "Stories from the Tour de France and beyond.",
+        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-03-05"
+      },
+      {
+        id: "ja-l2",
+        title: "Family & the Rainbow Jersey",
+        description: "What being World Champion means to me and my family.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-26"
+      }
+    ],
+    gear: [
+      {
+        id: "ja-g1",
+        title: "My Race Day Setup",
+        description: "Bike, helmet, shoes, and nutrition essentials.",
+        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-28"
+      }
+    ],
+    products: [
+      {
+        id: "ja-p1",
+        name: "Climbing Masterclass",
+        price: 59,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=600&h=600&fit=crop",
+        description: "Training program for cyclists who want to climb faster.",
+        category: "athlete",
+        athleteId: "julian-alaphilippe"
+      },
+      {
+        id: "ja-p2",
+        name: "Signed World Champion Jersey",
+        price: 199,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=600&h=600&fit=crop",
+        description: "Official rainbow jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "julian-alaphilippe"
+      },
+      {
+        id: "ja-p3",
+        name: "Specialized Pro Bundle",
+        price: 179,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&h=600&fit=crop",
+        description: "Professional cycling gear from Specialized.",
+        category: "partner",
+        athleteId: "julian-alaphilippe"
+      }
+    ],
+    cause: {
+      id: "ja-c1",
+      title: "Cycling for All",
+      story: "Making cycling accessible and promoting sustainable transportation across Europe.",
+      target: 30000,
+      raised: 12400,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&h=400&fit=crop"
     }
   }
 ];
