@@ -36,6 +36,12 @@ import romainNtamackImg from "@/assets/romain-ntamack.png";
 import matthieuJalibertImg from "@/assets/matthieu-jalibert.png";
 import damianPenaudImg from "@/assets/damian-penaud.png";
 import gabinVilliereImg from "@/assets/gabin-villiere.png";
+import maxHomaImg from "@/assets/max-homa.png";
+import lilyHeImg from "@/assets/lily-he.png";
+import tommyFleetwoodImg from "@/assets/tommy-fleetwood.png";
+import nellyKordaImg from "@/assets/nelly-korda.png";
+import shaneLowryImg from "@/assets/shane-lowry.png";
+import lexiThompsonImg from "@/assets/lexi-thompson.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -78,7 +84,8 @@ export const femaleAthleteIds = [
   'iga-swiatek', 'aryna-sabalenka', 'jasmine-paolini',
   'alisha-lehmann', 'alex-morgan', 'alexia-putellas', 
   'deyna-castellanos', 'sydney-leroux', 'tatiana-flores',
-  'crissa-jackson', 'angel-reese'
+  'crissa-jackson', 'angel-reese',
+  'lily-he', 'nelly-korda', 'lexi-thompson'
 ];
 
 export interface Post {
@@ -5104,6 +5111,774 @@ export const athletes: Athlete[] = [
         image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop",
         timestamp: "5 days ago",
         stats: { readTime: "6 min read" }
+      }
+    ]
+  },
+  {
+    id: "max-homa",
+    name: "Max Homa",
+    sport: "Golf",
+    bio: "PGA Tour winner. Twitter legend. Welcome to my Halo.",
+    tagline: "Golf's funniest champion",
+    avatar: maxHomaImg,
+    banner: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1600&h=600&fit=crop",
+    followers: 1200000,
+    training: [
+      {
+        id: "mh-t1",
+        title: "Swing Mechanics Breakdown",
+        description: "The technical adjustments that transformed my game.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "mh-t2",
+        title: "Short Game Mastery",
+        description: "Chipping, putting, and scoring around the greens.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-05"
+      }
+    ],
+    life: [
+      {
+        id: "mh-l1",
+        title: "Life on the PGA Tour",
+        description: "Behind the scenes of tournament week.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-12"
+      },
+      {
+        id: "mh-l2",
+        title: "Building a Brand with Humor",
+        description: "How social media became part of my journey.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      }
+    ],
+    gear: [
+      {
+        id: "mh-g1",
+        title: "What's in My Bag",
+        description: "Clubs, balls, and equipment I trust on tour.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-06"
+      }
+    ],
+    products: [
+      {
+        id: "mh-p1",
+        name: "Swing Like Homa Course",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
+        description: "Master the modern golf swing.",
+        category: "athlete",
+        athleteId: "max-homa"
+      },
+      {
+        id: "mh-p2",
+        name: "Signed Golf Ball Set",
+        price: 89,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Premium Titleist balls with authentic signature.",
+        category: "athlete",
+        athleteId: "max-homa"
+      },
+      {
+        id: "mh-p3",
+        name: "Titleist Pro V1",
+        price: 59,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Tour-level golf balls from Titleist.",
+        category: "partner",
+        athleteId: "max-homa"
+      }
+    ],
+    cause: {
+      id: "mh-c1",
+      title: "Golf for Everyone",
+      story: "Making golf accessible to underrepresented communities.",
+      target: 50000,
+      raised: 28500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "mh-mf1",
+        type: "social",
+        platform: "twitter",
+        content: "When your caddie suggests the wrong club and you still make birdie... that's teamwork 😂⛳",
+        image: "",
+        timestamp: "2 hours ago",
+        stats: { likes: 45000, comments: 890, shares: 5600 }
+      },
+      {
+        id: "mh-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Max Homa - Best Shots & Funniest Moments 2024",
+        content: "The most clutch shots and viral moments from golf's favorite personality.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=450&fit=crop",
+        timestamp: "4 days ago",
+        stats: { views: 1800000, duration: "12:45" }
+      },
+      {
+        id: "mh-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Max Homa: How humor became his secret weapon",
+        content: "The story of how a struggling golfer became a multi-time PGA Tour winner...",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "6 min read" }
+      }
+    ]
+  },
+  {
+    id: "lily-he",
+    name: "Lily He",
+    sport: "Golf",
+    bio: "LPGA rising star. Chinese-American trailblazer. Welcome to my world.",
+    tagline: "The future of women's golf",
+    avatar: lilyHeImg,
+    banner: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1600&h=600&fit=crop",
+    followers: 180000,
+    training: [
+      {
+        id: "lh-t1",
+        title: "Precision Iron Play",
+        description: "How I attack pins and control distance.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "lh-t2",
+        title: "Mental Game Secrets",
+        description: "Staying focused under tournament pressure.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-04"
+      }
+    ],
+    life: [
+      {
+        id: "lh-l1",
+        title: "From China to the LPGA",
+        description: "My journey to professional golf in America.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-11"
+      },
+      {
+        id: "lh-l2",
+        title: "Representing Two Cultures",
+        description: "Balancing heritage and dreams on the LPGA Tour.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-06"
+      }
+    ],
+    gear: [
+      {
+        id: "lh-g1",
+        title: "Tour Bag Setup",
+        description: "My TaylorMade equipment and accessories.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-05"
+      }
+    ],
+    products: [
+      {
+        id: "lh-p1",
+        name: "Iron Play Masterclass",
+        price: 59,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
+        description: "Improve your iron play like a tour pro.",
+        category: "athlete",
+        athleteId: "lily-he"
+      },
+      {
+        id: "lh-p2",
+        name: "Signed Visor",
+        price: 49,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Tour visor with authentic signature.",
+        category: "athlete",
+        athleteId: "lily-he"
+      },
+      {
+        id: "lh-p3",
+        name: "TaylorMade Stealth Driver",
+        price: 499,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Premium driver from TaylorMade.",
+        category: "partner",
+        athleteId: "lily-he"
+      }
+    ],
+    cause: {
+      id: "lh-c1",
+      title: "Asian Women in Golf",
+      story: "Supporting young Asian women pursuing careers in professional golf.",
+      target: 25000,
+      raised: 11200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "lh-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Another week, another opportunity. Let's go! 🏌️‍♀️💪",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=800&fit=crop",
+        timestamp: "5 hours ago",
+        stats: { likes: 24000, comments: 450 }
+      },
+      {
+        id: "lh-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Lily He - LPGA Highlights 2024",
+        content: "The best shots from the rising LPGA star.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 320000, duration: "8:34" }
+      },
+      {
+        id: "lh-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Lily He: A new star emerges on the LPGA Tour",
+        content: "The Chinese-American golfer making waves in women's golf...",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "5 min read" }
+      }
+    ]
+  },
+  {
+    id: "tommy-fleetwood",
+    name: "Tommy Fleetwood",
+    sport: "Golf",
+    bio: "European Tour star. Ryder Cup hero. Welcome to my Halo.",
+    tagline: "England's flowing locks legend",
+    avatar: tommyFleetwoodImg,
+    banner: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1600&h=600&fit=crop",
+    followers: 890000,
+    training: [
+      {
+        id: "tf-t1",
+        title: "Ball Striking Excellence",
+        description: "The fundamentals behind my consistent iron play.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-08"
+      },
+      {
+        id: "tf-t2",
+        title: "Links Golf Mastery",
+        description: "Playing in the wind and British conditions.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-03"
+      }
+    ],
+    life: [
+      {
+        id: "tf-l1",
+        title: "Ryder Cup Magic",
+        description: "The greatest team event in golf and what it means to me.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "tf-l2",
+        title: "Family Life on Tour",
+        description: "Traveling the world with my wife and kids.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-05"
+      }
+    ],
+    gear: [
+      {
+        id: "tf-g1",
+        title: "What's in the Bag",
+        description: "My TaylorMade setup for tour competition.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-04"
+      }
+    ],
+    products: [
+      {
+        id: "tf-p1",
+        name: "Ball Striking Course",
+        price: 69,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
+        description: "Learn pure ball striking from a European Tour star.",
+        category: "athlete",
+        athleteId: "tommy-fleetwood"
+      },
+      {
+        id: "tf-p2",
+        name: "Signed European Tour Cap",
+        price: 59,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Official tour cap with authentic signature.",
+        category: "athlete",
+        athleteId: "tommy-fleetwood"
+      },
+      {
+        id: "tf-p3",
+        name: "TaylorMade Qi10 Driver",
+        price: 549,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Tour-level driver from TaylorMade.",
+        category: "partner",
+        athleteId: "tommy-fleetwood"
+      }
+    ],
+    cause: {
+      id: "tf-c1",
+      title: "Southport Golf Foundation",
+      story: "Growing the game in my hometown and across the UK.",
+      target: 40000,
+      raised: 22800,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "tf-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Always special playing at home. Thanks for the amazing support! 🏴󠁧󠁢󠁥󠁮󠁧󠁿⛳",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 89000, comments: 1200 }
+      },
+      {
+        id: "tf-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Tommy Fleetwood - Ryder Cup Highlights",
+        content: "The best moments from Europe's Ryder Cup hero.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=450&fit=crop",
+        timestamp: "5 days ago",
+        stats: { views: 1200000, duration: "14:23" }
+      },
+      {
+        id: "tf-mf3",
+        type: "article",
+        platform: "bbc",
+        title: "Tommy Fleetwood: The heart of European golf",
+        content: "How the Southport native became a Ryder Cup legend...",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "7 min read" }
+      }
+    ]
+  },
+  {
+    id: "nelly-korda",
+    name: "Nelly Korda",
+    sport: "Golf",
+    bio: "World No. 1. Olympic gold medalist. Welcome to my world.",
+    tagline: "Dominating women's golf",
+    avatar: nellyKordaImg,
+    banner: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1600&h=600&fit=crop",
+    followers: 1500000,
+    training: [
+      {
+        id: "nk-t1",
+        title: "Power & Precision",
+        description: "How I combine distance with accuracy.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "nk-t2",
+        title: "Winning Mindset",
+        description: "Mental preparation for major championships.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-05"
+      }
+    ],
+    life: [
+      {
+        id: "nk-l1",
+        title: "Olympic Gold Journey",
+        description: "Winning gold for Team USA in Tokyo.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-12"
+      },
+      {
+        id: "nk-l2",
+        title: "The Korda Sports Dynasty",
+        description: "Growing up in an athletic family.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-07"
+      }
+    ],
+    gear: [
+      {
+        id: "nk-g1",
+        title: "World No. 1 Setup",
+        description: "The clubs and equipment I use on tour.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-06"
+      }
+    ],
+    products: [
+      {
+        id: "nk-p1",
+        name: "Champion's Training Program",
+        price: 89,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
+        description: "Train like the world's best female golfer.",
+        category: "athlete",
+        athleteId: "nelly-korda"
+      },
+      {
+        id: "nk-p2",
+        name: "Signed Golf Glove",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Tour glove with authentic signature.",
+        category: "athlete",
+        athleteId: "nelly-korda"
+      },
+      {
+        id: "nk-p3",
+        name: "TaylorMade Complete Set",
+        price: 1299,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Premium golf set from TaylorMade.",
+        category: "partner",
+        athleteId: "nelly-korda"
+      }
+    ],
+    cause: {
+      id: "nk-c1",
+      title: "Girls Golf Initiative",
+      story: "Inspiring the next generation of female golfers worldwide.",
+      target: 75000,
+      raised: 48500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "nk-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Another win! So grateful for all the support. Let's keep it going! 🏆🇺🇸",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=800&fit=crop",
+        timestamp: "1 hour ago",
+        stats: { likes: 245000, comments: 4500 }
+      },
+      {
+        id: "nk-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Nelly Korda - 2024 Winning Streak Highlights",
+        content: "Every clutch moment from the world No. 1's dominant season.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=450&fit=crop",
+        timestamp: "3 days ago",
+        stats: { views: 2800000, duration: "16:45" }
+      },
+      {
+        id: "nk-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Nelly Korda's historic season continues",
+        content: "The American is rewriting the record books in women's golf...",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "8 min read" }
+      }
+    ]
+  },
+  {
+    id: "shane-lowry",
+    name: "Shane Lowry",
+    sport: "Golf",
+    bio: "Open Champion. Irish legend. Welcome to my Halo.",
+    tagline: "The people's champion",
+    avatar: shaneLowryImg,
+    banner: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1600&h=600&fit=crop",
+    followers: 980000,
+    training: [
+      {
+        id: "sl-t1",
+        title: "Wedge Game Wizardry",
+        description: "My approach to scoring clubs and distance control.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "sl-t2",
+        title: "Links Golf Philosophy",
+        description: "Playing smart in tough conditions.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-04"
+      }
+    ],
+    life: [
+      {
+        id: "sl-l1",
+        title: "Portrush 2019",
+        description: "Winning The Open on Irish soil - the greatest week of my life.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-11"
+      },
+      {
+        id: "sl-l2",
+        title: "Pride of Ireland",
+        description: "What it means to represent my country in golf.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-06"
+      }
+    ],
+    gear: [
+      {
+        id: "sl-g1",
+        title: "Major Champion's Bag",
+        description: "My Srixon clubs and setup for links golf.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-05"
+      }
+    ],
+    products: [
+      {
+        id: "slg-p1",
+        name: "Links Golf Masterclass",
+        price: 75,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
+        description: "Master the art of links golf like an Open Champion.",
+        category: "athlete",
+        athleteId: "shane-lowry"
+      },
+      {
+        id: "slg-p2",
+        name: "Signed Claret Jug Photo",
+        price: 149,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Framed photo with authentic signature.",
+        category: "athlete",
+        athleteId: "shane-lowry"
+      },
+      {
+        id: "slg-p3",
+        name: "Srixon Z-Star Ball Dozen",
+        price: 49,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Tour-level golf balls from Srixon.",
+        category: "partner",
+        athleteId: "shane-lowry"
+      }
+    ],
+    cause: {
+      id: "slg-c1",
+      title: "Irish Junior Golf",
+      story: "Developing young golfers across Ireland.",
+      target: 45000,
+      raised: 26800,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "slg-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "There's nothing like playing in front of the Irish fans. Pure magic! ☘️⛳",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=800&fit=crop",
+        timestamp: "4 hours ago",
+        stats: { likes: 78000, comments: 1400 }
+      },
+      {
+        id: "slg-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Shane Lowry - The Open 2019 Victory",
+        content: "Relive the emotional triumph at Royal Portrush.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 3200000, duration: "22:15" }
+      },
+      {
+        id: "slg-mf3",
+        type: "article",
+        platform: "bbc",
+        title: "Shane Lowry: Ireland's beloved champion",
+        content: "The story of how the Clara native captured hearts at Portrush...",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "9 min read" }
+      }
+    ]
+  },
+  {
+    id: "lexi-thompson",
+    name: "Lexi Thompson",
+    sport: "Golf",
+    bio: "LPGA legend. Major champion. Welcome to my world.",
+    tagline: "Power and grace on the course",
+    avatar: lexiThompsonImg,
+    banner: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1600&h=600&fit=crop",
+    followers: 1100000,
+    training: [
+      {
+        id: "lt-t1",
+        title: "Power Game Training",
+        description: "Building speed and distance off the tee.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-08"
+      },
+      {
+        id: "lt-t2",
+        title: "Fitness for Golf",
+        description: "The gym work that supports my game.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-03"
+      }
+    ],
+    life: [
+      {
+        id: "lt-l1",
+        title: "Growing Up on Tour",
+        description: "Turning pro at 15 and what I learned along the way.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "lt-l2",
+        title: "Life Beyond Golf",
+        description: "Fitness, fashion, and finding balance.",
+        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-05"
+      }
+    ],
+    gear: [
+      {
+        id: "lt-g1",
+        title: "My COBRA Setup",
+        description: "Clubs, balls, and gear I trust on tour.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-04"
+      }
+    ],
+    products: [
+      {
+        id: "lt-p1",
+        name: "Power Golf Program",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&h=600&fit=crop",
+        description: "Build power and distance like an LPGA star.",
+        category: "athlete",
+        athleteId: "lexi-thompson"
+      },
+      {
+        id: "lt-p2",
+        name: "Signed LPGA Flag",
+        price: 99,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "Tournament flag with authentic signature.",
+        category: "athlete",
+        athleteId: "lexi-thompson"
+      },
+      {
+        id: "lt-p3",
+        name: "COBRA DARKSPEED Driver",
+        price: 479,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&h=600&fit=crop",
+        description: "High-performance driver from COBRA.",
+        category: "partner",
+        athleteId: "lexi-thompson"
+      }
+    ],
+    cause: {
+      id: "lt-c1",
+      title: "Young Women in Sports",
+      story: "Empowering young female athletes to pursue their dreams.",
+      target: 60000,
+      raised: 34200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "lt-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Another great week on tour! Grateful for every opportunity 🏌️‍♀️💪",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=800&fit=crop",
+        timestamp: "2 hours ago",
+        stats: { likes: 156000, comments: 2800 }
+      },
+      {
+        id: "lt-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Lexi Thompson - Career Highlights",
+        content: "The best moments from one of the LPGA's biggest stars.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=450&fit=crop",
+        timestamp: "6 days ago",
+        stats: { views: 1800000, duration: "15:34" }
+      },
+      {
+        id: "lt-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Lexi Thompson: A career defined by resilience",
+        content: "How the young prodigy became an LPGA legend...",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "7 min read" }
       }
     ]
   }
