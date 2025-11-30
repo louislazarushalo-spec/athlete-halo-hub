@@ -3,21 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AthleteCard } from "@/components/athletes/AthleteCard";
 import { CauseCard } from "@/components/causes/CauseCard";
-import { athletes } from "@/data/athletes";
+import { athletes, femaleAthleteIds } from "@/data/athletes";
 import { Search, Dumbbell, Heart, Package, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useMemo } from "react";
 
-const sportFilters = ["All", "Rugby", "Football", "Tennis", "Swimming"];
+const sportFilters = ["All", "Rugby", "Football", "Tennis", "Swimming", "Basketball"];
 
 const Index = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Randomize athletes on each page load and limit to 6
+  // Randomize athletes on each page load - 3 men and 3 women
   const randomAthletes = useMemo(() => {
-    const shuffled = [...athletes].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, 6);
+    const maleAthletes = athletes.filter(a => !femaleAthleteIds.includes(a.id));
+    const femaleAthletes = athletes.filter(a => femaleAthleteIds.includes(a.id));
+    
+    const shuffledMales = [...maleAthletes].sort(() => Math.random() - 0.5).slice(0, 3);
+    const shuffledFemales = [...femaleAthletes].sort(() => Math.random() - 0.5).slice(0, 3);
+    
+    return [...shuffledMales, ...shuffledFemales].sort(() => Math.random() - 0.5);
   }, []);
 
   const filteredAthletes = randomAthletes.filter(athlete => {
