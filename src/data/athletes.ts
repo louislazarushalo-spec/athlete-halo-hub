@@ -32,6 +32,10 @@ import giannisAntetokounmpoImg from "@/assets/giannis-antetokounmpo.png";
 import lukaDoncicImg from "@/assets/luka-doncic.png";
 import crissaJacksonImg from "@/assets/crissa-jackson.png";
 import angelReeseImg from "@/assets/angel-reese.png";
+import romainNtamackImg from "@/assets/romain-ntamack.png";
+import matthieuJalibertImg from "@/assets/matthieu-jalibert.png";
+import damianPenaudImg from "@/assets/damian-penaud.png";
+import gabinVilliereImg from "@/assets/gabin-villiere.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -4587,6 +4591,518 @@ export const athletes: Athlete[] = [
         content: "How the Bayou Barbie is changing the game on and off the court...",
         image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=400&fit=crop",
         timestamp: "2 days ago",
+        stats: { readTime: "6 min read" }
+      }
+    ]
+  },
+  {
+    id: "romain-ntamack",
+    name: "Romain Ntamack",
+    sport: "Rugby",
+    bio: "Fly-half. Playmaker. French rugby's future. Welcome to my Halo.",
+    tagline: "France's maestro at 10",
+    avatar: romainNtamackImg,
+    banner: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&h=600&fit=crop",
+    followers: 420000,
+    training: [
+      {
+        id: "rn-t1",
+        title: "Fly-Half Decision Making",
+        description: "How I read the game and make split-second decisions at 10.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "rn-t2",
+        title: "Kicking Masterclass",
+        description: "My routine for drop goals, conversions, and tactical kicking.",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-05"
+      }
+    ],
+    life: [
+      {
+        id: "rn-l1",
+        title: "Rugby Dynasty",
+        description: "Following in my father's footsteps to Les Bleus.",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-12"
+      },
+      {
+        id: "rn-l2",
+        title: "Life in Toulouse",
+        description: "My home, my club, my city.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      }
+    ],
+    gear: [
+      {
+        id: "rn-g1",
+        title: "Match Day Essentials",
+        description: "Boots, kicking tees, and everything I need on game day.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-06"
+      }
+    ],
+    products: [
+      {
+        id: "rn-p1",
+        name: "Fly-Half Academy Course",
+        price: 69,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=600&fit=crop",
+        description: "Learn to control the game from fly-half position.",
+        category: "athlete",
+        athleteId: "romain-ntamack"
+      },
+      {
+        id: "rn-p2",
+        name: "Signed Toulouse Jersey",
+        price: 149,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Stade Toulousain jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "romain-ntamack"
+      },
+      {
+        id: "rn-p3",
+        name: "Le Coq Sportif Rugby Boots",
+        price: 139,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Premium rugby boots from Le Coq Sportif.",
+        category: "partner",
+        athleteId: "romain-ntamack"
+      }
+    ],
+    cause: {
+      id: "rn-c1",
+      title: "Rugby pour Tous",
+      story: "Making rugby accessible to young players across France.",
+      target: 30000,
+      raised: 14500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "rn-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Back to training with the boys. Six Nations prep in full swing! 🇫🇷🏉",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 67000, comments: 1200 }
+      },
+      {
+        id: "rn-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Romain Ntamack - Best Plays 2024",
+        content: "Drop goals, try assists, and game-winning moments.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 890000, duration: "11:23" }
+      },
+      {
+        id: "rn-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Romain Ntamack: L'héritier du rugby français",
+        content: "Comment le fils d'Émile Ntamack est devenu le patron des Bleus...",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "6 min read" }
+      }
+    ]
+  },
+  {
+    id: "matthieu-jalibert",
+    name: "Matthieu Jalibert",
+    sport: "Rugby",
+    bio: "Fly-half. Bordeaux star. French international. Welcome to my world.",
+    tagline: "The Bordeaux playmaker",
+    avatar: matthieuJalibertImg,
+    banner: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&h=600&fit=crop",
+    followers: 280000,
+    training: [
+      {
+        id: "mj-t1",
+        title: "Attack Orchestration",
+        description: "How I create opportunities and lead the backline.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "mj-t2",
+        title: "Goal Kicking Routine",
+        description: "My mental and physical preparation for every kick.",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-04"
+      }
+    ],
+    life: [
+      {
+        id: "mj-l1",
+        title: "Pride of Bordeaux",
+        description: "My journey from the academy to the first team.",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-11"
+      },
+      {
+        id: "mj-l2",
+        title: "Competition for the 10 Jersey",
+        description: "Healthy rivalry that makes us all better.",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-06"
+      }
+    ],
+    gear: [
+      {
+        id: "mj-g1",
+        title: "My Rugby Kit",
+        description: "Boots, headgear, and match day essentials.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-05"
+      }
+    ],
+    products: [
+      {
+        id: "mj-p1",
+        name: "Playmaker's Guide",
+        price: 59,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=600&fit=crop",
+        description: "Master the art of fly-half play.",
+        category: "athlete",
+        athleteId: "matthieu-jalibert"
+      },
+      {
+        id: "mj-p2",
+        name: "Signed UBB Jersey",
+        price: 129,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Union Bordeaux-Bègles jersey with signature.",
+        category: "athlete",
+        athleteId: "matthieu-jalibert"
+      },
+      {
+        id: "mj-p3",
+        name: "Kappa Rugby Boots",
+        price: 119,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Performance boots from Kappa.",
+        category: "partner",
+        athleteId: "matthieu-jalibert"
+      }
+    ],
+    cause: {
+      id: "mj-c1",
+      title: "Bordeaux Youth Rugby",
+      story: "Developing the next generation of rugby talent in the Gironde region.",
+      target: 25000,
+      raised: 11800,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "mj-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Another win for UBB! The supporters were incredible tonight 💜🖤",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=800&fit=crop",
+        timestamp: "5 hours ago",
+        stats: { likes: 45000, comments: 890 }
+      },
+      {
+        id: "mj-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Matthieu Jalibert - Season Highlights",
+        content: "The best kicks, breaks, and plays from the Bordeaux star.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=450&fit=crop",
+        timestamp: "5 days ago",
+        stats: { views: 560000, duration: "9:45" }
+      },
+      {
+        id: "mj-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Jalibert: \"Je veux être titulaire en Bleu\"",
+        content: "L'ouvreur bordelais parle de ses ambitions avec l'équipe de France...",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "5 min read" }
+      }
+    ]
+  },
+  {
+    id: "damian-penaud",
+    name: "Damian Penaud",
+    sport: "Rugby",
+    bio: "Winger. Try-scorer. Electric pace. Welcome to my Halo.",
+    tagline: "France's deadliest finisher",
+    avatar: damianPenaudImg,
+    banner: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&h=600&fit=crop",
+    followers: 350000,
+    training: [
+      {
+        id: "dp-t1",
+        title: "Speed & Acceleration",
+        description: "The sprint work that makes me one of the fastest wingers in rugby.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-08"
+      },
+      {
+        id: "dp-t2",
+        title: "Finishing Under Pressure",
+        description: "How to score tries when it matters most.",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-03"
+      }
+    ],
+    life: [
+      {
+        id: "dp-l1",
+        title: "From Clermont to Les Bleus",
+        description: "My path to becoming a French international.",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "dp-l2",
+        title: "Athletic Family Legacy",
+        description: "Following the Penaud sporting tradition.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-05"
+      }
+    ],
+    gear: [
+      {
+        id: "dp-g1",
+        title: "Winger's Arsenal",
+        description: "Lightweight boots and gear for maximum speed.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-04"
+      }
+    ],
+    products: [
+      {
+        id: "dp-p1",
+        name: "Speed Training Program",
+        price: 65,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=600&fit=crop",
+        description: "Develop explosive speed like a Test winger.",
+        category: "athlete",
+        athleteId: "damian-penaud"
+      },
+      {
+        id: "dp-p2",
+        name: "Signed France Jersey",
+        price: 159,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Les Bleus jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "damian-penaud"
+      },
+      {
+        id: "dp-p3",
+        name: "Asics Rugby Boots",
+        price: 129,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Speed-focused boots from Asics.",
+        category: "partner",
+        athleteId: "damian-penaud"
+      }
+    ],
+    cause: {
+      id: "dp-c1",
+      title: "Auvergne Rugby Foundation",
+      story: "Supporting grassroots rugby in the Auvergne region.",
+      target: 35000,
+      raised: 16200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "dp-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Hat-trick today! Nothing beats the feeling of scoring for Les Bleus 🇫🇷🏉",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=800&fit=crop",
+        timestamp: "2 hours ago",
+        stats: { likes: 78000, comments: 1500 }
+      },
+      {
+        id: "dp-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Damian Penaud - All Tries 2024",
+        content: "Every try from France's record-breaking winger.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=450&fit=crop",
+        timestamp: "4 days ago",
+        stats: { views: 1200000, duration: "14:32" }
+      },
+      {
+        id: "dp-mf3",
+        type: "article",
+        platform: "bbc",
+        title: "Damian Penaud: The winger rewriting French rugby history",
+        content: "How the Clermont flyer became Les Bleus' all-time leading try scorer...",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "7 min read" }
+      }
+    ]
+  },
+  {
+    id: "gabin-villiere",
+    name: "Gabin Villière",
+    sport: "Rugby",
+    bio: "Winger. Work rate machine. French warrior. Welcome to my world.",
+    tagline: "The ultimate competitor",
+    avatar: gabinVilliereImg,
+    banner: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&h=600&fit=crop",
+    followers: 210000,
+    training: [
+      {
+        id: "gv-t1",
+        title: "Work Rate & Defensive Intensity",
+        description: "How I combine attack and defense to be a complete winger.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-07"
+      },
+      {
+        id: "gv-t2",
+        title: "Aerial Dominance",
+        description: "Winning high balls and contesting in the air.",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-02"
+      }
+    ],
+    life: [
+      {
+        id: "gv-l1",
+        title: "From Rouen to Toulon",
+        description: "My unconventional path to professional rugby.",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "gv-l2",
+        title: "Never Give Up Mentality",
+        description: "The mindset that took me from amateur to international.",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-04"
+      }
+    ],
+    gear: [
+      {
+        id: "gv-g1",
+        title: "Battle Ready Kit",
+        description: "Boots, tape, and essentials for a physical game.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-03"
+      }
+    ],
+    products: [
+      {
+        id: "gv-p1",
+        name: "Warrior's Training Guide",
+        price: 55,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=600&fit=crop",
+        description: "Train with the intensity of a French international winger.",
+        category: "athlete",
+        athleteId: "gabin-villiere"
+      },
+      {
+        id: "gv-p2",
+        name: "Signed RC Toulon Jersey",
+        price: 139,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official RC Toulon jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "gabin-villiere"
+      },
+      {
+        id: "gv-p3",
+        name: "Nike Rugby Pack",
+        price: 109,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Complete rugby kit from Nike.",
+        category: "partner",
+        athleteId: "gabin-villiere"
+      }
+    ],
+    cause: {
+      id: "gv-c1",
+      title: "Rugby Second Chance",
+      story: "Helping late bloomers find their path to professional rugby.",
+      target: 20000,
+      raised: 9400,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "gv-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Le travail paie toujours. Next match loading... 💪🔴⚫",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=800&fit=crop",
+        timestamp: "4 hours ago",
+        stats: { likes: 34000, comments: 670 }
+      },
+      {
+        id: "gv-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Gabin Villière - Incredible Work Rate Highlights",
+        content: "The tackles, turnovers, and tries that define his game.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 420000, duration: "8:34" }
+      },
+      {
+        id: "gv-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Gabin Villière: Le parcours atypique d'un guerrier",
+        content: "De Rouen à l'équipe de France, l'incroyable histoire du Toulonnais...",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop",
+        timestamp: "5 days ago",
         stats: { readTime: "6 min read" }
       }
     ]
