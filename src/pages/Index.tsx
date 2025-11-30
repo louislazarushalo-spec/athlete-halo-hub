@@ -8,7 +8,7 @@ import { Search, Dumbbell, Heart, Package, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useMemo } from "react";
 
-const sportFilters = ["All", "Rugby", "Football", "Tennis", "Swimming", "Basketball"];
+const sportFilters = ["All", "Rugby", "Football", "Tennis", "Swimming", "Basketball", "Golf"];
 
 const Index = () => {
   const [activeFilter, setActiveFilter] = useState("All");
