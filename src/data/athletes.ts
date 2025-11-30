@@ -21,6 +21,12 @@ import mohamedSalahImg from "@/assets/mohamed-salah.png";
 import pauloDybalaImg from "@/assets/paulo-dybala.png";
 import robertLewandowskiImg from "@/assets/robert-lewandowski.png";
 import erlingHaalandImg from "@/assets/erling-haaland.png";
+import alishaLehmannImg from "@/assets/alisha-lehmann.png";
+import alexMorganImg from "@/assets/alex-morgan.png";
+import alexiaPutellasImg from "@/assets/alexia-putellas.png";
+import deynaCastellanosImg from "@/assets/deyna-castellanos.png";
+import sydneyLerouxImg from "@/assets/sydney-leroux.png";
+import tatianaFloresImg from "@/assets/tatiana-flores.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -3160,6 +3166,774 @@ export const athletes: Athlete[] = [
         image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=400&fit=crop",
         timestamp: "1 day ago",
         stats: { readTime: "10 min read" }
+      }
+    ]
+  },
+  {
+    id: "alisha-lehmann",
+    name: "Alisha Lehmann",
+    sport: "Women's Football",
+    bio: "Swiss international. Social media star. Welcome to my world.",
+    tagline: "The most followed female footballer",
+    avatar: alishaLehmannImg,
+    banner: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1600&h=600&fit=crop",
+    followers: 16500000,
+    training: [
+      {
+        id: "al-t1",
+        title: "My Full-Body Football Fitness Routine",
+        description: "The workout that keeps me match-ready and strong on the pitch.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "al-t2",
+        title: "Ball Control & Dribbling Drills",
+        description: "Daily technical work to sharpen my touch and creativity.",
+        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-05"
+      }
+    ],
+    life: [
+      {
+        id: "al-l1",
+        title: "Life as a Pro Athlete & Content Creator",
+        description: "Balancing football, social media, and personal life.",
+        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-12"
+      },
+      {
+        id: "al-l2",
+        title: "Switzerland to England: My Journey",
+        description: "The story of my international career and club transfers.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      }
+    ],
+    gear: [
+      {
+        id: "al-g1",
+        title: "My Match Day Kit",
+        description: "Boots, apparel, and accessories I wear on game day.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-06"
+      }
+    ],
+    products: [
+      {
+        id: "al-p1",
+        name: "Alisha's Fitness & Football Program",
+        price: 49,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=600&fit=crop",
+        description: "8-week program combining fitness and football skills.",
+        category: "athlete",
+        athleteId: "alisha-lehmann"
+      },
+      {
+        id: "al-p2",
+        name: "Signed Switzerland Jersey",
+        price: 149,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Swiss national team jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "alisha-lehmann"
+      },
+      {
+        id: "al-p3",
+        name: "Puma Future Boots",
+        price: 199,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Performance boots from our partner Puma.",
+        category: "partner",
+        athleteId: "alisha-lehmann"
+      }
+    ],
+    cause: {
+      id: "al-c1",
+      title: "Girls in Football Initiative",
+      story: "Empowering young girls to pursue football and break barriers in the sport.",
+      target: 40000,
+      raised: 18500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "al-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Match day vibes! Ready to give everything for the team 💪🇨🇭",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 890000, comments: 15000 }
+      },
+      {
+        id: "al-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "A Day in My Life | Alisha Lehmann",
+        content: "From training to content creation - see how I balance it all.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=450&fit=crop",
+        timestamp: "4 days ago",
+        stats: { views: 2800000, duration: "14:23" }
+      },
+      {
+        id: "al-mf3",
+        type: "article",
+        platform: "bbc",
+        title: "Alisha Lehmann: Football's biggest social media star",
+        content: "How the Swiss international became the most followed female footballer in the world...",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "6 min read" }
+      }
+    ]
+  },
+  {
+    id: "alex-morgan",
+    name: "Alex Morgan",
+    sport: "Women's Football",
+    bio: "Two-time World Cup champion. Icon. Legend. Welcome to my Halo.",
+    tagline: "US Soccer legend & World Cup winner",
+    avatar: alexMorganImg,
+    banner: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1600&h=600&fit=crop",
+    followers: 12400000,
+    training: [
+      {
+        id: "am-t1",
+        title: "Striker's Goal Scoring Clinic",
+        description: "The finishing drills that made me a World Cup scorer.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-08"
+      },
+      {
+        id: "am-t2",
+        title: "Speed & Agility Training",
+        description: "How I maintain my pace and explosiveness.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-03"
+      }
+    ],
+    life: [
+      {
+        id: "am-l1",
+        title: "Motherhood & Professional Football",
+        description: "How I balance being a mom and a professional athlete.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "am-l2",
+        title: "World Cup Memories",
+        description: "The moments that defined my international career.",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-05"
+      }
+    ],
+    gear: [
+      {
+        id: "am-g1",
+        title: "My Essential Match Day Kit",
+        description: "Everything I need to perform at the highest level.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-04"
+      }
+    ],
+    products: [
+      {
+        id: "am-p1",
+        name: "Striker's Masterclass",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&h=600&fit=crop",
+        description: "Complete video course on positioning and finishing.",
+        category: "athlete",
+        athleteId: "alex-morgan"
+      },
+      {
+        id: "am-p2",
+        name: "Signed USWNT Jersey",
+        price: 199,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official US Women's National Team jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "alex-morgan"
+      },
+      {
+        id: "am-p3",
+        name: "Nike Phantom Elite",
+        price: 249,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Premium boots from Nike.",
+        category: "partner",
+        athleteId: "alex-morgan"
+      }
+    ],
+    cause: {
+      id: "am-c1",
+      title: "Equal Play Initiative",
+      story: "Fighting for equal pay and opportunities in women's football worldwide.",
+      target: 100000,
+      raised: 67800,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "am-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Grateful for every moment on this journey. The grind never stops! 🇺🇸⚽",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=800&fit=crop",
+        timestamp: "5 hours ago",
+        stats: { likes: 445000, comments: 8900 }
+      },
+      {
+        id: "am-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Alex Morgan - World Cup Goals & Highlights",
+        content: "Every goal from the two-time World Cup champion.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 5600000, duration: "18:34" }
+      },
+      {
+        id: "am-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Alex Morgan's legacy in women's football",
+        content: "How the USWNT star became an icon for a generation of players...",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "8 min read" }
+      }
+    ]
+  },
+  {
+    id: "alexia-putellas",
+    name: "Alexia Putellas",
+    sport: "Women's Football",
+    bio: "Two-time Ballon d'Or winner. FC Barcelona captain. Welcome to my world.",
+    tagline: "The best player in women's football",
+    avatar: alexiaPutellasImg,
+    banner: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1600&h=600&fit=crop",
+    followers: 3800000,
+    training: [
+      {
+        id: "ap-t1",
+        title: "Midfield Masterclass Training",
+        description: "The drills that sharpen my vision and passing.",
+        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "ap-t2",
+        title: "Recovery & Comeback Protocol",
+        description: "How I rebuilt my fitness after ACL injury.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-04"
+      }
+    ],
+    life: [
+      {
+        id: "ap-l1",
+        title: "Captaining Barcelona",
+        description: "The responsibility and pride of leading the best club in the world.",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-11"
+      },
+      {
+        id: "ap-l2",
+        title: "My Journey Back from Injury",
+        description: "The mental and physical battle to return to the top.",
+        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-06"
+      }
+    ],
+    gear: [
+      {
+        id: "ap-g1",
+        title: "Champions League Match Kit",
+        description: "My boots, captain's armband, and essentials for big games.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-05"
+      }
+    ],
+    products: [
+      {
+        id: "ap-p1",
+        name: "Playmaker's Vision Course",
+        price: 89,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&h=600&fit=crop",
+        description: "Learn to control the game from midfield like a Ballon d'Or winner.",
+        category: "athlete",
+        athleteId: "alexia-putellas"
+      },
+      {
+        id: "ap-p2",
+        name: "Signed Barcelona Jersey",
+        price: 229,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official FC Barcelona Femení jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "alexia-putellas"
+      },
+      {
+        id: "ap-p3",
+        name: "Nike Tiempo Legend",
+        price: 219,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Classic touch boots from Nike.",
+        category: "partner",
+        athleteId: "alexia-putellas"
+      }
+    ],
+    cause: {
+      id: "ap-c1",
+      title: "Women in Sport Foundation",
+      story: "Supporting young girls in Spain to pursue careers in professional football.",
+      target: 75000,
+      raised: 41200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "ap-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Back where I belong. Camp Nou, you are my home 💙❤️",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=800&fit=crop",
+        timestamp: "4 hours ago",
+        stats: { likes: 567000, comments: 12000 }
+      },
+      {
+        id: "ap-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Alexia Putellas - Ballon d'Or Winner Highlights",
+        content: "The goals, assists, and moments that made her the best.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=450&fit=crop",
+        timestamp: "5 days ago",
+        stats: { views: 3200000, duration: "16:45" }
+      },
+      {
+        id: "ap-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Alexia Putellas: \"I came back stronger\"",
+        content: "The Barcelona captain on her recovery and ambitions for the future...",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "7 min read" }
+      }
+    ]
+  },
+  {
+    id: "deyna-castellanos",
+    name: "Deyna Castellanos",
+    sport: "Women's Football",
+    bio: "Venezuelan star. Atlético Madrid midfielder. Welcome to my Halo.",
+    tagline: "South America's football queen",
+    avatar: deynaCastellanosImg,
+    banner: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1600&h=600&fit=crop",
+    followers: 2100000,
+    training: [
+      {
+        id: "dc-t1",
+        title: "Creative Midfield Training",
+        description: "How I develop my vision and playmaking ability.",
+        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-07"
+      },
+      {
+        id: "dc-t2",
+        title: "Technical Ball Work",
+        description: "Daily drills to improve first touch and control.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-02"
+      }
+    ],
+    life: [
+      {
+        id: "dc-l1",
+        title: "Representing Venezuela",
+        description: "The pride of wearing la Vinotinto on the world stage.",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "dc-l2",
+        title: "My Spanish Adventure",
+        description: "Life in Madrid and playing for Atlético.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-04"
+      }
+    ],
+    gear: [
+      {
+        id: "dc-g1",
+        title: "My Training Essentials",
+        description: "Boots, gloves, and equipment I use daily.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-03"
+      }
+    ],
+    products: [
+      {
+        id: "dc-p1",
+        name: "South American Flair Course",
+        price: 59,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&h=600&fit=crop",
+        description: "Learn creative football skills from a Venezuelan maestro.",
+        category: "athlete",
+        athleteId: "deyna-castellanos"
+      },
+      {
+        id: "dc-p2",
+        name: "Signed Atlético Madrid Jersey",
+        price: 159,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Atlético jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "deyna-castellanos"
+      },
+      {
+        id: "dc-p3",
+        name: "Nike Mercurial",
+        price: 189,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Speed boots from Nike.",
+        category: "partner",
+        athleteId: "deyna-castellanos"
+      }
+    ],
+    cause: {
+      id: "dc-c1",
+      title: "Football Dreams Venezuela",
+      story: "Bringing football opportunities to underprivileged youth in Venezuela.",
+      target: 35000,
+      raised: 14200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "dc-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Orgullosa de representar a mi país 🇻🇪❤️ Siempre con todo!",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=800&fit=crop",
+        timestamp: "6 hours ago",
+        stats: { likes: 234000, comments: 5600 }
+      },
+      {
+        id: "dc-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Deyna Castellanos - Best Goals & Skills",
+        content: "The Venezuelan star's most magical moments.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 890000, duration: "11:23" }
+      },
+      {
+        id: "dc-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Deyna Castellanos: Venezuela's trailblazer",
+        content: "How she became a symbol for South American women's football...",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=400&fit=crop",
+        timestamp: "4 days ago",
+        stats: { readTime: "5 min read" }
+      }
+    ]
+  },
+  {
+    id: "sydney-leroux",
+    name: "Sydney Leroux",
+    sport: "Women's Football",
+    bio: "World Cup winner. NWSL star. Mom of two. Welcome to my world.",
+    tagline: "Power striker & inspiration",
+    avatar: sydneyLerouxImg,
+    banner: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1600&h=600&fit=crop",
+    followers: 1800000,
+    training: [
+      {
+        id: "sl-t1",
+        title: "Power Finishing Drills",
+        description: "The shooting routine that makes me lethal in the box.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-06"
+      },
+      {
+        id: "sl-t2",
+        title: "Strength Training for Strikers",
+        description: "Building the power to compete at the highest level.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-01"
+      }
+    ],
+    life: [
+      {
+        id: "sl-l1",
+        title: "Being a Mom & Professional Athlete",
+        description: "How I balance family life with my football career.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      },
+      {
+        id: "sl-l2",
+        title: "My NWSL Journey",
+        description: "From the national team to building a legacy in Orlando.",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-03"
+      }
+    ],
+    gear: [
+      {
+        id: "sl-g1",
+        title: "Match Day Must-Haves",
+        description: "My boots, pre-game essentials, and lucky charms.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-02"
+      }
+    ],
+    products: [
+      {
+        id: "sl-p1",
+        name: "Striker's Power Program",
+        price: 69,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&h=600&fit=crop",
+        description: "6-week program to develop your finishing ability.",
+        category: "athlete",
+        athleteId: "sydney-leroux"
+      },
+      {
+        id: "sl-p2",
+        name: "Signed Orlando Pride Jersey",
+        price: 139,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Orlando Pride jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "sydney-leroux"
+      },
+      {
+        id: "sl-p3",
+        name: "Nike Phantom GX",
+        price: 219,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Precision boots from Nike.",
+        category: "partner",
+        athleteId: "sydney-leroux"
+      }
+    ],
+    cause: {
+      id: "sl-c1",
+      title: "Soccer Moms Foundation",
+      story: "Supporting mothers who want to continue their athletic careers.",
+      target: 50000,
+      raised: 28900,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "sl-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "My biggest fans waiting for me after the game 💜 Nothing beats this feeling!",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=800&fit=crop",
+        timestamp: "2 hours ago",
+        stats: { likes: 189000, comments: 4200 }
+      },
+      {
+        id: "sl-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Sydney Leroux - NWSL Goals & Highlights",
+        content: "The best moments from the Orlando Pride striker.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=450&fit=crop",
+        timestamp: "6 days ago",
+        stats: { views: 720000, duration: "9:45" }
+      },
+      {
+        id: "sl-mf3",
+        type: "article",
+        platform: "bbc",
+        title: "Sydney Leroux: Redefining what it means to be a soccer mom",
+        content: "The World Cup winner who's changing perceptions about motherhood in sport...",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=400&fit=crop",
+        timestamp: "5 days ago",
+        stats: { readTime: "6 min read" }
+      }
+    ]
+  },
+  {
+    id: "tatiana-flores",
+    name: "Tatiana Flores",
+    sport: "Women's Football",
+    bio: "Colombian rising star. Tigres UANL forward. Welcome to my Halo.",
+    tagline: "Colombia's next big thing",
+    avatar: tatianaFloresImg,
+    banner: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1600&h=600&fit=crop",
+    followers: 450000,
+    training: [
+      {
+        id: "tf-t1",
+        title: "Attacking Movement Drills",
+        description: "How I create space and find goal-scoring opportunities.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-05"
+      },
+      {
+        id: "tf-t2",
+        title: "Speed & Explosiveness",
+        description: "The agility work that helps me beat defenders.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-01-30"
+      }
+    ],
+    life: [
+      {
+        id: "tf-l1",
+        title: "From Colombia to Mexico",
+        description: "My journey to Liga MX Femenil and Tigres.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-07"
+      },
+      {
+        id: "tf-l2",
+        title: "Representing La Selección",
+        description: "The dream of wearing Colombia's colors.",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-02"
+      }
+    ],
+    gear: [
+      {
+        id: "tf-g1",
+        title: "My Football Kit",
+        description: "Boots and gear that help me perform my best.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-01"
+      }
+    ],
+    products: [
+      {
+        id: "tf-p1",
+        name: "Young Star Training Guide",
+        price: 39,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=600&fit=crop",
+        description: "Training tips for aspiring young players.",
+        category: "athlete",
+        athleteId: "tatiana-flores"
+      },
+      {
+        id: "tf-p2",
+        name: "Signed Tigres Jersey",
+        price: 119,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Tigres UANL jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "tatiana-flores"
+      },
+      {
+        id: "tf-p3",
+        name: "Nike Mercurial Vapor",
+        price: 179,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Speed boots from Nike.",
+        category: "partner",
+        athleteId: "tatiana-flores"
+      }
+    ],
+    cause: {
+      id: "tf-c1",
+      title: "Colombian Girls Football Academy",
+      story: "Creating opportunities for young Colombian girls to pursue football professionally.",
+      target: 25000,
+      raised: 8700,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "tf-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Gol! 🐯💛 Vamos Tigres! Gracias por el apoyo increíble!",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=800&fit=crop",
+        timestamp: "1 hour ago",
+        stats: { likes: 78000, comments: 2100 }
+      },
+      {
+        id: "tf-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Tatiana Flores - Rising Star Highlights",
+        content: "The best goals and skills from Colombia's emerging talent.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 320000, duration: "7:56" }
+      },
+      {
+        id: "tf-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Tatiana Flores: The future of Colombian football",
+        content: "How the young Tigres star is inspiring a new generation...",
+        image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "4 min read" }
       }
     ]
   }
