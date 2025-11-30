@@ -14,6 +14,13 @@ import corentinMoutetImg from "@/assets/corentin-moutet.png";
 import ugoHumbertImg from "@/assets/ugo-humbert.png";
 import arynaSabalenkaImg from "@/assets/aryna-sabalenka.png";
 import jasminePaoliniImg from "@/assets/jasmine-paolini.png";
+import karimBenzemaImg from "@/assets/karim-benzema.png";
+import antoineGriezmannImg from "@/assets/antoine-griezmann.png";
+import jamesRodriguezImg from "@/assets/james-rodriguez.png";
+import mohamedSalahImg from "@/assets/mohamed-salah.png";
+import pauloDybalaImg from "@/assets/paulo-dybala.png";
+import robertLewandowskiImg from "@/assets/robert-lewandowski.png";
+import erlingHaalandImg from "@/assets/erling-haaland.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -2257,6 +2264,902 @@ export const athletes: Athlete[] = [
         image: "",
         timestamp: "8 hours ago",
         stats: { likes: 42000, comments: 980, shares: 5600 }
+      }
+    ]
+  },
+  {
+    id: "karim-benzema",
+    name: "Karim Benzema",
+    sport: "Football",
+    bio: "Ballon d'Or winner. Goal machine. Leader. Welcome to my world.",
+    tagline: "The complete striker",
+    avatar: karimBenzemaImg,
+    banner: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&h=600&fit=crop",
+    followers: 1250000,
+    training: [
+      {
+        id: "kb-t1",
+        title: "Clinical Finishing Drills",
+        description: "The shooting exercises that made me one of the most lethal strikers.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "kb-t2",
+        title: "Hold-Up Play & Link-Up Training",
+        description: "How I work on my ability to bring teammates into the game.",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-05"
+      }
+    ],
+    life: [
+      {
+        id: "kb-l1",
+        title: "Life in Saudi Arabia",
+        description: "My new chapter in Al-Ittihad and embracing a different culture.",
+        image: "https://images.unsplash.com/photo-1466442929976-97f336a657be?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      },
+      {
+        id: "kb-l2",
+        title: "The Road to the Ballon d'Or",
+        description: "Reflecting on the journey that led to football's greatest individual honor.",
+        image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-01"
+      }
+    ],
+    gear: [
+      {
+        id: "kb-g1",
+        title: "My Match Day Kit",
+        description: "Boots, shin guards, and everything I need to perform at the highest level.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-01-28"
+      }
+    ],
+    products: [
+      {
+        id: "kb-p1",
+        name: "Striker's Finishing Masterclass",
+        price: 99,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&h=600&fit=crop",
+        description: "Complete video course on clinical finishing techniques.",
+        category: "athlete",
+        athleteId: "karim-benzema"
+      },
+      {
+        id: "kb-p2",
+        name: "Signed Ballon d'Or Replica",
+        price: 299,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&h=600&fit=crop",
+        description: "Authentic replica of the Ballon d'Or with signature.",
+        category: "athlete",
+        athleteId: "karim-benzema"
+      },
+      {
+        id: "kb-p3",
+        name: "Adidas Predator Elite",
+        price: 279,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Premium football boots from Adidas.",
+        category: "partner",
+        athleteId: "karim-benzema"
+      }
+    ],
+    cause: {
+      id: "kb-c1",
+      title: "Football Dreams Foundation",
+      story: "Helping underprivileged children in France and Algeria access football training and education.",
+      target: 100000,
+      raised: 67500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "kb-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Another chapter, same hunger. The work never stops. 🦾⚽",
+        image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 890000, comments: 12500 }
+      },
+      {
+        id: "kb-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Karim Benzema - All Goals 2023/24",
+        content: "Every goal from the Ballon d'Or winner's incredible season.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 8500000, duration: "18:32" }
+      },
+      {
+        id: "kb-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Benzema: \"The Ballon d'Or was a dream come true\"",
+        content: "The French striker reflects on his incredible career and the recognition he finally received...",
+        image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "8 min read" }
+      }
+    ]
+  },
+  {
+    id: "antoine-griezmann",
+    name: "Antoine Griezmann",
+    sport: "Football",
+    bio: "World champion. Playmaker. Fighter. Step into my universe.",
+    tagline: "The Little Prince of football",
+    avatar: antoineGriezmannImg,
+    banner: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&h=600&fit=crop",
+    followers: 980000,
+    training: [
+      {
+        id: "ag-t1",
+        title: "Off-the-Ball Movement Drills",
+        description: "How I create space and find pockets to receive the ball.",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-12"
+      },
+      {
+        id: "ag-t2",
+        title: "Set Piece Mastery",
+        description: "Free kicks and penalty preparation that wins games.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-06"
+      }
+    ],
+    life: [
+      {
+        id: "ag-l1",
+        title: "Family Life in Madrid",
+        description: "Balancing football with being a husband and father.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "ag-l2",
+        title: "My Gaming Setup",
+        description: "When I'm not on the pitch, you'll find me here.",
+        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-03"
+      }
+    ],
+    gear: [
+      {
+        id: "ag-g1",
+        title: "Grizi Style Collection",
+        description: "My boots, training gear, and matchday essentials.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-01-30"
+      }
+    ],
+    products: [
+      {
+        id: "ag-p1",
+        name: "Playmaker's Vision Course",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&h=600&fit=crop",
+        description: "Learn to read the game like a World Cup winner.",
+        category: "athlete",
+        athleteId: "antoine-griezmann"
+      },
+      {
+        id: "ag-p2",
+        name: "Signed France Jersey",
+        price: 149,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official France national team jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "antoine-griezmann"
+      },
+      {
+        id: "ag-p3",
+        name: "Puma Future Ultimate",
+        price: 249,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Premium football boots from Puma.",
+        category: "partner",
+        athleteId: "antoine-griezmann"
+      }
+    ],
+    cause: {
+      id: "ag-c1",
+      title: "Sport for Everyone",
+      story: "Supporting children with disabilities to access sports activities across France.",
+      target: 60000,
+      raised: 34200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "ag-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Colchonero forever. ❤️🤍 Ready for the new season!",
+        image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&h=800&fit=crop",
+        timestamp: "5 hours ago",
+        stats: { likes: 456000, comments: 8900 }
+      },
+      {
+        id: "ag-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Griezmann - World Cup 2018 All Goals & Assists",
+        content: "Relive the moments that made France world champions.",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=450&fit=crop",
+        timestamp: "3 days ago",
+        stats: { views: 5600000, duration: "14:22" }
+      },
+      {
+        id: "ag-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Griezmann: The complete footballer",
+        content: "How Antoine Griezmann evolved from a young talent to one of the most complete players...",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "6 min read" }
+      }
+    ]
+  },
+  {
+    id: "james-rodriguez",
+    name: "James Rodríguez",
+    sport: "Football",
+    bio: "Golden Boot winner. Artist on the pitch. Welcome to my Halo.",
+    tagline: "The Colombian maestro",
+    avatar: jamesRodriguezImg,
+    banner: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&h=600&fit=crop",
+    followers: 750000,
+    training: [
+      {
+        id: "jr-t1",
+        title: "Passing Precision Training",
+        description: "The drills that make every pass count.",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-11"
+      },
+      {
+        id: "jr-t2",
+        title: "Long-Range Shooting Secrets",
+        description: "How I developed my signature long-range strikes.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-04"
+      }
+    ],
+    life: [
+      {
+        id: "jr-l1",
+        title: "Copa América Memories",
+        description: "Looking back at leading Colombia to glory.",
+        image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "jr-l2",
+        title: "Music & Football",
+        description: "My passion for Colombian music and how it inspires my game.",
+        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-02"
+      }
+    ],
+    gear: [
+      {
+        id: "jr-g1",
+        title: "El Bandido Collection",
+        description: "My signature style on and off the pitch.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-01-29"
+      }
+    ],
+    products: [
+      {
+        id: "jr-p1",
+        name: "Playmaker's Technical Course",
+        price: 69,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&h=600&fit=crop",
+        description: "Master the art of creative playmaking.",
+        category: "athlete",
+        athleteId: "james-rodriguez"
+      },
+      {
+        id: "jr-p2",
+        name: "Signed Golden Boot Replica",
+        price: 199,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&h=600&fit=crop",
+        description: "World Cup Golden Boot replica with authentic signature.",
+        category: "athlete",
+        athleteId: "james-rodriguez"
+      },
+      {
+        id: "jr-p3",
+        name: "Adidas X Speedflow",
+        price: 219,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Lightweight speed boots from Adidas.",
+        category: "partner",
+        athleteId: "james-rodriguez"
+      }
+    ],
+    cause: {
+      id: "jr-c1",
+      title: "Colombian Youth Foundation",
+      story: "Building football academies and schools for children in underprivileged areas of Colombia.",
+      target: 80000,
+      raised: 45600,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "jr-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Colombia in my heart, always. 🇨🇴❤️ Ready to give everything!",
+        image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&h=800&fit=crop",
+        timestamp: "4 hours ago",
+        stats: { likes: 345000, comments: 6700 }
+      },
+      {
+        id: "jr-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "James Rodriguez - That World Cup Goal vs Uruguay",
+        content: "The iconic volley that won the 2014 World Cup Goal of the Tournament.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=450&fit=crop",
+        timestamp: "5 days ago",
+        stats: { views: 12000000, duration: "8:45" }
+      },
+      {
+        id: "jr-mf3",
+        type: "article",
+        platform: "bbc",
+        title: "James Rodriguez: Colombia's golden boy",
+        content: "The story of how James became a national hero and football icon...",
+        image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "7 min read" }
+      }
+    ]
+  },
+  {
+    id: "mohamed-salah",
+    name: "Mohamed Salah",
+    sport: "Football",
+    bio: "The Egyptian King. Speed. Goals. Records. Welcome to my journey.",
+    tagline: "Breaking records, making history",
+    avatar: mohamedSalahImg,
+    banner: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&h=600&fit=crop",
+    followers: 1450000,
+    training: [
+      {
+        id: "ms-t1",
+        title: "Speed & Acceleration Drills",
+        description: "The explosive training that makes defenders fear me.",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-13"
+      },
+      {
+        id: "ms-t2",
+        title: "Left Foot Finishing Mastery",
+        description: "How I perfected my signature finishing technique.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-07"
+      }
+    ],
+    life: [
+      {
+        id: "ms-l1",
+        title: "Life in Liverpool",
+        description: "How the city became my second home.",
+        image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-11"
+      },
+      {
+        id: "ms-l2",
+        title: "Faith, Family, Football",
+        description: "The values that guide my life and career.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-04"
+      }
+    ],
+    gear: [
+      {
+        id: "ms-g1",
+        title: "The Egyptian King's Arsenal",
+        description: "My boots, training equipment, and matchday essentials.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-01-31"
+      }
+    ],
+    products: [
+      {
+        id: "ms-p1",
+        name: "Winger's Speed Program",
+        price: 89,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=600&fit=crop",
+        description: "8-week program to develop explosive pace.",
+        category: "athlete",
+        athleteId: "mohamed-salah"
+      },
+      {
+        id: "ms-p2",
+        name: "Signed Liverpool Jersey",
+        price: 179,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Liverpool FC jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "mohamed-salah"
+      },
+      {
+        id: "ms-p3",
+        name: "Adidas X Elite",
+        price: 269,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Lightweight speed boots designed for wingers.",
+        category: "partner",
+        athleteId: "mohamed-salah"
+      }
+    ],
+    cause: {
+      id: "ms-c1",
+      title: "Salah Foundation Egypt",
+      story: "Building hospitals, schools, and sports facilities for communities in need across Egypt.",
+      target: 150000,
+      raised: 112000,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "ms-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Alhamdulillah for everything. The journey continues. ⚽👑",
+        image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&h=800&fit=crop",
+        timestamp: "2 hours ago",
+        stats: { likes: 1200000, comments: 25000 }
+      },
+      {
+        id: "ms-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Mohamed Salah - All Premier League Goals",
+        content: "Every Premier League goal from the Egyptian King.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=450&fit=crop",
+        timestamp: "4 days ago",
+        stats: { views: 9800000, duration: "25:18" }
+      },
+      {
+        id: "ms-mf3",
+        type: "article",
+        platform: "bbc",
+        title: "Salah: The man who changed Egyptian football forever",
+        content: "How Mohamed Salah became more than a footballer for millions of people...",
+        image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "9 min read" }
+      }
+    ]
+  },
+  {
+    id: "paulo-dybala",
+    name: "Paulo Dybala",
+    sport: "Football",
+    bio: "La Joya. Artist with the ball. Welcome to my world.",
+    tagline: "The jewel of Argentine football",
+    avatar: pauloDybalaImg,
+    banner: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&h=600&fit=crop",
+    followers: 680000,
+    training: [
+      {
+        id: "pd-t1",
+        title: "Dribbling & Close Control Drills",
+        description: "The technical work that makes me unpredictable.",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "pd-t2",
+        title: "Free Kick Masterclass",
+        description: "The secrets behind my dead-ball expertise.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-03"
+      }
+    ],
+    life: [
+      {
+        id: "pd-l1",
+        title: "Life in Rome",
+        description: "Falling in love with the eternal city and its people.",
+        image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      },
+      {
+        id: "pd-l2",
+        title: "World Cup Champion",
+        description: "The greatest moment of my career in Qatar 2022.",
+        image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-01"
+      }
+    ],
+    gear: [
+      {
+        id: "pd-g1",
+        title: "La Joya Collection",
+        description: "My signature boots and matchday essentials.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-01-27"
+      }
+    ],
+    products: [
+      {
+        id: "pd-p1",
+        name: "Technical Brilliance Course",
+        price: 75,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&h=600&fit=crop",
+        description: "Learn the skills that make La Joya shine.",
+        category: "athlete",
+        athleteId: "paulo-dybala"
+      },
+      {
+        id: "pd-p2",
+        name: "Signed Roma Jersey",
+        price: 129,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official AS Roma jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "paulo-dybala"
+      },
+      {
+        id: "pd-p3",
+        name: "Adidas Copa Pure",
+        price: 239,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Classic leather boots for technical players.",
+        category: "partner",
+        athleteId: "paulo-dybala"
+      }
+    ],
+    cause: {
+      id: "pd-c1",
+      title: "Football for Córdoba",
+      story: "Supporting youth football development in my hometown of Córdoba, Argentina.",
+      target: 50000,
+      raised: 28900,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "pd-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Forza Roma! ❤️💛 Thank you for the love, Roma fans!",
+        image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 567000, comments: 9800 }
+      },
+      {
+        id: "pd-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Paulo Dybala - Best Skills & Goals 2024",
+        content: "The magic of La Joya in Serie A this season.",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=450&fit=crop",
+        timestamp: "6 days ago",
+        stats: { views: 4200000, duration: "12:56" }
+      },
+      {
+        id: "pd-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Dybala: \"Rome has my heart\"",
+        content: "The Argentine star on his love affair with AS Roma and the Italian capital...",
+        image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "5 min read" }
+      }
+    ]
+  },
+  {
+    id: "robert-lewandowski",
+    name: "Robert Lewandowski",
+    sport: "Football",
+    bio: "Goal machine. Record breaker. Legend. Welcome to my universe.",
+    tagline: "The complete number 9",
+    avatar: robertLewandowskiImg,
+    banner: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&h=600&fit=crop",
+    followers: 1100000,
+    training: [
+      {
+        id: "rl-t1",
+        title: "Striker's Movement Patterns",
+        description: "How I find space and create scoring opportunities.",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-12"
+      },
+      {
+        id: "rl-t2",
+        title: "Physical Conditioning for Strikers",
+        description: "The fitness work that keeps me at the top.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-05"
+      }
+    ],
+    life: [
+      {
+        id: "rl-l1",
+        title: "Barcelona Dreams",
+        description: "My new chapter in La Liga and life in Catalunya.",
+        image: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "rl-l2",
+        title: "Nutrition & Recovery",
+        description: "How I maintain peak performance at 35+.",
+        image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-02"
+      }
+    ],
+    gear: [
+      {
+        id: "rl-g1",
+        title: "Lewandowski Pro Kit",
+        description: "My boots, equipment, and training gear.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-01-30"
+      }
+    ],
+    products: [
+      {
+        id: "rl-p1",
+        name: "Elite Striker's Program",
+        price: 95,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&h=600&fit=crop",
+        description: "Complete striker training program from a legend.",
+        category: "athlete",
+        athleteId: "robert-lewandowski"
+      },
+      {
+        id: "rl-p2",
+        name: "Signed Barcelona Jersey",
+        price: 169,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official FC Barcelona jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "robert-lewandowski"
+      },
+      {
+        id: "rl-p3",
+        name: "Nike Phantom GX Elite",
+        price: 289,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Premium football boots from Nike.",
+        category: "partner",
+        athleteId: "robert-lewandowski"
+      }
+    ],
+    cause: {
+      id: "rl-c1",
+      title: "Lewandowski Children Foundation",
+      story: "Supporting children's health and education in Poland and around the world.",
+      target: 120000,
+      raised: 89500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "rl-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Força Barça! 🔵🔴 Another milestone reached. The work continues.",
+        image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&h=800&fit=crop",
+        timestamp: "4 hours ago",
+        stats: { likes: 780000, comments: 15000 }
+      },
+      {
+        id: "rl-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Lewandowski - 500 Career Goals Compilation",
+        content: "Every goal from the Polish legend's incredible career.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 7600000, duration: "32:45" }
+      },
+      {
+        id: "rl-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Lewandowski: Still scoring, still winning at 35",
+        content: "How Robert Lewandowski defies age and continues to dominate European football...",
+        image: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "8 min read" }
+      }
+    ]
+  },
+  {
+    id: "erling-haaland",
+    name: "Erling Haaland",
+    sport: "Football",
+    bio: "The Viking. Goal machine. Unstoppable. Enter my world.",
+    tagline: "Redefining what's possible",
+    avatar: erlingHaalandImg,
+    banner: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1600&h=600&fit=crop",
+    followers: 1350000,
+    training: [
+      {
+        id: "eh-t1",
+        title: "Power & Explosiveness Training",
+        description: "The physical work that makes me unstoppable.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-14"
+      },
+      {
+        id: "eh-t2",
+        title: "Clinical Finishing in the Box",
+        description: "How I convert every chance into a goal.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-08"
+      }
+    ],
+    life: [
+      {
+        id: "eh-l1",
+        title: "Life in Manchester",
+        description: "My journey to becoming a Premier League champion.",
+        image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-12"
+      },
+      {
+        id: "eh-l2",
+        title: "Norwegian Roots",
+        description: "Staying connected to my heritage and family.",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-05"
+      }
+    ],
+    gear: [
+      {
+        id: "eh-g1",
+        title: "The Viking's Arsenal",
+        description: "My boots, recovery tools, and matchday essentials.",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-01"
+      }
+    ],
+    products: [
+      {
+        id: "eh-p1",
+        name: "Haaland's Power Program",
+        price: 99,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=600&fit=crop",
+        description: "Build explosive power like the Viking.",
+        category: "athlete",
+        athleteId: "erling-haaland"
+      },
+      {
+        id: "eh-p2",
+        name: "Signed Manchester City Jersey",
+        price: 189,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Man City jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "erling-haaland"
+      },
+      {
+        id: "eh-p3",
+        name: "Nike Mercurial Superfly",
+        price: 299,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Speed-focused boots from Nike.",
+        category: "partner",
+        athleteId: "erling-haaland"
+      }
+    ],
+    cause: {
+      id: "eh-c1",
+      title: "Football for Norwegian Youth",
+      story: "Developing grassroots football infrastructure across Norway for the next generation.",
+      target: 90000,
+      raised: 52300,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "eh-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Another hat-trick, another day at the office. 🎩⚽⚽⚽",
+        image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800&h=800&fit=crop",
+        timestamp: "1 hour ago",
+        stats: { likes: 1450000, comments: 32000 }
+      },
+      {
+        id: "eh-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Erling Haaland - All Premier League Goals 2023/24",
+        content: "Every goal from the Norwegian machine's record-breaking season.",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=800&h=450&fit=crop",
+        timestamp: "2 days ago",
+        stats: { views: 15000000, duration: "28:42" }
+      },
+      {
+        id: "eh-mf3",
+        type: "article",
+        platform: "bbc",
+        title: "Haaland: The making of football's perfect striker",
+        content: "Inside the training, diet, and mindset that created the Premier League's most lethal scorer...",
+        image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "10 min read" }
       }
     ]
   }
