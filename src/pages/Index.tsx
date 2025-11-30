@@ -6,13 +6,21 @@ import { CauseCard } from "@/components/causes/CauseCard";
 import { athletes, femaleAthleteIds } from "@/data/athletes";
 import { Search, Dumbbell, Heart, Package, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 
 const sportFilters = ["All", "Rugby", "Football", "Tennis", "Swimming", "Basketball", "Golf"];
 
 const Index = () => {
   const [activeFilter, setActiveFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Slow down video playback
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5;
+    }
+  }, []);
 
   // Randomize athletes on each page load - 3 men and 3 women
   const randomAthletes = useMemo(() => {
@@ -36,8 +44,24 @@ const Index = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card" />
+        {/* Background Video */}
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source
+            src="https://videos.pexels.com/video-files/3191572/3191572-uhd_2560_1440_25fps.mp4"
+            type="video/mp4"
+          />
+        </video>
+        
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
         
         {/* Glow effects */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
