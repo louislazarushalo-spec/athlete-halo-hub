@@ -54,14 +54,14 @@ const Index = () => {
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source
-            src="https://videos.pexels.com/video-files/3191572/3191572-uhd_2560_1440_25fps.mp4"
+            src="https://videos.pexels.com/video-files/34956038/14807371_2560_1440_60fps.mp4"
             type="video/mp4"
           />
         </video>
         
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/40" />
         
         {/* Glow effects */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
