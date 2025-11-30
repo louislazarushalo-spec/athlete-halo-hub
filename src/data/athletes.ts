@@ -27,6 +27,11 @@ import alexiaPutellasImg from "@/assets/alexia-putellas.png";
 import deynaCastellanosImg from "@/assets/deyna-castellanos.png";
 import sydneyLerouxImg from "@/assets/sydney-leroux.png";
 import tatianaFloresImg from "@/assets/tatiana-flores.png";
+import kyrieIrvingImg from "@/assets/kyrie-irving.png";
+import giannisAntetokounmpoImg from "@/assets/giannis-antetokounmpo.png";
+import lukaDoncicImg from "@/assets/luka-doncic.png";
+import crissaJacksonImg from "@/assets/crissa-jackson.png";
+import angelReeseImg from "@/assets/angel-reese.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -50,6 +55,7 @@ export interface Athlete {
   id: string;
   name: string;
   sport: string;
+  gender?: 'male' | 'female';
   bio: string;
   avatar: string;
   banner: string;
@@ -62,6 +68,14 @@ export interface Athlete {
   cause: Cause;
   mediaFeed: MediaFeedItem[];
 }
+
+// Female athlete IDs for filtering
+export const femaleAthleteIds = [
+  'iga-swiatek', 'aryna-sabalenka', 'jasmine-paolini',
+  'alisha-lehmann', 'alex-morgan', 'alexia-putellas', 
+  'deyna-castellanos', 'sydney-leroux', 'tatiana-flores',
+  'crissa-jackson', 'angel-reese'
+];
 
 export interface Post {
   id: string;
@@ -3172,7 +3186,7 @@ export const athletes: Athlete[] = [
   {
     id: "alisha-lehmann",
     name: "Alisha Lehmann",
-    sport: "Women's Football",
+    sport: "Football",
     bio: "Swiss international. Social media star. Welcome to my world.",
     tagline: "The most followed female footballer",
     avatar: alishaLehmannImg,
@@ -3300,7 +3314,7 @@ export const athletes: Athlete[] = [
   {
     id: "alex-morgan",
     name: "Alex Morgan",
-    sport: "Women's Football",
+    sport: "Football",
     bio: "Two-time World Cup champion. Icon. Legend. Welcome to my Halo.",
     tagline: "US Soccer legend & World Cup winner",
     avatar: alexMorganImg,
@@ -3428,7 +3442,7 @@ export const athletes: Athlete[] = [
   {
     id: "alexia-putellas",
     name: "Alexia Putellas",
-    sport: "Women's Football",
+    sport: "Football",
     bio: "Two-time Ballon d'Or winner. FC Barcelona captain. Welcome to my world.",
     tagline: "The best player in women's football",
     avatar: alexiaPutellasImg,
@@ -3556,7 +3570,7 @@ export const athletes: Athlete[] = [
   {
     id: "deyna-castellanos",
     name: "Deyna Castellanos",
-    sport: "Women's Football",
+    sport: "Football",
     bio: "Venezuelan star. Atlético Madrid midfielder. Welcome to my Halo.",
     tagline: "South America's football queen",
     avatar: deynaCastellanosImg,
@@ -3684,7 +3698,7 @@ export const athletes: Athlete[] = [
   {
     id: "sydney-leroux",
     name: "Sydney Leroux",
-    sport: "Women's Football",
+    sport: "Football",
     bio: "World Cup winner. NWSL star. Mom of two. Welcome to my world.",
     tagline: "Power striker & inspiration",
     avatar: sydneyLerouxImg,
@@ -3812,7 +3826,7 @@ export const athletes: Athlete[] = [
   {
     id: "tatiana-flores",
     name: "Tatiana Flores",
-    sport: "Women's Football",
+    sport: "Football",
     bio: "Colombian rising star. Tigres UANL forward. Welcome to my Halo.",
     tagline: "Colombia's next big thing",
     avatar: tatianaFloresImg,
@@ -3934,6 +3948,646 @@ export const athletes: Athlete[] = [
         image: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=800&h=400&fit=crop",
         timestamp: "3 days ago",
         stats: { readTime: "4 min read" }
+      }
+    ]
+  },
+  {
+    id: "kyrie-irving",
+    name: "Kyrie Irving",
+    sport: "Basketball",
+    bio: "NBA Champion. Handles that defy physics. Welcome to my Halo.",
+    tagline: "The most skilled ball handler ever",
+    avatar: kyrieIrvingImg,
+    banner: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600&h=600&fit=crop",
+    followers: 18500000,
+    training: [
+      {
+        id: "ki-t1",
+        title: "Handle Mastery Drills",
+        description: "The ball handling routine that created the most skilled guard in NBA history.",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "ki-t2",
+        title: "Finishing Through Contact",
+        description: "How I score on bigger defenders with creativity and body control.",
+        image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-05"
+      }
+    ],
+    life: [
+      {
+        id: "ki-l1",
+        title: "My Journey to Dallas",
+        description: "The path that led me to the Mavericks and a new chapter.",
+        image: "https://images.unsplash.com/photo-1504450758481-7338bbe7f232?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-12"
+      },
+      {
+        id: "ki-l2",
+        title: "Faith, Family & Basketball",
+        description: "The pillars that guide my life on and off the court.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      }
+    ],
+    gear: [
+      {
+        id: "ki-g1",
+        title: "Game Day Essentials",
+        description: "My signature shoes, accessories, and pre-game setup.",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-06"
+      }
+    ],
+    products: [
+      {
+        id: "ki-p1",
+        name: "Handle Like Kyrie Course",
+        price: 89,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=600&fit=crop",
+        description: "Master the art of ball handling with exclusive drills.",
+        category: "athlete",
+        athleteId: "kyrie-irving"
+      },
+      {
+        id: "ki-p2",
+        name: "Signed Dallas Mavericks Jersey",
+        price: 249,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Mavericks jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "kyrie-irving"
+      },
+      {
+        id: "ki-p3",
+        name: "Nike Kyrie Infinity",
+        price: 159,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+        description: "Signature basketball shoes from Nike.",
+        category: "partner",
+        athleteId: "kyrie-irving"
+      }
+    ],
+    cause: {
+      id: "ki-c1",
+      title: "Standing Rock Support",
+      story: "Supporting indigenous communities and their rights across America.",
+      target: 100000,
+      raised: 67800,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1504450758481-7338bbe7f232?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "ki-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "The work never stops. Early morning sessions hit different. 🏀✨",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=800&fit=crop",
+        timestamp: "4 hours ago",
+        stats: { likes: 890000, comments: 15000 }
+      },
+      {
+        id: "ki-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Kyrie Irving - Ultimate Handles Mixtape",
+        content: "The most insane crossovers and finishes from Uncle Drew.",
+        image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=800&h=450&fit=crop",
+        timestamp: "5 days ago",
+        stats: { views: 8900000, duration: "14:23" }
+      },
+      {
+        id: "ki-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Kyrie Irving: The artist of basketball",
+        content: "How the Mavericks star became the most creative player in NBA history...",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "7 min read" }
+      }
+    ]
+  },
+  {
+    id: "giannis-antetokounmpo",
+    name: "Giannis Antetokounmpo",
+    sport: "Basketball",
+    bio: "The Greek Freak. NBA Champion. MVP. Welcome to my world.",
+    tagline: "From Athens to NBA greatness",
+    avatar: giannisAntetokounmpoImg,
+    banner: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600&h=600&fit=crop",
+    followers: 16200000,
+    training: [
+      {
+        id: "ga-t1",
+        title: "Freak Athleticism Training",
+        description: "The explosive workouts that built the most dominant player in the NBA.",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "ga-t2",
+        title: "Post Move Development",
+        description: "How I became unstoppable in the paint.",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-04"
+      }
+    ],
+    life: [
+      {
+        id: "ga-l1",
+        title: "From Greece to Milwaukee",
+        description: "My incredible journey from selling goods on the streets to NBA stardom.",
+        image: "https://images.unsplash.com/photo-1504450758481-7338bbe7f232?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-11"
+      },
+      {
+        id: "ga-l2",
+        title: "Family First Always",
+        description: "How my brothers and family keep me grounded.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-06"
+      }
+    ],
+    gear: [
+      {
+        id: "ga-g1",
+        title: "Game Day Setup",
+        description: "My shoes, gear, and recovery equipment.",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-05"
+      }
+    ],
+    products: [
+      {
+        id: "ga-p1",
+        name: "Greek Freak Power Program",
+        price: 99,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=600&fit=crop",
+        description: "Build explosive power like the 2x MVP.",
+        category: "athlete",
+        athleteId: "giannis-antetokounmpo"
+      },
+      {
+        id: "ga-p2",
+        name: "Signed Milwaukee Bucks Jersey",
+        price: 279,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Bucks jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "giannis-antetokounmpo"
+      },
+      {
+        id: "ga-p3",
+        name: "Nike Zoom Freak",
+        price: 139,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+        description: "Giannis signature shoes from Nike.",
+        category: "partner",
+        athleteId: "giannis-antetokounmpo"
+      }
+    ],
+    cause: {
+      id: "ga-c1",
+      title: "Antetokounmpo Family Foundation",
+      story: "Supporting underprivileged youth in Greece and Milwaukee through sports and education.",
+      target: 150000,
+      raised: 89500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1504450758481-7338bbe7f232?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "ga-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Another day, another opportunity to get better. The grind never stops! 💪🦌",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=800&fit=crop",
+        timestamp: "2 hours ago",
+        stats: { likes: 1200000, comments: 28000 }
+      },
+      {
+        id: "ga-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Giannis Antetokounmpo - MVP Season Highlights",
+        content: "Every spectacular dunk and play from the Greek Freak.",
+        image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 12000000, duration: "18:45" }
+      },
+      {
+        id: "ga-mf3",
+        type: "article",
+        platform: "bbc",
+        title: "The remarkable rise of Giannis Antetokounmpo",
+        content: "From selling goods on Athens streets to becoming an NBA champion...",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "9 min read" }
+      }
+    ]
+  },
+  {
+    id: "luka-doncic",
+    name: "Luka Dončić",
+    sport: "Basketball",
+    bio: "Slovenian sensation. NBA superstar. Welcome to my Halo.",
+    tagline: "The boy wonder of basketball",
+    avatar: lukaDoncicImg,
+    banner: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600&h=600&fit=crop",
+    followers: 14800000,
+    training: [
+      {
+        id: "ld-t1",
+        title: "European Playmaking Mastery",
+        description: "The vision and passing drills that make me one of the best passers in the NBA.",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-08"
+      },
+      {
+        id: "ld-t2",
+        title: "Step-Back Three Training",
+        description: "How I developed the most deadly step-back in basketball.",
+        image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-03"
+      }
+    ],
+    life: [
+      {
+        id: "ld-l1",
+        title: "From Real Madrid to the NBA",
+        description: "My journey from European basketball to American stardom.",
+        image: "https://images.unsplash.com/photo-1504450758481-7338bbe7f232?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-10"
+      },
+      {
+        id: "ld-l2",
+        title: "Representing Slovenia",
+        description: "The pride of wearing my country's colors on the world stage.",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-05"
+      }
+    ],
+    gear: [
+      {
+        id: "ld-g1",
+        title: "My Court Essentials",
+        description: "Shoes, gear, and everything I need on game day.",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-04"
+      }
+    ],
+    products: [
+      {
+        id: "ld-p1",
+        name: "Luka's Playmaking Course",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=600&fit=crop",
+        description: "Learn to see the court like a EuroLeague MVP.",
+        category: "athlete",
+        athleteId: "luka-doncic"
+      },
+      {
+        id: "ld-p2",
+        name: "Signed Lakers Jersey",
+        price: 259,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Lakers jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "luka-doncic"
+      },
+      {
+        id: "ld-p3",
+        name: "Jordan Luka 2",
+        price: 149,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+        description: "Luka's signature Jordan shoes.",
+        category: "partner",
+        athleteId: "luka-doncic"
+      }
+    ],
+    cause: {
+      id: "ld-c1",
+      title: "Basketball Without Borders",
+      story: "Bringing basketball opportunities to young players in Slovenia and beyond.",
+      target: 80000,
+      raised: 45200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1504450758481-7338bbe7f232?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "ld-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Big win tonight! Thank you Lakers Nation for the incredible support 💜💛",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 1450000, comments: 32000 }
+      },
+      {
+        id: "ld-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Luka Dončić - Magic Highlights 2024",
+        content: "The most incredible passes and shots from the Slovenian superstar.",
+        image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=800&h=450&fit=crop",
+        timestamp: "4 days ago",
+        stats: { views: 9500000, duration: "16:32" }
+      },
+      {
+        id: "ld-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Luka Dončić: The next face of the NBA",
+        content: "How the Slovenian prodigy is taking over the league...",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "8 min read" }
+      }
+    ]
+  },
+  {
+    id: "crissa-jackson",
+    name: "Crissa Jackson",
+    sport: "Basketball",
+    bio: "Harlem Globetrotter. Breaking barriers. Welcome to my world.",
+    tagline: "First female Globetrotter in a decade",
+    avatar: crissaJacksonImg,
+    banner: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600&h=600&fit=crop",
+    followers: 890000,
+    training: [
+      {
+        id: "cj-t1",
+        title: "Showtime Ball Handling",
+        description: "The tricks and skills that made me a Harlem Globetrotter.",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-07"
+      },
+      {
+        id: "cj-t2",
+        title: "Creativity on the Court",
+        description: "How I develop new moves and entertain millions.",
+        image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-02"
+      }
+    ],
+    life: [
+      {
+        id: "cj-l1",
+        title: "Breaking the Glass Ceiling",
+        description: "My journey to becoming a Harlem Globetrotter.",
+        image: "https://images.unsplash.com/photo-1504450758481-7338bbe7f232?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-09"
+      },
+      {
+        id: "cj-l2",
+        title: "Inspiring the Next Generation",
+        description: "Using my platform to empower young girls in basketball.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-04"
+      }
+    ],
+    gear: [
+      {
+        id: "cj-g1",
+        title: "Globetrotter Essentials",
+        description: "My signature gear and performance equipment.",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-03"
+      }
+    ],
+    products: [
+      {
+        id: "cj-p1",
+        name: "Showtime Skills Course",
+        price: 49,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=600&fit=crop",
+        description: "Learn Globetrotter tricks and ball handling.",
+        category: "athlete",
+        athleteId: "crissa-jackson"
+      },
+      {
+        id: "cj-p2",
+        name: "Signed Globetrotter Jersey",
+        price: 129,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Harlem Globetrotters jersey with signature.",
+        category: "athlete",
+        athleteId: "crissa-jackson"
+      },
+      {
+        id: "cj-p3",
+        name: "Baden Basketball",
+        price: 49,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=600&fit=crop",
+        description: "Official Globetrotters basketball.",
+        category: "partner",
+        athleteId: "crissa-jackson"
+      }
+    ],
+    cause: {
+      id: "cj-c1",
+      title: "Girls in Basketball",
+      story: "Empowering young girls to pursue basketball and break barriers in sports.",
+      target: 30000,
+      raised: 18200,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1504450758481-7338bbe7f232?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "cj-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Show time! 🏀✨ Another incredible night with the Globetrotters family!",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=800&fit=crop",
+        timestamp: "5 hours ago",
+        stats: { likes: 125000, comments: 3400 }
+      },
+      {
+        id: "cj-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Crissa Jackson - Best Globetrotter Moments",
+        content: "The most incredible tricks and plays from the trailblazer.",
+        image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 2100000, duration: "10:15" }
+      },
+      {
+        id: "cj-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Crissa Jackson: Breaking barriers with the Globetrotters",
+        content: "How she became the first female Globetrotter in over a decade...",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=400&fit=crop",
+        timestamp: "4 days ago",
+        stats: { readTime: "5 min read" }
+      }
+    ]
+  },
+  {
+    id: "angel-reese",
+    name: "Angel Reese",
+    sport: "Basketball",
+    bio: "WNBA rising star. NCAA Champion. Welcome to my Halo.",
+    tagline: "The Bayou Barbie taking over",
+    avatar: angelReeseImg,
+    banner: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600&h=600&fit=crop",
+    followers: 3200000,
+    training: [
+      {
+        id: "ar-t1",
+        title: "Dominant Post Play",
+        description: "The moves that made me an NCAA champion and WNBA star.",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-06"
+      },
+      {
+        id: "ar-t2",
+        title: "Rebounding & Hustle",
+        description: "How I dominate the boards on both ends.",
+        image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-01"
+      }
+    ],
+    life: [
+      {
+        id: "ar-l1",
+        title: "From LSU to Chicago",
+        description: "My journey from college champion to WNBA professional.",
+        image: "https://images.unsplash.com/photo-1504450758481-7338bbe7f232?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      },
+      {
+        id: "ar-l2",
+        title: "Building My Brand",
+        description: "Fashion, NIL deals, and becoming a cultural icon.",
+        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-03"
+      }
+    ],
+    gear: [
+      {
+        id: "ar-g1",
+        title: "Game Day Fit",
+        description: "My shoes, accessories, and style on and off the court.",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-02"
+      }
+    ],
+    products: [
+      {
+        id: "ar-p1",
+        name: "Bayou Barbie Training Guide",
+        price: 59,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=600&fit=crop",
+        description: "Train like an NCAA champion and WNBA star.",
+        category: "athlete",
+        athleteId: "angel-reese"
+      },
+      {
+        id: "ar-p2",
+        name: "Signed Chicago Sky Jersey",
+        price: 169,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
+        description: "Official Chicago Sky jersey with authentic signature.",
+        category: "athlete",
+        athleteId: "angel-reese"
+      },
+      {
+        id: "ar-p3",
+        name: "Reebok Basketball Shoes",
+        price: 129,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+        description: "Performance basketball shoes from Reebok.",
+        category: "partner",
+        athleteId: "angel-reese"
+      }
+    ],
+    cause: {
+      id: "ar-c1",
+      title: "Young Women in Sports",
+      story: "Supporting young women pursuing careers in basketball and athletics.",
+      target: 50000,
+      raised: 31500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1504450758481-7338bbe7f232?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "ar-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Chi-Town stand up! 🔥 Ready to take over the WNBA this season!",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=800&fit=crop",
+        timestamp: "1 hour ago",
+        stats: { likes: 445000, comments: 8900 }
+      },
+      {
+        id: "ar-mf2",
+        type: "video",
+        platform: "youtube",
+        title: "Angel Reese - From NCAA Champion to WNBA Star",
+        content: "The best moments from college to the pros.",
+        image: "https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?w=800&h=450&fit=crop",
+        timestamp: "3 days ago",
+        stats: { views: 4500000, duration: "12:18" }
+      },
+      {
+        id: "ar-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Angel Reese: The new face of women's basketball",
+        content: "How the Bayou Barbie is changing the game on and off the court...",
+        image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "6 min read" }
       }
     ]
   }
