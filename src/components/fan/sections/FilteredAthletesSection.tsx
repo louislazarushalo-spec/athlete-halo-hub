@@ -6,9 +6,9 @@ interface FilteredAthletesSectionProps {
 }
 
 export const FilteredAthletesSection = ({ sport }: FilteredAthletesSectionProps) => {
-  const filteredAthletes = athletes.filter(
-    (athlete) => athlete.sport.toLowerCase() === sport.toLowerCase()
-  );
+  const filteredAthletes = athletes
+    .filter((athlete) => athlete.sport.toLowerCase() === sport.toLowerCase())
+    .sort(() => Math.random() - 0.5);
 
   if (filteredAthletes.length === 0) {
     return (
