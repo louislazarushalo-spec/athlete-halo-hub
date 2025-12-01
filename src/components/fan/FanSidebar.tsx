@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Compass, MessageCircle, Bell, Settings, Smartphone, ChevronDown, LogOut, User } from "lucide-react";
+import { Home, Compass, MessageCircle, Bell, Settings, Smartphone, ChevronDown, LogOut, User, Users } from "lucide-react";
 import { athletes } from "@/data/athletes";
 import { useState } from "react";
 import {
@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { label: "Home", icon: Home, path: "/home", active: true },
+  { label: "My Athletes", icon: Users, path: "/my-athletes" },
   { label: "Explore", icon: Compass, path: "/athletes" },
   { label: "Chats", icon: MessageCircle, path: "/chats" },
   { label: "Notifications", icon: Bell, path: "/notifications" },
