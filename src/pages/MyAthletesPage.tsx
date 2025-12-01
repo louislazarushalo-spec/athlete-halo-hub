@@ -162,7 +162,34 @@ const MyAthletesPage = () => {
         </section>
 
         <div className="px-8 lg:px-16 pb-20 space-y-20 max-w-7xl">
-          {/* Section 1: Upcoming Events */}
+          {/* Section 1: My Athletes */}
+          <section>
+            <div className="mb-6">
+              <h2 className="font-display text-2xl font-bold">My athletes</h2>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+              {followedAthletes.map((athlete) => (
+                <Link 
+                  key={athlete.id} 
+                  to={`/athlete/${athlete.id}`}
+                  className="glass-card p-6 text-center group hover:border-primary/30 hover:shadow-glow-soft transition-all"
+                >
+                  <Avatar className="h-24 w-24 mx-auto mb-4 border-2 border-primary/30 group-hover:border-primary transition-colors">
+                    <AvatarImage src={athlete.avatar} alt={athlete.name} className="object-cover" />
+                    <AvatarFallback>{athlete.name[0]}</AvatarFallback>
+                  </Avatar>
+                  <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">{athlete.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{athlete.sport}</p>
+                  <Button variant="gold" size="sm" className="w-full">
+                    View Halo
+                  </Button>
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          {/* Section 2: Upcoming Events */}
           <section>
             <div className="mb-6">
               <h2 className="font-display text-2xl font-bold mb-2">Upcoming events</h2>
@@ -213,34 +240,58 @@ const MyAthletesPage = () => {
             </Carousel>
           </section>
 
-          {/* Section 2: My Athletes */}
+          {/* Section 3: Play with your athletes */}
           <section>
             <div className="mb-6">
-              <h2 className="font-display text-2xl font-bold">My athletes</h2>
+              <h2 className="font-display text-2xl font-bold mb-2">Play with your athletes</h2>
+              <p className="text-muted-foreground">Exclusive interactions created just for you.</p>
             </div>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-              {followedAthletes.map((athlete) => (
-                <Link 
-                  key={athlete.id} 
-                  to={`/athlete/${athlete.id}`}
-                  className="glass-card p-6 text-center group hover:border-primary/30 transition-all"
-                >
-                  <Avatar className="h-24 w-24 mx-auto mb-4 border-2 border-primary/30 group-hover:border-primary transition-colors">
-                    <AvatarImage src={athlete.avatar} alt={athlete.name} className="object-cover" />
-                    <AvatarFallback>{athlete.name[0]}</AvatarFallback>
-                  </Avatar>
-                  <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">{athlete.name}</h3>
-                  <p className="text-sm text-muted-foreground">{athlete.sport}</p>
-                  <Button variant="ghost" size="sm" className="mt-4">
-                    View Halo
-                  </Button>
-                </Link>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {engagementItems.map((item, index) => {
+                const athlete = athletes.find(a => a.id === item.athleteId);
+                const Icon = engagementIcons[item.type as keyof typeof engagementIcons];
+                
+                if (!athlete) return null;
+                
+                return (
+                  <div key={index} className={`glass-card p-5 relative ${item.premium ? 'overflow-hidden' : ''}`}>
+                    {item.premium && (
+                      <div className="absolute inset-0 bg-card/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
+                        <Lock className="h-8 w-8 text-muted-foreground mb-2" />
+                        <p className="text-sm text-muted-foreground mb-3">Premium Exclusive</p>
+                        <Button variant="gold" size="sm">
+                          Upgrade to participate
+                        </Button>
+                      </div>
+                    )}
+                    
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 rounded-lg bg-primary/10">
+                        <Icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <Avatar className="h-5 w-5">
+                            <AvatarImage src={athlete.avatar} alt={athlete.name} />
+                            <AvatarFallback>{athlete.name[0]}</AvatarFallback>
+                          </Avatar>
+                          <span className="text-xs text-muted-foreground">{athlete.name}</span>
+                        </div>
+                        <h3 className="font-semibold mb-1">{item.title}</h3>
+                        <p className="text-sm text-muted-foreground mb-4">{item.description}</p>
+                        <Button variant="outline" size="sm">
+                          Participate
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </section>
 
-          {/* Section 3: My Feed */}
+          {/* Section 4: My Feed */}
           <section>
             <div className="mb-6">
               <h2 className="font-display text-2xl font-bold mb-2">My feed</h2>
@@ -286,57 +337,6 @@ const MyAthletesPage = () => {
                           View in Halo
                         </Button>
                       </Link>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
-          {/* Section 4: Fan Engagement */}
-          <section>
-            <div className="mb-6">
-              <h2 className="font-display text-2xl font-bold mb-2">Fan engagement</h2>
-              <p className="text-muted-foreground">Exclusive interactions created just for you.</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {engagementItems.map((item, index) => {
-                const athlete = athletes.find(a => a.id === item.athleteId);
-                const Icon = engagementIcons[item.type as keyof typeof engagementIcons];
-                
-                if (!athlete) return null;
-                
-                return (
-                  <div key={index} className={`glass-card p-5 relative ${item.premium ? 'overflow-hidden' : ''}`}>
-                    {item.premium && (
-                      <div className="absolute inset-0 bg-card/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center">
-                        <Lock className="h-8 w-8 text-muted-foreground mb-2" />
-                        <p className="text-sm text-muted-foreground mb-3">Premium Exclusive</p>
-                        <Button variant="gold" size="sm">
-                          Upgrade to participate
-                        </Button>
-                      </div>
-                    )}
-                    
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-lg bg-primary/10">
-                        <Icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <Avatar className="h-5 w-5">
-                            <AvatarImage src={athlete.avatar} alt={athlete.name} />
-                            <AvatarFallback>{athlete.name[0]}</AvatarFallback>
-                          </Avatar>
-                          <span className="text-xs text-muted-foreground">{athlete.name}</span>
-                        </div>
-                        <h3 className="font-semibold mb-1">{item.title}</h3>
-                        <p className="text-sm text-muted-foreground mb-4">{item.description}</p>
-                        <Button variant="outline" size="sm">
-                          Participate
-                        </Button>
-                      </div>
                     </div>
                   </div>
                 );
