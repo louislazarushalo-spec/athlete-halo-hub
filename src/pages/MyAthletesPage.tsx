@@ -133,13 +133,13 @@ const MyAthletesPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-background">
       <FanSidebar />
       
-      <main className="flex-1 overflow-y-auto">
+      <main className="ml-64 min-h-screen overflow-y-auto">
         {/* Hero Section */}
-        <section className="relative py-16 px-6 lg:px-12 bg-gradient-to-b from-primary/10 via-background to-background">
-          <div className="max-w-4xl mx-auto text-center">
+        <section className="relative py-20 px-8 lg:px-16 bg-gradient-to-b from-primary/10 via-background to-background">
+          <div className="max-w-5xl mx-auto text-center">
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-4">
               Welcome back.
             </h1>
@@ -161,7 +161,7 @@ const MyAthletesPage = () => {
           </div>
         </section>
 
-        <div className="px-6 lg:px-12 pb-20 space-y-16">
+        <div className="px-8 lg:px-16 pb-20 space-y-20 max-w-7xl">
           {/* Section 1: Upcoming Events */}
           <section>
             <div className="mb-6">
@@ -219,20 +219,20 @@ const MyAthletesPage = () => {
               <h2 className="font-display text-2xl font-bold">My athletes</h2>
             </div>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
               {followedAthletes.map((athlete) => (
                 <Link 
                   key={athlete.id} 
                   to={`/athlete/${athlete.id}`}
-                  className="glass-card p-4 text-center group hover:border-primary/30 transition-all"
+                  className="glass-card p-6 text-center group hover:border-primary/30 transition-all"
                 >
-                  <Avatar className="h-16 w-16 mx-auto mb-3 border-2 border-primary/30 group-hover:border-primary transition-colors">
-                    <AvatarImage src={athlete.avatar} alt={athlete.name} />
+                  <Avatar className="h-24 w-24 mx-auto mb-4 border-2 border-primary/30 group-hover:border-primary transition-colors">
+                    <AvatarImage src={athlete.avatar} alt={athlete.name} className="object-cover" />
                     <AvatarFallback>{athlete.name[0]}</AvatarFallback>
                   </Avatar>
-                  <h3 className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">{athlete.name}</h3>
-                  <p className="text-xs text-muted-foreground">{athlete.sport}</p>
-                  <Button variant="ghost" size="sm" className="mt-3 text-xs">
+                  <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">{athlete.name}</h3>
+                  <p className="text-sm text-muted-foreground">{athlete.sport}</p>
+                  <Button variant="ghost" size="sm" className="mt-4">
                     View Halo
                   </Button>
                 </Link>
@@ -247,7 +247,7 @@ const MyAthletesPage = () => {
               <p className="text-muted-foreground">Updates from your favorite athletes.</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {feedItems.map((item, index) => {
                 const athlete = athletes.find(a => a.id === item.athleteId);
                 const Icon = typeIcons[item.type as keyof typeof typeIcons];
@@ -257,7 +257,7 @@ const MyAthletesPage = () => {
                 
                 return (
                   <div key={index} className="glass-card overflow-hidden group">
-                    <div className="relative h-40 overflow-hidden">
+                    <div className="relative h-48 overflow-hidden">
                       <img 
                         src={item.image} 
                         alt={item.title}
@@ -350,13 +350,13 @@ const MyAthletesPage = () => {
               <h2 className="font-display text-2xl font-bold">Gear from your athletes</h2>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {gearItems.map((item, index) => {
                 const athlete = athletes.find(a => a.id === item.athleteId);
                 
                 return (
                   <div key={index} className="glass-card overflow-hidden group">
-                    <div className="relative aspect-square overflow-hidden">
+                    <div className="relative aspect-square overflow-hidden min-h-[200px]">
                       <img 
                         src={item.image} 
                         alt={item.name}
