@@ -11,6 +11,7 @@ import { ExploreTrainingsSection } from "@/components/fan/sections/ExploreTraini
 import { ActiveNowSection } from "@/components/fan/sections/ActiveNowSection";
 import { SupportCausesSection } from "@/components/fan/sections/SupportCausesSection";
 import { DiscoverAllSection } from "@/components/fan/sections/DiscoverAllSection";
+import { FilteredAthletesSection } from "@/components/fan/sections/FilteredAthletesSection";
 import { useAuth } from "@/contexts/AuthContext";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { ShoppingCart } from "lucide-react";
@@ -68,15 +69,21 @@ const FanHomePage = () => {
 
         {/* Content Sections */}
         <div className="px-6 py-8">
-          <RecentlyViewedSection />
-          <ForYouSection />
-          <TrendingSection />
-          <ExploreGearSection />
-          <GearTheyUseSection />
-          <ExploreTrainingsSection />
-          <ActiveNowSection />
-          <SupportCausesSection />
-          <DiscoverAllSection />
+          {["Rugby", "Football", "Tennis", "Swimming"].includes(activeFilter) ? (
+            <FilteredAthletesSection sport={activeFilter} />
+          ) : (
+            <>
+              <RecentlyViewedSection />
+              <ForYouSection />
+              <TrendingSection />
+              <ExploreGearSection />
+              <GearTheyUseSection />
+              <ExploreTrainingsSection />
+              <ActiveNowSection />
+              <SupportCausesSection />
+              <DiscoverAllSection />
+            </>
+          )}
         </div>
       </main>
     </div>
