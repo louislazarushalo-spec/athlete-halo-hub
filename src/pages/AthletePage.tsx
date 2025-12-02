@@ -287,7 +287,7 @@ const AthletePage = () => {
         <div className="container mx-auto px-4">
           <Tabs defaultValue="life" className="w-full">
             {/* Main Tab Navigation */}
-            <TabsList className="w-full max-w-2xl mx-auto grid grid-cols-3 mb-8 h-14 bg-muted/50">
+            <TabsList className="w-full max-w-4xl mx-auto grid grid-cols-4 mb-8 h-14 bg-muted/50">
               <TabsTrigger value="life" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Heart className="h-5 w-5" />
                 <span>My Life</span>
@@ -299,6 +299,10 @@ const AthletePage = () => {
               <TabsTrigger value="training" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Dumbbell className="h-5 w-5" />
                 <span>My Training</span>
+              </TabsTrigger>
+              <TabsTrigger value="cause" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Heart className="h-5 w-5" />
+                <span>My Cause</span>
               </TabsTrigger>
             </TabsList>
 
@@ -533,67 +537,65 @@ const AthletePage = () => {
                 </div>
               </div>
             </TabsContent>
-          </Tabs>
-        </div>
-      </section>
 
-      {/* Cause Section */}
-      <section className="py-12 bg-card/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="glass-card overflow-hidden">
-              <div className="grid md:grid-cols-2">
-                {/* Image */}
-                <div className="relative h-64 md:h-auto">
-                  <img
-                    src={athlete.cause.image}
-                    alt={athlete.cause.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card/80 hidden md:block" />
-                </div>
-
-                {/* Content */}
-                <div className="p-8">
-                  <span className="text-xs text-primary font-medium uppercase tracking-wide mb-2 block">
-                    Support Their Cause
-                  </span>
-                  <h3 className="font-display text-2xl font-semibold mb-4">
-                    {athlete.cause.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-6">
-                    {athlete.cause.story}
-                  </p>
-
-                  {/* Progress */}
-                  <div className="mb-6">
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className="text-muted-foreground">Progress</span>
-                      <span className="font-medium">
-                        {athlete.cause.currency}{athlete.cause.raised.toLocaleString()} / {athlete.cause.currency}{athlete.cause.target.toLocaleString()}
-                      </span>
-                    </div>
-                    <div className="h-3 bg-muted rounded-full overflow-hidden">
-                      <div 
-                        className="h-full bg-primary rounded-full transition-all duration-500"
-                        style={{ width: `${Math.min(100, (athlete.cause.raised / athlete.cause.target) * 100)}%` }}
+            {/* MY CAUSE TAB */}
+            <TabsContent value="cause" className="animate-fade-in">
+              <div className="max-w-4xl mx-auto">
+                <div className="glass-card overflow-hidden">
+                  <div className="grid md:grid-cols-2">
+                    {/* Image */}
+                    <div className="relative h-64 md:h-auto">
+                      <img
+                        src={athlete.cause.image}
+                        alt={athlete.cause.title}
+                        className="w-full h-full object-cover"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card/80 hidden md:block" />
                     </div>
-                    <p className="text-xs text-muted-foreground mt-2">
-                      {((athlete.cause.raised / athlete.cause.target) * 100).toFixed(0)}% of goal reached
-                    </p>
-                  </div>
 
-                  <Link to={`/athlete/${athlete.id}/cause`}>
-                    <Button variant="gold" size="lg" className="w-full">
-                      <Heart className="h-4 w-4" />
-                      Support this Cause
-                    </Button>
-                  </Link>
+                    {/* Content */}
+                    <div className="p-8">
+                      <span className="text-xs text-primary font-medium uppercase tracking-wide mb-2 block">
+                        Support Their Cause
+                      </span>
+                      <h3 className="font-display text-2xl font-semibold mb-4">
+                        {athlete.cause.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-6">
+                        {athlete.cause.story}
+                      </p>
+
+                      {/* Progress */}
+                      <div className="mb-6">
+                        <div className="flex justify-between text-sm mb-2">
+                          <span className="text-muted-foreground">Progress</span>
+                          <span className="font-medium">
+                            {athlete.cause.currency}{athlete.cause.raised.toLocaleString()} / {athlete.cause.currency}{athlete.cause.target.toLocaleString()}
+                          </span>
+                        </div>
+                        <div className="h-3 bg-muted rounded-full overflow-hidden">
+                          <div 
+                            className="h-full bg-primary rounded-full transition-all duration-500"
+                            style={{ width: `${Math.min(100, (athlete.cause.raised / athlete.cause.target) * 100)}%` }}
+                          />
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-2">
+                          {((athlete.cause.raised / athlete.cause.target) * 100).toFixed(0)}% of goal reached
+                        </p>
+                      </div>
+
+                      <Link to={`/athlete/${athlete.id}/cause`}>
+                        <Button variant="gold" size="lg" className="w-full">
+                          <Heart className="h-4 w-4" />
+                          Support this Cause
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
     </Layout>
