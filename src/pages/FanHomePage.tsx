@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FanSidebar } from "@/components/fan/FanSidebar";
 import { FanSearchBar } from "@/components/fan/FanSearchBar";
 import { FanFilterPills } from "@/components/fan/FanFilterPills";
-import { PersonalHeroHeader } from "@/components/fan/sections/PersonalHeroHeader";
+
 import { UpcomingEventsSection } from "@/components/fan/sections/UpcomingEventsSection";
 import { YourHalosSection } from "@/components/fan/sections/YourHalosSection";
 import { LiveUpdatesSection } from "@/components/fan/sections/LiveUpdatesSection";
@@ -67,10 +67,9 @@ const FanHomePage = () => {
             <FilteredAthletesSection sport={activeFilter} />
           ) : (
             <>
-              <PersonalHeroHeader />
-              <UpcomingEventsSection />
               <YourHalosSection />
               <LiveUpdatesSection />
+              <UpcomingEventsSection />
               <GearYourAthletesTrustSection />
               <TrainLikeThemSection />
               <SupportCausesSection />
