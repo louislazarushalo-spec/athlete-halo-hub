@@ -4,11 +4,21 @@ import { Button } from "@/components/ui/button";
 import { HomepageAthleteCard } from "@/components/athletes/HomepageAthleteCard";
 import { athletes } from "@/data/athletes";
 import { ChevronRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMemo, useRef, useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Index = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+
+  // Redirect to /home if logged in
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home");
+    }
+  }, [isAuthenticated, navigate]);
 
   // Slow down video playback
   useEffect(() => {
