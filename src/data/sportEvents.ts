@@ -108,30 +108,80 @@ export const swimmingEvents: AthleteEvent[] = [
   { id: "french-champs", name: "French Championships", date: "25", month: "Mar", year: "2025", location: "Chartres, France", country: "France", countryFlag: "🇫🇷", category: "National", categoryColor: "bg-blue-500", description: "French National Swimming Championships." },
 ];
 
+// Month name to number mapping
+const monthToNumber: Record<string, number> = {
+  "Jan": 0, "Feb": 1, "Mar": 2, "Apr": 3, "May": 4, "Jun": 5,
+  "Jul": 6, "Aug": 7, "Sep": 8, "Oct": 9, "Nov": 10, "Dec": 11
+};
+
+// Helper function to convert event to Date
+const eventToDate = (event: AthleteEvent): Date => {
+  const year = parseInt(event.year);
+  const month = monthToNumber[event.month] ?? 0;
+  const day = parseInt(event.date);
+  return new Date(year, month, day);
+};
+
+// Sort events chronologically, starting with next upcoming
+const sortEventsChronologically = (events: AthleteEvent[]): AthleteEvent[] => {
+  const now = new Date();
+  
+  return [...events].sort((a, b) => {
+    const dateA = eventToDate(a);
+    const dateB = eventToDate(b);
+    
+    const isPastA = dateA < now;
+    const isPastB = dateB < now;
+    
+    // Future events come first, sorted by date ascending
+    if (!isPastA && !isPastB) {
+      return dateA.getTime() - dateB.getTime();
+    }
+    // Past events come after future events
+    if (isPastA && !isPastB) return 1;
+    if (!isPastA && isPastB) return -1;
+    // Past events sorted by date descending (most recent first)
+    return dateB.getTime() - dateA.getTime();
+  });
+};
+
 // Helper function to get events by sport
 export const getEventsBySport = (sport: string, gender?: string): AthleteEvent[] => {
   const sportLower = sport.toLowerCase();
   
+  let events: AthleteEvent[];
+  
   switch (sportLower) {
     case "tennis":
-      return tennisEvents;
+      events = tennisEvents;
+      break;
     case "football":
-      return gender === "female" ? womenFootballEvents : footballEvents;
+      events = gender === "female" ? womenFootballEvents : footballEvents;
+      break;
     case "rugby":
-      return rugbyEvents;
+      events = rugbyEvents;
+      break;
     case "basketball":
-      return gender === "female" ? wnbaEvents : basketballEvents;
+      events = gender === "female" ? wnbaEvents : basketballEvents;
+      break;
     case "f1":
-      return f1Events;
+      events = f1Events;
+      break;
     case "cycling":
-      return cyclingEvents;
+      events = cyclingEvents;
+      break;
     case "golf":
-      return gender === "female" ? lpgaEvents : golfEvents;
+      events = gender === "female" ? lpgaEvents : golfEvents;
+      break;
     case "judo":
-      return judoEvents;
+      events = judoEvents;
+      break;
     case "swimming":
-      return swimmingEvents;
+      events = swimmingEvents;
+      break;
     default:
-      return [];
+      events = [];
   }
+  
+  return sortEventsChronologically(events);
 };
