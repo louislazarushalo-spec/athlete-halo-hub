@@ -12,7 +12,8 @@ import {
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { label: "Explore", icon: Compass, path: "/home", active: true },
+  { label: "Home", icon: Home, path: "/home" },
+  { label: "Explore", icon: Compass, path: "/explore" },
   { label: "Chats", icon: MessageCircle, path: "/chats" },
   { label: "Notifications", icon: Bell, path: "/notifications" },
   { label: "Settings", icon: Settings, path: "/settings" },
@@ -46,7 +47,7 @@ export const FanSidebar = () => {
       {/* Main Navigation */}
       <nav className="p-3 space-y-1">
         {navItems.map((item) => {
-          const isActive = location.pathname === item.path || (item.path === "/home" && location.pathname === "/home");
+          const isActive = location.pathname === item.path;
           return (
             <Link
               key={item.label}
