@@ -1729,7 +1729,7 @@ export const athletes: Athlete[] = [
     name: "Arthur Cazaux",
     sport: "Tennis",
     bio: "Young talent. Lacoste ambassador. All-court game.",
-    tagline: "French elegance on the ATP Tour",
+    tagline: "Rising French star from Montpellier, bringing fire and elegance to the ATP Tour",
     avatar: arthurCazauxImg,
     banner: arthurCazauxBannerImg,
     followers: 78000,
