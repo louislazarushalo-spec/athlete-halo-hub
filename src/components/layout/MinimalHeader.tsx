@@ -14,12 +14,19 @@ export const MinimalHeader = () => {
             <span className="font-display text-xl font-semibold">Halo Collective</span>
           </Link>
 
-          {/* Login Button Only */}
-          <Link to="/login">
-            <Button variant="gold" size="sm">
-              Log In
-            </Button>
-          </Link>
+          {/* Auth Buttons */}
+          <div className="flex items-center gap-3">
+            <Link to="/login">
+              <Button variant="ghost" size="sm">
+                Log In
+              </Button>
+            </Link>
+            <Link to="/signup">
+              <Button variant="gold" size="sm">
+                Create an Account
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </header>
