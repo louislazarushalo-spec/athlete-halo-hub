@@ -16,7 +16,10 @@ import {
   ShoppingCart,
   Check,
   Instagram,
-  Twitter
+  Twitter,
+  Calendar,
+  MapPin,
+  Music
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
@@ -207,7 +210,7 @@ const AthletePage = () => {
   const { id } = useParams<{ id: string }>();
   const athlete = getAthleteById(id || "");
   const [isFollowing, setIsFollowing] = useState(false);
-  const [activeLifeTab, setActiveLifeTab] = useState<"feed" | "media" | "community">("feed");
+  const [activeLifeTab, setActiveLifeTab] = useState<"events" | "news" | "music" | "community">("events");
   const { addToCart } = useCart();
   const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
 
@@ -356,28 +359,144 @@ const AthletePage = () => {
             {/* MY LIFE TAB */}
             <TabsContent value="life" className="animate-fade-in">
               {/* Sub-tabs for Life section */}
-              <div className="flex gap-2 mb-8 border-b border-border pb-4">
+              <div className="flex gap-2 mb-8 border-b border-border pb-4 overflow-x-auto">
                 <Button
-                  variant={activeLifeTab === "feed" ? "default" : "ghost"}
+                  variant={activeLifeTab === "events" ? "default" : "ghost"}
                   size="sm"
-                  onClick={() => setActiveLifeTab("feed")}
-                  className="rounded-full"
+                  onClick={() => setActiveLifeTab("events")}
+                  className="rounded-full shrink-0"
+                >
+                  <Trophy className="h-4 w-4 mr-1" />
+                  My Events
+                </Button>
+                <Button
+                  variant={activeLifeTab === "news" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setActiveLifeTab("news")}
+                  className="rounded-full shrink-0"
                 >
                   My News
+                </Button>
+                <Button
+                  variant={activeLifeTab === "music" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setActiveLifeTab("music")}
+                  className="rounded-full shrink-0"
+                >
+                  <Play className="h-4 w-4 mr-1" />
+                  My Music
                 </Button>
                 <Button
                   variant={activeLifeTab === "community" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setActiveLifeTab("community")}
-                  className="rounded-full"
+                  className="rounded-full shrink-0"
                 >
                   <Lock className="h-4 w-4 mr-1" />
-                  Community & Rewards
+                  Community
                 </Button>
               </div>
 
+              {/* My Events - Upcoming Tournaments */}
+              {activeLifeTab === "events" && (
+                <div className="max-w-4xl mx-auto">
+                  <h3 className="text-2xl font-bold mb-6 text-foreground">Upcoming Tournaments</h3>
+                  <div className="space-y-4">
+                    {/* Event Card 1 */}
+                    <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-32 bg-gradient-to-br from-primary to-primary/70 text-primary-foreground p-6 flex flex-col items-center justify-center text-center">
+                          <span className="text-xs font-semibold uppercase tracking-wider">Jan</span>
+                          <span className="text-4xl font-bold my-1">13</span>
+                          <span className="text-xs opacity-90">2025</span>
+                        </div>
+                        <div className="flex-1 p-6">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1">
+                              <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                                Australian Open 2025
+                              </h4>
+                              <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                                <MapPin className="h-4 w-4" />
+                                <span className="text-sm">Melbourne, Australia</span>
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                First Grand Slam of the season. Arthur will be competing in the main draw, ready to make his mark on the Australian hard courts.
+                              </p>
+                            </div>
+                            <Button variant="outline" size="sm" className="shrink-0">
+                              Get Tickets
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    {/* Event Card 2 */}
+                    <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-32 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 flex flex-col items-center justify-center text-center">
+                          <span className="text-xs font-semibold uppercase tracking-wider">Feb</span>
+                          <span className="text-4xl font-bold my-1">10</span>
+                          <span className="text-xs opacity-90">2025</span>
+                        </div>
+                        <div className="flex-1 p-6">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1">
+                              <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                                Open 13 Provence
+                              </h4>
+                              <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                                <MapPin className="h-4 w-4" />
+                                <span className="text-sm">Marseille, France</span>
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                Home advantage! Arthur returns to France for this ATP 250 indoor tournament, looking to shine in front of the French crowd.
+                              </p>
+                            </div>
+                            <Button variant="outline" size="sm" className="shrink-0">
+                              Get Tickets
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+
+                    {/* Event Card 3 */}
+                    <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-32 bg-gradient-to-br from-orange-600 to-red-600 text-white p-6 flex flex-col items-center justify-center text-center">
+                          <span className="text-xs font-semibold uppercase tracking-wider">May</span>
+                          <span className="text-4xl font-bold my-1">26</span>
+                          <span className="text-xs opacity-90">2025</span>
+                        </div>
+                        <div className="flex-1 p-6">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1">
+                              <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                                Roland-Garros
+                              </h4>
+                              <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                                <MapPin className="h-4 w-4" />
+                                <span className="text-sm">Paris, France</span>
+                              </div>
+                              <p className="text-sm text-muted-foreground">
+                                The French Open on the legendary clay courts of Paris. Arthur's biggest opportunity to showcase his game in front of his home crowd.
+                              </p>
+                            </div>
+                            <Button variant="outline" size="sm" className="shrink-0">
+                              Get Tickets
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              )}
+
               {/* My News Feed */}
-              {activeLifeTab === "feed" && (
+              {activeLifeTab === "news" && (
                 <div className="max-w-3xl mx-auto space-y-5">
                   {athlete.mediaFeed.map((item, index) => (
                     <div 
@@ -388,6 +507,75 @@ const AthletePage = () => {
                       <MediaFeedCard item={item} athlete={athlete} />
                     </div>
                   ))}
+                </div>
+              )}
+
+              {/* My Music/Podcasts */}
+              {activeLifeTab === "music" && (
+                <div className="max-w-4xl mx-auto">
+                  <h3 className="text-2xl font-bold mb-6 text-foreground">My Music & Playlists</h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Spotify Playlist */}
+                    <article className="glass-card p-6 group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
+                      <div className="flex items-start gap-4">
+                        <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shrink-0 shadow-lg">
+                          <Music className="h-10 w-10 text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">Pre-Match Pump Up</h4>
+                          <p className="text-sm text-muted-foreground mb-3">My go-to playlist before stepping on court</p>
+                          <Button size="sm" variant="outline" className="w-full">
+                            <Play className="h-4 w-4 mr-2" />
+                            Listen on Spotify
+                          </Button>
+                        </div>
+                      </div>
+                    </article>
+
+                    {/* Training Mix */}
+                    <article className="glass-card p-6 group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
+                      <div className="flex items-start gap-4">
+                        <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shrink-0 shadow-lg">
+                          <Dumbbell className="h-10 w-10 text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">Training Motivation</h4>
+                          <p className="text-sm text-muted-foreground mb-3">High-energy tracks for intense workouts</p>
+                          <Button size="sm" variant="outline" className="w-full">
+                            <Play className="h-4 w-4 mr-2" />
+                            Listen on Spotify
+                          </Button>
+                        </div>
+                      </div>
+                    </article>
+
+                    {/* Podcast Appearance */}
+                    <article className="glass-card p-6 group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 md:col-span-2">
+                      <div className="flex items-start gap-4">
+                        <div className="w-32 h-32 rounded-lg bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shrink-0 shadow-lg">
+                          <MessageCircle className="h-12 w-12 text-white" />
+                        </div>
+                        <div className="flex-1">
+                          <Badge variant="secondary" className="mb-2">Latest Episode</Badge>
+                          <h4 className="font-bold text-xl mb-2 group-hover:text-primary transition-colors">
+                            Behind the Baseline Podcast
+                          </h4>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            Arthur discusses his journey from Montpellier to the ATP Tour, his training routines, and what drives him to compete at the highest level.
+                          </p>
+                          <div className="flex gap-2">
+                            <Button size="sm" variant="outline">
+                              <Play className="h-4 w-4 mr-2" />
+                              Listen Now
+                            </Button>
+                            <span className="text-sm text-muted-foreground flex items-center">
+                              42 min • Dec 2024
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
                 </div>
               )}
 
