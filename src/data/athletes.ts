@@ -6193,6 +6193,115 @@ export const athletes: Athlete[] = [
       currency: "€",
       image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop"
     },
+    gearCollections: [
+      {
+        id: "tf-gc1",
+        name: "Tommy's Gear at The Open Championship",
+        description: "The flowing locks at Royal Troon. The linksland wind. Tommy steps onto the first tee in his TaylorMade setup, ready to compete for the Claret Jug on the historic Scottish coast where golf was born.",
+        actionImage: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "tf-gc1-p1",
+            name: "TaylorMade Tour Polo",
+            price: 89,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=400&fit=crop",
+            description: "Premium tour polo from TaylorMade.",
+            category: "partner",
+            athleteId: "tommy-fleetwood"
+          },
+          {
+            id: "tf-gc1-p2",
+            name: "TaylorMade Tour Trousers",
+            price: 119,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=400&fit=crop",
+            description: "Professional tour trousers.",
+            category: "partner",
+            athleteId: "tommy-fleetwood"
+          },
+          {
+            id: "tf-gc1-p3",
+            name: "FootJoy Tour Alpha",
+            price: 199,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=400&fit=crop",
+            description: "Tour-level golf shoes for ultimate performance.",
+            category: "partner",
+            athleteId: "tommy-fleetwood"
+          }
+        ],
+        hotspots: {
+          "tf-gc1-p1": { x: 45, y: 35 },
+          "tf-gc1-p2": { x: 50, y: 65 },
+          "tf-gc1-p3": { x: 48, y: 88 }
+        }
+      },
+      {
+        id: "tf-gc2",
+        name: "Tommy's Ryder Cup Gear - Marco Simone",
+        description: "European hero in Rome. The Ryder Cup atmosphere is electric as Tommy leads Team Europe with passion. The outfit that became iconic during Europe's historic victory on Italian soil.",
+        actionImage: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "tf-gc2-p1",
+            name: "European Ryder Cup Polo",
+            price: 129,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=400&fit=crop",
+            description: "Official European Ryder Cup team polo.",
+            category: "partner",
+            athleteId: "tommy-fleetwood"
+          },
+          {
+            id: "tf-gc2-p2",
+            name: "Ryder Cup Team Trousers",
+            price: 149,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=400&fit=crop",
+            description: "Official European team trousers.",
+            category: "partner",
+            athleteId: "tommy-fleetwood"
+          }
+        ],
+        hotspots: {
+          "tf-gc2-p1": { x: 50, y: 40 },
+          "tf-gc2-p2": { x: 48, y: 70 }
+        }
+      },
+      {
+        id: "tf-gc3",
+        name: "Tommy's DP World Tour Championship Setup",
+        description: "Dubai season finale. The desert sun sets over Jumeirah Golf Estates. Tommy competes against the best on the European Tour, his TaylorMade equipment fine-tuned for the season's biggest event.",
+        actionImage: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "tf-gc3-p1",
+            name: "TaylorMade Premium Polo",
+            price: 95,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=400&fit=crop",
+            description: "Premium performance polo.",
+            category: "partner",
+            athleteId: "tommy-fleetwood"
+          },
+          {
+            id: "tf-gc3-p2",
+            name: "TaylorMade Qi10 Driver",
+            price: 549,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=400&fit=crop",
+            description: "Tour-level driver from TaylorMade.",
+            category: "partner",
+            athleteId: "tommy-fleetwood"
+          }
+        ],
+        hotspots: {
+          "tf-gc3-p1": { x: 45, y: 38 },
+          "tf-gc3-p2": { x: 25, y: 50 }
+        }
+      }
+    ],
     mediaFeed: [
       {
         id: "tf-mf1",
