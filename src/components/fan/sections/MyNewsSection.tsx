@@ -15,6 +15,20 @@ const platformConfig = {
   bbc: { icon: Newspaper, label: "BBC Sport", color: "text-orange-500" },
 };
 
+// Helper to format relative time
+const formatRelativeTime = (timestamp: string) => {
+  const now = new Date();
+  const date = new Date(timestamp);
+  const diffMs = now.getTime() - date.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  
+  if (diffDays === 0) return "Today";
+  if (diffDays === 1) return "Yesterday";
+  if (diffDays < 7) return `${diffDays} days ago`;
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+};
+
 export const MyNewsSection = () => {
   const followedAthletes = athletes.filter(a => followedAthleteIds.includes(a.id));
   
@@ -26,8 +40,9 @@ export const MyNewsSection = () => {
     }))
   );
 
-  // Sort by timestamp (most recent first)
-  const sortedNews = allNews.sort((a, b) => 
+  // Shuffle array to randomize, then sort by date (recent first)
+  const shuffled = [...allNews].sort(() => Math.random() - 0.5);
+  const sortedNews = shuffled.sort((a, b) => 
     new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
   );
 
@@ -92,10 +107,10 @@ export const MyNewsSection = () => {
                       {item.content}
                     </p>
                     <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-                      <span>{new Date(item.timestamp).toLocaleDateString()}</span>
-                      {item.stats?.likes && <span>{item.stats.likes.toLocaleString()} likes</span>}
-                      {item.stats?.views && <span>{item.stats.views.toLocaleString()} views</span>}
-                      {item.stats?.readTime && <span>{item.stats.readTime} read</span>}
+                      <span className="font-medium text-foreground/70">{formatRelativeTime(item.timestamp)}</span>
+                      {item.stats?.likes && <span>• {item.stats.likes.toLocaleString()} likes</span>}
+                      {item.stats?.views && <span>• {item.stats.views.toLocaleString()} views</span>}
+                      {item.stats?.readTime && <span>• {item.stats.readTime} read</span>}
                     </div>
                   </div>
                 </div>
