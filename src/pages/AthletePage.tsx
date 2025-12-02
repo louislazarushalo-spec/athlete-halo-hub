@@ -452,18 +452,28 @@ const AthletePage = () => {
               )}
             </TabsContent>
 
-            {/* MY GEAR TAB */}
             <TabsContent value="gear" className="animate-fade-in">
               <ShoppableGearSection
                 athleteName={athlete.name}
-                actionImage={athlete.banner}
-                products={athlete.products.map(p => ({
-                  ...p,
-                  hotspot: Math.random() > 0.5 ? {
-                    x: 20 + Math.random() * 60,
-                    y: 20 + Math.random() * 60
-                  } : undefined
-                }))}
+                actionImage={athlete.gear[0]?.image || athlete.banner}
+                products={athlete.products.map((p, idx) => {
+                  // Hotspot coordinates for Arthur Cazaux's gear
+                  const hotspots: Record<string, { x: number; y: number }> = {
+                    'ac-p1': { x: 50, y: 12 },  // Hat
+                    'ac-p2': { x: 50, y: 32 },  // Polo/Top
+                    'ac-p3': { x: 50, y: 52 },  // Shorts
+                    'ac-p4': { x: 28, y: 42 },  // Racquet
+                    'ac-p5': { x: 50, y: 72 },  // Socks
+                    'ac-p6': { x: 50, y: 85 }   // Shoes
+                  };
+                  return {
+                    ...p,
+                    hotspot: hotspots[p.id] || (Math.random() > 0.5 ? {
+                      x: 20 + Math.random() * 60,
+                      y: 20 + Math.random() * 60
+                    } : undefined)
+                  };
+                })}
               />
             </TabsContent>
 
