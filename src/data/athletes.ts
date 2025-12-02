@@ -10,6 +10,7 @@ import arthurRinderknechImg from "@/assets/arthur-rinderknech.png";
 import gaelMonfilsImg from "@/assets/gael-monfils.png";
 import arthurFilsImg from "@/assets/arthur-fils.png";
 import arthurCazauxImg from "@/assets/arthur-cazaux.png";
+import arthurCazauxBannerImg from "@/assets/arthur-cazaux-banner.png";
 import arthurCazauxGearImg from "@/assets/arthur-cazaux-gear.png";
 import lacosteCapImg from "@/assets/lacoste-cap.png";
 import lacostePoloImg from "@/assets/lacoste-polo.png";
@@ -1710,7 +1711,7 @@ export const athletes: Athlete[] = [
     bio: "Young talent. Lacoste ambassador. All-court game.",
     tagline: "French elegance on the ATP Tour",
     avatar: arthurCazauxImg,
-    banner: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1600&h=600&fit=crop",
+    banner: arthurCazauxBannerImg,
     followers: 78000,
     training: [
       {
