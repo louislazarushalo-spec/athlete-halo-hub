@@ -402,149 +402,132 @@ const AthletePage = () => {
                 <div className="max-w-4xl mx-auto">
                   <h3 className="text-2xl font-bold mb-6 text-foreground">Upcoming Tournaments</h3>
                   <div className="space-y-4">
-                    {/* Event Card 1 */}
+                    {/* Adelaide International */}
+                    <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-32 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 flex flex-col items-center justify-center text-center">
+                          <span className="text-xs font-semibold uppercase tracking-wider">Jan</span>
+                          <span className="text-4xl font-bold my-1">6</span>
+                          <span className="text-xs opacity-90">2025</span>
+                        </div>
+                        <div className="flex-1 p-6">
+                          <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                            Adelaide International
+                          </h4>
+                          <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                            <MapPin className="h-4 w-4" />
+                            <span className="text-sm">Adelaide, Australia</span>
+                          </div>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            ATP 250 tournament kicking off the Australian hard court season.
+                          </p>
+                          <Button variant="outline" size="sm">
+                            Get Tickets
+                          </Button>
+                        </div>
+                      </div>
+                    </article>
+
+                    {/* Australian Open */}
                     <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
                       <div className="flex flex-col md:flex-row">
                         <div className="md:w-32 bg-gradient-to-br from-primary to-primary/70 text-primary-foreground p-6 flex flex-col items-center justify-center text-center">
                           <span className="text-xs font-semibold uppercase tracking-wider">Jan</span>
-                          <span className="text-4xl font-bold my-1">13</span>
+                          <span className="text-4xl font-bold my-1">12</span>
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <div className="mb-4">
-                            <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                              Australian Open 2025
-                            </h4>
-                            <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                              <MapPin className="h-4 w-4" />
-                              <span className="text-sm">Melbourne, Australia</span>
-                            </div>
-                            <p className="text-sm text-muted-foreground mb-4">
-                              First Grand Slam of the season. Arthur will be competing in the main draw, ready to make his mark on the Australian hard courts.
-                            </p>
+                          <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                            Australian Open
+                          </h4>
+                          <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                            <MapPin className="h-4 w-4" />
+                            <span className="text-sm">Melbourne, Australia</span>
                           </div>
-                          
-                          <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-border/50">
-                            <div className="sm:w-auto">
-                              <Button variant="outline" size="sm" className="w-full sm:w-auto">
-                                Get Tickets
-                              </Button>
-                            </div>
-                            <div className="flex-1">
-                              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
-                              <div className="flex flex-wrap gap-2">
-                                <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
-                                  Eurosport
-                                </Badge>
-                                <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30">
-                                  ESPN+
-                                </Badge>
-                                <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
-                                  Tennis Channel
-                                </Badge>
-                                <Badge variant="secondary" className="bg-green-600/20 text-green-400 border-green-500/30">
-                                  9Now (AUS)
-                                </Badge>
-                              </div>
-                            </div>
-                          </div>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            First Grand Slam of the season. Arthur will be competing in the main draw, ready to make his mark on the Australian hard courts.
+                          </p>
+                          <Button variant="outline" size="sm">
+                            Get Tickets
+                          </Button>
                         </div>
                       </div>
                     </article>
 
-                    {/* Event Card 2 */}
+                    {/* Montpellier */}
                     <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
                       <div className="flex flex-col md:flex-row">
-                        <div className="md:w-32 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 flex flex-col items-center justify-center text-center">
+                        <div className="md:w-32 bg-gradient-to-br from-purple-600 to-purple-800 text-white p-6 flex flex-col items-center justify-center text-center">
                           <span className="text-xs font-semibold uppercase tracking-wider">Feb</span>
-                          <span className="text-4xl font-bold my-1">10</span>
+                          <span className="text-4xl font-bold my-1">3</span>
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <div className="mb-4">
-                            <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                              Open 13 Provence
-                            </h4>
-                            <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                              <MapPin className="h-4 w-4" />
-                              <span className="text-sm">Marseille, France</span>
-                            </div>
-                            <p className="text-sm text-muted-foreground mb-4">
-                              Home advantage! Arthur returns to France for this ATP 250 indoor tournament, looking to shine in front of the French crowd.
-                            </p>
+                          <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                            Open Sud de France
+                          </h4>
+                          <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                            <MapPin className="h-4 w-4" />
+                            <span className="text-sm">Montpellier, France</span>
                           </div>
-                          
-                          <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-border/50">
-                            <div className="sm:w-auto">
-                              <Button variant="outline" size="sm" className="w-full sm:w-auto">
-                                Get Tickets
-                              </Button>
-                            </div>
-                            <div className="flex-1">
-                              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
-                              <div className="flex flex-wrap gap-2">
-                                <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
-                                  beIN SPORTS
-                                </Badge>
-                                <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
-                                  Tennis TV
-                                </Badge>
-                                <Badge variant="secondary" className="bg-orange-600/20 text-orange-400 border-orange-500/30">
-                                  France TV Sport
-                                </Badge>
-                              </div>
-                            </div>
-                          </div>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            Home soil! Arthur returns to his native Montpellier for this ATP 250 indoor event.
+                          </p>
+                          <Button variant="outline" size="sm">
+                            Get Tickets
+                          </Button>
                         </div>
                       </div>
                     </article>
 
-                    {/* Event Card 3 */}
+                    {/* Marseille */}
                     <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
                       <div className="flex flex-col md:flex-row">
-                        <div className="md:w-32 bg-gradient-to-br from-orange-600 to-red-600 text-white p-6 flex flex-col items-center justify-center text-center">
-                          <span className="text-xs font-semibold uppercase tracking-wider">May</span>
-                          <span className="text-4xl font-bold my-1">26</span>
+                        <div className="md:w-32 bg-gradient-to-br from-cyan-600 to-cyan-800 text-white p-6 flex flex-col items-center justify-center text-center">
+                          <span className="text-xs font-semibold uppercase tracking-wider">Feb</span>
+                          <span className="text-4xl font-bold my-1">17</span>
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <div className="mb-4">
-                            <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                              Roland-Garros
-                            </h4>
-                            <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                              <MapPin className="h-4 w-4" />
-                              <span className="text-sm">Paris, France</span>
-                            </div>
-                            <p className="text-sm text-muted-foreground mb-4">
-                              The French Open on the legendary clay courts of Paris. Arthur's biggest opportunity to showcase his game in front of his home crowd.
-                            </p>
+                          <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                            Open 13 Provence
+                          </h4>
+                          <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                            <MapPin className="h-4 w-4" />
+                            <span className="text-sm">Marseille, France</span>
                           </div>
-                          
-                          <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-border/50">
-                            <div className="sm:w-auto">
-                              <Button variant="outline" size="sm" className="w-full sm:w-auto">
-                                Get Tickets
-                              </Button>
-                            </div>
-                            <div className="flex-1">
-                              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
-                              <div className="flex flex-wrap gap-2">
-                                <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
-                                  France Télévisions
-                                </Badge>
-                                <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30">
-                                  Eurosport
-                                </Badge>
-                                <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
-                                  Tennis Channel
-                                </Badge>
-                                <Badge variant="secondary" className="bg-yellow-600/20 text-yellow-400 border-yellow-500/30">
-                                  Amazon Prime
-                                </Badge>
-                              </div>
-                            </div>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            Another home advantage! ATP 250 indoor tournament in the south of France.
+                          </p>
+                          <Button variant="outline" size="sm">
+                            Get Tickets
+                          </Button>
+                        </div>
+                      </div>
+                    </article>
+
+                    {/* Rio de Janeiro */}
+                    <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
+                      <div className="flex flex-col md:flex-row">
+                        <div className="md:w-32 bg-gradient-to-br from-green-600 to-yellow-600 text-white p-6 flex flex-col items-center justify-center text-center">
+                          <span className="text-xs font-semibold uppercase tracking-wider">Feb</span>
+                          <span className="text-4xl font-bold my-1">15</span>
+                          <span className="text-xs opacity-90">2025</span>
+                        </div>
+                        <div className="flex-1 p-6">
+                          <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                            Rio Open
+                          </h4>
+                          <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                            <MapPin className="h-4 w-4" />
+                            <span className="text-sm">Rio de Janeiro, Brazil</span>
                           </div>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            ATP 500 clay court event in the heart of Brazil, preparing for the European clay season.
+                          </p>
+                          <Button variant="outline" size="sm">
+                            Get Tickets
+                          </Button>
                         </div>
                       </div>
                     </article>
