@@ -5,27 +5,55 @@ import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 
 const SignupPage = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const { signup } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (password.length < 6) {
+      toast({
+        title: "Invalid password",
+        description: "Password must be at least 6 characters long.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setLoading(true);
     
-    // Simulate signup
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const { error } = await signup(email, password);
+      
+      if (error) {
+        toast({
+          title: "Signup failed",
+          description: error.message || "Failed to create account.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
       toast({
         title: "Account created!",
-        description: "Welcome to Halo Collective.",
+        description: "Welcome to Halo Collective. You're now logged in.",
       });
-      navigate("/feed");
-    }, 1000);
+      navigate("/home");
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -48,17 +76,6 @@ const SignupPage = () => {
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <Label htmlFor="name">Full Name</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    placeholder="John Doe"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                  />
-                </div>
-                <div>
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
@@ -78,7 +95,11 @@ const SignupPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    minLength={6}
                   />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Must be at least 6 characters
+                  </p>
                 </div>
                 <Button 
                   type="submit" 
