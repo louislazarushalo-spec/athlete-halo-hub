@@ -2,7 +2,7 @@ import { MinimalHeader } from "@/components/layout/MinimalHeader";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { HomepageAthleteCard } from "@/components/athletes/HomepageAthleteCard";
-import { athletes, femaleAthleteIds } from "@/data/athletes";
+import { athletes } from "@/data/athletes";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useMemo, useRef, useEffect } from "react";
@@ -17,15 +17,20 @@ const Index = () => {
     }
   }, []);
 
-  // Randomize athletes on each page load - 3 men and 3 women
-  const randomAthletes = useMemo(() => {
-    const maleAthletes = athletes.filter(a => !femaleAthleteIds.includes(a.id));
-    const femaleAthletes = athletes.filter(a => femaleAthleteIds.includes(a.id));
-    
-    const shuffledMales = [...maleAthletes].sort(() => Math.random() - 0.5).slice(0, 3);
-    const shuffledFemales = [...femaleAthletes].sort(() => Math.random() - 0.5).slice(0, 3);
-    
-    return [...shuffledMales, ...shuffledFemales].sort(() => Math.random() - 0.5);
+  // Featured athletes with high quality photos
+  const featuredAthleteIds = [
+    'arthur-cazaux',
+    'iga-swiatek', 
+    'antoine-dupont',
+    'victor-wembanyama',
+    'leon-marchand',
+    'alexia-putellas'
+  ];
+
+  const featuredAthletes = useMemo(() => {
+    return featuredAthleteIds
+      .map(id => athletes.find(a => a.id === id))
+      .filter(Boolean) as typeof athletes;
   }, []);
 
   return (
@@ -103,7 +108,7 @@ const Index = () => {
 
             {/* Athletes Grid - Larger cards, premium spacing */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {randomAthletes.map((athlete, index) => (
+              {featuredAthletes.map((athlete, index) => (
                 <HomepageAthleteCard key={athlete.id} athlete={athlete} index={index} />
               ))}
             </div>
