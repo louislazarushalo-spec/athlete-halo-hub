@@ -1,5 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
+import { AthleteHeader } from "@/components/layout/AthleteHeader";
+import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getAthleteById, MediaFeedItem, AthleteEvent } from "@/data/athletes";
@@ -29,6 +31,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Athlete } from "@/data/athletes";
 import { ShoppableGearSection } from "@/components/fan/sections/ShoppableGearSection";
 import { RegistrationGate } from "@/components/auth/RegistrationGate";
+import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSection";
 
 // Helper functions for formatting
 const formatNumber = (num: number): string => {
@@ -249,8 +252,10 @@ const AthletePage = () => {
     });
   };
 
-  return (
-    <Layout>
+  const isArthurCazaux = athlete.id === "arthur-cazaux";
+
+  const content = (
+    <>
       {/* Registration Gate Overlay for unauthenticated users */}
       {!isAuthenticated && <RegistrationGate athleteName={athlete.name} />}
       
@@ -662,73 +667,77 @@ const AthletePage = () => {
 
             {/* MY TRAINING TAB */}
             <TabsContent value="training" className="animate-fade-in">
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {athlete.training.map(post => (
-                    <article key={post.id} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
-                      <div className="relative h-48 overflow-hidden">
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
-                            <Play className="h-6 w-6 text-primary-foreground ml-1" />
+              {isArthurCazaux ? (
+                <ArthurTrainingSection />
+              ) : (
+                <div>
+                  <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {athlete.training.map(post => (
+                      <article key={post.id} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
+                        <div className="relative h-48 overflow-hidden">
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
+                              <Play className="h-6 w-6 text-primary-foreground ml-1" />
+                            </div>
                           </div>
+                          <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
                         </div>
-                        <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
-                      </div>
-                      <div className="p-4">
-                        <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                          {post.title}
-                        </h4>
-                        <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
-                          {post.description}
-                        </p>
-                        <Button variant="outline" size="sm" className="w-full">
-                          View Program
-                        </Button>
-                      </div>
-                    </article>
-                  ))}
-                  {/* Seed additional training content */}
-                  {[
-                    { title: "Explosive Speed & Agility Routine", desc: "Build game-changing acceleration and quick feet." },
-                    { title: "Strength & Mobility Session", desc: "Balance power with flexibility for peak performance." },
-                    { title: "Recovery & Regeneration Protocol", desc: "Essential recovery techniques for optimal readiness." },
-                    { title: "Mental Performance Workshop", desc: "Develop focus and resilience under pressure." }
-                  ].slice(0, Math.max(0, 6 - athlete.training.length)).map((item, idx) => (
-                    <article key={`seed-training-${idx}`} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
-                      <div className="relative h-48 overflow-hidden">
-                        <img
-                          src={`https://images.unsplash.com/photo-${['1571019614242-c5c5dee9f50b', '1534438327276-14e5300c3a48', '1544367567-0f2fcb009e0b', '1517836357463-d25dfeac3438'][idx]}?w=800&h=500&fit=crop`}
-                          alt={item.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
-                            <Play className="h-6 w-6 text-primary-foreground ml-1" />
+                        <div className="p-4">
+                          <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                            {post.title}
+                          </h4>
+                          <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+                            {post.description}
+                          </p>
+                          <Button variant="outline" size="sm" className="w-full">
+                            View Program
+                          </Button>
+                        </div>
+                      </article>
+                    ))}
+                    {/* Seed additional training content */}
+                    {[
+                      { title: "Explosive Speed & Agility Routine", desc: "Build game-changing acceleration and quick feet." },
+                      { title: "Strength & Mobility Session", desc: "Balance power with flexibility for peak performance." },
+                      { title: "Recovery & Regeneration Protocol", desc: "Essential recovery techniques for optimal readiness." },
+                      { title: "Mental Performance Workshop", desc: "Develop focus and resilience under pressure." }
+                    ].slice(0, Math.max(0, 6 - athlete.training.length)).map((item, idx) => (
+                      <article key={`seed-training-${idx}`} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
+                        <div className="relative h-48 overflow-hidden">
+                          <img
+                            src={`https://images.unsplash.com/photo-${['1571019614242-c5c5dee9f50b', '1534438327276-14e5300c3a48', '1544367567-0f2fcb009e0b', '1517836357463-d25dfeac3438'][idx]}?w=800&h=500&fit=crop`}
+                            alt={item.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
+                              <Play className="h-6 w-6 text-primary-foreground ml-1" />
+                            </div>
                           </div>
+                          <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
                         </div>
-                        <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
-                      </div>
-                      <div className="p-4">
-                        <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                          {item.title}
-                        </h4>
-                        <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
-                          {item.desc}
-                        </p>
-                        <Button variant="outline" size="sm" className="w-full">
-                          View Program
-                        </Button>
-                      </div>
-                    </article>
-                  ))}
+                        <div className="p-4">
+                          <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                            {item.title}
+                          </h4>
+                          <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+                            {item.desc}
+                          </p>
+                          <Button variant="outline" size="sm" className="w-full">
+                            View Program
+                          </Button>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </TabsContent>
 
             {/* MY CAUSE TAB */}
@@ -792,8 +801,24 @@ const AthletePage = () => {
         </div>
       </section>
       </div>
-    </Layout>
+    </>
   );
+
+  // For Arthur Cazaux, use minimal header without nav links
+  if (isArthurCazaux) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <AthleteHeader />
+        <main className="flex-1 pt-16">
+          {content}
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // For other athletes, use standard Layout
+  return <Layout>{content}</Layout>;
 };
 
 export default AthletePage;
