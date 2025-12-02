@@ -12,12 +12,16 @@ import arthurFilsImg from "@/assets/arthur-fils.png";
 import arthurCazauxImg from "@/assets/arthur-cazaux.png";
 import arthurCazauxBannerImg from "@/assets/arthur-cazaux-banner.png";
 import arthurCazauxGearImg from "@/assets/arthur-cazaux-gear.png";
+import arthurCazauxCincinnatiImg from "@/assets/arthur-cazaux-cincinnati.png";
 import lacosteCapImg from "@/assets/lacoste-cap.png";
 import lacostePoloImg from "@/assets/lacoste-polo.png";
 import lacosteShortsImg from "@/assets/lacoste-shorts.png";
 import lacosteWristbandImg from "@/assets/lacoste-wristband.png";
 import lacosteArmSleeveImg from "@/assets/lacoste-arm-sleeve.png";
 import lacosteShoesImg from "@/assets/lacoste-shoes.png";
+import lacostePoloBlueImg from "@/assets/lacoste-polo-blue.png";
+import lacosteShortsBlueImg from "@/assets/lacoste-shorts-blue.png";
+import lacosteShoesBlueImg from "@/assets/lacoste-shoes-blue.png";
 import babolatStringsImg from "@/assets/babolat-strings.png";
 import babolatGearImg from "@/assets/babolat-gear.png";
 import corentinMoutetImg from "@/assets/corentin-moutet.png";
@@ -71,6 +75,15 @@ export interface MediaFeedItem {
   };
 }
 
+export interface GearCollection {
+  id: string;
+  name: string;
+  description: string;
+  actionImage: string;
+  products: Product[];
+  hotspots?: Record<string, { x: number; y: number }>;
+}
+
 export interface Athlete {
   id: string;
   name: string;
@@ -85,6 +98,7 @@ export interface Athlete {
   life: Post[];
   gear: Post[];
   products: Product[];
+  gearCollections?: GearCollection[];
   cause: Cause;
   mediaFeed: MediaFeedItem[];
 }
@@ -1823,6 +1837,182 @@ export const athletes: Athlete[] = [
         description: "Complete Babolat setup with Pure Drive racquet and pro tour bag.",
         category: "partner",
         athleteId: "arthur-cazaux"
+      }
+    ],
+    gearCollections: [
+      {
+        id: "ac-gc-paris",
+        name: "Rolex Paris Masters",
+        description: "Arthur at the Rolex Paris Masters",
+        actionImage: arthurCazauxGearImg,
+        products: [
+          {
+            id: "ac-p1",
+            name: "Lacoste Sport Cap",
+            price: 45,
+            currency: "€",
+            image: lacosteCapImg,
+            description: "Classic white tennis cap with Lacoste crocodile logo.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p2",
+            name: "Lacoste Performance Polo",
+            price: 95,
+            currency: "€",
+            image: lacostePoloImg,
+            description: "Green technical polo with performance fabric and unique print design.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p3",
+            name: "Lacoste Sport Shorts",
+            price: 75,
+            currency: "€",
+            image: lacosteShortsImg,
+            description: "White performance shorts with Lacoste branding and optimal stretch.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p4",
+            name: "Lacoste Tennis Wristband",
+            price: 15,
+            currency: "€",
+            image: lacosteWristbandImg,
+            description: "White terry cloth wristband with embroidered crocodile logo.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p5",
+            name: "Lacoste Compression Arm Sleeve",
+            price: 35,
+            currency: "€",
+            image: lacosteArmSleeveImg,
+            description: "White compression sleeve for muscle support during play.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p6",
+            name: "Lacoste AG-LT23 Tennis Shoes",
+            price: 189,
+            currency: "€",
+            image: lacosteShoesImg,
+            description: "High-performance tennis shoes with Lacoste innovation and style.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p7",
+            name: "Babolat RPM Blast Strings",
+            price: 18,
+            currency: "€",
+            image: babolatStringsImg,
+            description: "Professional co-polyester tennis strings for maximum spin and control.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p8",
+            name: "Babolat Pure Drive Racquet & Bag",
+            price: 279,
+            currency: "€",
+            image: babolatGearImg,
+            description: "Complete Babolat setup with Pure Drive racquet and pro tour bag.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          }
+        ],
+        hotspots: {
+          'ac-p1': { x: 50, y: 12 },  // Hat
+          'ac-p2': { x: 50, y: 32 },  // Polo/Top
+          'ac-p3': { x: 50, y: 52 },  // Shorts
+          'ac-p4': { x: 35, y: 35 },  // Wristband
+          'ac-p5': { x: 65, y: 38 },  // Arm Sleeve
+          'ac-p6': { x: 50, y: 85 },  // Shoes
+          'ac-p7': { x: 25, y: 48 },  // Strings (on racquet)
+          'ac-p8': { x: 28, y: 42 }   // Racquet & Bag
+        }
+      },
+      {
+        id: "ac-gc-cincinnati",
+        name: "Cincinnati Masters 1000",
+        description: "Arthur competing at the Cincinnati Masters 1000",
+        actionImage: arthurCazauxCincinnatiImg,
+        products: [
+          {
+            id: "ac-p9",
+            name: "Lacoste Performance Polo - Blue",
+            price: 95,
+            currency: "€",
+            image: lacostePoloBlueImg,
+            description: "Sky blue technical polo with performance fabric and breathable design.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p10",
+            name: "Lacoste Sport Shorts - Blue",
+            price: 75,
+            currency: "€",
+            image: lacosteShortsBlueImg,
+            description: "Sky blue performance shorts with Lacoste branding and optimal stretch.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p11",
+            name: "Lacoste AG-LT23 Tennis Shoes - Blue",
+            price: 189,
+            currency: "€",
+            image: lacosteShoesBlueImg,
+            description: "Sky blue high-performance tennis shoes with Lacoste innovation.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p4-2",
+            name: "Lacoste Tennis Wristband",
+            price: 15,
+            currency: "€",
+            image: lacosteWristbandImg,
+            description: "White terry cloth wristband with embroidered crocodile logo.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p7-2",
+            name: "Babolat RPM Blast Strings",
+            price: 18,
+            currency: "€",
+            image: babolatStringsImg,
+            description: "Professional co-polyester tennis strings for maximum spin and control.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p8-2",
+            name: "Babolat Pure Drive Racquet & Bag",
+            price: 279,
+            currency: "€",
+            image: babolatGearImg,
+            description: "Complete Babolat setup with Pure Drive racquet and pro tour bag.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          }
+        ],
+        hotspots: {
+          'ac-p9': { x: 50, y: 32 },   // Polo/Top
+          'ac-p10': { x: 50, y: 55 },  // Shorts
+          'ac-p11': { x: 50, y: 88 },  // Shoes
+          'ac-p4-2': { x: 35, y: 35 }, // Wristband
+          'ac-p7-2': { x: 25, y: 48 }, // Strings (on racquet)
+          'ac-p8-2': { x: 28, y: 42 }  // Racquet & Bag
+        }
       }
     ],
     cause: {
