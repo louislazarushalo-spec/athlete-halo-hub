@@ -1,99 +1,37 @@
 import { Link } from "react-router-dom";
 import { athletes } from "@/data/athletes";
-import { Dumbbell, Heart, Package, HandHeart } from "lucide-react";
+import { Instagram, Twitter, Youtube, Newspaper } from "lucide-react";
 
 // Hardcoded followed athletes for demo
 const followedAthleteIds = ["arthur-cazaux", "tommy-fleetwood", "elisa-balsamo"];
 
-// Generate blended feed from followed athletes
-const generateBlendedFeed = () => {
-  const followedAthletes = athletes.filter(a => followedAthleteIds.includes(a.id));
-  const feedItems: Array<{
-    id: string;
-    type: "life" | "training" | "gear" | "cause";
-    title: string;
-    description: string;
-    image: string;
-    athlete: typeof athletes[0];
-    date: Date;
-  }> = [];
-
-  followedAthletes.forEach(athlete => {
-    // Add life posts
-    athlete.life?.forEach((post, i) => {
-      feedItems.push({
-        id: `${athlete.id}-life-${i}`,
-        type: "life",
-        title: post.title,
-        description: post.description,
-        image: post.image,
-        athlete,
-        date: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000),
-      });
-    });
-
-    // Add training posts
-    athlete.training?.forEach((post, i) => {
-      feedItems.push({
-        id: `${athlete.id}-training-${i}`,
-        type: "training",
-        title: post.title,
-        description: post.description,
-        image: post.image,
-        athlete,
-        date: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000),
-      });
-    });
-
-    // Add gear posts
-    athlete.gear?.forEach((post, i) => {
-      feedItems.push({
-        id: `${athlete.id}-gear-${i}`,
-        type: "gear",
-        title: post.title,
-        description: post.description,
-        image: post.image,
-        athlete,
-        date: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000),
-      });
-    });
-
-    // Add cause
-    if (athlete.cause) {
-      feedItems.push({
-        id: `${athlete.id}-cause`,
-        type: "cause",
-        title: athlete.cause.title,
-        description: athlete.cause.story,
-        image: athlete.cause.image,
-        athlete,
-        date: new Date(Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1000),
-      });
-    }
-  });
-
-  // Sort by date (most recent first)
-  return feedItems.sort((a, b) => b.date.getTime() - a.date.getTime());
-};
-
-const typeIcons = {
-  life: Heart,
-  training: Dumbbell,
-  gear: Package,
-  cause: HandHeart,
-};
-
-const typeLabels = {
-  life: "Life",
-  training: "Training",
-  gear: "Gear",
-  cause: "Cause",
+// Platform icons and labels
+const platformConfig = {
+  instagram: { icon: Instagram, label: "Instagram", color: "text-pink-500" },
+  twitter: { icon: Twitter, label: "X", color: "text-sky-500" },
+  youtube: { icon: Youtube, label: "YouTube", color: "text-red-500" },
+  lequipe: { icon: Newspaper, label: "L'Équipe", color: "text-blue-500" },
+  espn: { icon: Newspaper, label: "ESPN", color: "text-red-600" },
+  bbc: { icon: Newspaper, label: "BBC Sport", color: "text-orange-500" },
 };
 
 export const MyNewsSection = () => {
-  const feedItems = generateBlendedFeed();
+  const followedAthletes = athletes.filter(a => followedAthleteIds.includes(a.id));
+  
+  // Aggregate all mediaFeed items from followed athletes
+  const allNews = followedAthletes.flatMap(athlete => 
+    (athlete.mediaFeed || []).map(item => ({
+      ...item,
+      athlete,
+    }))
+  );
 
-  if (feedItems.length === 0) return null;
+  // Sort by timestamp (most recent first)
+  const sortedNews = allNews.sort((a, b) => 
+    new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+  );
+
+  if (sortedNews.length === 0) return null;
 
   return (
     <section className="mb-12">
@@ -102,8 +40,10 @@ export const MyNewsSection = () => {
         <p className="text-muted-foreground">Latest updates from your athletes.</p>
       </div>
       <div className="space-y-4">
-        {feedItems.map((item) => {
-          const Icon = typeIcons[item.type];
+        {sortedNews.map((item) => {
+          const config = platformConfig[item.platform] || platformConfig.instagram;
+          const Icon = config.icon;
+          
           return (
             <Link
               key={item.id}
@@ -116,9 +56,16 @@ export const MyNewsSection = () => {
                   <div className="relative w-32 h-24 rounded-lg overflow-hidden shrink-0">
                     <img
                       src={item.image}
-                      alt={item.title}
+                      alt={item.title || item.content}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
+                    {item.type === 'video' && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                        <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                          <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-foreground border-b-[6px] border-b-transparent ml-1" />
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Content */}
@@ -131,17 +78,25 @@ export const MyNewsSection = () => {
                       />
                       <span className="text-sm text-muted-foreground">{item.athlete.name}</span>
                       <span className="text-muted-foreground">•</span>
-                      <span className="inline-flex items-center gap-1 text-xs text-primary">
+                      <span className={`inline-flex items-center gap-1 text-xs ${config.color}`}>
                         <Icon className="h-3 w-3" />
-                        {typeLabels[item.type]}
+                        {config.label}
                       </span>
                     </div>
-                    <h3 className="font-semibold text-sm mb-1 line-clamp-1 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
+                    {item.title && (
+                      <h3 className="font-semibold text-sm mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                        {item.title}
+                      </h3>
+                    )}
                     <p className="text-muted-foreground text-sm line-clamp-2">
-                      {item.description}
+                      {item.content}
                     </p>
+                    <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
+                      <span>{new Date(item.timestamp).toLocaleDateString()}</span>
+                      {item.stats?.likes && <span>{item.stats.likes.toLocaleString()} likes</span>}
+                      {item.stats?.views && <span>{item.stats.views.toLocaleString()} views</span>}
+                      {item.stats?.readTime && <span>{item.stats.readTime} read</span>}
+                    </div>
                   </div>
                 </div>
               </article>
