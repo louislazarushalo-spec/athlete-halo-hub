@@ -248,13 +248,142 @@ export const athletes: Athlete[] = [
       },
       {
         id: "ad-p3",
-        name: "Pro Boots Pack",
+        name: "Le Coq Sportif Rugby Boots",
         price: 149,
         currency: "€",
         image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
-        description: "Premium rugby boots from our partner brand.",
+        description: "Premium rugby boots from Le Coq Sportif.",
         category: "partner",
         athleteId: "antoine-dupont"
+      },
+      {
+        id: "ad-p4",
+        name: "Gilbert XV France Match Ball",
+        price: 95,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1544919982-e7f5dd40c7ba?w=600&h=600&fit=crop",
+        description: "Official French national team match ball.",
+        category: "partner",
+        athleteId: "antoine-dupont"
+      },
+      {
+        id: "ad-p5",
+        name: "Canterbury France Jersey",
+        price: 89,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&h=600&fit=crop",
+        description: "Official France rugby home jersey.",
+        category: "partner",
+        athleteId: "antoine-dupont"
+      },
+      {
+        id: "ad-p6",
+        name: "Shock Doctor Mouthguard",
+        price: 25,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&h=600&fit=crop",
+        description: "Professional-grade mouthguard for contact sports.",
+        category: "partner",
+        athleteId: "antoine-dupont"
+      }
+    ],
+    gearCollections: [
+      {
+        id: "ad-gc-sixnations",
+        name: "Antoine's Gear for the Six Nations Championship",
+        description: "The Stade de France erupts. 80,000 voices singing La Marseillaise. Antoine leads France onto the pitch in the iconic blue jersey, ready to face England in Le Crunch - rugby's greatest rivalry.",
+        actionImage: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "ad-p5",
+            name: "Canterbury France Jersey",
+            price: 89,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&h=600&fit=crop",
+            description: "Official France rugby home jersey.",
+            category: "partner",
+            athleteId: "antoine-dupont"
+          },
+          {
+            id: "ad-p3",
+            name: "Le Coq Sportif Rugby Boots",
+            price: 149,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+            description: "Premium rugby boots from Le Coq Sportif.",
+            category: "partner",
+            athleteId: "antoine-dupont"
+          },
+          {
+            id: "ad-p4",
+            name: "Gilbert XV France Match Ball",
+            price: 95,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1544919982-e7f5dd40c7ba?w=600&h=600&fit=crop",
+            description: "Official French national team match ball.",
+            category: "partner",
+            athleteId: "antoine-dupont"
+          },
+          {
+            id: "ad-p6",
+            name: "Shock Doctor Mouthguard",
+            price: 25,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&h=600&fit=crop",
+            description: "Professional-grade mouthguard for contact sports.",
+            category: "partner",
+            athleteId: "antoine-dupont"
+          }
+        ],
+        hotspots: {
+          'ad-p5': { x: 50, y: 35 },
+          'ad-p3': { x: 50, y: 85 },
+          'ad-p4': { x: 25, y: 50 },
+          'ad-p6': { x: 50, y: 15 }
+        }
+      },
+      {
+        id: "ad-gc-top14",
+        name: "Antoine's Toulouse Kit for the TOP 14 Final",
+        description: "The biggest game in French club rugby. Antoine captains Stade Toulousain at the Stade de France in the TOP 14 Final, wearing the famous red and black stripes that have defined generations of rugby excellence.",
+        actionImage: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "ad-p7",
+            name: "Stade Toulousain Home Jersey",
+            price: 79,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=600&fit=crop",
+            description: "Official Toulouse home jersey with iconic red and black stripes.",
+            category: "partner",
+            athleteId: "antoine-dupont"
+          },
+          {
+            id: "ad-p3-2",
+            name: "Le Coq Sportif Rugby Boots",
+            price: 149,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+            description: "Premium rugby boots from Le Coq Sportif.",
+            category: "partner",
+            athleteId: "antoine-dupont"
+          },
+          {
+            id: "ad-p8",
+            name: "Gilbert TOP 14 Match Ball",
+            price: 85,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1544919982-e7f5dd40c7ba?w=600&h=600&fit=crop",
+            description: "Official TOP 14 competition match ball.",
+            category: "partner",
+            athleteId: "antoine-dupont"
+          }
+        ],
+        hotspots: {
+          'ad-p7': { x: 50, y: 35 },
+          'ad-p3-2': { x: 50, y: 85 },
+          'ad-p8': { x: 30, y: 50 }
+        }
       }
     ],
     cause: {
@@ -571,6 +700,105 @@ export const athletes: Athlete[] = [
         athleteId: "iga-swiatek"
       }
     ],
+    gearCollections: [
+      {
+        id: "is-gc-rolandgarros",
+        name: "Iga's Gear at Roland-Garros",
+        description: "The red clay of Philippe-Chatrier. The Parisian crowd holding their breath. Iga steps onto her favorite court in her signature ON Running gear, ready to defend her title at the French Open - where she's become nearly unbeatable.",
+        actionImage: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "is-p4",
+            name: "ON The Roger Pro Tennis Shoes",
+            price: 199,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+            description: "High-performance tennis shoes with CloudTec cushioning.",
+            category: "partner",
+            athleteId: "iga-swiatek"
+          },
+          {
+            id: "is-p5",
+            name: "Asics Tennis Dress",
+            price: 89,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=600&h=600&fit=crop",
+            description: "Technical tennis dress with built-in shorts.",
+            category: "partner",
+            athleteId: "iga-swiatek"
+          },
+          {
+            id: "is-p6",
+            name: "Tecnifibre TF40 Racket",
+            price: 279,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=600&h=600&fit=crop",
+            description: "The racket that powers Iga's dominant forehand.",
+            category: "partner",
+            athleteId: "iga-swiatek"
+          },
+          {
+            id: "is-p7",
+            name: "Asics Tennis Visor",
+            price: 35,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=600&h=600&fit=crop",
+            description: "Lightweight visor for sun protection on court.",
+            category: "partner",
+            athleteId: "iga-swiatek"
+          }
+        ],
+        hotspots: {
+          'is-p4': { x: 50, y: 88 },
+          'is-p5': { x: 50, y: 45 },
+          'is-p6': { x: 30, y: 40 },
+          'is-p7': { x: 50, y: 10 }
+        }
+      },
+      {
+        id: "is-gc-usopen",
+        name: "Iga's US Open Night Session Look",
+        description: "Under the lights of Arthur Ashe Stadium. The biggest tennis arena in the world. Iga brings her A-game to New York in a striking outfit that matches the electric atmosphere of Flushing Meadows.",
+        actionImage: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "is-p8",
+            name: "ON The Roger Pro Night Edition",
+            price: 219,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+            description: "Limited edition shoes for night sessions.",
+            category: "partner",
+            athleteId: "iga-swiatek"
+          },
+          {
+            id: "is-p9",
+            name: "Asics Tennis Skort - Navy",
+            price: 79,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=600&h=600&fit=crop",
+            description: "Navy performance skort with ball pockets.",
+            category: "partner",
+            athleteId: "iga-swiatek"
+          },
+          {
+            id: "is-p6-2",
+            name: "Tecnifibre TF40 Racket",
+            price: 279,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=600&h=600&fit=crop",
+            description: "The racket that powers Iga's dominant forehand.",
+            category: "partner",
+            athleteId: "iga-swiatek"
+          }
+        ],
+        hotspots: {
+          'is-p8': { x: 50, y: 88 },
+          'is-p9': { x: 50, y: 55 },
+          'is-p6-2': { x: 28, y: 40 }
+        }
+      }
+    ],
     cause: {
       id: "is-c1",
       title: "Mental Health for Young Athletes",
@@ -823,6 +1051,105 @@ export const athletes: Athlete[] = [
         image: "https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?w=800&h=500&fit=crop",
         category: "training",
         createdAt: "2024-02-12"
+      }
+    ],
+    gearCollections: [
+      {
+        id: "vw-gc-nba",
+        name: "Wemby's Gear for NBA All-Star Weekend",
+        description: "San Francisco lights up for the NBA's biggest showcase. Victor takes the court at Chase Center representing the future of basketball, his 7'4\" frame draped in custom Nike gear designed just for him.",
+        actionImage: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "vw-p4",
+            name: "Nike Air Wemby 1",
+            price: 189,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+            description: "Victor's signature basketball shoe by Nike.",
+            category: "partner",
+            athleteId: "victor-wembanyama"
+          },
+          {
+            id: "vw-p5",
+            name: "Spurs All-Star Jersey",
+            price: 149,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1515523110800-9415d13b84a8?w=600&h=600&fit=crop",
+            description: "All-Star edition Spurs jersey.",
+            category: "partner",
+            athleteId: "victor-wembanyama"
+          },
+          {
+            id: "vw-p6",
+            name: "Nike Pro Compression Shorts",
+            price: 55,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=600&fit=crop",
+            description: "Extended length compression shorts for tall athletes.",
+            category: "partner",
+            athleteId: "victor-wembanyama"
+          },
+          {
+            id: "vw-p7",
+            name: "Nike Elite Arm Sleeve",
+            price: 35,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=600&fit=crop",
+            description: "Compression arm sleeve with moisture-wicking technology.",
+            category: "partner",
+            athleteId: "victor-wembanyama"
+          }
+        ],
+        hotspots: {
+          'vw-p4': { x: 50, y: 90 },
+          'vw-p5': { x: 50, y: 35 },
+          'vw-p6': { x: 50, y: 60 },
+          'vw-p7': { x: 30, y: 40 }
+        }
+      },
+      {
+        id: "vw-gc-france",
+        name: "Victor's French National Team Kit",
+        description: "The Tricolore on his chest. Victor leads Les Bleus at the FIBA EuroBasket, bringing French basketball to new heights on the international stage. The pride of representing his country visible in every block and bucket.",
+        actionImage: "https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "vw-p8",
+            name: "France Basketball Jersey",
+            price: 99,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=600&fit=crop",
+            description: "Official French national team basketball jersey.",
+            category: "partner",
+            athleteId: "victor-wembanyama"
+          },
+          {
+            id: "vw-p4-2",
+            name: "Nike Air Wemby 1 - France",
+            price: 199,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+            description: "France colorway of Victor's signature shoe.",
+            category: "partner",
+            athleteId: "victor-wembanyama"
+          },
+          {
+            id: "vw-p9",
+            name: "France Warm-Up Jacket",
+            price: 129,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600&h=600&fit=crop",
+            description: "Official French team warm-up jacket.",
+            category: "partner",
+            athleteId: "victor-wembanyama"
+          }
+        ],
+        hotspots: {
+          'vw-p8': { x: 50, y: 35 },
+          'vw-p4-2': { x: 50, y: 90 },
+          'vw-p9': { x: 50, y: 25 }
+        }
       }
     ],
     life: [
@@ -6352,6 +6679,105 @@ export const athletes: Athlete[] = [
         athleteId: "tadej-pogacar"
       }
     ],
+    gearCollections: [
+      {
+        id: "tp-gc-tourdefrance",
+        name: "Tadej's Yellow Jersey Kit at the Tour de France",
+        description: "The Champs-Élysées awaits. Tadej attacks in the mountains wearing the maillot jaune, defending his lead with the panache that has made him cycling's biggest star. The UAE Emirates setup is engineered for victory.",
+        actionImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "tp-p3",
+            name: "Colnago V4Rs Frameset",
+            price: 5499,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&h=600&fit=crop",
+            description: "The same frameset Tadej rides to Grand Tour victories.",
+            category: "partner",
+            athleteId: "tadej-pogacar"
+          },
+          {
+            id: "tp-p4",
+            name: "Rudy Project Wingdium Helmet",
+            price: 299,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+            description: "Aero helmet used in time trials and mountain stages.",
+            category: "partner",
+            athleteId: "tadej-pogacar"
+          },
+          {
+            id: "tp-p2-1",
+            name: "UAE Team Emirates Jersey - Yellow",
+            price: 149,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+            description: "Yellow leader's jersey edition.",
+            category: "partner",
+            athleteId: "tadej-pogacar"
+          },
+          {
+            id: "tp-p5",
+            name: "Sidi Shot 2 Shoes",
+            price: 449,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+            description: "Race-day cycling shoes with carbon sole.",
+            category: "partner",
+            athleteId: "tadej-pogacar"
+          }
+        ],
+        hotspots: {
+          'tp-p3': { x: 50, y: 65 },
+          'tp-p4': { x: 50, y: 10 },
+          'tp-p2-1': { x: 50, y: 35 },
+          'tp-p5': { x: 50, y: 85 }
+        }
+      },
+      {
+        id: "tp-gc-giro",
+        name: "Tadej's Pink Jersey Setup at the Giro d'Italia",
+        description: "The Dolomites rise ahead. Tadej dominates the Giro in the maglia rosa, adding another Grand Tour to his collection. His pink UAE Emirates kit becomes iconic in Italian cycling history.",
+        actionImage: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "tp-p6",
+            name: "UAE Team Emirates Jersey - Pink",
+            price: 149,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+            description: "Pink leader's jersey Giro edition.",
+            category: "partner",
+            athleteId: "tadej-pogacar"
+          },
+          {
+            id: "tp-p3-2",
+            name: "Colnago V4Rs Frameset",
+            price: 5499,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&h=600&fit=crop",
+            description: "The same frameset Tadej rides to Grand Tour victories.",
+            category: "partner",
+            athleteId: "tadej-pogacar"
+          },
+          {
+            id: "tp-p7",
+            name: "Enve SES Wheels",
+            price: 2899,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&h=600&fit=crop",
+            description: "Lightweight carbon wheels for climbing.",
+            category: "partner",
+            athleteId: "tadej-pogacar"
+          }
+        ],
+        hotspots: {
+          'tp-p6': { x: 50, y: 35 },
+          'tp-p3-2': { x: 50, y: 65 },
+          'tp-p7': { x: 50, y: 80 }
+        }
+      }
+    ],
     cause: {
       id: "tp-c1",
       title: "Cycling for All Slovenia",
@@ -6754,6 +7180,94 @@ export const athletes: Athlete[] = [
         description: "Official women's team replica jersey.",
         category: "partner",
         athleteId: "elisa-balsamo"
+      }
+    ],
+    gearCollections: [
+      {
+        id: "eb-gc-worldchamps",
+        name: "Elisa's Rainbow Jersey at the World Championships",
+        description: "Flanders roars. Elisa crosses the line first in Leuven, becoming World Champion. The rainbow stripes that every cyclist dreams of now belong to Italy's sprint queen.",
+        actionImage: "https://images.unsplash.com/photo-1569517282132-25d22f4573e6?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "eb-p3",
+            name: "UCI World Champion Jersey",
+            price: 179,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+            description: "Official rainbow stripes world champion jersey.",
+            category: "partner",
+            athleteId: "elisa-balsamo"
+          },
+          {
+            id: "eb-p4",
+            name: "Trek Madone SLR",
+            price: 4999,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&h=600&fit=crop",
+            description: "World Champion edition aero road bike.",
+            category: "partner",
+            athleteId: "elisa-balsamo"
+          },
+          {
+            id: "eb-p5",
+            name: "Bontrager Ballista Helmet",
+            price: 249,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+            description: "Aero helmet in rainbow champion colors.",
+            category: "partner",
+            athleteId: "elisa-balsamo"
+          }
+        ],
+        hotspots: {
+          'eb-p3': { x: 50, y: 35 },
+          'eb-p4': { x: 50, y: 65 },
+          'eb-p5': { x: 50, y: 10 }
+        }
+      },
+      {
+        id: "eb-gc-tourdefemmmes",
+        name: "Elisa's Trek-Lidl Kit at the Tour de France Femmes",
+        description: "The women's Tour de France brings cycling's biggest stars to France. Elisa battles on the Champs-Élysées in her Trek-Lidl colors, showcasing Italian style on the world's biggest stage.",
+        actionImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "eb-p2-1",
+            name: "Trek-Lidl Women Jersey",
+            price: 109,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+            description: "Official women's team replica jersey.",
+            category: "partner",
+            athleteId: "elisa-balsamo"
+          },
+          {
+            id: "eb-p6",
+            name: "Santini Bib Shorts",
+            price: 189,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+            description: "Professional women's bib shorts with chamois.",
+            category: "partner",
+            athleteId: "elisa-balsamo"
+          },
+          {
+            id: "eb-p7",
+            name: "Bontrager XXX Shoes",
+            price: 399,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+            description: "Top-tier racing shoes with carbon sole.",
+            category: "partner",
+            athleteId: "elisa-balsamo"
+          }
+        ],
+        hotspots: {
+          'eb-p2-1': { x: 50, y: 35 },
+          'eb-p6': { x: 50, y: 55 },
+          'eb-p7': { x: 50, y: 85 }
+        }
       }
     ],
     cause: {
