@@ -45,7 +45,11 @@ const App = () => (
                     <ExplorePage />
                   </ProtectedRoute>
                 } />
-                <Route path="/athletes" element={<AthletesPage />} />
+                <Route path="/athletes" element={
+                  <ProtectedRoute>
+                    <AthletesPage />
+                  </ProtectedRoute>
+                } />
                 <Route path="/athlete/:id" element={<AthletePage />} />
                 <Route path="/athlete/:id/cause" element={
                   <ProtectedRoute>
