@@ -421,9 +421,14 @@ const AthletePage = () => {
                           <p className="text-sm text-muted-foreground mb-4">
                             ATP 250 tournament kicking off the Australian hard court season.
                           </p>
-                          <Button variant="outline" size="sm">
-                            Get Tickets
-                          </Button>
+                          <div className="flex gap-3">
+                            <Button variant="outline" size="sm">
+                              Get Tickets
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              Where to watch
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </article>
@@ -447,9 +452,14 @@ const AthletePage = () => {
                           <p className="text-sm text-muted-foreground mb-4">
                             First Grand Slam of the season. Arthur will be competing in the main draw, ready to make his mark on the Australian hard courts.
                           </p>
-                          <Button variant="outline" size="sm">
-                            Get Tickets
-                          </Button>
+                          <div className="flex gap-3">
+                            <Button variant="outline" size="sm">
+                              Get Tickets
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              Where to watch
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </article>
@@ -473,9 +483,14 @@ const AthletePage = () => {
                           <p className="text-sm text-muted-foreground mb-4">
                             Home soil! Arthur returns to his native Montpellier for this ATP 250 indoor event.
                           </p>
-                          <Button variant="outline" size="sm">
-                            Get Tickets
-                          </Button>
+                          <div className="flex gap-3">
+                            <Button variant="outline" size="sm">
+                              Get Tickets
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              Where to watch
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </article>
@@ -499,9 +514,14 @@ const AthletePage = () => {
                           <p className="text-sm text-muted-foreground mb-4">
                             Another home advantage! ATP 250 indoor tournament in the south of France.
                           </p>
-                          <Button variant="outline" size="sm">
-                            Get Tickets
-                          </Button>
+                          <div className="flex gap-3">
+                            <Button variant="outline" size="sm">
+                              Get Tickets
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              Where to watch
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </article>
@@ -525,9 +545,14 @@ const AthletePage = () => {
                           <p className="text-sm text-muted-foreground mb-4">
                             ATP 500 clay court event in the heart of Brazil, preparing for the European clay season.
                           </p>
-                          <Button variant="outline" size="sm">
-                            Get Tickets
-                          </Button>
+                          <div className="flex gap-3">
+                            <Button variant="outline" size="sm">
+                              Get Tickets
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              Where to watch
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </article>
