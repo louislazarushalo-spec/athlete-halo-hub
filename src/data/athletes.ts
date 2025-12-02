@@ -81,6 +81,20 @@ export interface MediaFeedItem {
   };
 }
 
+export interface AthleteEvent {
+  id: string;
+  name: string;
+  date: string;
+  month: string;
+  year: string;
+  location: string;
+  country: string;
+  countryFlag: string;
+  category: string;
+  categoryColor: string;
+  description: string;
+}
+
 export interface GearCollection {
   id: string;
   name: string;
@@ -107,6 +121,7 @@ export interface Athlete {
   gearCollections?: GearCollection[];
   cause: Cause;
   mediaFeed: MediaFeedItem[];
+  events?: AthleteEvent[];
 }
 
 // Female athlete IDs for filtering

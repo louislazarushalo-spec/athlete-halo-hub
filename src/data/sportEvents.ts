@@ -1,0 +1,137 @@
+import { AthleteEvent } from "./athletes";
+
+// Tennis Events (ATP/WTA)
+export const tennisEvents: AthleteEvent[] = [
+  { id: "ao-2025", name: "Australian Open", date: "12", month: "Jan", year: "2025", location: "Melbourne, Australia", country: "Australia", countryFlag: "🇦🇺", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "First Grand Slam of the season on hard courts." },
+  { id: "iw-2025", name: "Indian Wells Masters", date: "6", month: "Mar", year: "2025", location: "Indian Wells, USA", country: "USA", countryFlag: "🇺🇸", category: "Masters 1000", categoryColor: "bg-orange-500", description: "The fifth Grand Slam - prestigious Masters 1000 event." },
+  { id: "miami-2025", name: "Miami Open", date: "19", month: "Mar", year: "2025", location: "Miami, USA", country: "USA", countryFlag: "🇺🇸", category: "Masters 1000", categoryColor: "bg-orange-500", description: "Masters 1000 event in sunny Florida." },
+  { id: "mc-2025", name: "Monte-Carlo Masters", date: "6", month: "Apr", year: "2025", location: "Monte-Carlo, Monaco", country: "Monaco", countryFlag: "🇲🇨", category: "Masters 1000", categoryColor: "bg-orange-500", description: "Clay court Masters on the French Riviera." },
+  { id: "rg-2025", name: "Roland-Garros", date: "25", month: "May", year: "2025", location: "Paris, France", country: "France", countryFlag: "🇫🇷", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The French Open - clay court Grand Slam." },
+  { id: "wim-2025", name: "Wimbledon", date: "30", month: "Jun", year: "2025", location: "London, UK", country: "UK", countryFlag: "🇬🇧", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The Championships - grass court Grand Slam." },
+  { id: "uso-2025", name: "US Open", date: "25", month: "Aug", year: "2025", location: "New York, USA", country: "USA", countryFlag: "🇺🇸", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Final Grand Slam of the season in New York." },
+  { id: "paris-2025", name: "Rolex Paris Masters", date: "27", month: "Oct", year: "2025", location: "Paris, France", country: "France", countryFlag: "🇫🇷", category: "Masters 1000", categoryColor: "bg-orange-500", description: "Indoor Masters 1000 in Paris." },
+];
+
+// Football Events
+export const footballEvents: AthleteEvent[] = [
+  { id: "ucl-r16", name: "UEFA Champions League R16", date: "18", month: "Feb", year: "2025", location: "Various", country: "Europe", countryFlag: "🇪🇺", category: "Champions League", categoryColor: "bg-gradient-to-r from-blue-600 to-indigo-600", description: "Round of 16 in Europe's premier club competition." },
+  { id: "ucl-qf", name: "UEFA Champions League QF", date: "8", month: "Apr", year: "2025", location: "Various", country: "Europe", countryFlag: "🇪🇺", category: "Champions League", categoryColor: "bg-gradient-to-r from-blue-600 to-indigo-600", description: "Quarter-finals of the Champions League." },
+  { id: "ucl-final", name: "UEFA Champions League Final", date: "31", month: "May", year: "2025", location: "Munich, Germany", country: "Germany", countryFlag: "🇩🇪", category: "Champions League", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The biggest night in club football at Allianz Arena." },
+  { id: "cwc-2025", name: "FIFA Club World Cup", date: "15", month: "Jun", year: "2025", location: "USA", country: "USA", countryFlag: "🇺🇸", category: "FIFA", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "New 32-team Club World Cup in the USA." },
+  { id: "league-start", name: "League Season 2025/26", date: "15", month: "Aug", year: "2025", location: "Various", country: "Europe", countryFlag: "🇪🇺", category: "League", categoryColor: "bg-emerald-500", description: "New domestic league season kicks off." },
+];
+
+// Women's Football Events
+export const womenFootballEvents: AthleteEvent[] = [
+  { id: "uwcl-qf", name: "UEFA Women's Champions League QF", date: "18", month: "Mar", year: "2025", location: "Various", country: "Europe", countryFlag: "🇪🇺", category: "Champions League", categoryColor: "bg-gradient-to-r from-blue-600 to-indigo-600", description: "Quarter-finals of Europe's premier women's club competition." },
+  { id: "uwcl-final", name: "UWCL Final", date: "24", month: "May", year: "2025", location: "Lisbon, Portugal", country: "Portugal", countryFlag: "🇵🇹", category: "Champions League", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Women's Champions League Final." },
+  { id: "wwc-2027", name: "FIFA Women's World Cup", date: "24", month: "Jun", year: "2027", location: "Brazil", country: "Brazil", countryFlag: "🇧🇷", category: "World Cup", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Women's World Cup in Brazil." },
+  { id: "euros-2025", name: "UEFA Women's Euro 2025", date: "2", month: "Jul", year: "2025", location: "Switzerland", country: "Switzerland", countryFlag: "🇨🇭", category: "Euro", categoryColor: "bg-gradient-to-r from-blue-500 to-cyan-500", description: "European Championship for women's national teams." },
+];
+
+// Rugby Events
+export const rugbyEvents: AthleteEvent[] = [
+  { id: "6n-2025", name: "Six Nations Championship", date: "1", month: "Feb", year: "2025", location: "Various", country: "Europe", countryFlag: "🇪🇺", category: "Six Nations", categoryColor: "bg-gradient-to-r from-emerald-500 to-green-500", description: "Annual rugby union competition between six European nations." },
+  { id: "6n-fr-en", name: "France vs England", date: "8", month: "Feb", year: "2025", location: "Paris, France", country: "France", countryFlag: "🇫🇷", category: "Six Nations", categoryColor: "bg-gradient-to-r from-emerald-500 to-green-500", description: "Le Crunch - historic rivalry at Stade de France." },
+  { id: "6n-fr-ir", name: "France vs Ireland", date: "8", month: "Mar", year: "2025", location: "Dublin, Ireland", country: "Ireland", countryFlag: "🇮🇪", category: "Six Nations", categoryColor: "bg-gradient-to-r from-emerald-500 to-green-500", description: "Crucial Six Nations clash at Aviva Stadium." },
+  { id: "top14-sf", name: "TOP 14 Semi-Finals", date: "14", month: "Jun", year: "2025", location: "Various", country: "France", countryFlag: "🇫🇷", category: "TOP 14", categoryColor: "bg-blue-500", description: "French rugby league playoffs." },
+  { id: "top14-final", name: "TOP 14 Final", date: "21", month: "Jun", year: "2025", location: "Paris, France", country: "France", countryFlag: "🇫🇷", category: "TOP 14", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "TOP 14 Final at Stade de France." },
+  { id: "rc-2025", name: "Rugby Championship", date: "16", month: "Aug", year: "2025", location: "Southern Hemisphere", country: "Various", countryFlag: "🌍", category: "International", categoryColor: "bg-purple-500", description: "Southern hemisphere's premier international competition." },
+];
+
+// Basketball Events (NBA)
+export const basketballEvents: AthleteEvent[] = [
+  { id: "nba-asw", name: "NBA All-Star Weekend", date: "14", month: "Feb", year: "2025", location: "San Francisco, USA", country: "USA", countryFlag: "🇺🇸", category: "All-Star", categoryColor: "bg-gradient-to-r from-red-500 to-blue-500", description: "NBA All-Star Game at Chase Center." },
+  { id: "nba-playoffs", name: "NBA Playoffs Begin", date: "19", month: "Apr", year: "2025", location: "Various", country: "USA", countryFlag: "🇺🇸", category: "Playoffs", categoryColor: "bg-orange-500", description: "NBA postseason tips off." },
+  { id: "nba-conf-finals", name: "Conference Finals", date: "15", month: "May", year: "2025", location: "Various", country: "USA", countryFlag: "🇺🇸", category: "Playoffs", categoryColor: "bg-orange-500", description: "Final four teams compete for Finals berth." },
+  { id: "nba-finals", name: "NBA Finals", date: "5", month: "Jun", year: "2025", location: "TBD", country: "USA", countryFlag: "🇺🇸", category: "NBA Finals", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Championship series for the Larry O'Brien Trophy." },
+  { id: "eurobasket", name: "EuroBasket 2025", date: "27", month: "Aug", year: "2025", location: "Various", country: "Europe", countryFlag: "🇪🇺", category: "FIBA", categoryColor: "bg-blue-500", description: "European Basketball Championship." },
+];
+
+// WNBA Events
+export const wnbaEvents: AthleteEvent[] = [
+  { id: "wnba-start", name: "WNBA Season Start", date: "16", month: "May", year: "2025", location: "Various", country: "USA", countryFlag: "🇺🇸", category: "Regular Season", categoryColor: "bg-orange-500", description: "WNBA regular season tips off." },
+  { id: "wnba-asw", name: "WNBA All-Star Game", date: "19", month: "Jul", year: "2025", location: "TBD", country: "USA", countryFlag: "🇺🇸", category: "All-Star", categoryColor: "bg-gradient-to-r from-orange-500 to-pink-500", description: "WNBA All-Star showcase." },
+  { id: "wnba-playoffs", name: "WNBA Playoffs", date: "17", month: "Sep", year: "2025", location: "Various", country: "USA", countryFlag: "🇺🇸", category: "Playoffs", categoryColor: "bg-purple-500", description: "WNBA postseason begins." },
+  { id: "wnba-finals", name: "WNBA Finals", date: "10", month: "Oct", year: "2025", location: "TBD", country: "USA", countryFlag: "🇺🇸", category: "Finals", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Championship series for the WNBA title." },
+];
+
+// F1 Events
+export const f1Events: AthleteEvent[] = [
+  { id: "f1-aus", name: "Australian GP", date: "16", month: "Mar", year: "2025", location: "Melbourne, Australia", country: "Australia", countryFlag: "🇦🇺", category: "Grand Prix", categoryColor: "bg-red-600", description: "Season opener at Albert Park." },
+  { id: "f1-monaco", name: "Monaco GP", date: "25", month: "May", year: "2025", location: "Monte-Carlo, Monaco", country: "Monaco", countryFlag: "🇲🇨", category: "Grand Prix", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The jewel in F1's crown - Monaco street circuit." },
+  { id: "f1-france", name: "French GP", date: "22", month: "Jun", year: "2025", location: "Le Castellet, France", country: "France", countryFlag: "🇫🇷", category: "Grand Prix", categoryColor: "bg-red-600", description: "Home race at Circuit Paul Ricard." },
+  { id: "f1-monza", name: "Italian GP", date: "7", month: "Sep", year: "2025", location: "Monza, Italy", country: "Italy", countryFlag: "🇮🇹", category: "Grand Prix", categoryColor: "bg-red-600", description: "Temple of Speed - historic Monza circuit." },
+  { id: "f1-abudhabi", name: "Abu Dhabi GP", date: "7", month: "Dec", year: "2025", location: "Abu Dhabi, UAE", country: "UAE", countryFlag: "🇦🇪", category: "Grand Prix", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Season finale under the lights at Yas Marina." },
+];
+
+// Cycling Events
+export const cyclingEvents: AthleteEvent[] = [
+  { id: "msf", name: "Milan-San Remo", date: "22", month: "Mar", year: "2025", location: "Milan-San Remo, Italy", country: "Italy", countryFlag: "🇮🇹", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "La Primavera - first monument of the season." },
+  { id: "tdf", name: "Tour de France", date: "5", month: "Jul", year: "2025", location: "France", country: "France", countryFlag: "🇫🇷", category: "Grand Tour", categoryColor: "bg-gradient-to-r from-yellow-400 to-yellow-600", description: "The world's most famous cycling race." },
+  { id: "flanders", name: "Tour of Flanders", date: "6", month: "Apr", year: "2025", location: "Flanders, Belgium", country: "Belgium", countryFlag: "🇧🇪", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "De Ronde - cobbled classic in Flanders." },
+  { id: "pr", name: "Paris-Roubaix", date: "13", month: "Apr", year: "2025", location: "Roubaix, France", country: "France", countryFlag: "🇫🇷", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Hell of the North - the queen of the classics." },
+  { id: "giro", name: "Giro d'Italia", date: "9", month: "May", year: "2025", location: "Italy", country: "Italy", countryFlag: "🇮🇹", category: "Grand Tour", categoryColor: "bg-pink-500", description: "Three weeks racing through Italy." },
+];
+
+// Golf Events (PGA)
+export const golfEvents: AthleteEvent[] = [
+  { id: "masters", name: "The Masters", date: "10", month: "Apr", year: "2025", location: "Augusta, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-green-500 to-emerald-600", description: "First major of the year at Augusta National." },
+  { id: "pga-champ", name: "PGA Championship", date: "15", month: "May", year: "2025", location: "Quail Hollow, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Second major at Quail Hollow Club." },
+  { id: "us-open-g", name: "US Open", date: "12", month: "Jun", year: "2025", location: "Oakmont, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Third major at Oakmont Country Club." },
+  { id: "the-open", name: "The Open Championship", date: "17", month: "Jul", year: "2025", location: "Royal Portrush, UK", country: "UK", countryFlag: "🇬🇧", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The Open at Royal Portrush, Northern Ireland." },
+  { id: "ryder-cup", name: "Ryder Cup", date: "26", month: "Sep", year: "2025", location: "Bethpage, USA", country: "USA", countryFlag: "🇺🇸", category: "Ryder Cup", categoryColor: "bg-gradient-to-r from-blue-600 to-red-600", description: "USA vs Europe at Bethpage Black." },
+];
+
+// LPGA Events
+export const lpgaEvents: AthleteEvent[] = [
+  { id: "ana", name: "Chevron Championship", date: "17", month: "Apr", year: "2025", location: "Houston, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "First LPGA major of the season." },
+  { id: "lpga-us", name: "US Women's Open", date: "29", month: "May", year: "2025", location: "Erin Hills, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Premier women's golf championship." },
+  { id: "lpga-pga", name: "KPMG Women's PGA", date: "19", month: "Jun", year: "2025", location: "Sahalee CC, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Women's PGA Championship." },
+  { id: "british-women", name: "AIG Women's Open", date: "31", month: "Jul", year: "2025", location: "Muirfield, UK", country: "UK", countryFlag: "🇬🇧", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Women's British Open at Muirfield." },
+  { id: "solheim", name: "Solheim Cup", date: "12", month: "Sep", year: "2025", location: "Virginia, USA", country: "USA", countryFlag: "🇺🇸", category: "Solheim Cup", categoryColor: "bg-gradient-to-r from-blue-600 to-red-600", description: "USA vs Europe women's team competition." },
+];
+
+// Judo Events
+export const judoEvents: AthleteEvent[] = [
+  { id: "gs-paris", name: "Paris Grand Slam", date: "1", month: "Feb", year: "2025", location: "Paris, France", country: "France", countryFlag: "🇫🇷", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Premier judo event at AccorHotels Arena." },
+  { id: "gs-tbilisi", name: "Tbilisi Grand Slam", date: "14", month: "Mar", year: "2025", location: "Tbilisi, Georgia", country: "Georgia", countryFlag: "🇬🇪", category: "Grand Slam", categoryColor: "bg-orange-500", description: "Grand Slam in Georgia." },
+  { id: "gs-antalya", name: "Antalya Grand Slam", date: "4", month: "Apr", year: "2025", location: "Antalya, Turkey", country: "Turkey", countryFlag: "🇹🇷", category: "Grand Slam", categoryColor: "bg-orange-500", description: "Turkish Grand Slam event." },
+  { id: "worlds-judo", name: "World Championships", date: "13", month: "Jun", year: "2025", location: "Budapest, Hungary", country: "Hungary", countryFlag: "🇭🇺", category: "World Championship", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "IJF World Judo Championships." },
+];
+
+// Swimming Events
+export const swimmingEvents: AthleteEvent[] = [
+  { id: "worlds-swim", name: "World Championships", date: "11", month: "Jul", year: "2025", location: "Singapore", country: "Singapore", countryFlag: "🇸🇬", category: "World Championship", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "FINA World Championships." },
+  { id: "wc-budapest", name: "World Cup Budapest", date: "3", month: "Oct", year: "2025", location: "Budapest, Hungary", country: "Hungary", countryFlag: "🇭🇺", category: "World Cup", categoryColor: "bg-blue-500", description: "FINA World Cup short course event." },
+  { id: "euros-swim", name: "European Championships", date: "4", month: "May", year: "2025", location: "Belgrade, Serbia", country: "Serbia", countryFlag: "🇷🇸", category: "European Championship", categoryColor: "bg-gradient-to-r from-blue-500 to-cyan-500", description: "LEN European Aquatics Championships." },
+  { id: "french-champs", name: "French Championships", date: "25", month: "Mar", year: "2025", location: "Chartres, France", country: "France", countryFlag: "🇫🇷", category: "National", categoryColor: "bg-blue-500", description: "French National Swimming Championships." },
+];
+
+// Helper function to get events by sport
+export const getEventsBySport = (sport: string, gender?: string): AthleteEvent[] => {
+  const sportLower = sport.toLowerCase();
+  
+  switch (sportLower) {
+    case "tennis":
+      return tennisEvents;
+    case "football":
+      return gender === "female" ? womenFootballEvents : footballEvents;
+    case "rugby":
+      return rugbyEvents;
+    case "basketball":
+      return gender === "female" ? wnbaEvents : basketballEvents;
+    case "f1":
+      return f1Events;
+    case "cycling":
+      return cyclingEvents;
+    case "golf":
+      return gender === "female" ? lpgaEvents : golfEvents;
+    case "judo":
+      return judoEvents;
+    case "swimming":
+      return swimmingEvents;
+    default:
+      return [];
+  }
+};

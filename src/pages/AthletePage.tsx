@@ -2,7 +2,8 @@ import { useParams, Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getAthleteById, MediaFeedItem } from "@/data/athletes";
+import { getAthleteById, MediaFeedItem, AthleteEvent } from "@/data/athletes";
+import { getEventsBySport } from "@/data/sportEvents";
 import { 
   UserPlus, 
   Users, 
@@ -407,202 +408,54 @@ const AthletePage = () => {
               {/* My Events - Upcoming Tournaments */}
               {activeLifeTab === "events" && (
                 <div className="max-w-4xl mx-auto">
-                  <h3 className="text-2xl font-bold mb-6 text-foreground">Upcoming Tournaments</h3>
+                  <h3 className="text-2xl font-bold mb-6 text-foreground">Upcoming Events</h3>
                   <div className="space-y-4">
-                    {/* Adelaide International */}
-                    <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
-                      <div className="flex flex-col md:flex-row">
-                        <div className="md:w-32 bg-gradient-to-br from-blue-600 to-blue-800 text-white p-6 flex flex-col items-center justify-center text-center">
-                          <span className="text-xs font-semibold uppercase tracking-wider">Jan</span>
-                          <span className="text-4xl font-bold my-1">6</span>
-                          <span className="text-xs opacity-90">2025</span>
-                        </div>
-                        <div className="flex-1 p-6">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className="text-2xl">🇦🇺</span>
-                            <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                              Adelaide International
-                            </h4>
-                          </div>
-                          <div className="flex items-center gap-3 mb-3">
-                            <Badge variant="secondary" className="bg-emerald-600/20 text-emerald-400 border-emerald-500/30 text-xs font-semibold">
-                              ATP 250
-                            </Badge>
-                            <div className="flex items-center gap-1 text-muted-foreground">
-                              <MapPin className="h-3 w-3" />
-                              <span className="text-sm">Adelaide, Australia</span>
+                    {getEventsBySport(athlete.sport, athlete.gender).map((event, index) => {
+                      const isMajor = event.category.includes("Grand Slam") || event.category.includes("Major") || event.category.includes("Finals") || event.category.includes("World") || event.category.includes("Ryder") || event.category.includes("Solheim");
+                      return (
+                        <article 
+                          key={event.id} 
+                          className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in"
+                          style={{ animationDelay: `${index * 0.05}s` }}
+                        >
+                          <div className="flex flex-col md:flex-row">
+                            <div className={`md:w-32 ${isMajor ? 'bg-gradient-to-br from-primary to-primary/70' : 'bg-gradient-to-br from-blue-600 to-blue-800'} text-white p-6 flex flex-col items-center justify-center text-center`}>
+                              <span className="text-xs font-semibold uppercase tracking-wider">{event.month}</span>
+                              <span className="text-4xl font-bold my-1">{event.date}</span>
+                              <span className="text-xs opacity-90">{event.year}</span>
+                            </div>
+                            <div className="flex-1 p-6">
+                              <div className="flex items-center gap-3 mb-2">
+                                <span className="text-2xl">{event.countryFlag}</span>
+                                <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                                  {event.name}
+                                </h4>
+                              </div>
+                              <div className="flex items-center gap-3 mb-3 flex-wrap">
+                                <Badge className={`${event.categoryColor} text-white border-0 text-xs font-bold shadow-md`}>
+                                  {isMajor && '🏆 '}{event.category}
+                                </Badge>
+                                <div className="flex items-center gap-1 text-muted-foreground">
+                                  <MapPin className="h-3 w-3" />
+                                  <span className="text-sm">{event.location}</span>
+                                </div>
+                              </div>
+                              <p className="text-sm text-muted-foreground mb-4">
+                                {event.description}
+                              </p>
+                              <div className="flex gap-3">
+                                <Button variant="outline" size="sm">
+                                  Get Tickets
+                                </Button>
+                                <Button variant="ghost" size="sm">
+                                  Where to watch
+                                </Button>
+                              </div>
                             </div>
                           </div>
-                          <p className="text-sm text-muted-foreground mb-4">
-                            ATP 250 tournament kicking off the Australian hard court season.
-                          </p>
-                          <div className="flex gap-3">
-                            <Button variant="outline" size="sm">
-                              Get Tickets
-                            </Button>
-                            <Button variant="ghost" size="sm">
-                              Where to watch
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-
-                    {/* Australian Open */}
-                    <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
-                      <div className="flex flex-col md:flex-row">
-                        <div className="md:w-32 bg-gradient-to-br from-primary to-primary/70 text-primary-foreground p-6 flex flex-col items-center justify-center text-center">
-                          <span className="text-xs font-semibold uppercase tracking-wider">Jan</span>
-                          <span className="text-4xl font-bold my-1">12</span>
-                          <span className="text-xs opacity-90">2025</span>
-                        </div>
-                        <div className="flex-1 p-6">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className="text-2xl">🇦🇺</span>
-                            <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                              Australian Open
-                            </h4>
-                          </div>
-                          <div className="flex items-center gap-3 mb-3">
-                            <Badge className="bg-gradient-to-r from-yellow-500 to-amber-500 text-white border-0 text-xs font-bold shadow-md">
-                              🏆 Grand Slam
-                            </Badge>
-                            <div className="flex items-center gap-1 text-muted-foreground">
-                              <MapPin className="h-3 w-3" />
-                              <span className="text-sm">Melbourne, Australia</span>
-                            </div>
-                          </div>
-                          <p className="text-sm text-muted-foreground mb-4">
-                            First Grand Slam of the season. Arthur will be competing in the main draw, ready to make his mark on the Australian hard courts.
-                          </p>
-                          <div className="flex gap-3">
-                            <Button variant="outline" size="sm">
-                              Get Tickets
-                            </Button>
-                            <Button variant="ghost" size="sm">
-                              Where to watch
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-
-                    {/* Montpellier */}
-                    <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
-                      <div className="flex flex-col md:flex-row">
-                        <div className="md:w-32 bg-gradient-to-br from-purple-600 to-purple-800 text-white p-6 flex flex-col items-center justify-center text-center">
-                          <span className="text-xs font-semibold uppercase tracking-wider">Feb</span>
-                          <span className="text-4xl font-bold my-1">3</span>
-                          <span className="text-xs opacity-90">2025</span>
-                        </div>
-                        <div className="flex-1 p-6">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className="text-2xl">🇫🇷</span>
-                            <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                              Open Sud de France
-                            </h4>
-                          </div>
-                          <div className="flex items-center gap-3 mb-3">
-                            <Badge variant="secondary" className="bg-emerald-600/20 text-emerald-400 border-emerald-500/30 text-xs font-semibold">
-                              ATP 250
-                            </Badge>
-                            <div className="flex items-center gap-1 text-muted-foreground">
-                              <MapPin className="h-3 w-3" />
-                              <span className="text-sm">Montpellier, France</span>
-                            </div>
-                          </div>
-                          <p className="text-sm text-muted-foreground mb-4">
-                            Home soil! Arthur returns to his native Montpellier for this ATP 250 indoor event.
-                          </p>
-                          <div className="flex gap-3">
-                            <Button variant="outline" size="sm">
-                              Get Tickets
-                            </Button>
-                            <Button variant="ghost" size="sm">
-                              Where to watch
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-
-                    {/* Marseille */}
-                    <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
-                      <div className="flex flex-col md:flex-row">
-                        <div className="md:w-32 bg-gradient-to-br from-cyan-600 to-cyan-800 text-white p-6 flex flex-col items-center justify-center text-center">
-                          <span className="text-xs font-semibold uppercase tracking-wider">Feb</span>
-                          <span className="text-4xl font-bold my-1">17</span>
-                          <span className="text-xs opacity-90">2025</span>
-                        </div>
-                        <div className="flex-1 p-6">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className="text-2xl">🇫🇷</span>
-                            <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                              Open 13 Provence
-                            </h4>
-                          </div>
-                          <div className="flex items-center gap-3 mb-3">
-                            <Badge variant="secondary" className="bg-emerald-600/20 text-emerald-400 border-emerald-500/30 text-xs font-semibold">
-                              ATP 250
-                            </Badge>
-                            <div className="flex items-center gap-1 text-muted-foreground">
-                              <MapPin className="h-3 w-3" />
-                              <span className="text-sm">Marseille, France</span>
-                            </div>
-                          </div>
-                          <p className="text-sm text-muted-foreground mb-4">
-                            Another home advantage! ATP 250 indoor tournament in the south of France.
-                          </p>
-                          <div className="flex gap-3">
-                            <Button variant="outline" size="sm">
-                              Get Tickets
-                            </Button>
-                            <Button variant="ghost" size="sm">
-                              Where to watch
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
-
-                    {/* Rio de Janeiro */}
-                    <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
-                      <div className="flex flex-col md:flex-row">
-                        <div className="md:w-32 bg-gradient-to-br from-green-600 to-yellow-600 text-white p-6 flex flex-col items-center justify-center text-center">
-                          <span className="text-xs font-semibold uppercase tracking-wider">Feb</span>
-                          <span className="text-4xl font-bold my-1">15</span>
-                          <span className="text-xs opacity-90">2025</span>
-                        </div>
-                        <div className="flex-1 p-6">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className="text-2xl">🇧🇷</span>
-                            <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                              Rio Open
-                            </h4>
-                          </div>
-                          <div className="flex items-center gap-3 mb-3">
-                            <Badge variant="secondary" className="bg-orange-600/20 text-orange-400 border-orange-500/30 text-xs font-semibold">
-                              ATP 500
-                            </Badge>
-                            <div className="flex items-center gap-1 text-muted-foreground">
-                              <MapPin className="h-3 w-3" />
-                              <span className="text-sm">Rio de Janeiro, Brazil</span>
-                            </div>
-                          </div>
-                          <p className="text-sm text-muted-foreground mb-4">
-                            ATP 500 clay court event in the heart of Brazil, preparing for the European clay season.
-                          </p>
-                          <div className="flex gap-3">
-                            <Button variant="outline" size="sm">
-                              Get Tickets
-                            </Button>
-                            <Button variant="ghost" size="sm">
-                              Where to watch
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </article>
+                        </article>
+                      );
+                    })}
                   </div>
                 </div>
               )}
