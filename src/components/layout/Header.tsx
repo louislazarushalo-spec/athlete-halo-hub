@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, User, Sun, Moon, Menu, X, LogOut } from "lucide-react";
+import { ShoppingCart, User, Sun, Moon, Menu, X, LogOut, Heart } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useAuth } from "@/contexts/AuthContext";
@@ -49,6 +49,14 @@ export const Header = () => {
             <Link to="/feed" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Feed
             </Link>
+            {isAuthenticated && (
+              <Link to="/my-athletes">
+                <Button variant="gold" size="sm" className="gap-2">
+                  <Heart className="h-4 w-4" />
+                  My Athletes
+                </Button>
+              </Link>
+            )}
           </nav>
 
           {/* Actions */}
@@ -147,6 +155,16 @@ export const Header = () => {
               >
                 Feed
               </Link>
+              {isAuthenticated && (
+                <Link 
+                  to="/my-athletes" 
+                  className="px-4 py-2 text-primary font-medium hover:bg-secondary rounded-lg transition-colors flex items-center gap-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Heart className="h-4 w-4" />
+                  My Athletes
+                </Link>
+              )}
               <div className="flex items-center gap-2 px-4 pt-2">
                 <Button variant="ghost" size="icon" onClick={toggleTheme}>
                   {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
