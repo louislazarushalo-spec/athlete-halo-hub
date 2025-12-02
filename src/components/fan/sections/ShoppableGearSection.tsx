@@ -24,12 +24,14 @@ interface ShoppableGearSectionProps {
   athleteName: string;
   actionImage: string;
   products: ShoppableProduct[];
+  description?: string;
 }
 
 export const ShoppableGearSection = ({ 
   athleteName, 
   actionImage, 
-  products 
+  products,
+  description
 }: ShoppableGearSectionProps) => {
   const { addToCart } = useCart();
   const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
@@ -51,7 +53,9 @@ export const ShoppableGearSection = ({
     <div className="space-y-6">
       <div>
         <h2 className="font-display text-2xl font-semibold mb-1">Shop {athleteName}'s gear</h2>
-        <p className="text-muted-foreground">Click on the items to add them to your cart</p>
+        <p className="text-muted-foreground">
+          {description || "Click on the items to add them to your cart"}
+        </p>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">

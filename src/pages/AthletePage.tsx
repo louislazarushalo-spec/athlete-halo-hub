@@ -456,6 +456,7 @@ const AthletePage = () => {
               <ShoppableGearSection
                 athleteName={athlete.name}
                 actionImage={athlete.gear[0]?.image || athlete.banner}
+                description={athlete.id === 'arthur-cazaux' ? "Arthur at the Rolex Paris Masters" : undefined}
                 products={athlete.products.map((p, idx) => {
                   // Hotspot coordinates for Arthur Cazaux's gear
                   const hotspots: Record<string, { x: number; y: number }> = {
