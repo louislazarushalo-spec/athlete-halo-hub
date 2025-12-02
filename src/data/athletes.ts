@@ -16,6 +16,9 @@ import arthurCazauxCincinnatiImg from "@/assets/arthur-cazaux-cincinnati.png";
 import arthurCazauxAction1Img from "@/assets/arthur-cazaux-action1.png";
 import arthurCazauxAction2Img from "@/assets/arthur-cazaux-action2.png";
 import arthurCazauxAction3Img from "@/assets/arthur-cazaux-action3.png";
+import arthurCazauxAction4Img from "@/assets/arthur-cazaux-action4.png";
+import arthurCazauxAction5Img from "@/assets/arthur-cazaux-action5.png";
+import arthurCazauxAction6Img from "@/assets/arthur-cazaux-action6.png";
 import lacosteCapImg from "@/assets/lacoste-cap.png";
 import lacostePoloImg from "@/assets/lacoste-polo.png";
 import lacosteShortsImg from "@/assets/lacoste-shorts.png";
@@ -2032,9 +2035,18 @@ export const athletes: Athlete[] = [
         id: "ac-mf1",
         type: "social",
         platform: "instagram",
+        content: "What a moment 🙌 The support from the crowd keeps me fighting for every point! This is why I love this sport 💙🎾",
+        image: arthurCazauxAction4Img,
+        timestamp: "1 hour ago",
+        stats: { likes: 24300, comments: 687 }
+      },
+      {
+        id: "ac-mf1b",
+        type: "social",
+        platform: "instagram",
         content: "Hard work pays off. New career high ranking! Thank you for all the support 🙏🎾",
         image: arthurCazauxAction1Img,
-        timestamp: "2 hours ago",
+        timestamp: "3 hours ago",
         stats: { likes: 18500, comments: 542 }
       },
       {
@@ -2072,8 +2084,17 @@ export const athletes: Athlete[] = [
         platform: "instagram",
         content: "Morning grind 💪 Putting in the work with my team. Every session counts when you're chasing your dreams 🎾☀️",
         image: arthurCazauxAction3Img,
-        timestamp: "1 day ago",
+        timestamp: "18 hours ago",
         stats: { likes: 15200, comments: 387 }
+      },
+      {
+        id: "ac-mf5b",
+        type: "social",
+        platform: "instagram",
+        content: "Champions moment 🏆🍾 Celebrating with my coach after our victory! This one's for everyone who believed in us 🙏✨",
+        image: arthurCazauxAction6Img,
+        timestamp: "1 day ago",
+        stats: { likes: 28900, comments: 921 }
       },
       {
         id: "ac-mf6",
@@ -2113,6 +2134,15 @@ export const athletes: Athlete[] = [
         image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
         timestamp: "5 days ago",
         stats: { readTime: "3 min read" }
+      },
+      {
+        id: "ac-mf9b",
+        type: "social",
+        platform: "instagram",
+        content: "Australian Open vibes 🇦🇺☀️ Ready to give it everything I've got down under. Let's make some noise! 💪🔥",
+        image: arthurCazauxAction5Img,
+        timestamp: "5 days ago",
+        stats: { likes: 19800, comments: 534 }
       },
       {
         id: "ac-mf10",
