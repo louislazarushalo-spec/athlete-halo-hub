@@ -11,6 +11,14 @@ import gaelMonfilsImg from "@/assets/gael-monfils.png";
 import arthurFilsImg from "@/assets/arthur-fils.png";
 import arthurCazauxImg from "@/assets/arthur-cazaux.png";
 import arthurCazauxGearImg from "@/assets/arthur-cazaux-gear.png";
+import lacosteCapImg from "@/assets/lacoste-cap.png";
+import lacostePoloImg from "@/assets/lacoste-polo.png";
+import lacosteShortsImg from "@/assets/lacoste-shorts.png";
+import lacosteWristbandImg from "@/assets/lacoste-wristband.png";
+import lacosteArmSleeveImg from "@/assets/lacoste-arm-sleeve.png";
+import lacosteShoesImg from "@/assets/lacoste-shoes.png";
+import babolatStringsImg from "@/assets/babolat-strings.png";
+import babolatGearImg from "@/assets/babolat-gear.png";
 import corentinMoutetImg from "@/assets/corentin-moutet.png";
 import ugoHumbertImg from "@/assets/ugo-humbert.png";
 import arynaSabalenkaImg from "@/assets/aryna-sabalenka.png";
@@ -1740,8 +1748,8 @@ export const athletes: Athlete[] = [
         name: "Lacoste Sport Cap",
         price: 45,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&h=600&fit=crop",
-        description: "Signature white tennis cap with Lacoste branding.",
+        image: lacosteCapImg,
+        description: "Classic white tennis cap with Lacoste crocodile logo.",
         category: "partner",
         athleteId: "arthur-cazaux"
       },
@@ -1750,8 +1758,8 @@ export const athletes: Athlete[] = [
         name: "Lacoste Performance Polo",
         price: 95,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=600&fit=crop",
-        description: "Olive green technical polo with moisture-wicking fabric.",
+        image: lacostePoloImg,
+        description: "Green technical polo with performance fabric and unique print design.",
         category: "partner",
         athleteId: "arthur-cazaux"
       },
@@ -1760,38 +1768,58 @@ export const athletes: Athlete[] = [
         name: "Lacoste Sport Shorts",
         price: 75,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600&h=600&fit=crop",
-        description: "White performance shorts with stretch technology.",
+        image: lacosteShortsImg,
+        description: "White performance shorts with Lacoste branding and optimal stretch.",
         category: "partner",
         athleteId: "arthur-cazaux"
       },
       {
         id: "ac-p4",
-        name: "Wilson Pro Staff Racquet",
-        price: 249,
+        name: "Lacoste Tennis Wristband",
+        price: 15,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=600&h=600&fit=crop",
-        description: "Professional Wilson racquet for all-court play.",
+        image: lacosteWristbandImg,
+        description: "White terry cloth wristband with embroidered crocodile logo.",
         category: "partner",
         athleteId: "arthur-cazaux"
       },
       {
         id: "ac-p5",
-        name: "Performance Tennis Socks",
-        price: 25,
+        name: "Lacoste Compression Arm Sleeve",
+        price: 35,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=600&h=600&fit=crop",
-        description: "Technical crew socks for optimal comfort.",
+        image: lacosteArmSleeveImg,
+        description: "White compression sleeve for muscle support during play.",
         category: "partner",
         athleteId: "arthur-cazaux"
       },
       {
         id: "ac-p6",
-        name: "Nike Court Zoom Vapor",
+        name: "Lacoste AG-LT23 Tennis Shoes",
         price: 189,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
-        description: "Professional tennis shoes for hard court performance.",
+        image: lacosteShoesImg,
+        description: "High-performance tennis shoes with Lacoste innovation and style.",
+        category: "partner",
+        athleteId: "arthur-cazaux"
+      },
+      {
+        id: "ac-p7",
+        name: "Babolat RPM Blast Strings",
+        price: 18,
+        currency: "€",
+        image: babolatStringsImg,
+        description: "Professional co-polyester tennis strings for maximum spin and control.",
+        category: "partner",
+        athleteId: "arthur-cazaux"
+      },
+      {
+        id: "ac-p8",
+        name: "Babolat Pure Drive Racquet & Bag",
+        price: 279,
+        currency: "€",
+        image: babolatGearImg,
+        description: "Complete Babolat setup with Pure Drive racquet and pro tour bag.",
         category: "partner",
         athleteId: "arthur-cazaux"
       }

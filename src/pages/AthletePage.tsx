@@ -462,9 +462,11 @@ const AthletePage = () => {
                     'ac-p1': { x: 50, y: 12 },  // Hat
                     'ac-p2': { x: 50, y: 32 },  // Polo/Top
                     'ac-p3': { x: 50, y: 52 },  // Shorts
-                    'ac-p4': { x: 28, y: 42 },  // Racquet
-                    'ac-p5': { x: 50, y: 72 },  // Socks
-                    'ac-p6': { x: 50, y: 85 }   // Shoes
+                    'ac-p4': { x: 35, y: 35 },  // Wristband
+                    'ac-p5': { x: 65, y: 38 },  // Arm Sleeve
+                    'ac-p6': { x: 50, y: 85 },  // Shoes
+                    'ac-p7': { x: 25, y: 48 },  // Strings (on racquet)
+                    'ac-p8': { x: 28, y: 42 }   // Racquet & Bag
                   };
                   return {
                     ...p,
