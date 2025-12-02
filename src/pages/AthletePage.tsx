@@ -13,7 +13,6 @@ import {
   Lock, 
   Trophy, 
   MessageCircle,
-  Camera,
   ShoppingCart,
   Check
 } from "lucide-react";
@@ -215,14 +214,6 @@ const AthletePage = () => {
     });
   };
 
-  // Sample media items for the Media section
-  const mediaItems = [
-    { id: 1, type: "photo", image: athlete.banner, caption: "Match day vibes" },
-    { id: 2, type: "photo", image: athlete.life[0]?.image || athlete.banner, caption: "Behind the scenes" },
-    { id: 3, type: "photo", image: athlete.training[0]?.image || athlete.banner, caption: "Training session" },
-    { id: 4, type: "photo", image: athlete.gear[0]?.image || athlete.banner, caption: "Gear check" },
-  ];
-
   return (
     <Layout>
       {/* Hero Banner - Full Width */}
@@ -316,16 +307,7 @@ const AthletePage = () => {
                   onClick={() => setActiveLifeTab("feed")}
                   className="rounded-full"
                 >
-                  Lifestyle Feed
-                </Button>
-                <Button
-                  variant={activeLifeTab === "media" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setActiveLifeTab("media")}
-                  className="rounded-full"
-                >
-                  <Camera className="h-4 w-4 mr-1" />
-                  Media
+                  My News
                 </Button>
                 <Button
                   variant={activeLifeTab === "community" ? "default" : "ghost"}
@@ -338,46 +320,12 @@ const AthletePage = () => {
                 </Button>
               </div>
 
-              {/* Media Feed */}
+              {/* My News Feed */}
               {activeLifeTab === "feed" && (
                 <div className="max-w-3xl mx-auto space-y-6">
                   {athlete.mediaFeed.map((item) => (
                     <MediaFeedCard key={item.id} item={item} athlete={athlete} />
                   ))}
-                </div>
-              )}
-
-              {/* Media Gallery */}
-              {activeLifeTab === "media" && (
-                <div>
-                  <h3 className="text-xl font-semibold mb-4">Photos & Moments</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {mediaItems.map(item => (
-                      <div key={item.id} className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer">
-                        <img
-                          src={item.image}
-                          alt={item.caption}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                          <p className="text-sm text-foreground font-medium">{item.caption}</p>
-                        </div>
-                      </div>
-                    ))}
-                    {/* More media placeholders */}
-                    {[...Array(4)].map((_, idx) => (
-                      <div key={`placeholder-${idx}`} className="relative aspect-square rounded-xl overflow-hidden group cursor-pointer">
-                        <img
-                          src={athlete.training[idx % athlete.training.length]?.image || athlete.banner}
-                          alt="Gallery item"
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
-                          <p className="text-sm text-foreground font-medium">Behind the scenes</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               )}
 

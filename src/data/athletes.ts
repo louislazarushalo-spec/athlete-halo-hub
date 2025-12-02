@@ -2030,29 +2030,105 @@ export const athletes: Athlete[] = [
         type: "social",
         platform: "instagram",
         content: "Hard work pays off. New career high ranking! Thank you for all the support 🙏🎾",
-        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=800&fit=crop",
-        timestamp: "3 hours ago",
-        stats: { likes: 12000, comments: 340 }
+        image: arthurCazauxGearImg,
+        timestamp: "2 hours ago",
+        stats: { likes: 18500, comments: 542 }
       },
       {
         id: "ac-mf2",
-        type: "video",
-        platform: "youtube",
-        title: "Arthur Cazaux - Best Moments 2024",
-        content: "Highlights from the young Frenchman's breakthrough season.",
-        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=450&fit=crop",
-        timestamp: "5 days ago",
-        stats: { views: 85000, duration: "7:33" }
+        type: "social",
+        platform: "twitter",
+        content: "What an incredible atmosphere tonight at Bercy! The crowd was electric 🔥 Thank you Paris for the energy. Time to rest and prepare for the next battle 💪",
+        image: "",
+        timestamp: "5 hours ago",
+        stats: { likes: 8300, comments: 234, shares: 1200 }
       },
       {
         id: "ac-mf3",
         type: "article",
         platform: "lequipe",
-        title: "Cazaux: \"I'm learning every match\"",
-        content: "The young French talent discusses his development and goals for the season...",
-        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
+        title: "Arthur Cazaux: La nouvelle pépite française du tennis",
+        content: "Le jeune Français continue son ascension sur le circuit ATP. À 22 ans, Cazaux impressionne par sa maturité et son jeu élégant qui rappelle les plus grands champions français...",
+        image: arthurCazauxBannerImg,
+        timestamp: "8 hours ago",
+        stats: { readTime: "5 min read" }
+      },
+      {
+        id: "ac-mf4",
+        type: "video",
+        platform: "youtube",
+        title: "Hot Shot: Cazaux lands sublime lob in Metz 2025",
+        content: "Watch Arthur Cazaux produce this incredible lob winner during his quarterfinal match at the Moselle Open.",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=450&fit=crop",
+        timestamp: "12 hours ago",
+        stats: { views: 127000, duration: "0:42" }
+      },
+      {
+        id: "ac-mf5",
+        type: "social",
+        platform: "instagram",
+        content: "Morning grind 💪 Putting in the work with my team. Every session counts when you're chasing your dreams 🎾☀️",
+        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=800&fit=crop",
         timestamp: "1 day ago",
-        stats: { readTime: "4 min read" }
+        stats: { likes: 15200, comments: 387 }
+      },
+      {
+        id: "ac-mf6",
+        type: "article",
+        platform: "espn",
+        title: "Cazaux climbs to career high following Jinan Challenger title run",
+        content: "The 22-year-old Frenchman continued his impressive form with a dominant performance at the Jinan Challenger, securing his third title of the season and breaking into the ATP top 100...",
+        image: arthurCazauxCincinnatiImg,
+        timestamp: "2 days ago",
+        stats: { readTime: "6 min read" }
+      },
+      {
+        id: "ac-mf7",
+        type: "video",
+        platform: "youtube",
+        title: "Highlights: Cazaux first winner in Metz 2025",
+        content: "Extended highlights as Arthur Cazaux captures his maiden ATP Tour title at the Moselle Open in Metz, defeating top seed in straight sets.",
+        image: "https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&h=450&fit=crop",
+        timestamp: "3 days ago",
+        stats: { views: 342000, duration: "11:24" }
+      },
+      {
+        id: "ac-mf8",
+        type: "social",
+        platform: "twitter",
+        content: "Huge thank you to @Lacoste for the constant support 🐊💚 Feeling confident in my gear for the next tournaments. Let's keep this momentum going! #TeamLacoste",
+        image: "",
+        timestamp: "4 days ago",
+        stats: { likes: 5700, comments: 156, shares: 890 }
+      },
+      {
+        id: "ac-mf9",
+        type: "article",
+        platform: "bbc",
+        title: "Hot Shot: Cazaux has Paris buzzing with sneak attack",
+        content: "BBC Sport looks at the moment Arthur Cazaux stunned the Paris crowd with an audacious sneak attack winner during his second-round victory at the Rolex Paris Masters...",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
+        timestamp: "5 days ago",
+        stats: { readTime: "3 min read" }
+      },
+      {
+        id: "ac-mf10",
+        type: "social",
+        platform: "instagram",
+        content: "Paris, you have my heart ❤️ Every time I play at Bercy it feels special. This city made me who I am 🗼🎾",
+        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=800&fit=crop",
+        timestamp: "6 days ago",
+        stats: { likes: 21300, comments: 628 }
+      },
+      {
+        id: "ac-mf11",
+        type: "video",
+        platform: "youtube",
+        title: "Highlights: Cazaux finds way through in Shanghai",
+        content: "Arthur Cazaux showcases his all-court game in this thrilling three-set victory at the Shanghai Masters, featuring stunning winners and incredible defense.",
+        image: "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 198000, duration: "8:47" }
       }
     ]
   },
