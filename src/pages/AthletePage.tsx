@@ -47,13 +47,15 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
   if (item.type === "social") {
     const isTwitter = item.platform === "twitter";
     return (
-      <article className="glass-card overflow-hidden">
-        <div className="p-4 flex items-center gap-3 border-b border-border">
-          <img src={athlete.avatar} alt={athlete.name} className="w-10 h-10 rounded-full object-cover" />
+      <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in">
+        <div className="p-4 flex items-center gap-3 border-b border-border/50">
+          <img src={athlete.avatar} alt={athlete.name} className="w-10 h-10 rounded-full object-cover ring-2 ring-primary/20" />
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <span className="font-semibold">{athlete.name}</span>
-              <Badge variant="secondary" className="text-xs">{config.label}</Badge>
+              <span className="font-semibold text-foreground">{athlete.name}</span>
+              <Badge variant="secondary" className={`text-xs ${item.platform === 'instagram' ? 'bg-gradient-to-r from-purple-600/20 to-pink-500/20 text-purple-300' : ''}`}>
+                {config.label}
+              </Badge>
             </div>
             <span className="text-xs text-muted-foreground">
               {isTwitter ? `@${athlete.name.toLowerCase().replace(' ', '_')}` : item.timestamp}
@@ -61,35 +63,50 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
           </div>
         </div>
         {item.image && (
-          <div className={`relative ${isTwitter ? "" : "aspect-square"}`}>
-            {!isTwitter && <img src={item.image} alt="Post" className="w-full h-full object-cover" />}
+          <div className={`relative ${isTwitter ? "" : "aspect-square"} overflow-hidden`}>
+            {!isTwitter && (
+              <img 
+                src={item.image} 
+                alt="Post" 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+              />
+            )}
           </div>
         )}
-        <div className="p-4">
+        <div className="p-4 space-y-3">
           {isTwitter ? (
             <>
-              <p className="text-base mb-3">{item.content}</p>
-              <div className="flex items-center gap-6 text-muted-foreground">
-                <span className="text-sm">💬 {formatNumber(item.stats?.comments || 0)}</span>
-                <span className="text-sm">🔄 {formatNumber(item.stats?.shares || 0)}</span>
-                <span className="text-sm">❤️ {formatNumber(item.stats?.likes || 0)}</span>
+              <p className="text-base leading-relaxed">{item.content}</p>
+              <div className="flex items-center gap-6 text-muted-foreground text-sm pt-2">
+                <button className="flex items-center gap-1.5 hover:text-blue-400 transition-colors">
+                  <MessageCircle className="h-4 w-4" />
+                  <span>{formatNumber(item.stats?.comments || 0)}</span>
+                </button>
+                <button className="flex items-center gap-1.5 hover:text-green-400 transition-colors">
+                  <span>🔄</span>
+                  <span>{formatNumber(item.stats?.shares || 0)}</span>
+                </button>
+                <button className="flex items-center gap-1.5 hover:text-red-400 transition-colors">
+                  <Heart className="h-4 w-4" />
+                  <span>{formatNumber(item.stats?.likes || 0)}</span>
+                </button>
               </div>
             </>
           ) : (
             <>
-              <div className="flex items-center gap-4 mb-3">
-                <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+              <div className="flex items-center gap-4">
+                <button className="flex items-center gap-1.5 text-muted-foreground hover:text-red-400 transition-all duration-200 hover:scale-110">
                   <Heart className="h-5 w-5" />
-                  <span className="text-sm">{formatNumber(item.stats?.likes || 0)}</span>
+                  <span className="text-sm font-medium">{formatNumber(item.stats?.likes || 0)}</span>
                 </button>
-                <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+                <button className="flex items-center gap-1.5 text-muted-foreground hover:text-blue-400 transition-all duration-200 hover:scale-110">
                   <MessageCircle className="h-5 w-5" />
-                  <span className="text-sm">{formatNumber(item.stats?.comments || 0)}</span>
+                  <span className="text-sm font-medium">{formatNumber(item.stats?.comments || 0)}</span>
                 </button>
               </div>
-              <p className="text-sm">
-                <span className="font-semibold">{athlete.name.toLowerCase().replace(' ', '')}</span>{' '}
-                {item.content}
+              <p className="text-sm leading-relaxed">
+                <span className="font-semibold text-foreground">{athlete.name.toLowerCase().replace(' ', '')}</span>{' '}
+                <span className="text-foreground/90">{item.content}</span>
               </p>
             </>
           )}
@@ -101,36 +118,36 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
   // Video (YouTube/ESPN)
   if (item.type === "video") {
     return (
-      <article className="glass-card overflow-hidden">
-        <div className="p-4 flex items-center gap-3 border-b border-border">
-          <div className={`w-10 h-10 rounded-full ${config.bgClass} flex items-center justify-center font-bold ${config.textClass} text-sm`}>
+      <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in">
+        <div className="p-4 flex items-center gap-3 border-b border-border/50">
+          <div className={`w-10 h-10 rounded-full ${config.bgClass} flex items-center justify-center font-bold ${config.textClass} text-sm shadow-lg`}>
             {config.icon || <Play className="h-5 w-5" fill="white" />}
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <span className="font-semibold">{config.label}</span>
-              <Badge variant="secondary" className="text-xs bg-red-600/20 text-red-400">Video</Badge>
+              <span className="font-semibold text-foreground">{config.label}</span>
+              <Badge variant="secondary" className="text-xs bg-red-600/20 text-red-400 border-red-500/20">Video</Badge>
             </div>
             <span className="text-xs text-muted-foreground">
               {item.platform === "youtube" ? "Official Highlights" : "Sports Coverage"}
             </span>
           </div>
         </div>
-        <div className="relative aspect-video group cursor-pointer">
-          <img src={item.image} alt="Video thumbnail" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-background/40 flex items-center justify-center">
-            <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+        <div className="relative aspect-video cursor-pointer overflow-hidden">
+          <img src={item.image} alt="Video thumbnail" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/20 to-transparent flex items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all duration-300 shadow-2xl">
               <Play className="h-7 w-7 text-white ml-1" fill="white" />
             </div>
           </div>
           {item.stats?.duration && (
-            <div className="absolute bottom-3 right-3 px-2 py-1 bg-background/80 rounded text-xs font-medium">
+            <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-background/90 backdrop-blur-sm rounded text-xs font-semibold">
               {item.stats.duration}
             </div>
           )}
         </div>
-        <div className="p-4">
-          <h4 className="font-semibold mb-1">{item.title}</h4>
+        <div className="p-4 space-y-2">
+          <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">{item.title}</h4>
           <p className="text-sm text-muted-foreground">
             {formatNumber(item.stats?.views || 0)} views • {item.timestamp}
           </p>
@@ -142,30 +159,40 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
   // Article (L'Équipe/ESPN/BBC)
   if (item.type === "article") {
     return (
-      <article className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
-        <div className="p-4 flex items-center gap-3 border-b border-border">
-          <div className={`w-10 h-10 rounded-full ${config.bgClass} flex items-center justify-center font-bold ${config.textClass} text-sm`}>
+      <article className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in">
+        <div className="p-4 flex items-center gap-3 border-b border-border/50">
+          <div className={`w-10 h-10 rounded-full ${config.bgClass} flex items-center justify-center font-bold ${config.textClass} text-sm shadow-lg`}>
             {config.icon}
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <span className="font-semibold">{config.label}</span>
-              <Badge variant="secondary" className="text-xs">Article</Badge>
+              <span className="font-semibold text-foreground">{config.label}</span>
+              <Badge variant="secondary" className="text-xs border-primary/20">Article</Badge>
             </div>
-            <span className="text-xs text-muted-foreground">Sports News</span>
+            <span className="text-xs text-muted-foreground">Sports News • {item.timestamp}</span>
           </div>
         </div>
         <div className="flex gap-4 p-4">
-          <div className="flex-1">
-            <h4 className="font-semibold mb-2 group-hover:text-primary transition-colors">
+          <div className="flex-1 space-y-2">
+            <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
               {item.title}
             </h4>
-            <p className="text-sm text-muted-foreground line-clamp-2">
+            <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
               {item.content}
             </p>
-            <span className="text-xs text-muted-foreground mt-2 block">{item.stats?.readTime}</span>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground pt-1">
+              <span>{item.stats?.readTime}</span>
+              <span>•</span>
+              <span className="text-primary">Read more →</span>
+            </div>
           </div>
-          <img src={item.image} alt="Article" className="w-24 h-24 rounded-lg object-cover" />
+          <div className="relative w-28 h-28 flex-shrink-0 rounded-lg overflow-hidden">
+            <img 
+              src={item.image} 
+              alt="Article" 
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+            />
+          </div>
         </div>
       </article>
     );
@@ -322,9 +349,15 @@ const AthletePage = () => {
 
               {/* My News Feed */}
               {activeLifeTab === "feed" && (
-                <div className="max-w-3xl mx-auto space-y-6">
-                  {athlete.mediaFeed.map((item) => (
-                    <MediaFeedCard key={item.id} item={item} athlete={athlete} />
+                <div className="max-w-3xl mx-auto space-y-5">
+                  {athlete.mediaFeed.map((item, index) => (
+                    <div 
+                      key={item.id} 
+                      className="animate-fade-in"
+                      style={{ animationDelay: `${index * 0.05}s` }}
+                    >
+                      <MediaFeedCard item={item} athlete={athlete} />
+                    </div>
                   ))}
                 </div>
               )}
