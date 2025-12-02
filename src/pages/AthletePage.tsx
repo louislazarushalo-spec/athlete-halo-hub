@@ -411,38 +411,41 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <div className="flex items-start justify-between gap-4 mb-4">
-                            <div className="flex-1">
-                              <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                                Australian Open 2025
-                              </h4>
-                              <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                                <MapPin className="h-4 w-4" />
-                                <span className="text-sm">Melbourne, Australia</span>
-                              </div>
-                              <p className="text-sm text-muted-foreground">
-                                First Grand Slam of the season. Arthur will be competing in the main draw, ready to make his mark on the Australian hard courts.
-                              </p>
+                          <div className="mb-4">
+                            <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                              Australian Open 2025
+                            </h4>
+                            <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                              <MapPin className="h-4 w-4" />
+                              <span className="text-sm">Melbourne, Australia</span>
                             </div>
-                            <Button variant="outline" size="sm" className="shrink-0">
-                              Get Tickets
-                            </Button>
+                            <p className="text-sm text-muted-foreground mb-4">
+                              First Grand Slam of the season. Arthur will be competing in the main draw, ready to make his mark on the Australian hard courts.
+                            </p>
                           </div>
-                          <div className="pt-4 border-t border-border/50">
-                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
-                            <div className="flex flex-wrap gap-2">
-                              <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
-                                Eurosport
-                              </Badge>
-                              <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30">
-                                ESPN+
-                              </Badge>
-                              <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
-                                Tennis Channel
-                              </Badge>
-                              <Badge variant="secondary" className="bg-green-600/20 text-green-400 border-green-500/30">
-                                9Now (AUS)
-                              </Badge>
+                          
+                          <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-border/50">
+                            <div className="sm:w-auto">
+                              <Button variant="outline" size="sm" className="w-full sm:w-auto">
+                                Get Tickets
+                              </Button>
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
+                              <div className="flex flex-wrap gap-2">
+                                <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
+                                  Eurosport
+                                </Badge>
+                                <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30">
+                                  ESPN+
+                                </Badge>
+                                <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
+                                  Tennis Channel
+                                </Badge>
+                                <Badge variant="secondary" className="bg-green-600/20 text-green-400 border-green-500/30">
+                                  9Now (AUS)
+                                </Badge>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -458,35 +461,38 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <div className="flex items-start justify-between gap-4 mb-4">
-                            <div className="flex-1">
-                              <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                                Open 13 Provence
-                              </h4>
-                              <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                                <MapPin className="h-4 w-4" />
-                                <span className="text-sm">Marseille, France</span>
-                              </div>
-                              <p className="text-sm text-muted-foreground">
-                                Home advantage! Arthur returns to France for this ATP 250 indoor tournament, looking to shine in front of the French crowd.
-                              </p>
+                          <div className="mb-4">
+                            <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                              Open 13 Provence
+                            </h4>
+                            <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                              <MapPin className="h-4 w-4" />
+                              <span className="text-sm">Marseille, France</span>
                             </div>
-                            <Button variant="outline" size="sm" className="shrink-0">
-                              Get Tickets
-                            </Button>
+                            <p className="text-sm text-muted-foreground mb-4">
+                              Home advantage! Arthur returns to France for this ATP 250 indoor tournament, looking to shine in front of the French crowd.
+                            </p>
                           </div>
-                          <div className="pt-4 border-t border-border/50">
-                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
-                            <div className="flex flex-wrap gap-2">
-                              <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
-                                beIN SPORTS
-                              </Badge>
-                              <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
-                                Tennis TV
-                              </Badge>
-                              <Badge variant="secondary" className="bg-orange-600/20 text-orange-400 border-orange-500/30">
-                                France TV Sport
-                              </Badge>
+                          
+                          <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-border/50">
+                            <div className="sm:w-auto">
+                              <Button variant="outline" size="sm" className="w-full sm:w-auto">
+                                Get Tickets
+                              </Button>
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
+                              <div className="flex flex-wrap gap-2">
+                                <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
+                                  beIN SPORTS
+                                </Badge>
+                                <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
+                                  Tennis TV
+                                </Badge>
+                                <Badge variant="secondary" className="bg-orange-600/20 text-orange-400 border-orange-500/30">
+                                  France TV Sport
+                                </Badge>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -502,38 +508,41 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <div className="flex items-start justify-between gap-4 mb-4">
-                            <div className="flex-1">
-                              <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                                Roland-Garros
-                              </h4>
-                              <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                                <MapPin className="h-4 w-4" />
-                                <span className="text-sm">Paris, France</span>
-                              </div>
-                              <p className="text-sm text-muted-foreground">
-                                The French Open on the legendary clay courts of Paris. Arthur's biggest opportunity to showcase his game in front of his home crowd.
-                              </p>
+                          <div className="mb-4">
+                            <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                              Roland-Garros
+                            </h4>
+                            <div className="flex items-center gap-2 text-muted-foreground mb-3">
+                              <MapPin className="h-4 w-4" />
+                              <span className="text-sm">Paris, France</span>
                             </div>
-                            <Button variant="outline" size="sm" className="shrink-0">
-                              Get Tickets
-                            </Button>
+                            <p className="text-sm text-muted-foreground mb-4">
+                              The French Open on the legendary clay courts of Paris. Arthur's biggest opportunity to showcase his game in front of his home crowd.
+                            </p>
                           </div>
-                          <div className="pt-4 border-t border-border/50">
-                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
-                            <div className="flex flex-wrap gap-2">
-                              <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
-                                France Télévisions
-                              </Badge>
-                              <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30">
-                                Eurosport
-                              </Badge>
-                              <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
-                                Tennis Channel
-                              </Badge>
-                              <Badge variant="secondary" className="bg-yellow-600/20 text-yellow-400 border-yellow-500/30">
-                                Amazon Prime
-                              </Badge>
+                          
+                          <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-border/50">
+                            <div className="sm:w-auto">
+                              <Button variant="outline" size="sm" className="w-full sm:w-auto">
+                                Get Tickets
+                              </Button>
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
+                              <div className="flex flex-wrap gap-2">
+                                <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
+                                  France Télévisions
+                                </Badge>
+                                <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30">
+                                  Eurosport
+                                </Badge>
+                                <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
+                                  Tennis Channel
+                                </Badge>
+                                <Badge variant="secondary" className="bg-yellow-600/20 text-yellow-400 border-yellow-500/30">
+                                  Amazon Prime
+                                </Badge>
+                              </div>
                             </div>
                           </div>
                         </div>
