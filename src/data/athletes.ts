@@ -10,6 +10,7 @@ import arthurRinderknechImg from "@/assets/arthur-rinderknech.png";
 import gaelMonfilsImg from "@/assets/gael-monfils.png";
 import arthurFilsImg from "@/assets/arthur-fils.png";
 import arthurCazauxImg from "@/assets/arthur-cazaux.png";
+import arthurCazauxGearImg from "@/assets/arthur-cazaux-gear.png";
 import corentinMoutetImg from "@/assets/corentin-moutet.png";
 import ugoHumbertImg from "@/assets/ugo-humbert.png";
 import arynaSabalenkaImg from "@/assets/aryna-sabalenka.png";
@@ -1726,9 +1727,9 @@ export const athletes: Athlete[] = [
     gear: [
       {
         id: "ac-g1",
-        title: "Lacoste Collection",
-        description: "My signature style on and off the court.",
-        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=800&h=500&fit=crop",
+        title: "My Competition Outfit",
+        description: "Full gear breakdown from the court.",
+        image: arthurCazauxGearImg,
         category: "gear",
         createdAt: "2024-03-08"
       }
@@ -1736,12 +1737,62 @@ export const athletes: Athlete[] = [
     products: [
       {
         id: "ac-p1",
-        name: "Complete Game Blueprint",
+        name: "Lacoste Sport Cap",
         price: 45,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=600&h=600&fit=crop",
-        description: "Develop an all-court tennis game.",
-        category: "athlete",
+        image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&h=600&fit=crop",
+        description: "Signature white tennis cap with Lacoste branding.",
+        category: "partner",
+        athleteId: "arthur-cazaux"
+      },
+      {
+        id: "ac-p2",
+        name: "Lacoste Performance Polo",
+        price: 95,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=600&fit=crop",
+        description: "Olive green technical polo with moisture-wicking fabric.",
+        category: "partner",
+        athleteId: "arthur-cazaux"
+      },
+      {
+        id: "ac-p3",
+        name: "Lacoste Sport Shorts",
+        price: 75,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600&h=600&fit=crop",
+        description: "White performance shorts with stretch technology.",
+        category: "partner",
+        athleteId: "arthur-cazaux"
+      },
+      {
+        id: "ac-p4",
+        name: "Wilson Pro Staff Racquet",
+        price: 249,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1617083934555-ac7d4e4c0a8f?w=600&h=600&fit=crop",
+        description: "Professional Wilson racquet for all-court play.",
+        category: "partner",
+        athleteId: "arthur-cazaux"
+      },
+      {
+        id: "ac-p5",
+        name: "Performance Tennis Socks",
+        price: 25,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=600&h=600&fit=crop",
+        description: "Technical crew socks for optimal comfort.",
+        category: "partner",
+        athleteId: "arthur-cazaux"
+      },
+      {
+        id: "ac-p6",
+        name: "Nike Court Zoom Vapor",
+        price: 189,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&fit=crop",
+        description: "Professional tennis shoes for hard court performance.",
+        category: "partner",
         athleteId: "arthur-cazaux"
       }
     ],
