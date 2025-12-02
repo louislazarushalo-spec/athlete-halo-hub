@@ -1842,8 +1842,8 @@ export const athletes: Athlete[] = [
     gearCollections: [
       {
         id: "ac-gc-paris",
-        name: "Rolex Paris Masters",
-        description: "Arthur at the Rolex Paris Masters",
+        name: "Arthur's Gear in Paris for the Rolex Paris Masters",
+        description: "The iconic Bercy arena. The electric crowd. Arthur stepped onto the court in his signature green and white Lacoste kit, ready to battle against the world's best at one of tennis's most prestigious indoor tournaments.",
         actionImage: arthurCazauxGearImg,
         products: [
           {
@@ -1940,8 +1940,8 @@ export const athletes: Athlete[] = [
       },
       {
         id: "ac-gc-cincinnati",
-        name: "Cincinnati Masters 1000",
-        description: "Arthur competing at the Cincinnati Masters 1000",
+        name: "Arthur's Blue Kit at the Cincinnati Masters 1000",
+        description: "Under the scorching Ohio sun, Arthur brought French elegance to the American hard courts. Dressed in his sky blue Lacoste ensemble, he showcased the perfect blend of style and performance at this crucial US Open Series event.",
         actionImage: arthurCazauxCincinnatiImg,
         products: [
           {

@@ -180,7 +180,6 @@ const AthletePage = () => {
   const athlete = getAthleteById(id || "");
   const [isFollowing, setIsFollowing] = useState(false);
   const [activeLifeTab, setActiveLifeTab] = useState<"feed" | "media" | "community">("feed");
-  const [selectedGearCollection, setSelectedGearCollection] = useState(0);
   const { addToCart } = useCart();
   const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
 
@@ -455,33 +454,23 @@ const AthletePage = () => {
 
             <TabsContent value="gear" className="animate-fade-in">
               {athlete.gearCollections && athlete.gearCollections.length > 0 ? (
-                <div className="space-y-6">
-                  {/* Collection Selector */}
-                  {athlete.gearCollections.length > 1 && (
-                    <div className="flex gap-3 pb-4 border-b border-border">
-                      {athlete.gearCollections.map((collection, index) => (
-                        <Button
-                          key={collection.id}
-                          variant={selectedGearCollection === index ? "default" : "outline"}
-                          onClick={() => setSelectedGearCollection(index)}
-                          className="flex-1"
-                        >
-                          {collection.name}
-                        </Button>
-                      ))}
+                <div className="space-y-16">
+                  {/* Gear Collections Feed */}
+                  {athlete.gearCollections.map((collection, index) => (
+                    <div key={collection.id} className="space-y-6">
+                      {index > 0 && <div className="border-t border-border/50" />}
+                      <ShoppableGearSection
+                        athleteName={athlete.name}
+                        actionImage={collection.actionImage}
+                        title={collection.name}
+                        description={collection.description}
+                        products={collection.products.map(p => ({
+                          ...p,
+                          hotspot: collection.hotspots?.[p.id]
+                        }))}
+                      />
                     </div>
-                  )}
-
-                  {/* Selected Collection */}
-                  <ShoppableGearSection
-                    athleteName={athlete.name}
-                    actionImage={athlete.gearCollections[selectedGearCollection].actionImage}
-                    description={athlete.gearCollections[selectedGearCollection].description}
-                    products={athlete.gearCollections[selectedGearCollection].products.map(p => ({
-                      ...p,
-                      hotspot: athlete.gearCollections![selectedGearCollection].hotspots?.[p.id]
-                    }))}
-                  />
+                  ))}
                 </div>
               ) : (
                 <ShoppableGearSection
