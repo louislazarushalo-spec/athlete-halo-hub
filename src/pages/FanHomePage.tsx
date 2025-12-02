@@ -2,15 +2,14 @@ import { useState } from "react";
 import { FanSidebar } from "@/components/fan/FanSidebar";
 import { FanSearchBar } from "@/components/fan/FanSearchBar";
 import { FanFilterPills } from "@/components/fan/FanFilterPills";
-import { RecentlyViewedSection } from "@/components/fan/sections/RecentlyViewedSection";
-import { ForYouSection } from "@/components/fan/sections/ForYouSection";
-import { TrendingSection } from "@/components/fan/sections/TrendingSection";
-import { ExploreGearSection } from "@/components/fan/sections/ExploreGearSection";
-import { GearTheyUseSection } from "@/components/fan/sections/GearTheyUseSection";
-import { ExploreTrainingsSection } from "@/components/fan/sections/ExploreTrainingsSection";
-import { ActiveNowSection } from "@/components/fan/sections/ActiveNowSection";
+import { PersonalHeroHeader } from "@/components/fan/sections/PersonalHeroHeader";
+import { UpcomingEventsSection } from "@/components/fan/sections/UpcomingEventsSection";
+import { YourHalosSection } from "@/components/fan/sections/YourHalosSection";
+import { LiveUpdatesSection } from "@/components/fan/sections/LiveUpdatesSection";
+import { GearYourAthletesTrustSection } from "@/components/fan/sections/GearYourAthletesTrustSection";
+import { TrainLikeThemSection } from "@/components/fan/sections/TrainLikeThemSection";
 import { SupportCausesSection } from "@/components/fan/sections/SupportCausesSection";
-import { DiscoverAllSection } from "@/components/fan/sections/DiscoverAllSection";
+import { PopularNowSection } from "@/components/fan/sections/PopularNowSection";
 import { FilteredAthletesSection } from "@/components/fan/sections/FilteredAthletesSection";
 import { useAuth } from "@/contexts/AuthContext";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -68,15 +67,14 @@ const FanHomePage = () => {
             <FilteredAthletesSection sport={activeFilter} />
           ) : (
             <>
-              <RecentlyViewedSection />
-              <ForYouSection />
-              <TrendingSection />
-              <ExploreGearSection />
-              <GearTheyUseSection />
-              <ExploreTrainingsSection />
-              <ActiveNowSection />
+              <PersonalHeroHeader />
+              <UpcomingEventsSection />
+              <YourHalosSection />
+              <LiveUpdatesSection />
+              <GearYourAthletesTrustSection />
+              <TrainLikeThemSection />
               <SupportCausesSection />
-              <DiscoverAllSection />
+              <PopularNowSection />
             </>
           )}
         </div>
