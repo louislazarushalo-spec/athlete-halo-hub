@@ -22,6 +22,7 @@ import { toast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/CartContext";
 import { Athlete } from "@/data/athletes";
+import { ShoppableGearSection } from "@/components/fan/sections/ShoppableGearSection";
 
 // Helper functions for formatting
 const formatNumber = (num: number): string => {
@@ -449,138 +450,17 @@ const AthletePage = () => {
 
             {/* MY GEAR TAB */}
             <TabsContent value="gear" className="animate-fade-in">
-              <div className="space-y-10">
-                {/* Gear Posts */}
-                {athlete.gear.length > 0 && (
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">Gear Highlights</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {athlete.gear.map(post => (
-                        <article key={post.id} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
-                          <div className="relative h-48 overflow-hidden">
-                            <img
-                              src={post.image}
-                              alt={post.title}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <Badge className="absolute top-3 left-3 bg-secondary">Gear</Badge>
-                          </div>
-                          <div className="p-4">
-                            <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                              {post.title}
-                            </h4>
-                            <p className="text-muted-foreground text-sm line-clamp-2">
-                              {post.description}
-                            </p>
-                          </div>
-                        </article>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Products Grid */}
-                <div>
-                  <h3 className="text-xl font-semibold mb-4">Shop {athlete.name}'s Collection</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {athlete.products.map(product => (
-                      <article key={product.id} className="glass-card overflow-hidden group">
-                        <div className="relative h-48 overflow-hidden">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                          <Badge className="absolute top-3 left-3 bg-primary/90">
-                            {product.category === "partner" ? "Partner Product" : "Athlete Collection"}
-                          </Badge>
-                        </div>
-                        <div className="p-4">
-                          <h4 className="font-semibold text-lg mb-2">{product.name}</h4>
-                          <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
-                            {product.description}
-                          </p>
-                          <div className="flex items-center justify-between">
-                            <span className="text-xl font-bold text-primary">
-                              {product.currency}{product.price}
-                            </span>
-                            <div className="flex gap-2">
-                              <Button
-                                size="sm"
-                                variant={addedProducts.has(product.id) ? "secondary" : "gold"}
-                                onClick={() => handleAddToCart(product)}
-                              >
-                                {addedProducts.has(product.id) ? (
-                                  <>
-                                    <Check className="h-4 w-4" />
-                                    Added
-                                  </>
-                                ) : (
-                                  <>
-                                    <ShoppingCart className="h-4 w-4" />
-                                    Add to Cart
-                                  </>
-                                )}
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                    ))}
-                    {/* Seed additional products if needed */}
-                    {athlete.products.length < 4 && (
-                      <>
-                        <article className="glass-card overflow-hidden group">
-                          <div className="relative h-48 overflow-hidden bg-muted">
-                            <img
-                              src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop"
-                              alt="Signature Boots Pack"
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <Badge className="absolute top-3 left-3 bg-primary/90">Partner Product</Badge>
-                          </div>
-                          <div className="p-4">
-                            <h4 className="font-semibold text-lg mb-2">Signature Boots Pack</h4>
-                            <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
-                              Professional-grade footwear from our official partner.
-                            </p>
-                            <div className="flex items-center justify-between">
-                              <span className="text-xl font-bold text-primary">€159</span>
-                              <Button size="sm" variant="gold">
-                                <ShoppingCart className="h-4 w-4" />
-                                Add to Cart
-                              </Button>
-                            </div>
-                          </div>
-                        </article>
-                        <article className="glass-card overflow-hidden group">
-                          <div className="relative h-48 overflow-hidden bg-muted">
-                            <img
-                              src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=600&fit=crop"
-                              alt="Training Apparel Set"
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <Badge className="absolute top-3 left-3 bg-secondary">Athlete Collection</Badge>
-                          </div>
-                          <div className="p-4">
-                            <h4 className="font-semibold text-lg mb-2">Training Apparel Set</h4>
-                            <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
-                              Premium training gear curated by the athlete.
-                            </p>
-                            <div className="flex items-center justify-between">
-                              <span className="text-xl font-bold text-primary">€89</span>
-                              <Button size="sm" variant="gold">
-                                <ShoppingCart className="h-4 w-4" />
-                                Add to Cart
-                              </Button>
-                            </div>
-                          </div>
-                        </article>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <ShoppableGearSection
+                athleteName={athlete.name}
+                actionImage={athlete.banner}
+                products={athlete.products.map(p => ({
+                  ...p,
+                  hotspot: Math.random() > 0.5 ? {
+                    x: 20 + Math.random() * 60,
+                    y: 20 + Math.random() * 60
+                  } : undefined
+                }))}
+              />
             </TabsContent>
 
             {/* MY TRAINING TAB */}
