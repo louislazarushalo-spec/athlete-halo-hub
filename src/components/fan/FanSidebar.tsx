@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Compass, MessageCircle, Bell, Settings, Smartphone, ChevronDown, LogOut, User, Users } from "lucide-react";
-import { athletes } from "@/data/athletes";
+import { Home, Compass, MessageCircle, Bell, Settings, Smartphone, ChevronDown, LogOut, User } from "lucide-react";
+import { athletes, getAthleteById } from "@/data/athletes";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -13,15 +13,17 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { label: "Home", icon: Home, path: "/home", active: true },
-  { label: "My Athletes", icon: Users, path: "/my-athletes" },
   { label: "Explore", icon: Compass, path: "/athletes" },
   { label: "Chats", icon: MessageCircle, path: "/chats" },
   { label: "Notifications", icon: Bell, path: "/notifications" },
   { label: "Settings", icon: Settings, path: "/settings" },
 ];
 
-// Simulated followed athletes (first 5)
-const followedAthletes = athletes.slice(0, 5);
+// Followed athletes: Arthur Cazaux, Tommy Fleetwood, Elisa Balsamo
+const followedAthleteIds = ['arthur-cazaux', 'tommy-fleetwood', 'elisa-balsamo'];
+const followedAthletes = followedAthleteIds
+  .map(id => getAthleteById(id))
+  .filter(Boolean) as typeof athletes;
 
 // Simulated recently viewed (last 3)
 const recentlyViewed = athletes.slice(0, 3);
