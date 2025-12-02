@@ -14,7 +14,9 @@ import {
   Trophy, 
   MessageCircle,
   ShoppingCart,
-  Check
+  Check,
+  Instagram,
+  Twitter
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
@@ -277,11 +279,11 @@ const AthletePage = () => {
                 <p className="text-foreground/90 text-lg sm:text-xl mb-4 max-w-2xl drop-shadow-md">
                   {athlete.tagline}
                 </p>
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-wrap items-center gap-4 mb-3">
                   <div className="flex items-center gap-2 text-foreground/80">
                     <Users className="h-5 w-5" />
                     <span className="text-sm font-medium">
-                      {athlete.followers.toLocaleString()} followers
+                      {athlete.followers.toLocaleString()} fans
                     </span>
                   </div>
                   <Button
@@ -293,6 +295,33 @@ const AthletePage = () => {
                     {isFollowing ? <Check className="h-4 w-4" /> : <UserPlus className="h-4 w-4" />}
                     {isFollowing ? "Following" : "Follow Athlete"}
                   </Button>
+                </div>
+                {/* Social Media Links */}
+                <div className="flex items-center gap-3">
+                  <a 
+                    href={`https://instagram.com/arthurcazauxoff`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 text-white hover:scale-110 transition-transform duration-200 shadow-md"
+                  >
+                    <Instagram className="h-4 w-4" />
+                  </a>
+                  <a 
+                    href={`https://twitter.com/${athlete.name.toLowerCase().replace(' ', '_')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-9 h-9 rounded-full bg-foreground text-background hover:scale-110 transition-transform duration-200 shadow-md"
+                  >
+                    <Twitter className="h-4 w-4" fill="currentColor" />
+                  </a>
+                  <a 
+                    href={`https://www.atptour.com/en/players/${athlete.name.toLowerCase().replace(' ', '-')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-9 h-9 rounded-full bg-blue-600 text-white hover:scale-110 transition-transform duration-200 shadow-md font-bold text-xs"
+                  >
+                    ATP
+                  </a>
                 </div>
               </div>
             </div>
