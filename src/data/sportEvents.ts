@@ -2,14 +2,14 @@ import { AthleteEvent } from "./athletes";
 
 // Tennis Events (ATP/WTA)
 export const tennisEvents: AthleteEvent[] = [
-  { id: "ao-2025", name: "Australian Open", date: "12", month: "Jan", year: "2025", location: "Melbourne, Australia", country: "Australia", countryFlag: "🇦🇺", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "First Grand Slam of the season on hard courts." },
-  { id: "iw-2025", name: "Indian Wells Masters", date: "6", month: "Mar", year: "2025", location: "Indian Wells, USA", country: "USA", countryFlag: "🇺🇸", category: "Masters 1000", categoryColor: "bg-orange-500", description: "The fifth Grand Slam - prestigious Masters 1000 event." },
-  { id: "miami-2025", name: "Miami Open", date: "19", month: "Mar", year: "2025", location: "Miami, USA", country: "USA", countryFlag: "🇺🇸", category: "Masters 1000", categoryColor: "bg-orange-500", description: "Masters 1000 event in sunny Florida." },
-  { id: "mc-2025", name: "Monte-Carlo Masters", date: "6", month: "Apr", year: "2025", location: "Monte-Carlo, Monaco", country: "Monaco", countryFlag: "🇲🇨", category: "Masters 1000", categoryColor: "bg-orange-500", description: "Clay court Masters on the French Riviera." },
-  { id: "rg-2025", name: "Roland-Garros", date: "25", month: "May", year: "2025", location: "Paris, France", country: "France", countryFlag: "🇫🇷", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The French Open - clay court Grand Slam." },
-  { id: "wim-2025", name: "Wimbledon", date: "30", month: "Jun", year: "2025", location: "London, UK", country: "UK", countryFlag: "🇬🇧", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The Championships - grass court Grand Slam." },
-  { id: "uso-2025", name: "US Open", date: "25", month: "Aug", year: "2025", location: "New York, USA", country: "USA", countryFlag: "🇺🇸", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Final Grand Slam of the season in New York." },
-  { id: "paris-2025", name: "Rolex Paris Masters", date: "27", month: "Oct", year: "2025", location: "Paris, France", country: "France", countryFlag: "🇫🇷", category: "Masters 1000", categoryColor: "bg-orange-500", description: "Indoor Masters 1000 in Paris." },
+  { id: "ao-2026", name: "Australian Open", date: "12", month: "Jan", year: "2026", location: "Melbourne, Australia", country: "Australia", countryFlag: "🇦🇺", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "First Grand Slam of the season on hard courts." },
+  { id: "iw-2026", name: "Indian Wells Masters", date: "6", month: "Mar", year: "2026", location: "Indian Wells, USA", country: "USA", countryFlag: "🇺🇸", category: "Masters 1000", categoryColor: "bg-orange-500", description: "The fifth Grand Slam - prestigious Masters 1000 event." },
+  { id: "miami-2026", name: "Miami Open", date: "19", month: "Mar", year: "2026", location: "Miami, USA", country: "USA", countryFlag: "🇺🇸", category: "Masters 1000", categoryColor: "bg-orange-500", description: "Masters 1000 event in sunny Florida." },
+  { id: "mc-2026", name: "Monte-Carlo Masters", date: "6", month: "Apr", year: "2026", location: "Monte-Carlo, Monaco", country: "Monaco", countryFlag: "🇲🇨", category: "Masters 1000", categoryColor: "bg-orange-500", description: "Clay court Masters on the French Riviera." },
+  { id: "rg-2026", name: "Roland-Garros", date: "25", month: "May", year: "2026", location: "Paris, France", country: "France", countryFlag: "🇫🇷", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The French Open - clay court Grand Slam." },
+  { id: "wim-2026", name: "Wimbledon", date: "29", month: "Jun", year: "2026", location: "London, UK", country: "UK", countryFlag: "🇬🇧", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The Championships - grass court Grand Slam." },
+  { id: "uso-2026", name: "US Open", date: "31", month: "Aug", year: "2026", location: "New York, USA", country: "USA", countryFlag: "🇺🇸", category: "Grand Slam", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Final Grand Slam of the season in New York." },
+  { id: "paris-2026", name: "Rolex Paris Masters", date: "26", month: "Oct", year: "2026", location: "Paris, France", country: "France", countryFlag: "🇫🇷", category: "Masters 1000", categoryColor: "bg-orange-500", description: "Indoor Masters 1000 in Paris." },
 ];
 
 // Football Events
@@ -76,23 +76,22 @@ export const cyclingEvents: AthleteEvent[] = [
   { id: "worlds-rr", name: "World Championships", date: "21", month: "Sep", year: "2025", location: "Rwanda", country: "Rwanda", countryFlag: "🇷🇼", category: "World Championship", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "UCI Road World Championships in Africa." },
 ];
 
-// Women's Cycling Events
+// Women's Cycling Events (UCI Women's World Tour)
 export const womenCyclingEvents: AthleteEvent[] = [
-  { id: "strade-w", name: "Strade Bianche Women", date: "8", month: "Mar", year: "2025", location: "Siena, Italy", country: "Italy", countryFlag: "🇮🇹", category: "WorldTour", categoryColor: "bg-orange-500", description: "Women's white roads classic in Tuscany." },
-  { id: "flanders-w", name: "Tour of Flanders Women", date: "6", month: "Apr", year: "2025", location: "Flanders, Belgium", country: "Belgium", countryFlag: "🇧🇪", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Women's Ronde van Vlaanderen." },
-  { id: "pr-w", name: "Paris-Roubaix Femmes", date: "12", month: "Apr", year: "2025", location: "Roubaix, France", country: "France", countryFlag: "🇫🇷", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Women's Hell of the North." },
-  { id: "giro-w", name: "Giro d'Italia Women", date: "6", month: "Jul", year: "2025", location: "Italy", country: "Italy", countryFlag: "🇮🇹", category: "Grand Tour", categoryColor: "bg-pink-500", description: "Women's Giro - Italy's premier stage race." },
-  { id: "tdf-w", name: "Tour de France Femmes", date: "26", month: "Jul", year: "2025", location: "France", country: "France", countryFlag: "🇫🇷", category: "Grand Tour", categoryColor: "bg-gradient-to-r from-yellow-400 to-yellow-600", description: "The women's Tour de France." },
-  { id: "worlds-w", name: "World Championships", date: "20", month: "Sep", year: "2025", location: "Rwanda", country: "Rwanda", countryFlag: "🇷🇼", category: "World Championship", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "UCI Women's Road World Championships." },
+  { id: "strade-w-2026", name: "Strade Bianche Women", date: "7", month: "Mar", year: "2026", location: "Siena, Italy", country: "Italy", countryFlag: "🇮🇹", category: "WorldTour", categoryColor: "bg-orange-500", description: "Women's white roads classic in Tuscany." },
+  { id: "flanders-w-2026", name: "Tour of Flanders Women", date: "5", month: "Apr", year: "2026", location: "Flanders, Belgium", country: "Belgium", countryFlag: "🇧🇪", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Women's Ronde van Vlaanderen." },
+  { id: "pr-w-2026", name: "Paris-Roubaix Femmes", date: "11", month: "Apr", year: "2026", location: "Roubaix, France", country: "France", countryFlag: "🇫🇷", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Women's Hell of the North." },
+  { id: "giro-w-2026", name: "Giro d'Italia Women", date: "5", month: "Jul", year: "2026", location: "Italy", country: "Italy", countryFlag: "🇮🇹", category: "Grand Tour", categoryColor: "bg-pink-500", description: "Women's Giro - Italy's premier stage race." },
+  { id: "tdf-w-2026", name: "Tour de France Femmes", date: "25", month: "Jul", year: "2026", location: "France", country: "France", countryFlag: "🇫🇷", category: "Grand Tour", categoryColor: "bg-gradient-to-r from-yellow-400 to-yellow-600", description: "The women's Tour de France." },
+  { id: "worlds-w-2026", name: "World Championships", date: "19", month: "Sep", year: "2026", location: "Montreal, Canada", country: "Canada", countryFlag: "🇨🇦", category: "World Championship", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "UCI Women's Road World Championships." },
 ];
 
-// Golf Events (PGA)
+// Golf Events (PGA Tour)
 export const golfEvents: AthleteEvent[] = [
-  { id: "masters", name: "The Masters", date: "10", month: "Apr", year: "2025", location: "Augusta, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-green-500 to-emerald-600", description: "First major of the year at Augusta National." },
-  { id: "pga-champ", name: "PGA Championship", date: "15", month: "May", year: "2025", location: "Quail Hollow, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Second major at Quail Hollow Club." },
-  { id: "us-open-g", name: "US Open", date: "12", month: "Jun", year: "2025", location: "Oakmont, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Third major at Oakmont Country Club." },
-  { id: "the-open", name: "The Open Championship", date: "17", month: "Jul", year: "2025", location: "Royal Portrush, UK", country: "UK", countryFlag: "🇬🇧", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The Open at Royal Portrush, Northern Ireland." },
-  { id: "ryder-cup", name: "Ryder Cup", date: "26", month: "Sep", year: "2025", location: "Bethpage, USA", country: "USA", countryFlag: "🇺🇸", category: "Ryder Cup", categoryColor: "bg-gradient-to-r from-blue-600 to-red-600", description: "USA vs Europe at Bethpage Black." },
+  { id: "masters-2026", name: "The Masters", date: "9", month: "Apr", year: "2026", location: "Augusta, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-green-500 to-emerald-600", description: "First major of the year at Augusta National." },
+  { id: "pga-champ-2026", name: "PGA Championship", date: "14", month: "May", year: "2026", location: "Aronimink GC, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Second major at Aronimink Golf Club." },
+  { id: "us-open-g-2026", name: "US Open", date: "18", month: "Jun", year: "2026", location: "Shinnecock Hills, USA", country: "USA", countryFlag: "🇺🇸", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Third major at Shinnecock Hills." },
+  { id: "the-open-2026", name: "The Open Championship", date: "16", month: "Jul", year: "2026", location: "Royal Birkdale, UK", country: "UK", countryFlag: "🇬🇧", category: "Major", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The Open at Royal Birkdale." },
 ];
 
 // LPGA Events
