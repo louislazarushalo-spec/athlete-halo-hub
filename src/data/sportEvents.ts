@@ -65,13 +65,25 @@ export const f1Events: AthleteEvent[] = [
   { id: "f1-abudhabi", name: "Abu Dhabi GP", date: "7", month: "Dec", year: "2025", location: "Abu Dhabi, UAE", country: "UAE", countryFlag: "🇦🇪", category: "Grand Prix", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Season finale under the lights at Yas Marina." },
 ];
 
-// Cycling Events
+// Cycling Events (Men)
 export const cyclingEvents: AthleteEvent[] = [
   { id: "msf", name: "Milan-San Remo", date: "22", month: "Mar", year: "2025", location: "Milan-San Remo, Italy", country: "Italy", countryFlag: "🇮🇹", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "La Primavera - first monument of the season." },
-  { id: "tdf", name: "Tour de France", date: "5", month: "Jul", year: "2025", location: "France", country: "France", countryFlag: "🇫🇷", category: "Grand Tour", categoryColor: "bg-gradient-to-r from-yellow-400 to-yellow-600", description: "The world's most famous cycling race." },
   { id: "flanders", name: "Tour of Flanders", date: "6", month: "Apr", year: "2025", location: "Flanders, Belgium", country: "Belgium", countryFlag: "🇧🇪", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "De Ronde - cobbled classic in Flanders." },
   { id: "pr", name: "Paris-Roubaix", date: "13", month: "Apr", year: "2025", location: "Roubaix, France", country: "France", countryFlag: "🇫🇷", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Hell of the North - the queen of the classics." },
   { id: "giro", name: "Giro d'Italia", date: "9", month: "May", year: "2025", location: "Italy", country: "Italy", countryFlag: "🇮🇹", category: "Grand Tour", categoryColor: "bg-pink-500", description: "Three weeks racing through Italy." },
+  { id: "tdf", name: "Tour de France", date: "5", month: "Jul", year: "2025", location: "France", country: "France", countryFlag: "🇫🇷", category: "Grand Tour", categoryColor: "bg-gradient-to-r from-yellow-400 to-yellow-600", description: "The world's most famous cycling race." },
+  { id: "vuelta", name: "Vuelta a España", date: "23", month: "Aug", year: "2025", location: "Spain", country: "Spain", countryFlag: "🇪🇸", category: "Grand Tour", categoryColor: "bg-red-500", description: "The final Grand Tour of the season." },
+  { id: "worlds-rr", name: "World Championships", date: "21", month: "Sep", year: "2025", location: "Rwanda", country: "Rwanda", countryFlag: "🇷🇼", category: "World Championship", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "UCI Road World Championships in Africa." },
+];
+
+// Women's Cycling Events
+export const womenCyclingEvents: AthleteEvent[] = [
+  { id: "strade-w", name: "Strade Bianche Women", date: "8", month: "Mar", year: "2025", location: "Siena, Italy", country: "Italy", countryFlag: "🇮🇹", category: "WorldTour", categoryColor: "bg-orange-500", description: "Women's white roads classic in Tuscany." },
+  { id: "flanders-w", name: "Tour of Flanders Women", date: "6", month: "Apr", year: "2025", location: "Flanders, Belgium", country: "Belgium", countryFlag: "🇧🇪", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Women's Ronde van Vlaanderen." },
+  { id: "pr-w", name: "Paris-Roubaix Femmes", date: "12", month: "Apr", year: "2025", location: "Roubaix, France", country: "France", countryFlag: "🇫🇷", category: "Monument", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "Women's Hell of the North." },
+  { id: "giro-w", name: "Giro d'Italia Women", date: "6", month: "Jul", year: "2025", location: "Italy", country: "Italy", countryFlag: "🇮🇹", category: "Grand Tour", categoryColor: "bg-pink-500", description: "Women's Giro - Italy's premier stage race." },
+  { id: "tdf-w", name: "Tour de France Femmes", date: "26", month: "Jul", year: "2025", location: "France", country: "France", countryFlag: "🇫🇷", category: "Grand Tour", categoryColor: "bg-gradient-to-r from-yellow-400 to-yellow-600", description: "The women's Tour de France." },
+  { id: "worlds-w", name: "World Championships", date: "20", month: "Sep", year: "2025", location: "Rwanda", country: "Rwanda", countryFlag: "🇷🇼", category: "World Championship", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "UCI Women's Road World Championships." },
 ];
 
 // Golf Events (PGA)
@@ -168,7 +180,7 @@ export const getEventsBySport = (sport: string, gender?: string): AthleteEvent[]
       events = f1Events;
       break;
     case "cycling":
-      events = cyclingEvents;
+      events = gender === "female" ? womenCyclingEvents : cyclingEvents;
       break;
     case "golf":
       events = gender === "female" ? lpgaEvents : golfEvents;

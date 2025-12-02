@@ -62,6 +62,11 @@ import tommyFleetwoodImg from "@/assets/tommy-fleetwood.png";
 import nellyKordaImg from "@/assets/nelly-korda.png";
 import shaneLowryImg from "@/assets/shane-lowry.png";
 import lexiThompsonImg from "@/assets/lexi-thompson.png";
+import tadejPogacarImg from "@/assets/tadej-pogacar.png";
+import woutVanAertImg from "@/assets/wout-van-aert.png";
+import remcoEvenepoelImg from "@/assets/remco-evenepoel.png";
+import marianneVosImg from "@/assets/marianne-vos.png";
+import elisaBalsamoImg from "@/assets/elisa-balsamo.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -130,7 +135,8 @@ export const femaleAthleteIds = [
   'alisha-lehmann', 'alex-morgan', 'alexia-putellas', 
   'deyna-castellanos', 'sydney-leroux', 'tatiana-flores',
   'crissa-jackson', 'angel-reese',
-  'lily-he', 'nelly-korda', 'lexi-thompson'
+  'lily-he', 'nelly-korda', 'lexi-thompson',
+  'marianne-vos', 'elisa-balsamo'
 ];
 
 export interface Post {
@@ -6273,6 +6279,511 @@ export const athletes: Athlete[] = [
         image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
         timestamp: "3 days ago",
         stats: { readTime: "7 min read" }
+      }
+    ]
+  },
+  {
+    id: "tadej-pogacar",
+    name: "Tadej Pogačar",
+    sport: "Cycling",
+    gender: "male",
+    bio: "World Champion. Tour de France winner. Riding for greatness.",
+    tagline: "The new king of cycling",
+    avatar: tadejPogacarImg,
+    banner: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=1600&h=600&fit=crop",
+    followers: 3800000,
+    training: [
+      {
+        id: "tp-t1",
+        title: "High-Altitude Training Camp",
+        description: "My preparation for Grand Tours at altitude in the mountains.",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-15"
+      },
+      {
+        id: "tp-t2",
+        title: "Power Intervals Session",
+        description: "The VO2 max workouts that build race-winning form.",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-08"
+      }
+    ],
+    life: [
+      {
+        id: "tp-l1",
+        title: "Life in Monaco",
+        description: "A glimpse into my daily life between races.",
+        image: "https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-10"
+      }
+    ],
+    gear: [
+      {
+        id: "tp-g1",
+        title: "My Race Setup",
+        description: "The Colnago V4Rs and components I ride in the peloton.",
+        image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-05"
+      }
+    ],
+    products: [
+      {
+        id: "tp-p1",
+        name: "Grand Tour Training Plan",
+        price: 89,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=600&fit=crop",
+        description: "12-week periodized training for stage racers.",
+        category: "athlete",
+        athleteId: "tadej-pogacar"
+      },
+      {
+        id: "tp-p2",
+        name: "UAE Team Emirates Jersey",
+        price: 129,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+        description: "Official team replica jersey.",
+        category: "partner",
+        athleteId: "tadej-pogacar"
+      }
+    ],
+    cause: {
+      id: "tp-c1",
+      title: "Cycling for All Slovenia",
+      story: "Bringing cycling to young people in Slovenia and making the sport accessible.",
+      target: 100000,
+      raised: 67000,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "tp-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Another day, another climb. The mountains never lie. 🏔️🚴",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 456000, comments: 8900 }
+      },
+      {
+        id: "tp-mf2",
+        type: "article",
+        platform: "lequipe",
+        title: "Pogačar: \"I want to win everything\"",
+        content: "The Slovenian phenomenon discusses his ambitions for the coming season...",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "6 min read" }
+      }
+    ]
+  },
+  {
+    id: "wout-van-aert",
+    name: "Wout van Aert",
+    sport: "Cycling",
+    gender: "male",
+    bio: "Classics specialist. Cyclocross champion. All-rounder extraordinaire.",
+    tagline: "The complete rider",
+    avatar: woutVanAertImg,
+    banner: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=1600&h=600&fit=crop",
+    followers: 2100000,
+    training: [
+      {
+        id: "wva-t1",
+        title: "Cobblestone Power Training",
+        description: "Building the explosive power needed for the spring classics.",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-12"
+      },
+      {
+        id: "wva-t2",
+        title: "Cyclocross Skills Session",
+        description: "Technical drills that translate to road racing success.",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-05"
+      }
+    ],
+    life: [
+      {
+        id: "wva-l1",
+        title: "Family Life in Belgium",
+        description: "Balancing pro cycling with being a dad.",
+        image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      }
+    ],
+    gear: [
+      {
+        id: "wva-g1",
+        title: "My Cervélo Setup",
+        description: "The bikes and equipment I trust for monuments and Grand Tours.",
+        image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-01"
+      }
+    ],
+    products: [
+      {
+        id: "wva-p1",
+        name: "Classics Training Program",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=600&fit=crop",
+        description: "8-week program for one-day race specialists.",
+        category: "athlete",
+        athleteId: "wout-van-aert"
+      },
+      {
+        id: "wva-p2",
+        name: "Visma-Lease a Bike Jersey",
+        price: 119,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+        description: "Official team replica jersey.",
+        category: "partner",
+        athleteId: "wout-van-aert"
+      }
+    ],
+    cause: {
+      id: "wva-c1",
+      title: "Youth Cycling Belgium",
+      story: "Supporting grassroots cycling development for young riders in Belgium.",
+      target: 75000,
+      raised: 42000,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "wva-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Cobblestones calling. Spring classics season is almost here! 🇧🇪💛",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=800&fit=crop",
+        timestamp: "5 hours ago",
+        stats: { likes: 234000, comments: 4500 }
+      },
+      {
+        id: "wva-mf2",
+        type: "article",
+        platform: "bbc",
+        title: "Van Aert: The most complete cyclist in the world",
+        content: "How the Belgian star dominates across disciplines...",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "8 min read" }
+      }
+    ]
+  },
+  {
+    id: "remco-evenepoel",
+    name: "Remco Evenepoel",
+    sport: "Cycling",
+    gender: "male",
+    bio: "Olympic champion. World champion. The future of Belgian cycling.",
+    tagline: "Belgium's golden boy",
+    avatar: remcoEvenepoelImg,
+    banner: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=1600&h=600&fit=crop",
+    followers: 1800000,
+    training: [
+      {
+        id: "re-t1",
+        title: "Time Trial Masterclass",
+        description: "The specific training that made me World TT Champion.",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-14"
+      },
+      {
+        id: "re-t2",
+        title: "Recovery Protocol",
+        description: "How I bounce back between Grand Tour stages.",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-07"
+      }
+    ],
+    life: [
+      {
+        id: "re-l1",
+        title: "Olympic Gold Memories",
+        description: "Reliving the greatest moment of my career in Paris.",
+        image: "https://images.unsplash.com/photo-1569517282132-25d22f4573e6?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-10"
+      }
+    ],
+    gear: [
+      {
+        id: "re-g1",
+        title: "Specialized Setup",
+        description: "My Tarmac SL8 and Shiv TT bikes.",
+        image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-03"
+      }
+    ],
+    products: [
+      {
+        id: "re-p1",
+        name: "TT Training Program",
+        price: 99,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=600&fit=crop",
+        description: "Specialized time trial training for all levels.",
+        category: "athlete",
+        athleteId: "remco-evenepoel"
+      },
+      {
+        id: "re-p2",
+        name: "Soudal Quick-Step Jersey",
+        price: 119,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+        description: "Official team replica jersey.",
+        category: "partner",
+        athleteId: "remco-evenepoel"
+      }
+    ],
+    cause: {
+      id: "re-c1",
+      title: "Road Safety Foundation",
+      story: "Promoting cycling safety after my own accident and recovery.",
+      target: 80000,
+      raised: 51000,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "re-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Gold never gets old. Thank you Paris! 🥇🇧🇪",
+        image: "https://images.unsplash.com/photo-1569517282132-25d22f4573e6?w=800&h=800&fit=crop",
+        timestamp: "4 hours ago",
+        stats: { likes: 345000, comments: 6700 }
+      },
+      {
+        id: "re-mf2",
+        type: "article",
+        platform: "lequipe",
+        title: "Evenepoel: \"The Tour de France is my next target\"",
+        content: "The Olympic champion sets his sights on cycling's biggest prize...",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=400&fit=crop",
+        timestamp: "1 day ago",
+        stats: { readTime: "5 min read" }
+      }
+    ]
+  },
+  {
+    id: "marianne-vos",
+    name: "Marianne Vos",
+    sport: "Cycling",
+    gender: "female",
+    bio: "The GOAT of women's cycling. Olympic gold. World titles. Legend.",
+    tagline: "The greatest of all time",
+    avatar: marianneVosImg,
+    banner: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=1600&h=600&fit=crop",
+    followers: 980000,
+    training: [
+      {
+        id: "mv-t1",
+        title: "Endurance Base Building",
+        description: "The foundation of my longevity in professional cycling.",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-13"
+      },
+      {
+        id: "mv-t2",
+        title: "Sprint Finish Training",
+        description: "How I've won so many bunch sprints over the years.",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-06"
+      }
+    ],
+    life: [
+      {
+        id: "mv-l1",
+        title: "20 Years at the Top",
+        description: "Reflecting on two decades of professional cycling.",
+        image: "https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-09"
+      }
+    ],
+    gear: [
+      {
+        id: "mv-g1",
+        title: "My Cervélo Collection",
+        description: "Road, cyclocross, and track bikes from my career.",
+        image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-02"
+      }
+    ],
+    products: [
+      {
+        id: "mv-p1",
+        name: "Complete Cyclist Program",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=600&fit=crop",
+        description: "Training for all cycling disciplines.",
+        category: "athlete",
+        athleteId: "marianne-vos"
+      },
+      {
+        id: "mv-p2",
+        name: "Visma-Lease a Bike Women Jersey",
+        price: 109,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+        description: "Official women's team replica jersey.",
+        category: "partner",
+        athleteId: "marianne-vos"
+      }
+    ],
+    cause: {
+      id: "mv-c1",
+      title: "Women in Cycling",
+      story: "Advocating for equality and opportunities in women's professional cycling.",
+      target: 60000,
+      raised: 38000,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "mv-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Still loving every pedal stroke after all these years 🚴‍♀️🧡",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=800&fit=crop",
+        timestamp: "6 hours ago",
+        stats: { likes: 89000, comments: 2100 }
+      },
+      {
+        id: "mv-mf2",
+        type: "article",
+        platform: "bbc",
+        title: "Marianne Vos: A living legend of cycling",
+        content: "How the Dutch star has dominated for two decades...",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=400&fit=crop",
+        timestamp: "3 days ago",
+        stats: { readTime: "10 min read" }
+      }
+    ]
+  },
+  {
+    id: "elisa-balsamo",
+    name: "Elisa Balsamo",
+    sport: "Cycling",
+    gender: "female",
+    bio: "World Champion. Italian elegance meets racing grit.",
+    tagline: "Italy's sprint queen",
+    avatar: elisaBalsamoImg,
+    banner: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=1600&h=600&fit=crop",
+    followers: 420000,
+    training: [
+      {
+        id: "eb-t1",
+        title: "Sprint Power Development",
+        description: "Building the explosive power for bunch sprint victories.",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-11"
+      },
+      {
+        id: "eb-t2",
+        title: "Italian Training Camps",
+        description: "Preparing in the beautiful Italian mountains.",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-02-04"
+      }
+    ],
+    life: [
+      {
+        id: "eb-l1",
+        title: "World Champion Experience",
+        description: "Wearing the rainbow jersey - a dream come true.",
+        image: "https://images.unsplash.com/photo-1569517282132-25d22f4573e6?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-02-08"
+      }
+    ],
+    gear: [
+      {
+        id: "eb-g1",
+        title: "Trek-Lidl Setup",
+        description: "My racing bikes and equipment for the season.",
+        image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-02-01"
+      }
+    ],
+    products: [
+      {
+        id: "eb-p1",
+        name: "Sprint Training Guide",
+        price: 69,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=600&fit=crop",
+        description: "Develop your sprint finish like a world champion.",
+        category: "athlete",
+        athleteId: "elisa-balsamo"
+      },
+      {
+        id: "eb-p2",
+        name: "Trek-Lidl Women Jersey",
+        price: 109,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=600&h=600&fit=crop",
+        description: "Official women's team replica jersey.",
+        category: "partner",
+        athleteId: "elisa-balsamo"
+      }
+    ],
+    cause: {
+      id: "eb-c1",
+      title: "Girls on Bikes Italy",
+      story: "Inspiring young Italian girls to take up cycling.",
+      target: 40000,
+      raised: 18000,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "eb-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Ready for another season in the rainbow stripes! 🌈🇮🇹",
+        image: "https://images.unsplash.com/photo-1569517282132-25d22f4573e6?w=800&h=800&fit=crop",
+        timestamp: "2 hours ago",
+        stats: { likes: 67000, comments: 1400 }
+      },
+      {
+        id: "eb-mf2",
+        type: "article",
+        platform: "lequipe",
+        title: "Balsamo: The sprinter with style",
+        content: "How the Italian champion balances elegance and power...",
+        image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "5 min read" }
       }
     ]
   }
