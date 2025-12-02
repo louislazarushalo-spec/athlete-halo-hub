@@ -67,6 +67,9 @@ import woutVanAertImg from "@/assets/wout-van-aert.png";
 import remcoEvenepoelImg from "@/assets/remco-evenepoel.png";
 import marianneVosImg from "@/assets/marianne-vos.png";
 import elisaBalsamoImg from "@/assets/elisa-balsamo.png";
+import arthurCazauxParisImg from "@/assets/arthur-cazaux-paris.png";
+import lacosteVarsityJacketImg from "@/assets/lacoste-varsity-jacket.png";
+import lacosteWhiteTshirtImg from "@/assets/lacoste-white-tshirt.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -2366,6 +2369,38 @@ export const athletes: Athlete[] = [
           'ac-p4-2': { x: 35, y: 35 }, // Wristband
           'ac-p7-2': { x: 25, y: 48 }, // Strings (on racquet)
           'ac-p8-2': { x: 28, y: 42 }  // Racquet & Bag
+        }
+      },
+      {
+        id: "ac-gc-paris-lifestyle",
+        name: "Paris dump",
+        description: "Great couple of weeks in Paris with the bros",
+        actionImage: arthurCazauxParisImg,
+        products: [
+          {
+            id: "ac-p12",
+            name: "Lacoste Varsity Jacket",
+            price: 295,
+            currency: "€",
+            image: lacosteVarsityJacketImg,
+            description: "Green varsity fleece jacket with Lacoste badge and striped ribbed trim.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          },
+          {
+            id: "ac-p13",
+            name: "Lacoste Classic White T-Shirt",
+            price: 65,
+            currency: "€",
+            image: lacosteWhiteTshirtImg,
+            description: "Premium cotton white t-shirt with embroidered crocodile logo.",
+            category: "partner",
+            athleteId: "arthur-cazaux"
+          }
+        ],
+        hotspots: {
+          'ac-p12': { x: 45, y: 40 },  // Jacket
+          'ac-p13': { x: 50, y: 55 }   // T-Shirt
         }
       }
     ],
