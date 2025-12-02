@@ -12,6 +12,7 @@ import AthletesPage from "./pages/AthletesPage";
 import AthletePage from "./pages/AthletePage";
 import FeedPage from "./pages/FeedPage";
 import FanHomePage from "./pages/FanHomePage";
+import ExplorePage from "./pages/ExplorePage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import CausePage from "./pages/CausePage";
@@ -37,6 +38,11 @@ const App = () => (
                 <Route path="/home" element={
                   <ProtectedRoute>
                     <FanHomePage />
+                  </ProtectedRoute>
+                } />
+                <Route path="/explore" element={
+                  <ProtectedRoute>
+                    <ExplorePage />
                   </ProtectedRoute>
                 } />
                 <Route path="/athletes" element={<AthletesPage />} />
