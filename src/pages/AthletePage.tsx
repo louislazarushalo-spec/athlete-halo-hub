@@ -180,6 +180,7 @@ const AthletePage = () => {
   const athlete = getAthleteById(id || "");
   const [isFollowing, setIsFollowing] = useState(false);
   const [activeLifeTab, setActiveLifeTab] = useState<"feed" | "media" | "community">("feed");
+  const [selectedGearCollection, setSelectedGearCollection] = useState(0);
   const { addToCart } = useCart();
   const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
 
@@ -453,31 +454,50 @@ const AthletePage = () => {
             </TabsContent>
 
             <TabsContent value="gear" className="animate-fade-in">
-              <ShoppableGearSection
-                athleteName={athlete.name}
-                actionImage={athlete.gear[0]?.image || athlete.banner}
-                description={athlete.id === 'arthur-cazaux' ? "Arthur at the Rolex Paris Masters" : undefined}
-                products={athlete.products.map((p, idx) => {
-                  // Hotspot coordinates for Arthur Cazaux's gear
-                  const hotspots: Record<string, { x: number; y: number }> = {
-                    'ac-p1': { x: 50, y: 12 },  // Hat
-                    'ac-p2': { x: 50, y: 32 },  // Polo/Top
-                    'ac-p3': { x: 50, y: 52 },  // Shorts
-                    'ac-p4': { x: 35, y: 35 },  // Wristband
-                    'ac-p5': { x: 65, y: 38 },  // Arm Sleeve
-                    'ac-p6': { x: 50, y: 85 },  // Shoes
-                    'ac-p7': { x: 25, y: 48 },  // Strings (on racquet)
-                    'ac-p8': { x: 28, y: 42 }   // Racquet & Bag
-                  };
-                  return {
-                    ...p,
-                    hotspot: hotspots[p.id] || (Math.random() > 0.5 ? {
-                      x: 20 + Math.random() * 60,
-                      y: 20 + Math.random() * 60
-                    } : undefined)
-                  };
-                })}
-              />
+              {athlete.gearCollections && athlete.gearCollections.length > 0 ? (
+                <div className="space-y-6">
+                  {/* Collection Selector */}
+                  {athlete.gearCollections.length > 1 && (
+                    <div className="flex gap-3 pb-4 border-b border-border">
+                      {athlete.gearCollections.map((collection, index) => (
+                        <Button
+                          key={collection.id}
+                          variant={selectedGearCollection === index ? "default" : "outline"}
+                          onClick={() => setSelectedGearCollection(index)}
+                          className="flex-1"
+                        >
+                          {collection.name}
+                        </Button>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Selected Collection */}
+                  <ShoppableGearSection
+                    athleteName={athlete.name}
+                    actionImage={athlete.gearCollections[selectedGearCollection].actionImage}
+                    description={athlete.gearCollections[selectedGearCollection].description}
+                    products={athlete.gearCollections[selectedGearCollection].products.map(p => ({
+                      ...p,
+                      hotspot: athlete.gearCollections![selectedGearCollection].hotspots?.[p.id]
+                    }))}
+                  />
+                </div>
+              ) : (
+                <ShoppableGearSection
+                  athleteName={athlete.name}
+                  actionImage={athlete.gear[0]?.image || athlete.banner}
+                  products={athlete.products.map((p, idx) => {
+                    return {
+                      ...p,
+                      hotspot: Math.random() > 0.5 ? {
+                        x: 20 + Math.random() * 60,
+                        y: 20 + Math.random() * 60
+                      } : undefined
+                    };
+                  })}
+                />
+              )}
             </TabsContent>
 
             {/* MY TRAINING TAB */}
