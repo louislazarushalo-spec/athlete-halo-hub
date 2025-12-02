@@ -25,8 +25,10 @@ import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { Athlete } from "@/data/athletes";
 import { ShoppableGearSection } from "@/components/fan/sections/ShoppableGearSection";
+import { RegistrationGate } from "@/components/auth/RegistrationGate";
 
 // Helper functions for formatting
 const formatNumber = (num: number): string => {
@@ -212,6 +214,7 @@ const AthletePage = () => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [activeLifeTab, setActiveLifeTab] = useState<"events" | "news" | "music" | "community">("events");
   const { addToCart } = useCart();
+  const { isAuthenticated } = useAuth();
   const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
 
   if (!athlete) {
@@ -248,13 +251,18 @@ const AthletePage = () => {
 
   return (
     <Layout>
-      {/* Hero Banner - Full Width */}
-      <section className="relative h-[50vh] min-h-[400px] max-h-[600px] overflow-hidden">
-        <img
-          src={athlete.banner}
-          alt={`${athlete.name} banner`}
-          className="w-full h-full object-cover"
-        />
+      {/* Registration Gate Overlay for unauthenticated users */}
+      {!isAuthenticated && <RegistrationGate athleteName={athlete.name} />}
+      
+      {/* Main content - blurred when not authenticated */}
+      <div className={!isAuthenticated ? "blur-lg pointer-events-none select-none" : ""}>
+        {/* Hero Banner - Full Width */}
+        <section className="relative h-[50vh] min-h-[400px] max-h-[600px] overflow-hidden">
+          <img
+            src={athlete.banner}
+            alt={`${athlete.name} banner`}
+            className="w-full h-full object-cover"
+          />
         {/* Grey transparent gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-muted/40" />
         
@@ -783,6 +791,7 @@ const AthletePage = () => {
           </Tabs>
         </div>
       </section>
+      </div>
     </Layout>
   );
 };
