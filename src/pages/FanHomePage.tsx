@@ -24,11 +24,6 @@ const FanHomePage = () => {
   const { user } = useAuth();
   const { totalItems } = useCart();
 
-  // Get initials from user name
-  const getInitials = (name: string) => {
-    return name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2);
-  };
-
   return (
     <div className="min-h-screen bg-background">
       {/* Left Sidebar */}
@@ -55,10 +50,10 @@ const FanHomePage = () => {
               <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/30">
                 <Avatar className="h-8 w-8">
                   <AvatarFallback className="bg-gradient-to-br from-primary/60 to-primary/30 text-primary-foreground text-sm">
-                    {user ? getInitials(user.name) : "?"}
+                    {user ? user.email?.charAt(0).toUpperCase() : "?"}
                   </AvatarFallback>
                 </Avatar>
-                <span className="text-sm font-medium">{user?.name}</span>
+                <span className="text-sm font-medium">{user?.email?.split('@')[0]}</span>
               </div>
             </div>
           </div>

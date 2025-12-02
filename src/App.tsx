@@ -40,8 +40,16 @@ const App = () => (
                   </ProtectedRoute>
                 } />
                 <Route path="/athletes" element={<AthletesPage />} />
-                <Route path="/athlete/:id" element={<AthletePage />} />
-                <Route path="/athlete/:id/cause" element={<CausePage />} />
+                <Route path="/athlete/:id" element={
+                  <ProtectedRoute>
+                    <AthletePage />
+                  </ProtectedRoute>
+                } />
+                <Route path="/athlete/:id/cause" element={
+                  <ProtectedRoute>
+                    <CausePage />
+                  </ProtectedRoute>
+                } />
                 <Route path="/feed" element={<FeedPage />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />

@@ -19,7 +19,17 @@ const LoginPage = () => {
     setLoading(true);
     
     try {
-      await login(email, password);
+      const { error } = await login(email, password);
+      
+      if (error) {
+        toast({
+          title: "Login failed",
+          description: error.message || "Invalid email or password.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
       toast({
         title: "Welcome back!",
         description: "You've successfully logged in.",
@@ -28,7 +38,7 @@ const LoginPage = () => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to log in. Please try again.",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
     } finally {
