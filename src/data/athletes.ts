@@ -13,6 +13,9 @@ import arthurCazauxImg from "@/assets/arthur-cazaux.png";
 import arthurCazauxBannerImg from "@/assets/arthur-cazaux-banner.png";
 import arthurCazauxGearImg from "@/assets/arthur-cazaux-gear.png";
 import arthurCazauxCincinnatiImg from "@/assets/arthur-cazaux-cincinnati.png";
+import arthurCazauxAction1Img from "@/assets/arthur-cazaux-action1.png";
+import arthurCazauxAction2Img from "@/assets/arthur-cazaux-action2.png";
+import arthurCazauxAction3Img from "@/assets/arthur-cazaux-action3.png";
 import lacosteCapImg from "@/assets/lacoste-cap.png";
 import lacostePoloImg from "@/assets/lacoste-polo.png";
 import lacosteShortsImg from "@/assets/lacoste-shorts.png";
@@ -2030,7 +2033,7 @@ export const athletes: Athlete[] = [
         type: "social",
         platform: "instagram",
         content: "Hard work pays off. New career high ranking! Thank you for all the support 🙏🎾",
-        image: arthurCazauxGearImg,
+        image: arthurCazauxAction1Img,
         timestamp: "2 hours ago",
         stats: { likes: 18500, comments: 542 }
       },
@@ -2068,7 +2071,7 @@ export const athletes: Athlete[] = [
         type: "social",
         platform: "instagram",
         content: "Morning grind 💪 Putting in the work with my team. Every session counts when you're chasing your dreams 🎾☀️",
-        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&h=800&fit=crop",
+        image: arthurCazauxAction3Img,
         timestamp: "1 day ago",
         stats: { likes: 15200, comments: 387 }
       },
@@ -2116,7 +2119,7 @@ export const athletes: Athlete[] = [
         type: "social",
         platform: "instagram",
         content: "Paris, you have my heart ❤️ Every time I play at Bercy it feels special. This city made me who I am 🗼🎾",
-        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=800&fit=crop",
+        image: arthurCazauxAction2Img,
         timestamp: "6 days ago",
         stats: { likes: 21300, comments: 628 }
       },
