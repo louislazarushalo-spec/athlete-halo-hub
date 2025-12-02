@@ -24,6 +24,7 @@ interface ShoppableGearSectionProps {
   athleteName: string;
   actionImage: string;
   products: ShoppableProduct[];
+  title?: string;
   description?: string;
 }
 
@@ -31,6 +32,7 @@ export const ShoppableGearSection = ({
   athleteName, 
   actionImage, 
   products,
+  title,
   description
 }: ShoppableGearSectionProps) => {
   const { addToCart } = useCart();
@@ -52,10 +54,14 @@ export const ShoppableGearSection = ({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="font-display text-2xl font-semibold mb-1">Shop {athleteName}'s gear</h2>
-        <p className="text-muted-foreground">
-          {description || "Click on the items to add them to your cart"}
-        </p>
+        <h2 className="font-display text-2xl font-semibold mb-1">
+          {title || `Shop ${athleteName}'s gear`}
+        </h2>
+        {description && (
+          <p className="text-muted-foreground text-base">
+            {description}
+          </p>
+        )}
       </div>
 
       <div className="grid lg:grid-cols-2 gap-8">
