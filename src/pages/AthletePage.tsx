@@ -411,7 +411,7 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <div className="flex items-start justify-between gap-4">
+                          <div className="flex items-start justify-between gap-4 mb-4">
                             <div className="flex-1">
                               <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                                 Australian Open 2025
@@ -428,6 +428,23 @@ const AthletePage = () => {
                               Get Tickets
                             </Button>
                           </div>
+                          <div className="pt-4 border-t border-border/50">
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
+                            <div className="flex flex-wrap gap-2">
+                              <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
+                                Eurosport
+                              </Badge>
+                              <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30">
+                                ESPN+
+                              </Badge>
+                              <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
+                                Tennis Channel
+                              </Badge>
+                              <Badge variant="secondary" className="bg-green-600/20 text-green-400 border-green-500/30">
+                                9Now (AUS)
+                              </Badge>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </article>
@@ -441,7 +458,7 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <div className="flex items-start justify-between gap-4">
+                          <div className="flex items-start justify-between gap-4 mb-4">
                             <div className="flex-1">
                               <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                                 Open 13 Provence
@@ -458,6 +475,20 @@ const AthletePage = () => {
                               Get Tickets
                             </Button>
                           </div>
+                          <div className="pt-4 border-t border-border/50">
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
+                            <div className="flex flex-wrap gap-2">
+                              <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
+                                beIN SPORTS
+                              </Badge>
+                              <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
+                                Tennis TV
+                              </Badge>
+                              <Badge variant="secondary" className="bg-orange-600/20 text-orange-400 border-orange-500/30">
+                                France TV Sport
+                              </Badge>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </article>
@@ -471,7 +502,7 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <div className="flex items-start justify-between gap-4">
+                          <div className="flex items-start justify-between gap-4 mb-4">
                             <div className="flex-1">
                               <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                                 Roland-Garros
@@ -487,6 +518,23 @@ const AthletePage = () => {
                             <Button variant="outline" size="sm" className="shrink-0">
                               Get Tickets
                             </Button>
+                          </div>
+                          <div className="pt-4 border-t border-border/50">
+                            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Where to Watch</p>
+                            <div className="flex flex-wrap gap-2">
+                              <Badge variant="secondary" className="bg-blue-600/20 text-blue-400 border-blue-500/30">
+                                France Télévisions
+                              </Badge>
+                              <Badge variant="secondary" className="bg-red-600/20 text-red-400 border-red-500/30">
+                                Eurosport
+                              </Badge>
+                              <Badge variant="secondary" className="bg-purple-600/20 text-purple-400 border-purple-500/30">
+                                Tennis Channel
+                              </Badge>
+                              <Badge variant="secondary" className="bg-yellow-600/20 text-yellow-400 border-yellow-500/30">
+                                Amazon Prime
+                              </Badge>
+                            </div>
                           </div>
                         </div>
                       </div>
