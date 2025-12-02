@@ -12,8 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  { label: "Home", icon: Home, path: "/home", active: true },
-  { label: "Explore", icon: Compass, path: "/athletes" },
+  { label: "Explore", icon: Compass, path: "/home", active: true },
   { label: "Chats", icon: MessageCircle, path: "/chats" },
   { label: "Notifications", icon: Bell, path: "/notifications" },
   { label: "Settings", icon: Settings, path: "/settings" },

@@ -1,26 +1,56 @@
 import { Link } from "react-router-dom";
 import { athletes } from "@/data/athletes";
-import { getEventsBySport } from "@/data/sportEvents";
+import { tennisEvents, golfEvents, lpgaEvents, womenCyclingEvents } from "@/data/sportEvents";
 import { Calendar, ChevronRight } from "lucide-react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 // Hardcoded followed athletes for demo
 const followedAthleteIds = ["arthur-cazaux", "tommy-fleetwood", "elisa-balsamo"];
 
+// Month name to number mapping
+const monthToNumber: Record<string, number> = {
+  "Jan": 0, "Feb": 1, "Mar": 2, "Apr": 3, "May": 4, "Jun": 5,
+  "Jul": 6, "Aug": 7, "Sep": 8, "Oct": 9, "Nov": 10, "Dec": 11
+};
+
 export const UpcomingEventsSection = () => {
   const followedAthletes = athletes.filter(a => followedAthleteIds.includes(a.id));
   
-  // Get events for followed athletes
+  // Get events based on followed athletes' sports
   const athleteEvents = followedAthletes.flatMap(athlete => {
-    const events = getEventsBySport(athlete.sport, athlete.gender);
-    return events.slice(0, 2).map(event => ({
+    let events: typeof tennisEvents = [];
+    
+    // Arthur Cazaux = Tennis (ATP)
+    if (athlete.sport === "Tennis" && athlete.gender === "male") {
+      events = tennisEvents;
+    }
+    // Tommy Fleetwood = Golf (PGA)
+    else if (athlete.sport === "Golf" && athlete.gender === "male") {
+      events = golfEvents;
+    }
+    // Elisa Balsamo = Cycling (Women's)
+    else if (athlete.sport === "Cycling" && athlete.gender === "female") {
+      events = womenCyclingEvents;
+    }
+    
+    return events.map(event => ({
       ...event,
       athlete,
+      // Create sortable date
+      sortDate: new Date(
+        parseInt(event.year),
+        monthToNumber[event.month] || 0,
+        parseInt(event.date)
+      ),
     }));
   });
 
-  // Sort by date and take first 6
-  const upcomingEvents = athleteEvents.slice(0, 6);
+  // Sort chronologically and filter future events
+  const now = new Date();
+  const upcomingEvents = athleteEvents
+    .filter(event => event.sortDate >= now)
+    .sort((a, b) => a.sortDate.getTime() - b.sortDate.getTime())
+    .slice(0, 8);
 
   if (upcomingEvents.length === 0) return null;
 
