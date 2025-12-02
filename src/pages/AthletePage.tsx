@@ -411,12 +411,20 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                            Adelaide International
-                          </h4>
-                          <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                            <MapPin className="h-4 w-4" />
-                            <span className="text-sm">Adelaide, Australia</span>
+                          <div className="flex items-center gap-3 mb-2">
+                            <span className="text-2xl">🇦🇺</span>
+                            <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                              Adelaide International
+                            </h4>
+                          </div>
+                          <div className="flex items-center gap-3 mb-3">
+                            <Badge variant="secondary" className="bg-emerald-600/20 text-emerald-400 border-emerald-500/30 text-xs font-semibold">
+                              ATP 250
+                            </Badge>
+                            <div className="flex items-center gap-1 text-muted-foreground">
+                              <MapPin className="h-3 w-3" />
+                              <span className="text-sm">Adelaide, Australia</span>
+                            </div>
                           </div>
                           <p className="text-sm text-muted-foreground mb-4">
                             ATP 250 tournament kicking off the Australian hard court season.
@@ -442,12 +450,20 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                            Australian Open
-                          </h4>
-                          <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                            <MapPin className="h-4 w-4" />
-                            <span className="text-sm">Melbourne, Australia</span>
+                          <div className="flex items-center gap-3 mb-2">
+                            <span className="text-2xl">🇦🇺</span>
+                            <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                              Australian Open
+                            </h4>
+                          </div>
+                          <div className="flex items-center gap-3 mb-3">
+                            <Badge className="bg-gradient-to-r from-yellow-500 to-amber-500 text-white border-0 text-xs font-bold shadow-md">
+                              🏆 Grand Slam
+                            </Badge>
+                            <div className="flex items-center gap-1 text-muted-foreground">
+                              <MapPin className="h-3 w-3" />
+                              <span className="text-sm">Melbourne, Australia</span>
+                            </div>
                           </div>
                           <p className="text-sm text-muted-foreground mb-4">
                             First Grand Slam of the season. Arthur will be competing in the main draw, ready to make his mark on the Australian hard courts.
@@ -473,12 +489,20 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                            Open Sud de France
-                          </h4>
-                          <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                            <MapPin className="h-4 w-4" />
-                            <span className="text-sm">Montpellier, France</span>
+                          <div className="flex items-center gap-3 mb-2">
+                            <span className="text-2xl">🇫🇷</span>
+                            <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                              Open Sud de France
+                            </h4>
+                          </div>
+                          <div className="flex items-center gap-3 mb-3">
+                            <Badge variant="secondary" className="bg-emerald-600/20 text-emerald-400 border-emerald-500/30 text-xs font-semibold">
+                              ATP 250
+                            </Badge>
+                            <div className="flex items-center gap-1 text-muted-foreground">
+                              <MapPin className="h-3 w-3" />
+                              <span className="text-sm">Montpellier, France</span>
+                            </div>
                           </div>
                           <p className="text-sm text-muted-foreground mb-4">
                             Home soil! Arthur returns to his native Montpellier for this ATP 250 indoor event.
@@ -504,12 +528,20 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                            Open 13 Provence
-                          </h4>
-                          <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                            <MapPin className="h-4 w-4" />
-                            <span className="text-sm">Marseille, France</span>
+                          <div className="flex items-center gap-3 mb-2">
+                            <span className="text-2xl">🇫🇷</span>
+                            <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                              Open 13 Provence
+                            </h4>
+                          </div>
+                          <div className="flex items-center gap-3 mb-3">
+                            <Badge variant="secondary" className="bg-emerald-600/20 text-emerald-400 border-emerald-500/30 text-xs font-semibold">
+                              ATP 250
+                            </Badge>
+                            <div className="flex items-center gap-1 text-muted-foreground">
+                              <MapPin className="h-3 w-3" />
+                              <span className="text-sm">Marseille, France</span>
+                            </div>
                           </div>
                           <p className="text-sm text-muted-foreground mb-4">
                             Another home advantage! ATP 250 indoor tournament in the south of France.
@@ -535,12 +567,20 @@ const AthletePage = () => {
                           <span className="text-xs opacity-90">2025</span>
                         </div>
                         <div className="flex-1 p-6">
-                          <h4 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                            Rio Open
-                          </h4>
-                          <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                            <MapPin className="h-4 w-4" />
-                            <span className="text-sm">Rio de Janeiro, Brazil</span>
+                          <div className="flex items-center gap-3 mb-2">
+                            <span className="text-2xl">🇧🇷</span>
+                            <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                              Rio Open
+                            </h4>
+                          </div>
+                          <div className="flex items-center gap-3 mb-3">
+                            <Badge variant="secondary" className="bg-orange-600/20 text-orange-400 border-orange-500/30 text-xs font-semibold">
+                              ATP 500
+                            </Badge>
+                            <div className="flex items-center gap-1 text-muted-foreground">
+                              <MapPin className="h-3 w-3" />
+                              <span className="text-sm">Rio de Janeiro, Brazil</span>
+                            </div>
                           </div>
                           <p className="text-sm text-muted-foreground mb-4">
                             ATP 500 clay court event in the heart of Brazil, preparing for the European clay season.
