@@ -1,9 +1,14 @@
 import { useState } from "react";
-import { ShoppingCart, Check, Heart } from "lucide-react";
+import { ShoppingCart, Check, Heart, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 interface ShoppableProduct {
   id: string;
@@ -15,8 +20,8 @@ interface ShoppableProduct {
   category: 'partner' | 'athlete';
   athleteId: string;
   hotspot?: {
-    x: number; // percentage from left
-    y: number; // percentage from top
+    x: number;
+    y: number;
   };
 }
 
@@ -37,8 +42,6 @@ export const ShoppableGearSection = ({
 }: ShoppableGearSectionProps) => {
   const { addToCart } = useCart();
   const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
-  const [activeHotspot, setActiveHotspot] = useState<string | null>(null);
-  const [revealedProducts, setRevealedProducts] = useState<Set<string>>(new Set());
 
   const handleAddToCart = (product: ShoppableProduct) => {
     addToCart(product);
@@ -49,16 +52,7 @@ export const ShoppableGearSection = ({
     });
   };
 
-  const handleHotspotClick = (productId: string) => {
-    setRevealedProducts(prev => new Set([...prev, productId]));
-    setTimeout(() => {
-      const element = document.getElementById(`product-${productId}`);
-      element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 100);
-  };
-
   const productsWithHotspots = products.filter(p => p.hotspot);
-  const visibleProducts = products.filter(p => revealedProducts.has(p.id));
 
   return (
     <div className="space-y-6">
@@ -73,90 +67,65 @@ export const ShoppableGearSection = ({
         )}
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-8">
-        {/* Left: Action Image with Hotspots */}
-        <div className="relative rounded-2xl overflow-hidden bg-muted aspect-[3/4] lg:sticky lg:top-24 lg:self-start">
+      <div className="flex flex-col lg:flex-row gap-8 items-start">
+        {/* Left: Action Image with Hotspots - Patreon Style */}
+        <div className="relative rounded-2xl overflow-hidden bg-muted flex-1 lg:max-w-[55%]">
           <img
             src={actionImage}
             alt={`${athleteName} in action`}
-            className="w-full h-full object-cover"
+            className="w-full h-auto object-cover"
           />
           
-          {/* Hotspots */}
+          {/* Hotspots with Popovers */}
           {productsWithHotspots.map((product) => (
-            <button
-              key={product.id}
-              className="absolute group"
-              style={{
-                left: `${product.hotspot!.x}%`,
-                top: `${product.hotspot!.y}%`,
-                transform: 'translate(-50%, -50%)'
-              }}
-              onMouseEnter={() => setActiveHotspot(product.id)}
-              onMouseLeave={() => setActiveHotspot(null)}
-              onClick={() => handleHotspotClick(product.id)}
-            >
-              {/* Hotspot Pulse */}
-              <div className="relative">
-                <div className="w-4 h-4 rounded-full bg-primary animate-ping absolute" />
-                <div className="w-4 h-4 rounded-full bg-primary relative" />
-              </div>
-
-              {/* Tooltip */}
-              {activeHotspot === product.id && (
-                <div className="absolute left-8 top-1/2 -translate-y-1/2 w-48 glass-card p-3 pointer-events-none z-10 animate-fade-in">
-                  <p className="font-medium text-sm mb-1">{product.name}</p>
-                  <p className="text-primary font-semibold">
-                    {product.currency}{product.price}
-                  </p>
-                </div>
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Right: Product Grid */}
-        <div>
-          <div className="mb-6 flex items-center justify-between">
-            <h3 className="font-display text-xl font-semibold">Shop this post</h3>
-            <Badge variant="outline" className="text-xs">
-              {visibleProducts.length} / {products.length} items
-            </Badge>
-          </div>
-
-          {visibleProducts.length === 0 ? (
-            <div className="text-center py-12 text-muted-foreground">
-              <p className="text-sm">Click on the hotspots on the image to reveal products</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {visibleProducts.map((product) => (
-              <article
-                key={product.id}
-                id={`product-${product.id}`}
-                className="glass-card overflow-hidden group transition-all duration-300 hover:border-primary/30"
+            <Popover key={product.id}>
+              <PopoverTrigger asChild>
+                <button
+                  className="absolute group"
+                  style={{
+                    left: `${product.hotspot!.x}%`,
+                    top: `${product.hotspot!.y}%`,
+                    transform: 'translate(-50%, -50%)'
+                  }}
+                >
+                  {/* Hotspot Pulse */}
+                  <div className="relative">
+                    <div className="w-5 h-5 rounded-full bg-primary/80 animate-ping absolute" />
+                    <div className="w-5 h-5 rounded-full bg-primary relative flex items-center justify-center shadow-lg border-2 border-background">
+                      <span className="text-[10px] font-bold text-primary-foreground">+</span>
+                    </div>
+                  </div>
+                </button>
+              </PopoverTrigger>
+              <PopoverContent 
+                side="right" 
+                align="center" 
+                className="w-72 p-0 overflow-hidden"
+                sideOffset={12}
               >
-                <div className="relative h-40 overflow-hidden">
+                {/* Product Image */}
+                <div className="relative h-40 bg-muted">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover"
                   />
-                  <button className="absolute top-3 right-3 w-8 h-8 rounded-full bg-card/80 backdrop-blur-sm flex items-center justify-center hover:bg-card transition-colors">
+                  <button className="absolute top-2 right-2 w-8 h-8 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors">
                     <Heart className="h-4 w-4" />
                   </button>
                 </div>
-
-                <div className="p-4">
-                  <h4 className="font-medium text-sm mb-2 line-clamp-1 group-hover:text-primary transition-colors">
-                    {product.name}
-                  </h4>
-                  <p className="text-xs text-muted-foreground line-clamp-2 mb-3">
-                    {product.description}
-                  </p>
+                
+                {/* Product Info */}
+                <div className="p-4 space-y-3">
+                  <div>
+                    <h4 className="font-semibold text-sm">{product.name}</h4>
+                    <p className="text-xs text-muted-foreground line-clamp-2 mt-1">
+                      {product.description}
+                    </p>
+                  </div>
                   
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-display font-semibold text-lg">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="font-display font-bold text-lg">
                       {product.currency}{product.price}
                     </span>
                     
@@ -164,7 +133,7 @@ export const ShoppableGearSection = ({
                       size="sm"
                       variant={addedProducts.has(product.id) ? "secondary" : "default"}
                       onClick={() => handleAddToCart(product)}
-                      className="h-8"
+                      className="flex-1"
                     >
                       {addedProducts.has(product.id) ? (
                         <>
@@ -174,16 +143,78 @@ export const ShoppableGearSection = ({
                       ) : (
                         <>
                           <ShoppingCart className="h-4 w-4 mr-1" />
-                          Add
+                          Add to Cart
                         </>
+                      )}
+                    </Button>
+                  </div>
+                </div>
+              </PopoverContent>
+            </Popover>
+          ))}
+
+          {/* Floating hint badge */}
+          <div className="absolute bottom-4 left-4 right-4">
+            <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm text-xs">
+              Click the + buttons to shop items
+            </Badge>
+          </div>
+        </div>
+
+        {/* Right: Product Grid - Same Level */}
+        <div className="flex-1 lg:max-w-[45%]">
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="font-display text-lg font-semibold">All items</h3>
+            <Badge variant="outline" className="text-xs">
+              {products.length} items
+            </Badge>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3">
+            {products.map((product) => (
+              <article
+                key={product.id}
+                id={`product-${product.id}`}
+                className="glass-card overflow-hidden group transition-all duration-300 hover:border-primary/30"
+              >
+                <div className="relative h-28 overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <button className="absolute top-2 right-2 w-6 h-6 rounded-full bg-card/80 backdrop-blur-sm flex items-center justify-center hover:bg-card transition-colors opacity-0 group-hover:opacity-100">
+                    <Heart className="h-3 w-3" />
+                  </button>
+                </div>
+
+                <div className="p-3">
+                  <h4 className="font-medium text-xs mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                    {product.name}
+                  </h4>
+                  
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-display font-semibold text-sm">
+                      {product.currency}{product.price}
+                    </span>
+                    
+                    <Button
+                      size="sm"
+                      variant={addedProducts.has(product.id) ? "secondary" : "default"}
+                      onClick={() => handleAddToCart(product)}
+                      className="h-7 text-xs px-2"
+                    >
+                      {addedProducts.has(product.id) ? (
+                        <Check className="h-3 w-3" />
+                      ) : (
+                        <ShoppingCart className="h-3 w-3" />
                       )}
                     </Button>
                   </div>
                 </div>
               </article>
             ))}
-            </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
