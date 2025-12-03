@@ -38,6 +38,7 @@ export const ShoppableGearSection = ({
   const { addToCart } = useCart();
   const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
   const [activeHotspot, setActiveHotspot] = useState<string | null>(null);
+  const [revealedProducts, setRevealedProducts] = useState<Set<string>>(new Set());
 
   const handleAddToCart = (product: ShoppableProduct) => {
     addToCart(product);
@@ -48,8 +49,16 @@ export const ShoppableGearSection = ({
     });
   };
 
+  const handleHotspotClick = (productId: string) => {
+    setRevealedProducts(prev => new Set([...prev, productId]));
+    setTimeout(() => {
+      const element = document.getElementById(`product-${productId}`);
+      element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  };
+
   const productsWithHotspots = products.filter(p => p.hotspot);
-  const productsInGrid = products;
+  const visibleProducts = products.filter(p => revealedProducts.has(p.id));
 
   return (
     <div className="space-y-6">
@@ -85,10 +94,7 @@ export const ShoppableGearSection = ({
               }}
               onMouseEnter={() => setActiveHotspot(product.id)}
               onMouseLeave={() => setActiveHotspot(null)}
-              onClick={() => {
-                const element = document.getElementById(`product-${product.id}`);
-                element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              }}
+              onClick={() => handleHotspotClick(product.id)}
             >
               {/* Hotspot Pulse */}
               <div className="relative">
@@ -114,12 +120,17 @@ export const ShoppableGearSection = ({
           <div className="mb-6 flex items-center justify-between">
             <h3 className="font-display text-xl font-semibold">Shop this post</h3>
             <Badge variant="outline" className="text-xs">
-              {products.length} items
+              {visibleProducts.length} / {products.length} items
             </Badge>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {productsInGrid.map((product) => (
+          {visibleProducts.length === 0 ? (
+            <div className="text-center py-12 text-muted-foreground">
+              <p className="text-sm">Click on the hotspots on the image to reveal products</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {visibleProducts.map((product) => (
               <article
                 key={product.id}
                 id={`product-${product.id}`}
@@ -171,7 +182,8 @@ export const ShoppableGearSection = ({
                 </div>
               </article>
             ))}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
