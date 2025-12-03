@@ -21,6 +21,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import AccountPage from "./pages/AccountPage";
 import SubscribePage from "./pages/SubscribePage";
+import SubscribePaymentPage from "./pages/SubscribePaymentPage";
 import SubscribeSuccessPage from "./pages/SubscribeSuccessPage";
 
 import NotFound from "./pages/NotFound";
@@ -67,6 +68,7 @@ const App = () => (
                   <Route path="/signup" element={<SignupPage />} />
                   <Route path="/account" element={<AccountPage />} />
                   <Route path="/subscribe/:id" element={<SubscribePage />} />
+                  <Route path="/subscribe/:id/payment" element={<SubscribePaymentPage />} />
                   <Route path="/subscribe/:id/success" element={<SubscribeSuccessPage />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
