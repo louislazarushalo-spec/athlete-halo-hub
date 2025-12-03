@@ -24,7 +24,8 @@ import {
   Music,
   Newspaper,
   Camera,
-  ShoppingBag
+  ShoppingBag,
+  Star
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
@@ -36,6 +37,7 @@ import { ShoppableGearSection } from "@/components/fan/sections/ShoppableGearSec
 import { RegistrationGate } from "@/components/auth/RegistrationGate";
 import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
+import { ArthurExclusiveZone } from "@/components/athletes/ArthurExclusiveZone";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -417,27 +419,42 @@ const AthletePage = () => {
         <div className="container mx-auto px-4">
           <Tabs defaultValue="life" className="w-full">
             {/* Main Tab Navigation */}
-            <TabsList className="w-full max-w-4xl mx-auto grid grid-cols-4 mb-8 h-14 bg-muted/50">
-              <TabsTrigger value="life" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Camera className="h-5 w-5" />
-                <span>Inside My World</span>
+            <TabsList className="w-full max-w-5xl mx-auto grid grid-cols-5 mb-8 h-14 bg-muted/50">
+              <TabsTrigger value="life" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Camera className="h-4 w-4" />
+                <span className="hidden sm:inline">Inside My World</span>
+                <span className="sm:hidden">World</span>
               </TabsTrigger>
-              <TabsTrigger value="gear" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <ShoppingBag className="h-5 w-5" />
-                <span>My Kit Room</span>
+              <TabsTrigger value="gear" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <ShoppingBag className="h-4 w-4" />
+                <span className="hidden sm:inline">My Kit Room</span>
+                <span className="sm:hidden">Kit</span>
               </TabsTrigger>
-              <TabsTrigger value="training" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+              <TabsTrigger value="training" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 {isPremiumSubscribed ? (
-                  <Dumbbell className="h-5 w-5" />
+                  <Dumbbell className="h-4 w-4" />
                 ) : (
-                  <Lock className="h-5 w-5" />
+                  <Lock className="h-4 w-4" />
                 )}
-                <span>Performance Lab</span>
+                <span className="hidden sm:inline">Performance Lab</span>
+                <span className="sm:hidden">Lab</span>
               </TabsTrigger>
-              <TabsTrigger value="cause" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Heart className="h-5 w-5" />
-                <span>My Causes</span>
+              <TabsTrigger value="cause" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Heart className="h-4 w-4" />
+                <span className="hidden sm:inline">My Causes</span>
+                <span className="sm:hidden">Causes</span>
               </TabsTrigger>
+              {isArthurCazaux && (
+                <TabsTrigger value="exclusive" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  {isPremiumSubscribed ? (
+                    <Star className="h-4 w-4" />
+                  ) : (
+                    <Lock className="h-4 w-4" />
+                  )}
+                  <span className="hidden sm:inline">Exclusive Zone</span>
+                  <span className="sm:hidden">Exclusive</span>
+                </TabsTrigger>
+              )}
             </TabsList>
 
             {/* MY LIFE TAB */}
@@ -474,19 +491,6 @@ const AthletePage = () => {
                     <Lock className="h-4 w-4 mr-1" />
                   )}
                   Playlist
-                </Button>
-                <Button
-                  variant={activeLifeTab === "community" ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setActiveLifeTab("community")}
-                  className="rounded-full shrink-0"
-                >
-                  {isPremiumSubscribed ? (
-                    <MessageCircle className="h-4 w-4 mr-1" />
-                  ) : (
-                    <Lock className="h-4 w-4 mr-1" />
-                  )}
-                  Exclusive Zone
                 </Button>
               </div>
 
@@ -661,92 +665,6 @@ const AthletePage = () => {
                 )
               )}
 
-              {/* Community & Rewards (Premium Locked) */}
-              {activeLifeTab === "community" && (
-                isPremiumSubscribed ? (
-                  <div className="grid md:grid-cols-2 gap-8">
-                    {/* Prize Contests */}
-                    <div className="glass-card p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <Trophy className="h-6 w-6 text-primary" />
-                        <h3 className="text-xl font-semibold">Prize Contests</h3>
-                      </div>
-                      <div className="space-y-4">
-                        <div className="p-4 bg-muted/50 rounded-lg">
-                          <h4 className="font-medium mb-1">Win Signed Gear</h4>
-                          <p className="text-sm text-muted-foreground">Enter for a chance to win authentic signed equipment.</p>
-                        </div>
-                        <div className="p-4 bg-muted/50 rounded-lg">
-                          <h4 className="font-medium mb-1">Training Session Giveaway</h4>
-                          <p className="text-sm text-muted-foreground">Exclusive 1-on-1 virtual training session.</p>
-                        </div>
-                        <div className="p-4 bg-muted/50 rounded-lg">
-                          <h4 className="font-medium mb-1">Meet & Greet Opportunity</h4>
-                          <p className="text-sm text-muted-foreground">VIP access to meet the athlete in person.</p>
-                        </div>
-                      </div>
-                    </div>
-                    {/* Fan Discussions */}
-                    <div className="glass-card p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <MessageCircle className="h-6 w-6 text-primary" />
-                        <h3 className="text-xl font-semibold">Fan Discussions</h3>
-                      </div>
-                      <div className="space-y-4">
-                        <div className="p-4 bg-muted/50 rounded-lg">
-                          <h4 className="font-medium mb-1">Match Analysis Thread</h4>
-                          <p className="text-sm text-muted-foreground">Discuss recent performances with other fans.</p>
-                        </div>
-                        <div className="p-4 bg-muted/50 rounded-lg">
-                          <h4 className="font-medium mb-1">Training Tips Q&A</h4>
-                          <p className="text-sm text-muted-foreground">Community discussion on training methods.</p>
-                        </div>
-                        <div className="p-4 bg-muted/50 rounded-lg">
-                          <h4 className="font-medium mb-1">Fan Meetup Planning</h4>
-                          <p className="text-sm text-muted-foreground">Organize meetups with fellow supporters.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name}>
-                    <div className="grid md:grid-cols-2 gap-8">
-                      <div className="glass-card p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                          <Trophy className="h-6 w-6 text-primary" />
-                          <h3 className="text-xl font-semibold">Prize Contests</h3>
-                        </div>
-                        <div className="space-y-4">
-                          <div className="p-4 bg-muted/50 rounded-lg">
-                            <h4 className="font-medium mb-1">Win Signed Gear</h4>
-                            <p className="text-sm text-muted-foreground">Enter for a chance to win authentic signed equipment.</p>
-                          </div>
-                          <div className="p-4 bg-muted/50 rounded-lg">
-                            <h4 className="font-medium mb-1">Training Session Giveaway</h4>
-                            <p className="text-sm text-muted-foreground">Exclusive 1-on-1 virtual training session.</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="glass-card p-6">
-                        <div className="flex items-center gap-3 mb-4">
-                          <MessageCircle className="h-6 w-6 text-primary" />
-                          <h3 className="text-xl font-semibold">Fan Discussions</h3>
-                        </div>
-                        <div className="space-y-4">
-                          <div className="p-4 bg-muted/50 rounded-lg">
-                            <h4 className="font-medium mb-1">Match Analysis Thread</h4>
-                            <p className="text-sm text-muted-foreground">Discuss recent performances with other fans.</p>
-                          </div>
-                          <div className="p-4 bg-muted/50 rounded-lg">
-                            <h4 className="font-medium mb-1">Training Tips Q&A</h4>
-                            <p className="text-sm text-muted-foreground">Community discussion on training methods.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </PremiumLockedContent>
-                )
-              )}
             </TabsContent>
 
             <TabsContent value="gear" className="animate-fade-in">
@@ -914,6 +832,23 @@ const AthletePage = () => {
                 </div>
               </div>
             </TabsContent>
+
+            {/* EXCLUSIVE ZONE TAB - Arthur Cazaux Only */}
+            {isArthurCazaux && (
+              <TabsContent value="exclusive" className="animate-fade-in">
+                {isPremiumSubscribed ? (
+                  <ArthurExclusiveZone />
+                ) : (
+                  <PremiumLockedContent 
+                    athleteId={athlete.id} 
+                    athleteName={athlete.name}
+                    customSubtitle="Subscribe to unlock exclusive content and deeper access to Arthur's tennis world."
+                  >
+                    <ArthurExclusiveZone />
+                  </PremiumLockedContent>
+                )}
+              </TabsContent>
+            )}
           </Tabs>
         </div>
       </section>
