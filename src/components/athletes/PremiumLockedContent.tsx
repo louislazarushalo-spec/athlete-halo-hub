@@ -6,12 +6,14 @@ interface PremiumLockedContentProps {
   athleteId: string;
   athleteName: string;
   children: React.ReactNode;
+  customSubtitle?: string;
 }
 
 export const PremiumLockedContent = ({ 
   athleteId, 
   athleteName, 
-  children 
+  children,
+  customSubtitle
 }: PremiumLockedContentProps) => {
   return (
     <div className="relative">
@@ -28,7 +30,7 @@ export const PremiumLockedContent = ({
           </div>
           <h3 className="text-2xl font-bold mb-3">Premium Access Required</h3>
           <p className="text-muted-foreground mb-6">
-            Subscribe to unlock exclusive content and deeper access to {athleteName}'s world.
+            {customSubtitle || `Subscribe to unlock exclusive content and deeper access to ${athleteName}'s world.`}
           </p>
           <Link to={`/subscribe/${athleteId}`}>
             <Button variant="gold" size="lg" className="w-full">
