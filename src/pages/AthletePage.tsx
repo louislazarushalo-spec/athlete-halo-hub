@@ -37,6 +37,7 @@ import { RegistrationGate } from "@/components/auth/RegistrationGate";
 import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
 import { useSubscription } from "@/contexts/SubscriptionContext";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 // Sponsor logos for Arthur Cazaux
 import sponsorLacoste from "@/assets/sponsor-lacoste.png";
@@ -228,7 +229,7 @@ const AthletePage = () => {
   const [activeLifeTab, setActiveLifeTab] = useState<"events" | "news" | "music" | "community">("events");
   const { addToCart } = useCart();
   const { isAuthenticated } = useAuth();
-  const { isSubscribed } = useSubscription();
+  const { isSubscribed, unsubscribe } = useSubscription();
   const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
   
   const isPremiumSubscribed = athlete ? isSubscribed(athlete.id) : false;
@@ -337,10 +338,26 @@ const AthletePage = () => {
                     </Link>
                   )}
                   {isPremiumSubscribed && (
-                    <Badge className="bg-primary/20 text-primary border-primary/30 px-3 py-1">
-                      <Check className="h-3 w-3 mr-1" />
-                      Premium Member
-                    </Badge>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Badge 
+                          className="bg-primary/20 text-primary border-primary/30 px-3 py-1 cursor-pointer hover:bg-destructive/20 hover:text-destructive hover:border-destructive/30 transition-colors"
+                          onClick={() => {
+                            unsubscribe(athlete.id);
+                            toast({
+                              title: "Premium removed",
+                              description: `You've reverted to free follower mode for ${athlete.name}.`,
+                            });
+                          }}
+                        >
+                          <Check className="h-3 w-3 mr-1" />
+                          Premium Member
+                        </Badge>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Click to remove premium access</p>
+                      </TooltipContent>
+                    </Tooltip>
                   )}
                 </div>
                 {/* Social Media Links */}
@@ -469,7 +486,7 @@ const AthletePage = () => {
                   ) : (
                     <Lock className="h-4 w-4 mr-1" />
                   )}
-                  Community
+                  Exclusive Zone
                 </Button>
               </div>
 
