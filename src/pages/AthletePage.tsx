@@ -842,7 +842,7 @@ const AthletePage = () => {
                   <PremiumLockedContent 
                     athleteId={athlete.id} 
                     athleteName={athlete.name}
-                    customSubtitle="Subscribe to unlock exclusive content and deeper access to Arthur's tennis world."
+                    customSubtitle="Unlock prize draws, curated premium content, and members-only tennis discussions."
                   >
                     <ArthurExclusiveZone />
                   </PremiumLockedContent>
