@@ -33,6 +33,7 @@ import { ShoppableGearSection } from "@/components/fan/sections/ShoppableGearSec
 import { RegistrationGate } from "@/components/auth/RegistrationGate";
 import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
+import { useSubscription } from "@/contexts/SubscriptionContext";
 
 // Sponsor logos for Arthur Cazaux
 import sponsorLacoste from "@/assets/sponsor-lacoste.png";
@@ -221,11 +222,13 @@ const AthletePage = () => {
   const { id } = useParams<{ id: string }>();
   const athlete = getAthleteById(id || "");
   const [isFollowing, setIsFollowing] = useState(false);
-  const [isPremiumSubscribed, setIsPremiumSubscribed] = useState(false);
   const [activeLifeTab, setActiveLifeTab] = useState<"events" | "news" | "music" | "community">("events");
   const { addToCart } = useCart();
   const { isAuthenticated } = useAuth();
+  const { isSubscribed } = useSubscription();
   const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
+  
+  const isPremiumSubscribed = athlete ? isSubscribed(athlete.id) : false;
 
   if (!athlete) {
     return (

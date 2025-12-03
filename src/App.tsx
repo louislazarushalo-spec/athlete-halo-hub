@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/contexts/CartContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { SubscriptionProvider } from "@/contexts/SubscriptionContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import Index from "./pages/Index";
 import AthletesPage from "./pages/AthletesPage";
@@ -20,6 +21,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import AccountPage from "./pages/AccountPage";
 import SubscribePage from "./pages/SubscribePage";
+import SubscribeSuccessPage from "./pages/SubscribeSuccessPage";
 
 import NotFound from "./pages/NotFound";
 
@@ -29,46 +31,49 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <AuthProvider>
-        <CartProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/home" element={
-                  <ProtectedRoute>
-                    <FanHomePage />
-                  </ProtectedRoute>
-                } />
-                <Route path="/explore" element={
-                  <ProtectedRoute>
-                    <ExplorePage />
-                  </ProtectedRoute>
-                } />
-                <Route path="/athletes" element={
-                  <ProtectedRoute>
-                    <AthletesPage />
-                  </ProtectedRoute>
-                } />
-                <Route path="/athlete/:id" element={<AthletePage />} />
-                <Route path="/athlete/:id/cause" element={
-                  <ProtectedRoute>
-                    <CausePage />
-                  </ProtectedRoute>
-                } />
-                <Route path="/feed" element={<FeedPage />} />
-                <Route path="/cart" element={<CartPage />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignupPage />} />
-                <Route path="/account" element={<AccountPage />} />
-                <Route path="/subscribe/:id" element={<SubscribePage />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
-          </TooltipProvider>
-        </CartProvider>
+        <SubscriptionProvider>
+          <CartProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/home" element={
+                    <ProtectedRoute>
+                      <FanHomePage />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/explore" element={
+                    <ProtectedRoute>
+                      <ExplorePage />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/athletes" element={
+                    <ProtectedRoute>
+                      <AthletesPage />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/athlete/:id" element={<AthletePage />} />
+                  <Route path="/athlete/:id/cause" element={
+                    <ProtectedRoute>
+                      <CausePage />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/feed" element={<FeedPage />} />
+                  <Route path="/cart" element={<CartPage />} />
+                  <Route path="/checkout" element={<CheckoutPage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/signup" element={<SignupPage />} />
+                  <Route path="/account" element={<AccountPage />} />
+                  <Route path="/subscribe/:id" element={<SubscribePage />} />
+                  <Route path="/subscribe/:id/success" element={<SubscribeSuccessPage />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </BrowserRouter>
+            </TooltipProvider>
+          </CartProvider>
+        </SubscriptionProvider>
       </AuthProvider>
     </ThemeProvider>
   </QueryClientProvider>
