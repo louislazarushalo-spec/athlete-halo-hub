@@ -8,11 +8,9 @@ import action2 from "@/assets/arthur-cazaux-action2.png";
 import action3 from "@/assets/arthur-cazaux-action3.png";
 import action4 from "@/assets/arthur-cazaux-action4.png";
 
-// Import skills images
-import skills1 from "@/assets/arthur-skills-1.png";
-import skills2 from "@/assets/arthur-skills-2.png";
-import skills3 from "@/assets/arthur-skills-3.png";
-import skills4 from "@/assets/arthur-skills-4.png";
+// Import skills images (real Arthur photos)
+import action5 from "@/assets/arthur-cazaux-action5.png";
+import action6 from "@/assets/arthur-cazaux-action6.png";
 
 // Import nutrition images
 import nutrition1 from "@/assets/arthur-nutrition-1.png";
@@ -20,11 +18,10 @@ import nutrition2 from "@/assets/arthur-nutrition-2.png";
 import nutrition3 from "@/assets/arthur-nutrition-3.png";
 import nutrition4 from "@/assets/arthur-nutrition-4.png";
 
-// Import mental images
-import mental1 from "@/assets/arthur-mental-1.png";
-import mental2 from "@/assets/arthur-mental-2.png";
-import mental3 from "@/assets/arthur-mental-3.png";
-import mental4 from "@/assets/arthur-mental-4.png";
+// Import mental images (real Arthur photos)
+import mentalReal1 from "@/assets/arthur-mental-real-1.png";
+import mentalReal2 from "@/assets/arthur-mental-real-2.png";
+import mentalReal3 from "@/assets/arthur-mental-real-3.png";
 
 interface TrainingProgram {
   id: string;
@@ -84,25 +81,25 @@ const trainingCategories: TrainingCategory[] = [
         id: "skills-1",
         title: "Heavy Forehand Patterns",
         description: "The forehand patterns I drill every week, including inside-out, inside-in, and finishing at the net.",
-        image: skills1
+        image: action5
       },
       {
         id: "skills-2",
         title: "Serve + First Ball Domination",
         description: "The playbook I use to take control early in the point through serve placement and aggressive first shots.",
-        image: skills2
+        image: action6
       },
       {
         id: "skills-3",
         title: "Backhand Stability Under Pressure",
         description: "A repetition session designed to keep my backhand solid and reliable against deep, heavy balls.",
-        image: skills3
+        image: action1
       },
       {
         id: "skills-4",
         title: "Transition to the Net and Finishing Points",
         description: "Footwork sequences, volley precision and swing volleys that help me finish points confidently.",
-        image: skills4
+        image: action3
       }
     ]
   },
@@ -148,25 +145,25 @@ const trainingCategories: TrainingCategory[] = [
         id: "mental-1",
         title: "Pre-Match Focus Ritual",
         description: "My breathing and visualization routine before stepping on court for important matches.",
-        image: mental1
+        image: mentalReal1
       },
       {
         id: "mental-2",
         title: "Handling Pressure Points",
         description: "The mental cues I rely on when serving out sets or facing break points.",
-        image: mental2
+        image: mentalReal3
       },
       {
         id: "mental-3",
         title: "Post-Match Reset Routine",
         description: "How I decompress, reflect, and mentally reset after both wins and tough losses.",
-        image: mental3
+        image: mentalReal2
       },
       {
         id: "mental-4",
         title: "Confidence Builder Daily Routine",
         description: "Short daily habits that build my self-belief and help me stay aggressive in my game plan.",
-        image: mental4
+        image: action2
       }
     ]
   }
