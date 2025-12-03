@@ -420,11 +420,11 @@ const AthletePage = () => {
             <TabsList className="w-full max-w-4xl mx-auto grid grid-cols-4 mb-8 h-14 bg-muted/50">
               <TabsTrigger value="life" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Camera className="h-5 w-5" />
-                <span>My Life</span>
+                <span>Inside My World</span>
               </TabsTrigger>
               <TabsTrigger value="gear" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <ShoppingBag className="h-5 w-5" />
-                <span>My Gear</span>
+                <span>My Kit Room</span>
               </TabsTrigger>
               <TabsTrigger value="training" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 {isPremiumSubscribed ? (
@@ -432,11 +432,11 @@ const AthletePage = () => {
                 ) : (
                   <Lock className="h-5 w-5" />
                 )}
-                <span>My Training</span>
+                <span>Performance Lab</span>
               </TabsTrigger>
               <TabsTrigger value="cause" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Heart className="h-5 w-5" />
-                <span>My Cause</span>
+                <span>My Causes</span>
               </TabsTrigger>
             </TabsList>
 
@@ -451,7 +451,7 @@ const AthletePage = () => {
                   className="rounded-full shrink-0"
                 >
                   <Calendar className="h-4 w-4 mr-1" />
-                  My Events
+                  Events
                 </Button>
                 <Button
                   variant={activeLifeTab === "news" ? "default" : "ghost"}
@@ -460,7 +460,7 @@ const AthletePage = () => {
                   className="rounded-full shrink-0"
                 >
                   <Newspaper className="h-4 w-4 mr-1" />
-                  My News
+                  Highlights
                 </Button>
                 <Button
                   variant={activeLifeTab === "music" ? "default" : "ghost"}
@@ -473,7 +473,7 @@ const AthletePage = () => {
                   ) : (
                     <Lock className="h-4 w-4 mr-1" />
                   )}
-                  My Music
+                  Playlist
                 </Button>
                 <Button
                   variant={activeLifeTab === "community" ? "default" : "ghost"}
