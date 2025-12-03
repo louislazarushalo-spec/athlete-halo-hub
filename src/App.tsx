@@ -19,6 +19,7 @@ import CausePage from "./pages/CausePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import AccountPage from "./pages/AccountPage";
+import SubscribePage from "./pages/SubscribePage";
 
 import NotFound from "./pages/NotFound";
 
@@ -62,6 +63,7 @@ const App = () => (
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/account" element={<AccountPage />} />
+                <Route path="/subscribe/:id" element={<SubscribePage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
