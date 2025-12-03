@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { 
   Trophy, 
   MessageCircle, 
@@ -8,12 +9,186 @@ import {
   Lightbulb, 
   Gift,
   Play,
-  Star
+  Star,
+  Check,
+  Loader2,
+  Send
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "@/hooks/use-toast";
+
+interface ContestEntry {
+  contest_type: string;
+  created_at: string;
+}
+
+interface MatchPrediction {
+  prediction_score: string;
+  created_at: string;
+}
+
+interface FanQuestion {
+  question: string;
+  status: string;
+  answer: string | null;
+  created_at: string;
+}
 
 export const ArthurExclusiveZone = () => {
+  const { user } = useAuth();
+  const [contestEntries, setContestEntries] = useState<ContestEntry[]>([]);
+  const [predictions, setPredictions] = useState<MatchPrediction[]>([]);
+  const [questions, setQuestions] = useState<FanQuestion[]>([]);
+  const [predictionScore, setPredictionScore] = useState("");
+  const [newQuestion, setNewQuestion] = useState("");
+  const [loadingContest, setLoadingContest] = useState<string | null>(null);
+  const [loadingPrediction, setLoadingPrediction] = useState(false);
+  const [loadingQuestion, setLoadingQuestion] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      fetchUserData();
+    }
+  }, [user]);
+
+  const fetchUserData = async () => {
+    if (!user) return;
+
+    // Fetch contest entries
+    const { data: entries } = await supabase
+      .from('contest_entries')
+      .select('contest_type, created_at')
+      .eq('user_id', user.id)
+      .eq('athlete_id', 'arthur-cazaux');
+    
+    if (entries) setContestEntries(entries);
+
+    // Fetch predictions
+    const { data: preds } = await supabase
+      .from('match_predictions')
+      .select('prediction_score, created_at')
+      .eq('user_id', user.id)
+      .eq('athlete_id', 'arthur-cazaux')
+      .order('created_at', { ascending: false })
+      .limit(1);
+    
+    if (preds) setPredictions(preds);
+
+    // Fetch questions
+    const { data: qs } = await supabase
+      .from('fan_questions')
+      .select('question, status, answer, created_at')
+      .eq('user_id', user.id)
+      .eq('athlete_id', 'arthur-cazaux')
+      .order('created_at', { ascending: false });
+    
+    if (qs) setQuestions(qs);
+  };
+
+  const hasEntered = (contestType: string) => {
+    return contestEntries.some(e => e.contest_type === contestType);
+  };
+
+  const handleEnterContest = async (contestType: string, contestName: string) => {
+    if (!user) {
+      toast({ title: "Please log in", description: "You need to be logged in to enter contests." });
+      return;
+    }
+
+    setLoadingContest(contestType);
+    
+    const { error } = await supabase
+      .from('contest_entries')
+      .insert({
+        user_id: user.id,
+        athlete_id: 'arthur-cazaux',
+        contest_type: contestType
+      });
+
+    if (error) {
+      toast({ title: "Error", description: "Failed to enter contest. Please try again.", variant: "destructive" });
+    } else {
+      toast({ title: "Entry Submitted!", description: `You've entered the ${contestName} contest. Good luck!` });
+      fetchUserData();
+    }
+    
+    setLoadingContest(null);
+  };
+
+  const handleSubmitPrediction = async () => {
+    if (!user) {
+      toast({ title: "Please log in", description: "You need to be logged in to submit predictions." });
+      return;
+    }
+
+    if (!predictionScore.trim()) {
+      toast({ title: "Enter a score", description: "Please enter your predicted match score.", variant: "destructive" });
+      return;
+    }
+
+    setLoadingPrediction(true);
+    
+    const { error } = await supabase
+      .from('match_predictions')
+      .insert({
+        user_id: user.id,
+        athlete_id: 'arthur-cazaux',
+        prediction_score: predictionScore.trim()
+      });
+
+    if (error) {
+      toast({ title: "Error", description: "Failed to submit prediction. Please try again.", variant: "destructive" });
+    } else {
+      toast({ title: "Prediction Submitted!", description: `Your prediction: ${predictionScore}. Let's see if you're right!` });
+      setPredictionScore("");
+      fetchUserData();
+    }
+    
+    setLoadingPrediction(false);
+  };
+
+  const handleSubmitQuestion = async () => {
+    if (!user) {
+      toast({ title: "Please log in", description: "You need to be logged in to ask questions." });
+      return;
+    }
+
+    if (!newQuestion.trim()) {
+      toast({ title: "Enter a question", description: "Please write your question before submitting.", variant: "destructive" });
+      return;
+    }
+
+    if (newQuestion.length > 500) {
+      toast({ title: "Question too long", description: "Please keep your question under 500 characters.", variant: "destructive" });
+      return;
+    }
+
+    setLoadingQuestion(true);
+    
+    const { error } = await supabase
+      .from('fan_questions')
+      .insert({
+        user_id: user.id,
+        athlete_id: 'arthur-cazaux',
+        question: newQuestion.trim()
+      });
+
+    if (error) {
+      toast({ title: "Error", description: "Failed to submit question. Please try again.", variant: "destructive" });
+    } else {
+      toast({ title: "Question Submitted!", description: "Your question has been sent. Arthur may answer it soon!" });
+      setNewQuestion("");
+      fetchUserData();
+    }
+    
+    setLoadingQuestion(false);
+  };
+
   return (
     <div className="space-y-10">
       {/* Header */}
@@ -37,6 +212,7 @@ export const ArthurExclusiveZone = () => {
           </div>
         </div>
         <div className="grid md:grid-cols-3 gap-4">
+          {/* Win Signed Wristband */}
           <article className="p-4 bg-muted/50 rounded-xl border border-border/50 hover:border-primary/30 transition-colors">
             <div className="flex items-center gap-2 mb-2">
               <Star className="h-4 w-4 text-amber-500" />
@@ -44,8 +220,25 @@ export const ArthurExclusiveZone = () => {
             </div>
             <h4 className="font-semibold mb-1">Win Signed Wristband</h4>
             <p className="text-sm text-muted-foreground mb-3">Match-worn and signed after my next ATP match</p>
-            <Button size="sm" variant="outline" className="w-full">Enter Draw</Button>
+            {hasEntered('wristband') ? (
+              <Button size="sm" variant="secondary" className="w-full" disabled>
+                <Check className="h-4 w-4 mr-1" />
+                Entered
+              </Button>
+            ) : (
+              <Button 
+                size="sm" 
+                variant="outline" 
+                className="w-full"
+                onClick={() => handleEnterContest('wristband', 'Win Signed Wristband')}
+                disabled={loadingContest === 'wristband'}
+              >
+                {loadingContest === 'wristband' ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Enter Draw'}
+              </Button>
+            )}
           </article>
+
+          {/* Predict Match Score */}
           <article className="p-4 bg-muted/50 rounded-xl border border-border/50 hover:border-primary/30 transition-colors">
             <div className="flex items-center gap-2 mb-2">
               <Target className="h-4 w-4 text-blue-500" />
@@ -53,8 +246,47 @@ export const ArthurExclusiveZone = () => {
             </div>
             <h4 className="font-semibold mb-1">Predict My Match Score</h4>
             <p className="text-sm text-muted-foreground mb-3">Guess the exact score and win exclusive merch</p>
-            <Button size="sm" variant="outline" className="w-full">Make Prediction</Button>
+            {predictions.length > 0 ? (
+              <div className="space-y-2">
+                <p className="text-xs text-muted-foreground">Your prediction: <span className="text-primary font-medium">{predictions[0].prediction_score}</span></p>
+                <Input
+                  placeholder="Update prediction (e.g., 6-4, 7-5)"
+                  value={predictionScore}
+                  onChange={(e) => setPredictionScore(e.target.value)}
+                  className="h-8 text-sm"
+                />
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={handleSubmitPrediction}
+                  disabled={loadingPrediction}
+                >
+                  {loadingPrediction ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Update'}
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <Input
+                  placeholder="e.g., 6-4, 7-5"
+                  value={predictionScore}
+                  onChange={(e) => setPredictionScore(e.target.value)}
+                  className="h-8 text-sm"
+                />
+                <Button 
+                  size="sm" 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={handleSubmitPrediction}
+                  disabled={loadingPrediction}
+                >
+                  {loadingPrediction ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Submit Prediction'}
+                </Button>
+              </div>
+            )}
           </article>
+
+          {/* Training Session Giveaway */}
           <article className="p-4 bg-muted/50 rounded-xl border border-border/50 hover:border-primary/30 transition-colors">
             <div className="flex items-center gap-2 mb-2">
               <Gift className="h-4 w-4 text-green-500" />
@@ -62,7 +294,22 @@ export const ArthurExclusiveZone = () => {
             </div>
             <h4 className="font-semibold mb-1">Training Session Giveaway</h4>
             <p className="text-sm text-muted-foreground mb-3">Win a virtual 1-on-1 session with me</p>
-            <Button size="sm" variant="outline" className="w-full">Enter Giveaway</Button>
+            {hasEntered('training_session') ? (
+              <Button size="sm" variant="secondary" className="w-full" disabled>
+                <Check className="h-4 w-4 mr-1" />
+                Entered
+              </Button>
+            ) : (
+              <Button 
+                size="sm" 
+                variant="outline" 
+                className="w-full"
+                onClick={() => handleEnterContest('training_session', 'Training Session Giveaway')}
+                disabled={loadingContest === 'training_session'}
+              >
+                {loadingContest === 'training_session' ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Enter Giveaway'}
+              </Button>
+            )}
           </article>
         </div>
       </section>
@@ -158,6 +405,7 @@ export const ArthurExclusiveZone = () => {
           </div>
         </div>
         <div className="space-y-4">
+          {/* Sample answered questions */}
           <article className="p-4 bg-muted/50 rounded-xl border border-border/50">
             <p className="text-sm text-primary font-medium mb-2">@tennis_fan_marc asked:</p>
             <p className="font-medium mb-2">"How do you practice forehand patterns under pressure?"</p>
@@ -172,7 +420,54 @@ export const ArthurExclusiveZone = () => {
               "Shorter backswing, earlier contact. On big points I simplify - no hero shots, just placement."
             </p>
           </article>
-          <Button variant="outline" className="w-full">Submit Your Question</Button>
+
+          {/* User's submitted questions */}
+          {questions.length > 0 && (
+            <div className="border-t border-border pt-4 mt-4">
+              <p className="text-sm font-medium mb-3">Your Questions:</p>
+              {questions.map((q, idx) => (
+                <article key={idx} className="p-4 bg-primary/5 rounded-xl border border-primary/20 mb-2">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Badge variant="secondary" className="text-xs">
+                      {q.status === 'pending' ? 'Pending' : q.status === 'answered' ? 'Answered' : 'Reviewed'}
+                    </Badge>
+                  </div>
+                  <p className="font-medium text-sm mb-1">"{q.question}"</p>
+                  {q.answer && (
+                    <p className="text-sm text-muted-foreground italic mt-2">Arthur's answer: "{q.answer}"</p>
+                  )}
+                </article>
+              ))}
+            </div>
+          )}
+
+          {/* Submit new question */}
+          <div className="border-t border-border pt-4 mt-4">
+            <p className="text-sm font-medium mb-3">Ask Arthur a Question:</p>
+            <div className="space-y-3">
+              <Textarea
+                placeholder="Ask about forehand technique, serve strategy, mental prep, or anything tennis-related..."
+                value={newQuestion}
+                onChange={(e) => setNewQuestion(e.target.value)}
+                className="min-h-[80px] resize-none"
+                maxLength={500}
+              />
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-muted-foreground">{newQuestion.length}/500 characters</span>
+                <Button 
+                  onClick={handleSubmitQuestion}
+                  disabled={loadingQuestion || !newQuestion.trim()}
+                >
+                  {loadingQuestion ? (
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                  ) : (
+                    <Send className="h-4 w-4 mr-2" />
+                  )}
+                  Submit Question
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -293,7 +588,22 @@ export const ArthurExclusiveZone = () => {
             <p className="text-sm text-muted-foreground mb-3">
               Win a 30-minute hitting session with me at my training base in France. Travel included.
             </p>
-            <Button size="sm" variant="gold" className="w-full">Notify Me</Button>
+            {hasEntered('meet_greet') ? (
+              <Button size="sm" variant="secondary" className="w-full" disabled>
+                <Check className="h-4 w-4 mr-1" />
+                Notified
+              </Button>
+            ) : (
+              <Button 
+                size="sm" 
+                variant="gold" 
+                className="w-full"
+                onClick={() => handleEnterContest('meet_greet', 'Hitting Session Giveaway')}
+                disabled={loadingContest === 'meet_greet'}
+              >
+                {loadingContest === 'meet_greet' ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Notify Me'}
+              </Button>
+            )}
           </article>
           <article className="p-5 bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl border border-primary/20">
             <Badge className="mb-2 bg-primary/20 text-primary border-primary/30 text-xs">Monthly</Badge>
@@ -301,7 +611,22 @@ export const ArthurExclusiveZone = () => {
             <p className="text-sm text-muted-foreground mb-3">
               Every month, I pick 2 premium members for a 15-minute video call. Just to chat!
             </p>
-            <Button size="sm" variant="gold" className="w-full">You're Entered</Button>
+            {hasEntered('video_call') ? (
+              <Button size="sm" variant="secondary" className="w-full" disabled>
+                <Check className="h-4 w-4 mr-1" />
+                You're Entered
+              </Button>
+            ) : (
+              <Button 
+                size="sm" 
+                variant="gold" 
+                className="w-full"
+                onClick={() => handleEnterContest('video_call', 'Monthly Video Call')}
+                disabled={loadingContest === 'video_call'}
+              >
+                {loadingContest === 'video_call' ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Enter Draw'}
+              </Button>
+            )}
           </article>
         </div>
       </section>
