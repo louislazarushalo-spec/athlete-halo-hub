@@ -14,6 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
+      contest_entries: {
+        Row: {
+          athlete_id: string
+          contest_type: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          athlete_id: string
+          contest_type: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          athlete_id?: string
+          contest_type?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      fan_questions: {
+        Row: {
+          answer: string | null
+          athlete_id: string
+          created_at: string
+          id: string
+          question: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          answer?: string | null
+          athlete_id: string
+          created_at?: string
+          id?: string
+          question: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          answer?: string | null
+          athlete_id?: string
+          created_at?: string
+          id?: string
+          question?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       followed_athletes: {
         Row: {
           athlete_id: string
@@ -31,6 +85,30 @@ export type Database = {
           athlete_id?: string
           created_at?: string
           id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      match_predictions: {
+        Row: {
+          athlete_id: string
+          created_at: string
+          id: string
+          prediction_score: string
+          user_id: string
+        }
+        Insert: {
+          athlete_id: string
+          created_at?: string
+          id?: string
+          prediction_score: string
+          user_id: string
+        }
+        Update: {
+          athlete_id?: string
+          created_at?: string
+          id?: string
+          prediction_score?: string
           user_id?: string
         }
         Relationships: []
