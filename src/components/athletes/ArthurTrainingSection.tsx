@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dumbbell, Target, Apple, Brain } from "lucide-react";
 
@@ -173,8 +174,16 @@ const trainingCategories: TrainingCategory[] = [
 
 export const ArthurTrainingSection = () => {
   const [activeCategory, setActiveCategory] = useState("fitness");
+  const navigate = useNavigate();
   
   const currentCategory = trainingCategories.find(cat => cat.id === activeCategory);
+
+  const handleProgramClick = (programId: string) => {
+    // Only the rotational power program has a dedicated page for now
+    if (programId === "fitness-3") {
+      navigate("/athlete/arthur-cazaux/training/rotational-power");
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -212,6 +221,7 @@ export const ArthurTrainingSection = () => {
               className={`relative rounded-xl overflow-hidden group cursor-pointer ${
                 program.image ? "h-64" : "glass-card p-5 flex flex-col"
               }`}
+              onClick={() => handleProgramClick(program.id)}
             >
               {program.image ? (
                 <>
@@ -232,7 +242,15 @@ export const ArthurTrainingSection = () => {
                     <p className="text-white/80 text-sm mb-4 line-clamp-2">
                       {program.description}
                     </p>
-                    <Button variant="outline" size="sm" className="w-fit bg-white/10 border-white/20 text-white hover:bg-white/20">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-fit bg-white/10 border-white/20 text-white hover:bg-white/20"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleProgramClick(program.id);
+                      }}
+                    >
                       View Program
                     </Button>
                   </div>
@@ -245,7 +263,15 @@ export const ArthurTrainingSection = () => {
                   <p className="text-muted-foreground text-sm mb-4 flex-1 leading-relaxed">
                     {program.description}
                   </p>
-                  <Button variant="outline" size="sm" className="w-full mt-auto">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full mt-auto"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleProgramClick(program.id);
+                    }}
+                  >
                     View Program
                   </Button>
                 </>
