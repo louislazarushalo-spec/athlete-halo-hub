@@ -1,7 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Home, Compass, MessageCircle, Bell, Settings, Smartphone, ChevronDown, LogOut, User } from "lucide-react";
 import { athletes, getAthleteById } from "@/data/athletes";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,7 +31,19 @@ const recentlyViewed = athletes.slice(0, 3);
 
 export const FanSidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
+
+  // Get user display info
+  const userEmail = user?.email || "";
+  const userName = user?.user_metadata?.full_name || userEmail.split("@")[0] || "User";
+  const userInitials = userName.substring(0, 2).toUpperCase();
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-card border-r border-border flex flex-col z-50">
@@ -133,11 +146,11 @@ export const FanSidebar = () => {
           <DropdownMenuTrigger asChild>
             <button className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-muted/50 transition-colors">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/60 to-primary/30 flex items-center justify-center">
-                <span className="font-medium text-primary-foreground">JD</span>
+                <span className="font-medium text-primary-foreground">{userInitials}</span>
               </div>
               <div className="flex-1 text-left min-w-0">
-                <p className="text-sm font-medium truncate">John Doe</p>
-                <p className="text-xs text-muted-foreground truncate">john@example.com</p>
+                <p className="text-sm font-medium truncate">{userName}</p>
+                <p className="text-xs text-muted-foreground truncate">{userEmail}</p>
               </div>
               <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${userMenuOpen ? "rotate-180" : ""}`} />
             </button>
@@ -150,11 +163,12 @@ export const FanSidebar = () => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link to="/login" className="flex items-center gap-2 text-destructive">
-                <LogOut className="h-4 w-4" />
-                Log out
-              </Link>
+            <DropdownMenuItem 
+              onClick={handleLogout}
+              className="flex items-center gap-2 text-destructive cursor-pointer"
+            >
+              <LogOut className="h-4 w-4" />
+              Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
