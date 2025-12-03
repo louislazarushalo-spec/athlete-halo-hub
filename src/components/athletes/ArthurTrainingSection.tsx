@@ -65,26 +65,22 @@ const trainingCategories: TrainingCategory[] = [
       {
         id: "skills-1",
         title: "Heavy Forehand Patterns",
-        description: "The forehand patterns I drill every week, including inside-out, inside-in, and finishing at the net.",
-        image: action1
+        description: "The forehand patterns I drill every week, including inside-out, inside-in, and finishing at the net."
       },
       {
         id: "skills-2",
         title: "Serve + First Ball Domination",
-        description: "The playbook I use to take control early in the point through serve placement and aggressive first shots.",
-        image: action2
+        description: "The playbook I use to take control early in the point through serve placement and aggressive first shots."
       },
       {
         id: "skills-3",
         title: "Backhand Stability Under Pressure",
-        description: "A repetition session designed to keep my backhand solid and reliable against deep, heavy balls.",
-        image: action3
+        description: "A repetition session designed to keep my backhand solid and reliable against deep, heavy balls."
       },
       {
         id: "skills-4",
         title: "Transition to the Net and Finishing Points",
-        description: "Footwork sequences, volley precision and swing volleys that help me finish points confidently.",
-        image: action4
+        description: "Footwork sequences, volley precision and swing volleys that help me finish points confidently."
       }
     ]
   },
@@ -97,26 +93,22 @@ const trainingCategories: TrainingCategory[] = [
       {
         id: "nutrition-1",
         title: "Match Day Fuel Plan",
-        description: "What I eat before, during, and after matches to stay energized, sharp, and fully recovered.",
-        image: action1
+        description: "What I eat before, during, and after matches to stay energized, sharp, and fully recovered."
       },
       {
         id: "nutrition-2",
         title: "Tournament Week Eating Routine",
-        description: "My daily nutrition structure during multi-day events, built to keep digestion light and energy constant.",
-        image: action2
+        description: "My daily nutrition structure during multi-day events, built to keep digestion light and energy constant."
       },
       {
         id: "nutrition-3",
         title: "Recovery Day Menu",
-        description: "Meals focused on protein, hydration, and anti-inflammatory foods after demanding match play.",
-        image: action3
+        description: "Meals focused on protein, hydration, and anti-inflammatory foods after demanding match play."
       },
       {
         id: "nutrition-4",
         title: "Travel Day Essentials",
-        description: "What I pack and eat when traveling to events to avoid fatigue and maintain consistent performance.",
-        image: action4
+        description: "What I pack and eat when traveling to events to avoid fatigue and maintain consistent performance."
       }
     ]
   },
@@ -129,26 +121,22 @@ const trainingCategories: TrainingCategory[] = [
       {
         id: "mental-1",
         title: "Pre-Match Focus Ritual",
-        description: "My breathing and visualization routine before stepping on court for important matches.",
-        image: action1
+        description: "My breathing and visualization routine before stepping on court for important matches."
       },
       {
         id: "mental-2",
         title: "Handling Pressure Points",
-        description: "The mental cues I rely on when serving out sets or facing break points.",
-        image: action2
+        description: "The mental cues I rely on when serving out sets or facing break points."
       },
       {
         id: "mental-3",
         title: "Post-Match Reset Routine",
-        description: "How I decompress, reflect, and mentally reset after both wins and tough losses.",
-        image: action3
+        description: "How I decompress, reflect, and mentally reset after both wins and tough losses."
       },
       {
         id: "mental-4",
         title: "Confidence Builder Daily Routine",
-        description: "Short daily habits that build my self-belief and help me stay aggressive in my game plan.",
-        image: action4
+        description: "Short daily habits that build my self-belief and help me stay aggressive in my game plan."
       }
     ]
   }
@@ -186,35 +174,53 @@ export const ArthurTrainingSection = () => {
         <p className="text-muted-foreground">{currentCategory.description}</p>
       )}
 
-      {/* Programs Grid with Background Images */}
+      {/* Programs Grid */}
       {currentCategory && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {currentCategory.programs.map((program) => (
             <article 
               key={program.id} 
-              className="relative rounded-xl overflow-hidden h-64 group cursor-pointer"
+              className={`relative rounded-xl overflow-hidden group cursor-pointer ${
+                program.image ? "h-64" : "glass-card p-5 flex flex-col"
+              }`}
             >
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                style={{ backgroundImage: `url(${program.image})` }}
-              />
-              
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-              
-              {/* Content */}
-              <div className="absolute inset-0 p-5 flex flex-col justify-end">
-                <h4 className="font-semibold text-lg text-white mb-2 group-hover:text-primary transition-colors">
-                  {program.title}
-                </h4>
-                <p className="text-white/80 text-sm mb-4 line-clamp-2">
-                  {program.description}
-                </p>
-                <Button variant="outline" size="sm" className="w-fit bg-white/10 border-white/20 text-white hover:bg-white/20">
-                  View Program
-                </Button>
-              </div>
+              {program.image ? (
+                <>
+                  {/* Background Image */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    style={{ backgroundImage: `url(${program.image})` }}
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                  
+                  {/* Content */}
+                  <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                    <h4 className="font-semibold text-lg text-white mb-2 group-hover:text-primary transition-colors">
+                      {program.title}
+                    </h4>
+                    <p className="text-white/80 text-sm mb-4 line-clamp-2">
+                      {program.description}
+                    </p>
+                    <Button variant="outline" size="sm" className="w-fit bg-white/10 border-white/20 text-white hover:bg-white/20">
+                      View Program
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h4 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors leading-snug">
+                    {program.title}
+                  </h4>
+                  <p className="text-muted-foreground text-sm mb-4 flex-1 leading-relaxed">
+                    {program.description}
+                  </p>
+                  <Button variant="outline" size="sm" className="w-full mt-auto">
+                    View Program
+                  </Button>
+                </>
+              )}
             </article>
           ))}
         </div>
