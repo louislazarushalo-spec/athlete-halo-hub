@@ -21,7 +21,10 @@ import {
   Instagram,
   Calendar,
   MapPin,
-  Music
+  Music,
+  Newspaper,
+  Camera,
+  ShoppingBag
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
@@ -399,15 +402,19 @@ const AthletePage = () => {
             {/* Main Tab Navigation */}
             <TabsList className="w-full max-w-4xl mx-auto grid grid-cols-4 mb-8 h-14 bg-muted/50">
               <TabsTrigger value="life" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Heart className="h-5 w-5" />
+                <Camera className="h-5 w-5" />
                 <span>My Life</span>
               </TabsTrigger>
               <TabsTrigger value="gear" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Package className="h-5 w-5" />
+                <ShoppingBag className="h-5 w-5" />
                 <span>My Gear</span>
               </TabsTrigger>
               <TabsTrigger value="training" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Dumbbell className="h-5 w-5" />
+                {isPremiumSubscribed ? (
+                  <Dumbbell className="h-5 w-5" />
+                ) : (
+                  <Lock className="h-5 w-5" />
+                )}
                 <span>My Training</span>
               </TabsTrigger>
               <TabsTrigger value="cause" className="flex items-center gap-2 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
@@ -426,7 +433,7 @@ const AthletePage = () => {
                   onClick={() => setActiveLifeTab("events")}
                   className="rounded-full shrink-0"
                 >
-                  <Trophy className="h-4 w-4 mr-1" />
+                  <Calendar className="h-4 w-4 mr-1" />
                   My Events
                 </Button>
                 <Button
@@ -435,6 +442,7 @@ const AthletePage = () => {
                   onClick={() => setActiveLifeTab("news")}
                   className="rounded-full shrink-0"
                 >
+                  <Newspaper className="h-4 w-4 mr-1" />
                   My News
                 </Button>
                 <Button
@@ -443,7 +451,11 @@ const AthletePage = () => {
                   onClick={() => setActiveLifeTab("music")}
                   className="rounded-full shrink-0"
                 >
-                  <Play className="h-4 w-4 mr-1" />
+                  {isPremiumSubscribed ? (
+                    <Music className="h-4 w-4 mr-1" />
+                  ) : (
+                    <Lock className="h-4 w-4 mr-1" />
+                  )}
                   My Music
                 </Button>
                 <Button
@@ -452,7 +464,11 @@ const AthletePage = () => {
                   onClick={() => setActiveLifeTab("community")}
                   className="rounded-full shrink-0"
                 >
-                  <Lock className="h-4 w-4 mr-1" />
+                  {isPremiumSubscribed ? (
+                    <MessageCircle className="h-4 w-4 mr-1" />
+                  ) : (
+                    <Lock className="h-4 w-4 mr-1" />
+                  )}
                   Community
                 </Button>
               </div>
