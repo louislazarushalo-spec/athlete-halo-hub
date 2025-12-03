@@ -32,6 +32,7 @@ import { Athlete } from "@/data/athletes";
 import { ShoppableGearSection } from "@/components/fan/sections/ShoppableGearSection";
 import { RegistrationGate } from "@/components/auth/RegistrationGate";
 import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSection";
+import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
 
 // Helper functions for formatting
 const formatNumber = (num: number): string => {
@@ -215,6 +216,7 @@ const AthletePage = () => {
   const { id } = useParams<{ id: string }>();
   const athlete = getAthleteById(id || "");
   const [isFollowing, setIsFollowing] = useState(false);
+  const [isPremiumSubscribed, setIsPremiumSubscribed] = useState(false);
   const [activeLifeTab, setActiveLifeTab] = useState<"events" | "news" | "music" | "community">("events");
   const { addToCart } = useCart();
   const { isAuthenticated } = useAuth();
@@ -303,14 +305,32 @@ const AthletePage = () => {
                     </span>
                   </div>
                   <Button
-                    variant={isFollowing ? "secondary" : "gold"}
+                    variant={isFollowing ? "secondary" : "outline"}
                     size="lg"
                     onClick={handleFollow}
-                    className="shadow-lg"
+                    className="shadow-lg border-foreground/20 hover:bg-foreground/10"
                   >
                     {isFollowing ? <Check className="h-4 w-4" /> : <UserPlus className="h-4 w-4" />}
-                    {isFollowing ? "Following" : "Follow Athlete"}
+                    {isFollowing ? "Following" : "Follow for Free"}
                   </Button>
+                  {!isPremiumSubscribed && (
+                    <Link to={`/subscribe/${athlete.id}`}>
+                      <Button
+                        variant="gold"
+                        size="lg"
+                        className="shadow-lg"
+                      >
+                        <Lock className="h-4 w-4" />
+                        Subscribe (€4.50 / month)
+                      </Button>
+                    </Link>
+                  )}
+                  {isPremiumSubscribed && (
+                    <Badge className="bg-primary/20 text-primary border-primary/30 px-3 py-1">
+                      <Check className="h-3 w-3 mr-1" />
+                      Premium Member
+                    </Badge>
+                  )}
                 </div>
                 {/* Social Media Links */}
                 <div className="flex items-center gap-3">
@@ -488,82 +508,157 @@ const AthletePage = () => {
                 </div>
               )}
 
-              {/* My Music/Podcasts */}
+              {/* My Music/Podcasts - Premium Locked */}
               {activeLifeTab === "music" && (
-                <div className="max-w-4xl mx-auto">
-                  <h3 className="text-2xl font-bold mb-6 text-foreground">My Music & Playlists</h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {/* Spotify Playlist */}
-                    <article className="glass-card p-6 group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
-                      <div className="flex items-start gap-4">
-                        <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shrink-0 shadow-lg">
-                          <Music className="h-10 w-10 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">Pre-Match Pump Up</h4>
-                          <p className="text-sm text-muted-foreground mb-3">My go-to playlist before stepping on court</p>
-                          <Button size="sm" variant="outline" className="w-full">
-                            <Play className="h-4 w-4 mr-2" />
-                            Listen on Spotify
-                          </Button>
-                        </div>
-                      </div>
-                    </article>
-
-                    {/* Training Mix */}
-                    <article className="glass-card p-6 group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
-                      <div className="flex items-start gap-4">
-                        <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shrink-0 shadow-lg">
-                          <Dumbbell className="h-10 w-10 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">Training Motivation</h4>
-                          <p className="text-sm text-muted-foreground mb-3">High-energy tracks for intense workouts</p>
-                          <Button size="sm" variant="outline" className="w-full">
-                            <Play className="h-4 w-4 mr-2" />
-                            Listen on Spotify
-                          </Button>
-                        </div>
-                      </div>
-                    </article>
-
-                    {/* Podcast Appearance */}
-                    <article className="glass-card p-6 group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 md:col-span-2">
-                      <div className="flex items-start gap-4">
-                        <div className="w-32 h-32 rounded-lg bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shrink-0 shadow-lg">
-                          <MessageCircle className="h-12 w-12 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <Badge variant="secondary" className="mb-2">Latest Episode</Badge>
-                          <h4 className="font-bold text-xl mb-2 group-hover:text-primary transition-colors">
-                            Behind the Baseline Podcast
-                          </h4>
-                          <p className="text-sm text-muted-foreground mb-4">
-                            Arthur discusses his journey from Montpellier to the ATP Tour, his training routines, and what drives him to compete at the highest level.
-                          </p>
-                          <div className="flex gap-2">
-                            <Button size="sm" variant="outline">
+                isPremiumSubscribed ? (
+                  <div className="max-w-4xl mx-auto">
+                    <h3 className="text-2xl font-bold mb-6 text-foreground">My Music & Playlists</h3>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Spotify Playlist */}
+                      <article className="glass-card p-6 group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
+                        <div className="flex items-start gap-4">
+                          <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shrink-0 shadow-lg">
+                            <Music className="h-10 w-10 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">Pre-Match Pump Up</h4>
+                            <p className="text-sm text-muted-foreground mb-3">My go-to playlist before stepping on court</p>
+                            <Button size="sm" variant="outline" className="w-full">
                               <Play className="h-4 w-4 mr-2" />
-                              Listen Now
+                              Listen on Spotify
                             </Button>
-                            <span className="text-sm text-muted-foreground flex items-center">
-                              42 min • Dec 2024
-                            </span>
                           </div>
                         </div>
-                      </div>
-                    </article>
+                      </article>
+
+                      {/* Training Mix */}
+                      <article className="glass-card p-6 group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
+                        <div className="flex items-start gap-4">
+                          <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shrink-0 shadow-lg">
+                            <Dumbbell className="h-10 w-10 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-bold text-lg mb-1 group-hover:text-primary transition-colors">Training Motivation</h4>
+                            <p className="text-sm text-muted-foreground mb-3">High-energy tracks for intense workouts</p>
+                            <Button size="sm" variant="outline" className="w-full">
+                              <Play className="h-4 w-4 mr-2" />
+                              Listen on Spotify
+                            </Button>
+                          </div>
+                        </div>
+                      </article>
+
+                      {/* Podcast Appearance */}
+                      <article className="glass-card p-6 group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 md:col-span-2">
+                        <div className="flex items-start gap-4">
+                          <div className="w-32 h-32 rounded-lg bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shrink-0 shadow-lg">
+                            <MessageCircle className="h-12 w-12 text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <Badge variant="secondary" className="mb-2">Latest Episode</Badge>
+                            <h4 className="font-bold text-xl mb-2 group-hover:text-primary transition-colors">
+                              Behind the Baseline Podcast
+                            </h4>
+                            <p className="text-sm text-muted-foreground mb-4">
+                              Arthur discusses his journey from Montpellier to the ATP Tour, his training routines, and what drives him to compete at the highest level.
+                            </p>
+                            <div className="flex gap-2">
+                              <Button size="sm" variant="outline">
+                                <Play className="h-4 w-4 mr-2" />
+                                Listen Now
+                              </Button>
+                              <span className="text-sm text-muted-foreground flex items-center">
+                                42 min • Dec 2024
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name}>
+                    <div className="max-w-4xl mx-auto">
+                      <h3 className="text-2xl font-bold mb-6 text-foreground">My Music & Playlists</h3>
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <article className="glass-card p-6">
+                          <div className="flex items-start gap-4">
+                            <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shrink-0">
+                              <Music className="h-10 w-10 text-white" />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="font-bold text-lg mb-1">Pre-Match Pump Up</h4>
+                              <p className="text-sm text-muted-foreground mb-3">My go-to playlist before stepping on court</p>
+                            </div>
+                          </div>
+                        </article>
+                        <article className="glass-card p-6">
+                          <div className="flex items-start gap-4">
+                            <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shrink-0">
+                              <Dumbbell className="h-10 w-10 text-white" />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="font-bold text-lg mb-1">Training Motivation</h4>
+                              <p className="text-sm text-muted-foreground mb-3">High-energy tracks for intense workouts</p>
+                            </div>
+                          </div>
+                        </article>
+                      </div>
+                    </div>
+                  </PremiumLockedContent>
+                )
               )}
 
               {/* Community & Rewards (Premium Locked) */}
               {activeLifeTab === "community" && (
-                <div className="relative">
-                  {/* Blurred preview content */}
-                  <div className="blur-sm pointer-events-none select-none">
+                isPremiumSubscribed ? (
+                  <div className="grid md:grid-cols-2 gap-8">
+                    {/* Prize Contests */}
+                    <div className="glass-card p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <Trophy className="h-6 w-6 text-primary" />
+                        <h3 className="text-xl font-semibold">Prize Contests</h3>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="p-4 bg-muted/50 rounded-lg">
+                          <h4 className="font-medium mb-1">Win Signed Gear</h4>
+                          <p className="text-sm text-muted-foreground">Enter for a chance to win authentic signed equipment.</p>
+                        </div>
+                        <div className="p-4 bg-muted/50 rounded-lg">
+                          <h4 className="font-medium mb-1">Training Session Giveaway</h4>
+                          <p className="text-sm text-muted-foreground">Exclusive 1-on-1 virtual training session.</p>
+                        </div>
+                        <div className="p-4 bg-muted/50 rounded-lg">
+                          <h4 className="font-medium mb-1">Meet & Greet Opportunity</h4>
+                          <p className="text-sm text-muted-foreground">VIP access to meet the athlete in person.</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Fan Discussions */}
+                    <div className="glass-card p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <MessageCircle className="h-6 w-6 text-primary" />
+                        <h3 className="text-xl font-semibold">Fan Discussions</h3>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="p-4 bg-muted/50 rounded-lg">
+                          <h4 className="font-medium mb-1">Match Analysis Thread</h4>
+                          <p className="text-sm text-muted-foreground">Discuss recent performances with other fans.</p>
+                        </div>
+                        <div className="p-4 bg-muted/50 rounded-lg">
+                          <h4 className="font-medium mb-1">Training Tips Q&A</h4>
+                          <p className="text-sm text-muted-foreground">Community discussion on training methods.</p>
+                        </div>
+                        <div className="p-4 bg-muted/50 rounded-lg">
+                          <h4 className="font-medium mb-1">Fan Meetup Planning</h4>
+                          <p className="text-sm text-muted-foreground">Organize meetups with fellow supporters.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name}>
                     <div className="grid md:grid-cols-2 gap-8">
-                      {/* Prize Contests */}
                       <div className="glass-card p-6">
                         <div className="flex items-center gap-3 mb-4">
                           <Trophy className="h-6 w-6 text-primary" />
@@ -578,14 +673,8 @@ const AthletePage = () => {
                             <h4 className="font-medium mb-1">Training Session Giveaway</h4>
                             <p className="text-sm text-muted-foreground">Exclusive 1-on-1 virtual training session.</p>
                           </div>
-                          <div className="p-4 bg-muted/50 rounded-lg">
-                            <h4 className="font-medium mb-1">Meet & Greet Opportunity</h4>
-                            <p className="text-sm text-muted-foreground">VIP access to meet the athlete in person.</p>
-                          </div>
                         </div>
                       </div>
-
-                      {/* Fan Discussions */}
                       <div className="glass-card p-6">
                         <div className="flex items-center gap-3 mb-4">
                           <MessageCircle className="h-6 w-6 text-primary" />
@@ -600,31 +689,11 @@ const AthletePage = () => {
                             <h4 className="font-medium mb-1">Training Tips Q&A</h4>
                             <p className="text-sm text-muted-foreground">Community discussion on training methods.</p>
                           </div>
-                          <div className="p-4 bg-muted/50 rounded-lg">
-                            <h4 className="font-medium mb-1">Fan Meetup Planning</h4>
-                            <p className="text-sm text-muted-foreground">Organize meetups with fellow supporters.</p>
-                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  {/* Lock Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-background/60 backdrop-blur-sm rounded-xl">
-                    <div className="text-center p-8 max-w-md">
-                      <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
-                        <Lock className="h-8 w-8 text-muted-foreground" />
-                      </div>
-                      <h3 className="text-xl font-semibold mb-2">Premium Exclusive</h3>
-                      <p className="text-muted-foreground mb-6">
-                        Unlock contests, discussions, and deeper access to {athlete.name}'s world.
-                      </p>
-                      <Button variant="gold" size="lg">
-                        Upgrade to Premium
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+                  </PremiumLockedContent>
+                )
               )}
             </TabsContent>
 
@@ -665,78 +734,74 @@ const AthletePage = () => {
               )}
             </TabsContent>
 
-            {/* MY TRAINING TAB */}
+            {/* MY TRAINING TAB - Premium Locked */}
             <TabsContent value="training" className="animate-fade-in">
-              {isArthurCazaux ? (
-                <ArthurTrainingSection />
-              ) : (
-                <div>
-                  <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {athlete.training.map(post => (
-                      <article key={post.id} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
-                        <div className="relative h-48 overflow-hidden">
-                          <img
-                            src={post.image}
-                            alt={post.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
-                              <Play className="h-6 w-6 text-primary-foreground ml-1" />
+              {isPremiumSubscribed ? (
+                isArthurCazaux ? (
+                  <ArthurTrainingSection />
+                ) : (
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {athlete.training.map(post => (
+                        <article key={post.id} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
+                          <div className="relative h-48 overflow-hidden">
+                            <img
+                              src={post.image}
+                              alt={post.title}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                              <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
+                                <Play className="h-6 w-6 text-primary-foreground ml-1" />
+                              </div>
                             </div>
+                            <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
                           </div>
-                          <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
-                        </div>
-                        <div className="p-4">
-                          <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                            {post.title}
-                          </h4>
-                          <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
-                            {post.description}
-                          </p>
-                          <Button variant="outline" size="sm" className="w-full">
-                            View Program
-                          </Button>
-                        </div>
-                      </article>
-                    ))}
-                    {/* Seed additional training content */}
-                    {[
-                      { title: "Explosive Speed & Agility Routine", desc: "Build game-changing acceleration and quick feet." },
-                      { title: "Strength & Mobility Session", desc: "Balance power with flexibility for peak performance." },
-                      { title: "Recovery & Regeneration Protocol", desc: "Essential recovery techniques for optimal readiness." },
-                      { title: "Mental Performance Workshop", desc: "Develop focus and resilience under pressure." }
-                    ].slice(0, Math.max(0, 6 - athlete.training.length)).map((item, idx) => (
-                      <article key={`seed-training-${idx}`} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
-                        <div className="relative h-48 overflow-hidden">
-                          <img
-                            src={`https://images.unsplash.com/photo-${['1571019614242-c5c5dee9f50b', '1534438327276-14e5300c3a48', '1544367567-0f2fcb009e0b', '1517836357463-d25dfeac3438'][idx]}?w=800&h=500&fit=crop`}
-                            alt={item.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
-                              <Play className="h-6 w-6 text-primary-foreground ml-1" />
-                            </div>
+                          <div className="p-4">
+                            <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                              {post.title}
+                            </h4>
+                            <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+                              {post.description}
+                            </p>
+                            <Button variant="outline" size="sm" className="w-full">
+                              View Program
+                            </Button>
                           </div>
-                          <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
-                        </div>
-                        <div className="p-4">
-                          <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                            {item.title}
-                          </h4>
-                          <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
-                            {item.desc}
-                          </p>
-                          <Button variant="outline" size="sm" className="w-full">
-                            View Program
-                          </Button>
-                        </div>
-                      </article>
-                    ))}
+                        </article>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )
+              ) : (
+                <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name}>
+                  {isArthurCazaux ? (
+                    <ArthurTrainingSection />
+                  ) : (
+                    <div>
+                      <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {athlete.training.slice(0, 3).map(post => (
+                          <article key={post.id} className="glass-card overflow-hidden">
+                            <div className="relative h-48 overflow-hidden">
+                              <img
+                                src={post.image}
+                                alt={post.title}
+                                className="w-full h-full object-cover"
+                              />
+                              <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
+                            </div>
+                            <div className="p-4">
+                              <h4 className="font-semibold text-lg mb-2">{post.title}</h4>
+                              <p className="text-muted-foreground text-sm line-clamp-2 mb-3">{post.description}</p>
+                            </div>
+                          </article>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </PremiumLockedContent>
               )}
             </TabsContent>
 
