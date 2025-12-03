@@ -8,6 +8,24 @@ import action2 from "@/assets/arthur-cazaux-action2.png";
 import action3 from "@/assets/arthur-cazaux-action3.png";
 import action4 from "@/assets/arthur-cazaux-action4.png";
 
+// Import skills images
+import skills1 from "@/assets/arthur-skills-1.png";
+import skills2 from "@/assets/arthur-skills-2.png";
+import skills3 from "@/assets/arthur-skills-3.png";
+import skills4 from "@/assets/arthur-skills-4.png";
+
+// Import nutrition images
+import nutrition1 from "@/assets/arthur-nutrition-1.png";
+import nutrition2 from "@/assets/arthur-nutrition-2.png";
+import nutrition3 from "@/assets/arthur-nutrition-3.png";
+import nutrition4 from "@/assets/arthur-nutrition-4.png";
+
+// Import mental images
+import mental1 from "@/assets/arthur-mental-1.png";
+import mental2 from "@/assets/arthur-mental-2.png";
+import mental3 from "@/assets/arthur-mental-3.png";
+import mental4 from "@/assets/arthur-mental-4.png";
+
 interface TrainingProgram {
   id: string;
   title: string;
@@ -65,22 +83,26 @@ const trainingCategories: TrainingCategory[] = [
       {
         id: "skills-1",
         title: "Heavy Forehand Patterns",
-        description: "The forehand patterns I drill every week, including inside-out, inside-in, and finishing at the net."
+        description: "The forehand patterns I drill every week, including inside-out, inside-in, and finishing at the net.",
+        image: skills1
       },
       {
         id: "skills-2",
         title: "Serve + First Ball Domination",
-        description: "The playbook I use to take control early in the point through serve placement and aggressive first shots."
+        description: "The playbook I use to take control early in the point through serve placement and aggressive first shots.",
+        image: skills2
       },
       {
         id: "skills-3",
         title: "Backhand Stability Under Pressure",
-        description: "A repetition session designed to keep my backhand solid and reliable against deep, heavy balls."
+        description: "A repetition session designed to keep my backhand solid and reliable against deep, heavy balls.",
+        image: skills3
       },
       {
         id: "skills-4",
         title: "Transition to the Net and Finishing Points",
-        description: "Footwork sequences, volley precision and swing volleys that help me finish points confidently."
+        description: "Footwork sequences, volley precision and swing volleys that help me finish points confidently.",
+        image: skills4
       }
     ]
   },
@@ -93,22 +115,26 @@ const trainingCategories: TrainingCategory[] = [
       {
         id: "nutrition-1",
         title: "Match Day Fuel Plan",
-        description: "What I eat before, during, and after matches to stay energized, sharp, and fully recovered."
+        description: "What I eat before, during, and after matches to stay energized, sharp, and fully recovered.",
+        image: nutrition1
       },
       {
         id: "nutrition-2",
         title: "Tournament Week Eating Routine",
-        description: "My daily nutrition structure during multi-day events, built to keep digestion light and energy constant."
+        description: "My daily nutrition structure during multi-day events, built to keep digestion light and energy constant.",
+        image: nutrition2
       },
       {
         id: "nutrition-3",
         title: "Recovery Day Menu",
-        description: "Meals focused on protein, hydration, and anti-inflammatory foods after demanding match play."
+        description: "Meals focused on protein, hydration, and anti-inflammatory foods after demanding match play.",
+        image: nutrition3
       },
       {
         id: "nutrition-4",
         title: "Travel Day Essentials",
-        description: "What I pack and eat when traveling to events to avoid fatigue and maintain consistent performance."
+        description: "What I pack and eat when traveling to events to avoid fatigue and maintain consistent performance.",
+        image: nutrition4
       }
     ]
   },
@@ -121,22 +147,26 @@ const trainingCategories: TrainingCategory[] = [
       {
         id: "mental-1",
         title: "Pre-Match Focus Ritual",
-        description: "My breathing and visualization routine before stepping on court for important matches."
+        description: "My breathing and visualization routine before stepping on court for important matches.",
+        image: mental1
       },
       {
         id: "mental-2",
         title: "Handling Pressure Points",
-        description: "The mental cues I rely on when serving out sets or facing break points."
+        description: "The mental cues I rely on when serving out sets or facing break points.",
+        image: mental2
       },
       {
         id: "mental-3",
         title: "Post-Match Reset Routine",
-        description: "How I decompress, reflect, and mentally reset after both wins and tough losses."
+        description: "How I decompress, reflect, and mentally reset after both wins and tough losses.",
+        image: mental3
       },
       {
         id: "mental-4",
         title: "Confidence Builder Daily Routine",
-        description: "Short daily habits that build my self-belief and help me stay aggressive in my game plan."
+        description: "Short daily habits that build my self-belief and help me stay aggressive in my game plan.",
+        image: mental4
       }
     ]
   }
