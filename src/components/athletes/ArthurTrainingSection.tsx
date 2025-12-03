@@ -9,8 +9,10 @@ import action3 from "@/assets/arthur-cazaux-action3.png";
 import action4 from "@/assets/arthur-cazaux-action4.png";
 
 // Import skills images (real Arthur photos)
-import action5 from "@/assets/arthur-cazaux-action5.png";
-import action6 from "@/assets/arthur-cazaux-action6.png";
+import skills1 from "@/assets/arthur-skills-1.png";
+import skills2 from "@/assets/arthur-skills-2.png";
+import skills3 from "@/assets/arthur-skills-3.png";
+import skills4 from "@/assets/arthur-skills-4.png";
 
 // Import nutrition images
 import nutrition1 from "@/assets/arthur-nutrition-1.png";
@@ -81,25 +83,25 @@ const trainingCategories: TrainingCategory[] = [
         id: "skills-1",
         title: "Heavy Forehand Patterns",
         description: "The forehand patterns I drill every week, including inside-out, inside-in, and finishing at the net.",
-        image: action5
+        image: skills1
       },
       {
         id: "skills-2",
         title: "Serve + First Ball Domination",
         description: "The playbook I use to take control early in the point through serve placement and aggressive first shots.",
-        image: action6
+        image: skills2
       },
       {
         id: "skills-3",
         title: "Backhand Stability Under Pressure",
         description: "A repetition session designed to keep my backhand solid and reliable against deep, heavy balls.",
-        image: action1
+        image: skills3
       },
       {
         id: "skills-4",
         title: "Transition to the Net and Finishing Points",
         description: "Footwork sequences, volley precision and swing volleys that help me finish points confidently.",
-        image: action3
+        image: skills4
       }
     ]
   },
