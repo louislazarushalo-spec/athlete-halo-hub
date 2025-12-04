@@ -39,6 +39,7 @@ import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSecti
 import { MatthieuTrainingSection } from "@/components/athletes/MatthieuTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
 import { ArthurExclusiveZone } from "@/components/athletes/ArthurExclusiveZone";
+import { MatthieuExclusiveZone } from "@/components/athletes/MatthieuExclusiveZone";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -854,7 +855,7 @@ const AthletePage = () => {
             {isCustomAthlete && (
               <TabsContent value="exclusive" className="animate-fade-in">
                 {isPremiumSubscribed ? (
-                  <ArthurExclusiveZone />
+                  isArthurCazaux ? <ArthurExclusiveZone /> : <MatthieuExclusiveZone />
                 ) : (
                   <PremiumLockedContent 
                     athleteId={athlete.id} 
@@ -864,7 +865,7 @@ const AthletePage = () => {
                       : "Unlock prize draws, curated premium content, and members-only rugby discussions."
                     }
                   >
-                    <ArthurExclusiveZone />
+                    {isArthurCazaux ? <ArthurExclusiveZone /> : <MatthieuExclusiveZone />}
                   </PremiumLockedContent>
                 )}
               </TabsContent>
