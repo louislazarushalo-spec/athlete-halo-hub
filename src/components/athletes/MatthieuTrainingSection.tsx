@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Dumbbell, Target } from "lucide-react";
+import { Dumbbell, Target, Apple, Brain } from "lucide-react";
 
 // Import fitness images
 import fitness1 from "@/assets/matthieu-fitness-1.png";
@@ -12,6 +12,12 @@ import fitness4 from "@/assets/matthieu-fitness-4.png";
 import skills1 from "@/assets/matthieu-skills-1.png";
 import skills2 from "@/assets/matthieu-skills-2.png";
 import skills3 from "@/assets/matthieu-skills-3.png";
+
+// Import nutrition images (same as Arthur's)
+import nutrition1 from "@/assets/arthur-nutrition-1.png";
+import nutrition2 from "@/assets/arthur-nutrition-2.png";
+import nutrition3 from "@/assets/arthur-nutrition-3.png";
+import nutrition4 from "@/assets/arthur-nutrition-4.png";
 
 interface TrainingProgram {
   id: string;
@@ -90,6 +96,70 @@ const trainingCategories: TrainingCategory[] = [
         title: "Evasion & Tackle Avoidance",
         description: "Sidesteps, fends, late footwork, and maintaining momentum through traffic to break the defensive line.",
         image: skills2
+      }
+    ]
+  },
+  {
+    id: "nutrition",
+    title: "Nutrition",
+    description: "How I fuel during tournaments, training blocks, and recovery days.",
+    icon: <Apple className="h-4 w-4" />,
+    programs: [
+      {
+        id: "nutrition-1",
+        title: "Match Day Fuel Plan",
+        description: "What I eat before, during, and after matches to stay energized, sharp, and fully recovered.",
+        image: nutrition1
+      },
+      {
+        id: "nutrition-2",
+        title: "Tournament Week Eating Routine",
+        description: "My daily nutrition structure during multi-day events, built to keep digestion light and energy constant.",
+        image: nutrition2
+      },
+      {
+        id: "nutrition-3",
+        title: "Recovery Day Menu",
+        description: "Meals focused on protein, hydration, and anti-inflammatory foods after demanding match play.",
+        image: nutrition3
+      },
+      {
+        id: "nutrition-4",
+        title: "Travel Day Essentials",
+        description: "What I pack and eat when traveling to events to avoid fatigue and maintain consistent performance.",
+        image: nutrition4
+      }
+    ]
+  },
+  {
+    id: "mental",
+    title: "Mental",
+    description: "The tools I use to stay calm, confident, and focused in key moments.",
+    icon: <Brain className="h-4 w-4" />,
+    programs: [
+      {
+        id: "mental-1",
+        title: "Pre-Match Focus Ritual",
+        description: "My breathing and visualization routine before stepping on the pitch for important matches.",
+        image: fitness3
+      },
+      {
+        id: "mental-2",
+        title: "Handling Pressure Points",
+        description: "The mental cues I rely on when taking crucial kicks or facing high-pressure moments.",
+        image: skills3
+      },
+      {
+        id: "mental-3",
+        title: "Post-Match Reset Routine",
+        description: "How I decompress, reflect, and mentally reset after both wins and tough losses.",
+        image: skills1
+      },
+      {
+        id: "mental-4",
+        title: "Confidence Builder Daily Routine",
+        description: "Short daily habits that build my self-belief and help me stay aggressive in my game plan.",
+        image: fitness1
       }
     ]
   }
