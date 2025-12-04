@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Athlete } from "@/data/athletes";
+import { Lock, Unlock, Crown } from "lucide-react";
 
 interface HomepageAthleteCardProps {
   athlete: Athlete;
@@ -7,13 +8,16 @@ interface HomepageAthleteCardProps {
 }
 
 export const HomepageAthleteCard = ({ athlete, index = 0 }: HomepageAthleteCardProps) => {
+  // Check if athlete is a custom/premium athlete
+  const isCustomAthlete = athlete.id === "arthur-cazaux" || athlete.id === "matthieu-jalibert";
+
   return (
     <Link 
       to={`/athlete/${athlete.id}`}
       className={`group block animate-fade-up opacity-0 stagger-${(index % 5) + 1}`}
       style={{ animationFillMode: 'forwards' }}
     >
-      <article className="glass-card overflow-hidden transition-all duration-500 hover:border-primary/30 hover:shadow-glow-gold hover:scale-[1.02]">
+      <article className="glass-card overflow-hidden transition-all duration-500 hover:border-primary/30 hover:shadow-glow-soft hover:scale-[1.02]">
         {/* Large Image */}
         <div className="relative aspect-[3/4] overflow-hidden">
           <img
@@ -23,14 +27,37 @@ export const HomepageAthleteCard = ({ athlete, index = 0 }: HomepageAthleteCardP
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
           
+          {/* Premium badge for custom athletes */}
+          {isCustomAthlete && (
+            <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 bg-primary/90 backdrop-blur-sm rounded-full">
+              <Crown className="h-3.5 w-3.5 text-primary-foreground" />
+              <span className="text-xs font-semibold text-primary-foreground">Premium</span>
+            </div>
+          )}
+          
           {/* Content overlay at bottom */}
           <div className="absolute bottom-0 left-0 right-0 p-6">
             <h3 className="font-display text-2xl font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
               {athlete.name}
             </h3>
-            <span className="text-muted-foreground text-sm font-medium">
+            <span className="text-muted-foreground text-sm font-medium block mb-3">
               {athlete.sport}
             </span>
+
+            {/* Access level indicators */}
+            <div className="flex flex-wrap gap-1.5">
+              {/* Free sections */}
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-background/60 backdrop-blur-sm border border-border/30 rounded text-[10px] text-foreground/70">
+                <Unlock className="h-2.5 w-2.5" />
+                Free
+              </span>
+              
+              {/* Premium indicator */}
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded text-[10px] text-primary font-medium">
+                <Lock className="h-2.5 w-2.5" />
+                {isCustomAthlete ? "4 Premium" : "1 Premium"}
+              </span>
+            </div>
           </div>
         </div>
       </article>
