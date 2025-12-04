@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Dumbbell, Target, Apple, Brain } from "lucide-react";
 
 // Import fitness images
-import fitness1 from "@/assets/matthieu-fitness-1.png";
+import fitnessSpeed from "@/assets/matthieu-fitness-speed.png";
 import fitness2 from "@/assets/matthieu-fitness-2.png";
 import fitness3 from "@/assets/matthieu-fitness-3.png";
 import fitness4 from "@/assets/matthieu-fitness-4.png";
@@ -51,7 +51,7 @@ const trainingCategories: TrainingCategory[] = [
         id: "fitness-1",
         title: "Acceleration & Line-Break Speed",
         description: "My program focused on explosive first steps and attacking gaps to create opportunities in the backline.",
-        image: fitness1
+        image: fitnessSpeed
       },
       {
         id: "fitness-2",
