@@ -26,6 +26,7 @@ import SubscribeSuccessPage from "./pages/SubscribeSuccessPage";
 import TrainingProgramPage from "./pages/TrainingProgramPage";
 import MatthieuTrainingProgramPage from "./pages/MatthieuTrainingProgramPage";
 import AdminUsersPage from "./pages/AdminUsersPage";
+import AdminContentPage from "./pages/AdminContentPage";
 
 import NotFound from "./pages/NotFound";
 
@@ -76,6 +77,7 @@ const App = () => (
                   <Route path="/athlete/arthur-cazaux/training/:programId" element={<TrainingProgramPage />} />
                   <Route path="/athlete/matthieu-jalibert/training/:programId" element={<MatthieuTrainingProgramPage />} />
                   <Route path="/admin/users" element={<AdminUsersPage />} />
+                  <Route path="/admin/content" element={<AdminContentPage />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </BrowserRouter>
