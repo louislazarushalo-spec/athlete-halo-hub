@@ -35,8 +35,7 @@ const AdminContentPage = () => {
   
   // Form state
   const [newAthleteId, setNewAthleteId] = useState("");
-  const [newTitle, setNewTitle] = useState("");
-  const [newFile, setNewFile] = useState<File | null>(null);
+  const [newFiles, setNewFiles] = useState<File[]>([]);
 
   const fetchContent = async (athleteFilter?: string) => {
     let query = supabase
@@ -91,47 +90,58 @@ const AdminContentPage = () => {
   };
 
   const handleUpload = async () => {
-    if (!newFile || !newAthleteId) {
-      toast.error("Please select an athlete and a file");
+    if (newFiles.length === 0 || !newAthleteId) {
+      toast.error("Please select an athlete and at least one file");
       return;
     }
 
     setUploading(true);
+    let successCount = 0;
+    let failCount = 0;
     
     try {
-      // Upload file to storage
-      const fileExt = newFile.name.split(".").pop();
-      const fileName = `${newAthleteId}/${Date.now()}.${fileExt}`;
+      for (const file of newFiles) {
+        try {
+          const fileExt = file.name.split(".").pop();
+          const fileName = `${newAthleteId}/${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
+          
+          const { error: uploadError } = await supabase.storage
+            .from("athlete-content")
+            .upload(fileName, file);
+
+          if (uploadError) throw uploadError;
+
+          const { data: urlData } = supabase.storage
+            .from("athlete-content")
+            .getPublicUrl(fileName);
+
+          const { error: insertError } = await supabase
+            .from("athlete_content")
+            .insert({
+              athlete_id: newAthleteId,
+              image_url: urlData.publicUrl,
+              title: null,
+              content_type: "image",
+              created_by: user?.id,
+            });
+
+          if (insertError) throw insertError;
+          successCount++;
+        } catch (err) {
+          console.error("Failed to upload:", file.name, err);
+          failCount++;
+        }
+      }
+
+      if (successCount > 0) {
+        toast.success(`${successCount} image(s) uploaded successfully${failCount > 0 ? `, ${failCount} failed` : ""}`);
+      } else {
+        toast.error("All uploads failed");
+      }
       
-      const { error: uploadError } = await supabase.storage
-        .from("athlete-content")
-        .upload(fileName, newFile);
-
-      if (uploadError) throw uploadError;
-
-      // Get public URL
-      const { data: urlData } = supabase.storage
-        .from("athlete-content")
-        .getPublicUrl(fileName);
-
-      // Insert record
-      const { error: insertError } = await supabase
-        .from("athlete_content")
-        .insert({
-          athlete_id: newAthleteId,
-          image_url: urlData.publicUrl,
-          title: newTitle || null,
-          content_type: "image",
-          created_by: user?.id,
-        });
-
-      if (insertError) throw insertError;
-
-      toast.success("Content uploaded successfully");
       setDialogOpen(false);
       setNewAthleteId("");
-      setNewTitle("");
-      setNewFile(null);
+      setNewFiles([]);
       fetchContent(selectedAthlete);
     } catch (error: any) {
       console.error("Upload error:", error);
@@ -217,27 +227,25 @@ const AdminContentPage = () => {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label>Title (optional)</Label>
-                  <Input
-                    value={newTitle}
-                    onChange={(e) => setNewTitle(e.target.value)}
-                    placeholder="Enter a title for this content"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label>Image</Label>
+                  <Label>Images (select multiple)</Label>
                   <Input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => setNewFile(e.target.files?.[0] || null)}
+                    multiple
+                    onChange={(e) => setNewFiles(Array.from(e.target.files || []))}
                   />
+                  {newFiles.length > 0 && (
+                    <p className="text-sm text-muted-foreground">
+                      {newFiles.length} file(s) selected
+                    </p>
+                  )}
                 </div>
                 <Button 
                   className="w-full" 
                   onClick={handleUpload}
-                  disabled={uploading || !newFile || !newAthleteId}
+                  disabled={uploading || newFiles.length === 0 || !newAthleteId}
                 >
-                  {uploading ? "Uploading..." : "Upload Content"}
+                  {uploading ? "Uploading..." : `Upload ${newFiles.length || ""} Image${newFiles.length !== 1 ? "s" : ""}`}
                 </Button>
               </div>
             </DialogContent>
