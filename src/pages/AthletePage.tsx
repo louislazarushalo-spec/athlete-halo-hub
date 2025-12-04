@@ -46,6 +46,10 @@ import sponsorLacoste from "@/assets/sponsor-lacoste.png";
 import sponsorBabolat from "@/assets/sponsor-babolat.png";
 import sponsorExtia from "@/assets/sponsor-extia.png";
 
+// Sponsor logos for Matthieu Jalibert
+import sponsorAdidas from "@/assets/sponsor-adidas.png";
+import sponsorUBB from "@/assets/sponsor-ubb.png";
+
 // Helper functions for formatting
 const formatNumber = (num: number): string => {
   if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
@@ -413,9 +417,8 @@ const AthletePage = () => {
                       )}
                       {isMatthieuJalibert && (
                         <>
-                          <span className="text-sm font-medium text-foreground/80">Adidas</span>
-                          <span className="text-sm font-medium text-foreground/80">UBB</span>
-                          <span className="text-sm font-medium text-foreground/80">Kappa</span>
+                          <img src={sponsorAdidas} alt="Adidas" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorUBB} alt="UBB" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
                       )}
                     </div>
