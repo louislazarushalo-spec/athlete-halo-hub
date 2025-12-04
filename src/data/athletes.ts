@@ -54,6 +54,9 @@ import crissaJacksonImg from "@/assets/crissa-jackson.png";
 import angelReeseImg from "@/assets/angel-reese.png";
 import romainNtamackImg from "@/assets/romain-ntamack.png";
 import matthieuJalibertImg from "@/assets/matthieu-jalibert.png";
+import matthieuJalibertMatchImg from "@/assets/matthieu-jalibert-match.png";
+import matthieuJalibertLifestyleImg from "@/assets/matthieu-jalibert-lifestyle.png";
+import matthieuJalibertTrainingImg from "@/assets/matthieu-jalibert-training.png";
 import damianPenaudImg from "@/assets/damian-penaud.png";
 import gabinVilliereImg from "@/assets/gabin-villiere.png";
 import maxHomaImg from "@/assets/max-homa.png";
@@ -5550,33 +5553,161 @@ export const athletes: Athlete[] = [
     products: [
       {
         id: "mj-p1",
-        name: "Playmaker's Guide",
-        price: 59,
+        name: "UBB Home Match Kit",
+        price: 89,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=600&fit=crop",
-        description: "Master the art of fly-half play.",
-        category: "athlete",
+        image: matthieuJalibertMatchImg,
+        description: "Official Union Bordeaux-Bègles home kit worn during TOP 14 matches.",
+        category: "partner",
         athleteId: "matthieu-jalibert"
       },
       {
         id: "mj-p2",
-        name: "Signed UBB Jersey",
-        price: 129,
+        name: "Adidas Predator Rugby Boots",
+        price: 149,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=600&h=600&fit=crop",
-        description: "Official Union Bordeaux-Bègles jersey with signature.",
-        category: "athlete",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "High-performance Adidas rugby boots for elite play.",
+        category: "partner",
         athleteId: "matthieu-jalibert"
       },
       {
         id: "mj-p3",
-        name: "Kappa Rugby Boots",
-        price: 119,
+        name: "Adidas Vintage Knit Sweater",
+        price: 120,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
-        description: "Performance boots from Kappa.",
+        image: matthieuJalibertLifestyleImg,
+        description: "Retro-inspired Adidas Originals knit sweater with bold pattern.",
         category: "partner",
         athleteId: "matthieu-jalibert"
+      },
+      {
+        id: "mj-p4",
+        name: "Adidas Forum Low Sneakers",
+        price: 110,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&h=600&fit=crop",
+        description: "Classic Adidas Forum Low in premium white leather.",
+        category: "partner",
+        athleteId: "matthieu-jalibert"
+      },
+      {
+        id: "mj-p5",
+        name: "UBB Training T-Shirt",
+        price: 45,
+        currency: "€",
+        image: matthieuJalibertTrainingImg,
+        description: "Official UBB training tee in navy with burgundy accents.",
+        category: "partner",
+        athleteId: "matthieu-jalibert"
+      },
+      {
+        id: "mj-p6",
+        name: "Adidas Training Compression Top",
+        price: 65,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=600&h=600&fit=crop",
+        description: "Performance compression training apparel from Adidas.",
+        category: "partner",
+        athleteId: "matthieu-jalibert"
+      }
+    ],
+    gearCollections: [
+      {
+        id: "mj-gc-match",
+        name: "Matthieu's Match Day Kit",
+        description: "Under the lights at Stade Chaban-Delmas, Matthieu orchestrates the UBB attack in the iconic burgundy and navy kit. Every kick, every pass, every moment of brilliance on the biggest stages of French rugby.",
+        actionImage: matthieuJalibertMatchImg,
+        products: [
+          {
+            id: "mj-p1",
+            name: "UBB Home Match Kit",
+            price: 89,
+            currency: "€",
+            image: matthieuJalibertMatchImg,
+            description: "Official Union Bordeaux-Bègles home kit worn during TOP 14 matches.",
+            category: "partner",
+            athleteId: "matthieu-jalibert"
+          },
+          {
+            id: "mj-p2",
+            name: "Adidas Predator Rugby Boots",
+            price: 149,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+            description: "High-performance Adidas rugby boots for elite play.",
+            category: "partner",
+            athleteId: "matthieu-jalibert"
+          }
+        ],
+        hotspots: {
+          'mj-p1': { x: 50, y: 35 },
+          'mj-p2': { x: 50, y: 90 }
+        }
+      },
+      {
+        id: "mj-gc-lifestyle",
+        name: "Matthieu's Off-Pitch Style",
+        description: "Beyond the rugby field, Matthieu brings his own flair to streetwear. The vintage Adidas aesthetic meets contemporary fashion in this effortlessly cool lifestyle look.",
+        actionImage: matthieuJalibertLifestyleImg,
+        products: [
+          {
+            id: "mj-p3",
+            name: "Adidas Vintage Knit Sweater",
+            price: 120,
+            currency: "€",
+            image: matthieuJalibertLifestyleImg,
+            description: "Retro-inspired Adidas Originals knit sweater with bold pattern.",
+            category: "partner",
+            athleteId: "matthieu-jalibert"
+          },
+          {
+            id: "mj-p4",
+            name: "Adidas Forum Low Sneakers",
+            price: 110,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&h=600&fit=crop",
+            description: "Classic Adidas Forum Low in premium white leather.",
+            category: "partner",
+            athleteId: "matthieu-jalibert"
+          }
+        ],
+        hotspots: {
+          'mj-p3': { x: 50, y: 40 },
+          'mj-p4': { x: 50, y: 85 }
+        }
+      },
+      {
+        id: "mj-gc-training",
+        name: "Matthieu's Training Essentials",
+        description: "Pre-season preparation at the UBB training ground. Matthieu pushes through drills in the technical training kit that keeps him at the top of his game week in, week out.",
+        actionImage: matthieuJalibertTrainingImg,
+        products: [
+          {
+            id: "mj-p5",
+            name: "UBB Training T-Shirt",
+            price: 45,
+            currency: "€",
+            image: matthieuJalibertTrainingImg,
+            description: "Official UBB training tee in navy with burgundy accents.",
+            category: "partner",
+            athleteId: "matthieu-jalibert"
+          },
+          {
+            id: "mj-p6",
+            name: "Adidas Training Compression Top",
+            price: 65,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=600&h=600&fit=crop",
+            description: "Performance compression training apparel from Adidas.",
+            category: "partner",
+            athleteId: "matthieu-jalibert"
+          }
+        ],
+        hotspots: {
+          'mj-p5': { x: 50, y: 40 },
+          'mj-p6': { x: 50, y: 70 }
+        }
       }
     ],
     cause: {
