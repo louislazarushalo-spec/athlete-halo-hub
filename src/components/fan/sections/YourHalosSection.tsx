@@ -17,7 +17,7 @@ export const YourHalosSection = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {followedAthletes.map((athlete, index) => (
-          <AthleteCard key={athlete.id} athlete={athlete} index={index} />
+          <AthleteCard key={athlete.id} athlete={athlete} index={index} hideAccessIndicators />
         ))}
       </div>
     </section>
