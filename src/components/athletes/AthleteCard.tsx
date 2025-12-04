@@ -5,9 +5,10 @@ import { Lock, Unlock } from "lucide-react";
 interface AthleteCardProps {
   athlete: Athlete;
   index?: number;
+  hideAccessIndicators?: boolean;
 }
 
-export const AthleteCard = ({ athlete, index = 0 }: AthleteCardProps) => {
+export const AthleteCard = ({ athlete, index = 0, hideAccessIndicators = false }: AthleteCardProps) => {
   // Check if athlete is a custom/premium athlete
   const isCustomAthlete = athlete.id === "arthur-cazaux" || athlete.id === "matthieu-jalibert";
 
@@ -40,37 +41,39 @@ export const AthleteCard = ({ athlete, index = 0 }: AthleteCardProps) => {
           </h3>
 
           {/* Access level indicators */}
-          <div className="flex flex-wrap gap-1.5">
-            {/* Free sections */}
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-muted/50 border border-border/50 rounded text-[10px] text-muted-foreground">
-              <Unlock className="h-2.5 w-2.5" />
-              Inside My World
-            </span>
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-muted/50 border border-border/50 rounded text-[10px] text-muted-foreground">
-              <Unlock className="h-2.5 w-2.5" />
-              My Kit Room
-            </span>
-            
-            {/* Premium sections */}
-            {isCustomAthlete && (
-              <>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/10 border border-primary/30 rounded text-[10px] text-primary font-medium">
-                  <Lock className="h-2.5 w-2.5" />
-                  Performance Lab
-                </span>
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/10 border border-primary/30 rounded text-[10px] text-primary font-medium">
-                  <Lock className="h-2.5 w-2.5" />
-                  Exclusive Zone
-                </span>
-              </>
-            )}
-            {!isCustomAthlete && (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/10 border border-primary/30 rounded text-[10px] text-primary font-medium">
-                <Lock className="h-2.5 w-2.5" />
-                Training
+          {!hideAccessIndicators && (
+            <div className="flex flex-wrap gap-1.5">
+              {/* Free sections */}
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-muted/50 border border-border/50 rounded text-[10px] text-muted-foreground">
+                <Unlock className="h-2.5 w-2.5" />
+                Inside My World
               </span>
-            )}
-          </div>
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-muted/50 border border-border/50 rounded text-[10px] text-muted-foreground">
+                <Unlock className="h-2.5 w-2.5" />
+                My Kit Room
+              </span>
+              
+              {/* Premium sections */}
+              {isCustomAthlete && (
+                <>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/10 border border-primary/30 rounded text-[10px] text-primary font-medium">
+                    <Lock className="h-2.5 w-2.5" />
+                    Performance Lab
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/10 border border-primary/30 rounded text-[10px] text-primary font-medium">
+                    <Lock className="h-2.5 w-2.5" />
+                    Exclusive Zone
+                  </span>
+                </>
+              )}
+              {!isCustomAthlete && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-primary/10 border border-primary/30 rounded text-[10px] text-primary font-medium">
+                  <Lock className="h-2.5 w-2.5" />
+                  Training
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </article>
     </Link>
