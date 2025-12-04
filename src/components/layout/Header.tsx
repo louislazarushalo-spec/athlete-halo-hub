@@ -110,14 +110,9 @@ export const Header = () => {
                   {isAdmin && (
                     <>
                       <DropdownMenuSeparator />
-                      <DropdownMenuLabel>Admin</DropdownMenuLabel>
-                      <DropdownMenuItem onClick={() => navigate("/admin/users")}>
+                      <DropdownMenuItem onClick={() => navigate("/admin")}>
                         <Shield className="mr-2 h-4 w-4" />
-                        Users
-                      </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => navigate("/admin/content")}>
-                        <Image className="mr-2 h-4 w-4" />
-                        Content Manager
+                        Admin Dashboard
                       </DropdownMenuItem>
                     </>
                   )}

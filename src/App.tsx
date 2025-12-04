@@ -27,6 +27,7 @@ import TrainingProgramPage from "./pages/TrainingProgramPage";
 import MatthieuTrainingProgramPage from "./pages/MatthieuTrainingProgramPage";
 import AdminUsersPage from "./pages/AdminUsersPage";
 import AdminContentPage from "./pages/AdminContentPage";
+import AdminDashboardPage from "./pages/AdminDashboardPage";
 
 import NotFound from "./pages/NotFound";
 
@@ -76,6 +77,7 @@ const App = () => (
                   <Route path="/subscribe/:id/success" element={<SubscribeSuccessPage />} />
                   <Route path="/athlete/arthur-cazaux/training/:programId" element={<TrainingProgramPage />} />
                   <Route path="/athlete/matthieu-jalibert/training/:programId" element={<MatthieuTrainingProgramPage />} />
+                  <Route path="/admin" element={<AdminDashboardPage />} />
                   <Route path="/admin/users" element={<AdminUsersPage />} />
                   <Route path="/admin/content" element={<AdminContentPage />} />
                   <Route path="*" element={<NotFound />} />
