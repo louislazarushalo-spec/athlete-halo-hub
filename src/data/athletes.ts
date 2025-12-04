@@ -58,6 +58,12 @@ import matthieuJalibertBannerImg from "@/assets/matthieu-jalibert-banner.png";
 import matthieuJalibertMatchImg from "@/assets/matthieu-jalibert-match.png";
 import matthieuJalibertLifestyleImg from "@/assets/matthieu-jalibert-lifestyle.png";
 import matthieuJalibertTrainingImg from "@/assets/matthieu-jalibert-training.png";
+import matthieuUbbKitImg from "@/assets/matthieu-ubb-kit.png";
+import matthieuAdidasShoesImg from "@/assets/matthieu-adidas-shoes.png";
+import matthieuUbbShortsImg from "@/assets/matthieu-ubb-shorts.png";
+import matthieuUbbSocksImg from "@/assets/matthieu-ubb-socks.png";
+import matthieuAdidasVintageKitImg from "@/assets/matthieu-adidas-vintage-kit.png";
+import matthieuAdidasSneakersImg from "@/assets/matthieu-adidas-sneakers.png";
 import damianPenaudImg from "@/assets/damian-penaud.png";
 import gabinVilliereImg from "@/assets/gabin-villiere.png";
 import maxHomaImg from "@/assets/max-homa.png";
@@ -5557,58 +5563,58 @@ export const athletes: Athlete[] = [
         name: "UBB Home Match Kit",
         price: 89,
         currency: "€",
-        image: matthieuJalibertMatchImg,
+        image: matthieuUbbKitImg,
         description: "Official Union Bordeaux-Bègles home kit worn during TOP 14 matches.",
         category: "partner",
         athleteId: "matthieu-jalibert"
       },
       {
         id: "mj-p2",
-        name: "Adidas Predator Rugby Boots",
+        name: "Adidas Rugby Boots",
         price: 149,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        image: matthieuAdidasShoesImg,
         description: "High-performance Adidas rugby boots for elite play.",
         category: "partner",
         athleteId: "matthieu-jalibert"
       },
       {
         id: "mj-p3",
-        name: "Adidas Vintage Knit Sweater",
-        price: 120,
+        name: "UBB Match Shorts",
+        price: 55,
         currency: "€",
-        image: matthieuJalibertLifestyleImg,
-        description: "Retro-inspired Adidas Originals knit sweater with bold pattern.",
+        image: matthieuUbbShortsImg,
+        description: "Official Union Bordeaux-Bègles match shorts.",
         category: "partner",
         athleteId: "matthieu-jalibert"
       },
       {
         id: "mj-p4",
-        name: "Adidas Forum Low Sneakers",
-        price: 110,
+        name: "UBB Match Socks",
+        price: 25,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&h=600&fit=crop",
-        description: "Classic Adidas Forum Low in premium white leather.",
+        image: matthieuUbbSocksImg,
+        description: "Official Union Bordeaux-Bègles match socks in burgundy.",
         category: "partner",
         athleteId: "matthieu-jalibert"
       },
       {
         id: "mj-p5",
-        name: "UBB Training T-Shirt",
-        price: 45,
+        name: "Adidas Vintage Jersey",
+        price: 95,
         currency: "€",
-        image: matthieuJalibertTrainingImg,
-        description: "Official UBB training tee in navy with burgundy accents.",
+        image: matthieuAdidasVintageKitImg,
+        description: "Retro-inspired Adidas Originals jersey with classic design.",
         category: "partner",
         athleteId: "matthieu-jalibert"
       },
       {
         id: "mj-p6",
-        name: "Adidas Training Compression Top",
-        price: 65,
+        name: "Adidas Handball Spezial Sneakers",
+        price: 110,
         currency: "€",
-        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=600&h=600&fit=crop",
-        description: "Performance compression training apparel from Adidas.",
+        image: matthieuAdidasSneakersImg,
+        description: "Classic Adidas Handball Spezial in brown suede.",
         category: "partner",
         athleteId: "matthieu-jalibert"
       }
@@ -5625,25 +5631,47 @@ export const athletes: Athlete[] = [
             name: "UBB Home Match Kit",
             price: 89,
             currency: "€",
-            image: matthieuJalibertMatchImg,
+            image: matthieuUbbKitImg,
             description: "Official Union Bordeaux-Bègles home kit worn during TOP 14 matches.",
             category: "partner",
             athleteId: "matthieu-jalibert"
           },
           {
             id: "mj-p2",
-            name: "Adidas Predator Rugby Boots",
+            name: "Adidas Rugby Boots",
             price: 149,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+            image: matthieuAdidasShoesImg,
             description: "High-performance Adidas rugby boots for elite play.",
+            category: "partner",
+            athleteId: "matthieu-jalibert"
+          },
+          {
+            id: "mj-p3",
+            name: "UBB Match Shorts",
+            price: 55,
+            currency: "€",
+            image: matthieuUbbShortsImg,
+            description: "Official Union Bordeaux-Bègles match shorts.",
+            category: "partner",
+            athleteId: "matthieu-jalibert"
+          },
+          {
+            id: "mj-p4",
+            name: "UBB Match Socks",
+            price: 25,
+            currency: "€",
+            image: matthieuUbbSocksImg,
+            description: "Official Union Bordeaux-Bègles match socks in burgundy.",
             category: "partner",
             athleteId: "matthieu-jalibert"
           }
         ],
         hotspots: {
           'mj-p1': { x: 50, y: 35 },
-          'mj-p2': { x: 50, y: 90 }
+          'mj-p2': { x: 50, y: 90 },
+          'mj-p3': { x: 30, y: 60 },
+          'mj-p4': { x: 70, y: 85 }
         }
       },
       {
@@ -5653,61 +5681,29 @@ export const athletes: Athlete[] = [
         actionImage: matthieuJalibertLifestyleImg,
         products: [
           {
-            id: "mj-p3",
-            name: "Adidas Vintage Knit Sweater",
-            price: 120,
-            currency: "€",
-            image: matthieuJalibertLifestyleImg,
-            description: "Retro-inspired Adidas Originals knit sweater with bold pattern.",
-            category: "partner",
-            athleteId: "matthieu-jalibert"
-          },
-          {
-            id: "mj-p4",
-            name: "Adidas Forum Low Sneakers",
-            price: 110,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&h=600&fit=crop",
-            description: "Classic Adidas Forum Low in premium white leather.",
-            category: "partner",
-            athleteId: "matthieu-jalibert"
-          }
-        ],
-        hotspots: {
-          'mj-p3': { x: 50, y: 40 },
-          'mj-p4': { x: 50, y: 85 }
-        }
-      },
-      {
-        id: "mj-gc-training",
-        name: "Matthieu's Training Essentials",
-        description: "Pre-season preparation at the UBB training ground. Matthieu pushes through drills in the technical training kit that keeps him at the top of his game week in, week out.",
-        actionImage: matthieuJalibertTrainingImg,
-        products: [
-          {
             id: "mj-p5",
-            name: "UBB Training T-Shirt",
-            price: 45,
+            name: "Adidas Vintage Jersey",
+            price: 95,
             currency: "€",
-            image: matthieuJalibertTrainingImg,
-            description: "Official UBB training tee in navy with burgundy accents.",
+            image: matthieuAdidasVintageKitImg,
+            description: "Retro-inspired Adidas Originals jersey with classic design.",
             category: "partner",
             athleteId: "matthieu-jalibert"
           },
           {
             id: "mj-p6",
-            name: "Adidas Training Compression Top",
-            price: 65,
+            name: "Adidas Handball Spezial Sneakers",
+            price: 110,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?w=600&h=600&fit=crop",
-            description: "Performance compression training apparel from Adidas.",
+            image: matthieuAdidasSneakersImg,
+            description: "Classic Adidas Handball Spezial in brown suede.",
             category: "partner",
             athleteId: "matthieu-jalibert"
           }
         ],
         hotspots: {
           'mj-p5': { x: 50, y: 40 },
-          'mj-p6': { x: 50, y: 70 }
+          'mj-p6': { x: 50, y: 85 }
         }
       }
     ],
