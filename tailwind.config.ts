@@ -105,6 +105,7 @@ export default {
       boxShadow: {
         'glow-blue': '0 0 40px hsl(217 91% 60% / 0.4)',
         'glow-soft': '0 0 60px hsl(217 91% 60% / 0.2)',
+        'glow-premium': '0 0 80px hsl(217 91% 60% / 0.3)',
         'inner-glow': 'inset 0 1px 0 0 hsl(0 0% 100% / 0.05)',
       },
     },
