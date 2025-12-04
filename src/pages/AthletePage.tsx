@@ -269,6 +269,8 @@ const AthletePage = () => {
   };
 
   const isArthurCazaux = athlete.id === "arthur-cazaux";
+  const isMatthieuJalibert = athlete.id === "matthieu-jalibert";
+  const isCustomAthlete = isArthurCazaux || isMatthieuJalibert;
 
   const content = (
     <>
@@ -397,14 +399,25 @@ const AthletePage = () => {
                     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
                   </a>
                 </div>
-                {/* Sponsor Logos - Only for Arthur Cazaux */}
-                {isArthurCazaux && (
+                {/* Sponsor Logos - Only for custom athletes */}
+                {isCustomAthlete && (
                   <div className="flex items-center gap-4 mt-4">
                     <span className="text-xs text-foreground/60 uppercase tracking-wider">Partners</span>
                     <div className="flex items-center gap-3">
-                      <img src={sponsorLacoste} alt="Lacoste" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                      <img src={sponsorBabolat} alt="Babolat" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                      <img src={sponsorExtia} alt="Extia Conseil" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                      {isArthurCazaux && (
+                        <>
+                          <img src={sponsorLacoste} alt="Lacoste" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorBabolat} alt="Babolat" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorExtia} alt="Extia Conseil" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                        </>
+                      )}
+                      {isMatthieuJalibert && (
+                        <>
+                          <span className="text-sm font-medium text-foreground/80">Adidas</span>
+                          <span className="text-sm font-medium text-foreground/80">UBB</span>
+                          <span className="text-sm font-medium text-foreground/80">Kappa</span>
+                        </>
+                      )}
                     </div>
                   </div>
                 )}
@@ -444,7 +457,7 @@ const AthletePage = () => {
                 <span className="hidden sm:inline">My Causes</span>
                 <span className="sm:hidden">Causes</span>
               </TabsTrigger>
-              {isArthurCazaux && (
+              {isCustomAthlete && (
                 <TabsTrigger value="exclusive" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                   {isPremiumSubscribed ? (
                     <Star className="h-4 w-4" />
@@ -707,7 +720,7 @@ const AthletePage = () => {
             {/* MY TRAINING TAB - Premium Locked */}
             <TabsContent value="training" className="animate-fade-in">
               {isPremiumSubscribed ? (
-                isArthurCazaux ? (
+                isCustomAthlete ? (
                   <ArthurTrainingSection />
                 ) : (
                   <div>
@@ -746,7 +759,7 @@ const AthletePage = () => {
                 )
               ) : (
                 <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name}>
-                  {isArthurCazaux ? (
+                  {isCustomAthlete ? (
                     <ArthurTrainingSection />
                   ) : (
                     <div>
@@ -833,8 +846,8 @@ const AthletePage = () => {
               </div>
             </TabsContent>
 
-            {/* EXCLUSIVE ZONE TAB - Arthur Cazaux Only */}
-            {isArthurCazaux && (
+            {/* EXCLUSIVE ZONE TAB - Custom Athletes Only */}
+            {isCustomAthlete && (
               <TabsContent value="exclusive" className="animate-fade-in">
                 {isPremiumSubscribed ? (
                   <ArthurExclusiveZone />
@@ -842,7 +855,10 @@ const AthletePage = () => {
                   <PremiumLockedContent 
                     athleteId={athlete.id} 
                     athleteName={athlete.name}
-                    customSubtitle="Unlock prize draws, curated premium content, and members-only tennis discussions."
+                    customSubtitle={isArthurCazaux 
+                      ? "Unlock prize draws, curated premium content, and members-only tennis discussions."
+                      : "Unlock prize draws, curated premium content, and members-only rugby discussions."
+                    }
                   >
                     <ArthurExclusiveZone />
                   </PremiumLockedContent>
@@ -856,8 +872,8 @@ const AthletePage = () => {
     </>
   );
 
-  // For Arthur Cazaux, use minimal header without nav links
-  if (isArthurCazaux) {
+  // For custom athletes, use minimal header without nav links
+  if (isCustomAthlete) {
     return (
       <div className="min-h-screen flex flex-col">
         <AthleteHeader />
