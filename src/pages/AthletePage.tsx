@@ -36,6 +36,7 @@ import { Athlete } from "@/data/athletes";
 import { ShoppableGearSection } from "@/components/fan/sections/ShoppableGearSection";
 import { RegistrationGate } from "@/components/auth/RegistrationGate";
 import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSection";
+import { MatthieuTrainingSection } from "@/components/athletes/MatthieuTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
 import { ArthurExclusiveZone } from "@/components/athletes/ArthurExclusiveZone";
 import { useSubscription } from "@/contexts/SubscriptionContext";
@@ -724,7 +725,7 @@ const AthletePage = () => {
             <TabsContent value="training" className="animate-fade-in">
               {isPremiumSubscribed ? (
                 isCustomAthlete ? (
-                  <ArthurTrainingSection />
+                  isArthurCazaux ? <ArthurTrainingSection /> : <MatthieuTrainingSection />
                 ) : (
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
@@ -763,7 +764,7 @@ const AthletePage = () => {
               ) : (
                 <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name}>
                   {isCustomAthlete ? (
-                    <ArthurTrainingSection />
+                    isArthurCazaux ? <ArthurTrainingSection /> : <MatthieuTrainingSection />
                   ) : (
                     <div>
                       <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
