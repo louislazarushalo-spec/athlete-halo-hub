@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      athlete_content: {
+        Row: {
+          athlete_id: string
+          content_type: string
+          created_at: string
+          created_by: string | null
+          id: string
+          image_url: string
+          title: string | null
+        }
+        Insert: {
+          athlete_id: string
+          content_type?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          image_url: string
+          title?: string | null
+        }
+        Update: {
+          athlete_id?: string
+          content_type?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          image_url?: string
+          title?: string | null
+        }
+        Relationships: []
+      }
       contest_entries: {
         Row: {
           athlete_id: string
