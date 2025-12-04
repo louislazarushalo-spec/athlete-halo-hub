@@ -335,7 +335,20 @@ const AthletePage = () => {
                     {isFollowing ? <Check className="h-4 w-4" /> : <UserPlus className="h-4 w-4" />}
                     {isFollowing ? "Following" : "Follow for Free"}
                   </Button>
-                  {!isPremiumSubscribed && (
+                  {!isPremiumSubscribed && isArthurCazaux && (
+                    <Link to={`/subscribe/${athlete.id}`}>
+                      <Button
+                        size="lg"
+                        className="group relative premium-button bg-gradient-to-r from-primary via-primary to-blue-400 hover:from-primary/90 hover:via-primary/90 hover:to-blue-400/90 text-primary-foreground shadow-lg hover:shadow-glow-blue hover:-translate-y-0.5 transition-all duration-300 animate-glow-pulse"
+                      >
+                        <Lock className="h-4 w-4 animate-lock-glow group-hover:hidden" />
+                        <Star className="h-4 w-4 hidden group-hover:block" />
+                        <span className="group-hover:hidden">Subscribe</span>
+                        <span className="hidden group-hover:inline">Unlock Premium</span>
+                      </Button>
+                    </Link>
+                  )}
+                  {!isPremiumSubscribed && !isArthurCazaux && (
                     <Link to={`/subscribe/${athlete.id}`}>
                       <Button
                         variant="gold"
@@ -448,30 +461,78 @@ const AthletePage = () => {
                 <span className="hidden sm:inline">My Kit Room</span>
                 <span className="sm:hidden">Kit</span>
               </TabsTrigger>
-              <TabsTrigger value="training" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                {isPremiumSubscribed ? (
-                  <Dumbbell className="h-4 w-4" />
-                ) : (
-                  <Lock className="h-4 w-4" />
-                )}
-                <span className="hidden sm:inline">Performance Lab</span>
-                <span className="sm:hidden">Lab</span>
-              </TabsTrigger>
+              {isArthurCazaux ? (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <TabsTrigger 
+                      value="training" 
+                      className={`flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}
+                    >
+                      {isPremiumSubscribed ? (
+                        <Dumbbell className="h-4 w-4" />
+                      ) : (
+                        <Lock className="h-4 w-4 animate-lock-glow text-primary" />
+                      )}
+                      <span className="hidden sm:inline">Performance Lab</span>
+                      <span className="sm:hidden">Lab</span>
+                    </TabsTrigger>
+                  </TooltipTrigger>
+                  {!isPremiumSubscribed && (
+                    <TooltipContent side="bottom" className="bg-card border-primary/30">
+                      <p className="text-sm font-medium">Premium Access Required</p>
+                    </TooltipContent>
+                  )}
+                </Tooltip>
+              ) : (
+                <TabsTrigger value="training" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  {isPremiumSubscribed ? (
+                    <Dumbbell className="h-4 w-4" />
+                  ) : (
+                    <Lock className="h-4 w-4" />
+                  )}
+                  <span className="hidden sm:inline">Performance Lab</span>
+                  <span className="sm:hidden">Lab</span>
+                </TabsTrigger>
+              )}
               <TabsTrigger value="cause" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Heart className="h-4 w-4" />
                 <span className="hidden sm:inline">My Causes</span>
                 <span className="sm:hidden">Causes</span>
               </TabsTrigger>
               {isCustomAthlete && (
-                <TabsTrigger value="exclusive" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  {isPremiumSubscribed ? (
-                    <Star className="h-4 w-4" />
-                  ) : (
-                    <Lock className="h-4 w-4" />
-                  )}
-                  <span className="hidden sm:inline">Exclusive Zone</span>
-                  <span className="sm:hidden">Exclusive</span>
-                </TabsTrigger>
+                isArthurCazaux ? (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <TabsTrigger 
+                        value="exclusive" 
+                        className={`flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}
+                      >
+                        {isPremiumSubscribed ? (
+                          <Star className="h-4 w-4" />
+                        ) : (
+                          <Lock className="h-4 w-4 animate-lock-glow text-primary" />
+                        )}
+                        <span className="hidden sm:inline">Exclusive Zone</span>
+                        <span className="sm:hidden">Exclusive</span>
+                      </TabsTrigger>
+                    </TooltipTrigger>
+                    {!isPremiumSubscribed && (
+                      <TooltipContent side="bottom" className="bg-card border-primary/30">
+                        <p className="text-sm font-medium">Premium Access Required</p>
+                      </TooltipContent>
+                    )}
+                  </Tooltip>
+                ) : (
+                  <TabsTrigger value="exclusive" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    {isPremiumSubscribed ? (
+                      <Star className="h-4 w-4" />
+                    ) : (
+                      <Lock className="h-4 w-4" />
+                    )}
+                    <span className="hidden sm:inline">Exclusive Zone</span>
+                    <span className="sm:hidden">Exclusive</span>
+                  </TabsTrigger>
+                )
               )}
             </TabsList>
 
