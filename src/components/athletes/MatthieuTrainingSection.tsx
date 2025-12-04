@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dumbbell, Target, Apple, Brain } from "lucide-react";
 
@@ -173,12 +174,14 @@ const trainingCategories: TrainingCategory[] = [
 
 export const MatthieuTrainingSection = () => {
   const [activeCategory, setActiveCategory] = useState("fitness");
+  const navigate = useNavigate();
   
   const currentCategory = trainingCategories.find(cat => cat.id === activeCategory);
 
   const handleProgramClick = (programId: string) => {
-    // Program detail pages can be added later
-    console.log("Navigate to program:", programId);
+    if (programId === "fitness-1") {
+      navigate("/athlete/matthieu-jalibert/training/acceleration-speed");
+    }
   };
 
   return (

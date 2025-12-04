@@ -24,6 +24,7 @@ import SubscribePage from "./pages/SubscribePage";
 import SubscribePaymentPage from "./pages/SubscribePaymentPage";
 import SubscribeSuccessPage from "./pages/SubscribeSuccessPage";
 import TrainingProgramPage from "./pages/TrainingProgramPage";
+import MatthieuTrainingProgramPage from "./pages/MatthieuTrainingProgramPage";
 
 import NotFound from "./pages/NotFound";
 
@@ -71,7 +72,8 @@ const App = () => (
                   <Route path="/subscribe/:id" element={<SubscribePage />} />
                   <Route path="/subscribe/:id/payment" element={<SubscribePaymentPage />} />
                   <Route path="/subscribe/:id/success" element={<SubscribeSuccessPage />} />
-                  <Route path="/athlete/:id/training/:programId" element={<TrainingProgramPage />} />
+                  <Route path="/athlete/arthur-cazaux/training/:programId" element={<TrainingProgramPage />} />
+                  <Route path="/athlete/matthieu-jalibert/training/:programId" element={<MatthieuTrainingProgramPage />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </BrowserRouter>
