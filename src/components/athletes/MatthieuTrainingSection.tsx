@@ -19,6 +19,12 @@ import nutrition2 from "@/assets/arthur-nutrition-2.png";
 import nutrition3 from "@/assets/arthur-nutrition-3.png";
 import nutrition4 from "@/assets/arthur-nutrition-4.png";
 
+// Import mental images
+import mental1 from "@/assets/matthieu-mental-1.png";
+import mental2 from "@/assets/matthieu-mental-2.png";
+import mental3 from "@/assets/matthieu-mental-3.png";
+import mental4 from "@/assets/matthieu-mental-4.png";
+
 interface TrainingProgram {
   id: string;
   title: string;
@@ -141,25 +147,25 @@ const trainingCategories: TrainingCategory[] = [
         id: "mental-1",
         title: "Pre-Match Focus Ritual",
         description: "My breathing and visualization routine before stepping on the pitch for important matches.",
-        image: fitness3
+        image: mental1
       },
       {
         id: "mental-2",
         title: "Handling Pressure Points",
         description: "The mental cues I rely on when taking crucial kicks or facing high-pressure moments.",
-        image: skills3
+        image: mental2
       },
       {
         id: "mental-3",
         title: "Post-Match Reset Routine",
         description: "How I decompress, reflect, and mentally reset after both wins and tough losses.",
-        image: skills1
+        image: mental3
       },
       {
         id: "mental-4",
         title: "Confidence Builder Daily Routine",
         description: "Short daily habits that build my self-belief and help me stay aggressive in my game plan.",
-        image: fitness1
+        image: mental4
       }
     ]
   }
