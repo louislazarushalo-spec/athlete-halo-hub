@@ -54,6 +54,7 @@ import crissaJacksonImg from "@/assets/crissa-jackson.png";
 import angelReeseImg from "@/assets/angel-reese.png";
 import romainNtamackImg from "@/assets/romain-ntamack.png";
 import matthieuJalibertImg from "@/assets/matthieu-jalibert.png";
+import matthieuJalibertBannerImg from "@/assets/matthieu-jalibert-banner.png";
 import matthieuJalibertMatchImg from "@/assets/matthieu-jalibert-match.png";
 import matthieuJalibertLifestyleImg from "@/assets/matthieu-jalibert-lifestyle.png";
 import matthieuJalibertTrainingImg from "@/assets/matthieu-jalibert-training.png";
@@ -5502,7 +5503,7 @@ export const athletes: Athlete[] = [
     bio: "Fly-half. Bordeaux star. French international. Welcome to my world.",
     tagline: "The Bordeaux playmaker",
     avatar: matthieuJalibertImg,
-    banner: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&h=600&fit=crop",
+    banner: matthieuJalibertBannerImg,
     followers: 280000,
     training: [
       {
