@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Users, Image, ArrowRight } from "lucide-react";
+import { Shield, Users, Image, ArrowRight, Clock } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const AdminDashboardPage = () => {
@@ -12,7 +12,7 @@ const AdminDashboardPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [stats, setStats] = useState({ users: 0, content: 0 });
+  const [stats, setStats] = useState({ users: 0, content: 0, activeToday: 0 });
 
   useEffect(() => {
     const checkAdminAndFetch = async () => {
@@ -36,14 +36,19 @@ const AdminDashboardPage = () => {
       setIsAdmin(true);
 
       // Fetch stats
-      const [usersRes, contentRes] = await Promise.all([
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      const [usersRes, contentRes, activeTodayRes] = await Promise.all([
         supabase.from("profiles").select("id", { count: "exact", head: true }),
         supabase.from("athlete_content").select("id", { count: "exact", head: true }),
+        supabase.from("profiles").select("id", { count: "exact", head: true }).gte("last_sign_in", today.toISOString()),
       ]);
 
       setStats({
         users: usersRes.count || 0,
         content: contentRes.count || 0,
+        activeToday: activeTodayRes.count || 0,
       });
 
       setLoading(false);
@@ -64,6 +69,14 @@ const AdminDashboardPage = () => {
       href: "/admin/users",
       stat: stats.users,
       statLabel: "registered users",
+    },
+    {
+      title: "Active Today",
+      description: "Users who signed in today",
+      icon: Clock,
+      href: "/admin/users",
+      stat: stats.activeToday,
+      statLabel: "users active today",
     },
     {
       title: "Content Manager",
