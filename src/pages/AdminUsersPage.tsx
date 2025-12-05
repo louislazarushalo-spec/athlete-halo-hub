@@ -11,6 +11,7 @@ interface Profile {
   id: string;
   email: string;
   created_at: string;
+  last_sign_in: string | null;
 }
 
 const AdminUsersPage = () => {
@@ -93,6 +94,7 @@ const AdminUsersPage = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Email</TableHead>
+                  <TableHead>Last Sign In</TableHead>
                   <TableHead>Registered</TableHead>
                 </TableRow>
               </TableHeader>
@@ -100,6 +102,17 @@ const AdminUsersPage = () => {
                 {profiles.map((profile) => (
                   <TableRow key={profile.id}>
                     <TableCell className="font-medium">{profile.email}</TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {profile.last_sign_in 
+                        ? new Date(profile.last_sign_in).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })
+                        : "Never"}
+                    </TableCell>
                     <TableCell className="text-muted-foreground">
                       {new Date(profile.created_at).toLocaleDateString("en-US", {
                         year: "numeric",
