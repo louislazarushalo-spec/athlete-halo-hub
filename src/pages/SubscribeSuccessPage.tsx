@@ -9,14 +9,14 @@ const SubscribeSuccessPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const athlete = getAthleteById(id || "");
-  const { isSubscribed } = useSubscription();
+  const { isSubscribed, isLoading } = useSubscription();
 
   useEffect(() => {
-    // If not subscribed, redirect to subscribe page
-    if (athlete && !isSubscribed(athlete.id)) {
+    // If not subscribed and done loading, redirect to subscribe page
+    if (!isLoading && athlete && !isSubscribed(athlete.id)) {
       navigate(`/subscribe/${athlete.id}`);
     }
-  }, [athlete, isSubscribed, navigate]);
+  }, [athlete, isSubscribed, navigate, isLoading]);
 
   if (!athlete) {
     return (
@@ -27,6 +27,14 @@ const SubscribeSuccessPage = () => {
             <Button variant="gold">Browse Athletes</Button>
           </Link>
         </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="h-8 w-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
       </div>
     );
   }
