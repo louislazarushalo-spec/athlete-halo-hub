@@ -7,13 +7,14 @@ import { ArrowLeft, CreditCard, Lock } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { useState, useEffect } from "react";
+import { toast } from "sonner";
 
 const SubscribePaymentPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const athlete = getAthleteById(id || "");
-  const { isAuthenticated } = useAuth();
-  const { isSubscribed, subscribe } = useSubscription();
+  const { isAuthenticated, user } = useAuth();
+  const { isSubscribed, subscribe, isLoading } = useSubscription();
   
   const [cardName, setCardName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -23,10 +24,10 @@ const SubscribePaymentPage = () => {
 
   // Redirect if already subscribed
   useEffect(() => {
-    if (athlete && isSubscribed(athlete.id)) {
+    if (!isLoading && athlete && isSubscribed(athlete.id)) {
       navigate(`/athlete/${athlete.id}`);
     }
-  }, [athlete, isSubscribed, navigate]);
+  }, [athlete, isSubscribed, navigate, isLoading]);
 
   if (!athlete) {
     return (
@@ -42,26 +43,35 @@ const SubscribePaymentPage = () => {
   }
 
   const handleSubscribe = async () => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !user) {
       navigate("/login");
       return;
     }
 
     // Basic validation
     if (!cardName.trim() || !cardNumber.trim() || !expiry.trim() || !cvc.trim()) {
+      toast.error("Please fill in all payment fields");
       return;
     }
 
     setIsProcessing(true);
     
-    // Simulate payment processing
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Mark as subscribed
-    subscribe(athlete.id);
-    
-    // Navigate to success page
-    navigate(`/subscribe/${athlete.id}/success`);
+    try {
+      // Note: In production, integrate with Stripe or another payment processor
+      // This currently creates the subscription record without real payment processing
+      const success = await subscribe(athlete.id);
+      
+      if (success) {
+        navigate(`/subscribe/${athlete.id}/success`);
+      } else {
+        toast.error("Failed to process subscription. Please try again.");
+      }
+    } catch (error) {
+      console.error('Subscription error:', error);
+      toast.error("An error occurred. Please try again.");
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const formatCardNumber = (value: string) => {
@@ -82,6 +92,14 @@ const SubscribePaymentPage = () => {
     }
     return v;
   };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="h-8 w-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen relative overflow-hidden">
