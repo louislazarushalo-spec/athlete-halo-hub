@@ -49,12 +49,12 @@ export const MyNewsSection = () => {
   if (sortedNews.length === 0) return null;
 
   return (
-    <section className="mb-12">
-      <div className="mb-6">
-        <h2 className="font-display text-2xl font-semibold mb-1">My News</h2>
-        <p className="text-muted-foreground">Latest updates from your athletes.</p>
+    <section className="mb-8 md:mb-12">
+      <div className="mb-4 md:mb-6">
+        <h2 className="font-display text-xl md:text-2xl font-semibold mb-1">My News</h2>
+        <p className="text-sm md:text-base text-muted-foreground">Latest updates from your athletes.</p>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-3 md:space-y-4">
         {sortedNews.map((item) => {
           const config = platformConfig[item.platform] || platformConfig.instagram;
           const Icon = config.icon;
@@ -65,10 +65,10 @@ export const MyNewsSection = () => {
               to={`/athlete/${item.athlete.id}`}
               className="group block"
             >
-              <article className="glass-card p-4 transition-all duration-300 hover:border-primary/30 hover:shadow-glow-soft">
-                <div className="flex gap-4">
+              <article className="glass-card p-3 md:p-4 transition-all duration-300 hover:border-primary/30 hover:shadow-glow-soft">
+                <div className="flex gap-3 md:gap-4">
                   {/* Image */}
-                  <div className="relative w-32 h-24 rounded-lg overflow-hidden shrink-0">
+                  <div className="relative w-20 h-16 md:w-32 md:h-24 rounded-lg overflow-hidden shrink-0">
                     <img
                       src={item.image}
                       alt={item.title || item.content}
@@ -76,8 +76,8 @@ export const MyNewsSection = () => {
                     />
                     {item.type === 'video' && (
                       <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                        <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
-                          <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-foreground border-b-[6px] border-b-transparent ml-1" />
+                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center">
+                          <div className="w-0 h-0 border-t-[5px] md:border-t-[6px] border-t-transparent border-l-[8px] md:border-l-[10px] border-l-foreground border-b-[5px] md:border-b-[6px] border-b-transparent ml-0.5 md:ml-1" />
                         </div>
                       </div>
                     )}
@@ -85,32 +85,31 @@ export const MyNewsSection = () => {
 
                   {/* Content */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2 flex-wrap">
                       <img
                         src={item.athlete.avatar}
                         alt={item.athlete.name}
-                        className="w-6 h-6 rounded-full object-cover"
+                        className="w-5 h-5 md:w-6 md:h-6 rounded-full object-cover"
                       />
-                      <span className="text-sm text-muted-foreground">{item.athlete.name}</span>
-                      <span className="text-muted-foreground">•</span>
-                      <span className={`inline-flex items-center gap-1 text-xs ${config.color}`}>
+                      <span className="text-xs md:text-sm text-muted-foreground">{item.athlete.name}</span>
+                      <span className="text-muted-foreground hidden sm:inline">•</span>
+                      <span className={`hidden sm:inline-flex items-center gap-1 text-xs ${config.color}`}>
                         <Icon className="h-3 w-3" />
                         {config.label}
                       </span>
                     </div>
                     {item.title && (
-                      <h3 className="font-semibold text-sm mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                      <h3 className="font-semibold text-xs md:text-sm mb-0.5 md:mb-1 line-clamp-1 group-hover:text-primary transition-colors">
                         {item.title}
                       </h3>
                     )}
-                    <p className="text-muted-foreground text-sm line-clamp-2">
+                    <p className="text-muted-foreground text-xs md:text-sm line-clamp-2">
                       {item.content}
                     </p>
-                    <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-2 md:gap-3 mt-1.5 md:mt-2 text-[10px] md:text-xs text-muted-foreground">
                       <span className="font-medium text-foreground/70">{formatRelativeTime(item.timestamp)}</span>
-                      {item.stats?.likes && <span>• {item.stats.likes.toLocaleString()} likes</span>}
-                      {item.stats?.views && <span>• {item.stats.views.toLocaleString()} views</span>}
-                      {item.stats?.readTime && <span>• {item.stats.readTime} read</span>}
+                      {item.stats?.likes && <span className="hidden sm:inline">• {item.stats.likes.toLocaleString()} likes</span>}
+                      {item.stats?.views && <span className="hidden sm:inline">• {item.stats.views.toLocaleString()} views</span>}
                     </div>
                   </div>
                 </div>

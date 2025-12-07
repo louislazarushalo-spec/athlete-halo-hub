@@ -57,39 +57,39 @@ export const UpcomingEventsSection = () => {
   if (upcomingEvents.length === 0) return null;
 
   return (
-    <section className="mb-12">
-      <div className="mb-6">
-        <h2 className="font-display text-2xl font-semibold mb-1">Upcoming events</h2>
-        <p className="text-muted-foreground">Stay updated on the next matches, tournaments, and races from your athletes.</p>
+    <section className="mb-8 md:mb-12">
+      <div className="mb-4 md:mb-6">
+        <h2 className="font-display text-xl md:text-2xl font-semibold mb-1">Upcoming events</h2>
+        <p className="text-sm md:text-base text-muted-foreground">Stay updated on the next matches, tournaments, and races from your athletes.</p>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-3 md:space-y-4">
         {upcomingEvents.map((event) => (
           <Link
             key={`${event.id}-${event.athlete.id}`}
             to={`/athlete/${event.athlete.id}`}
             className="group block"
           >
-            <article className="glass-card p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-glow-soft">
-              <div className="flex items-center gap-4">
+            <article className="glass-card p-3 md:p-5 transition-all duration-300 hover:border-primary/30 hover:shadow-glow-soft">
+              <div className="flex items-start md:items-center gap-3 md:gap-4">
                 <img
                   src={event.athlete.avatar}
                   alt={event.athlete.name}
-                  className="w-14 h-14 rounded-full object-cover ring-2 ring-border"
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover ring-2 ring-border flex-shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold group-hover:text-primary transition-colors">
+                  <h3 className="font-semibold text-sm md:text-base group-hover:text-primary transition-colors line-clamp-1">
                     {event.name}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="text-xs md:text-sm text-muted-foreground mt-0.5 md:mt-1 line-clamp-1">
                     {event.athlete.name} • {event.category}
                   </p>
-                  <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
-                    <Calendar className="h-4 w-4" />
+                  <div className="flex items-center gap-1.5 md:gap-2 mt-1.5 md:mt-2 text-xs md:text-sm text-muted-foreground">
+                    <Calendar className="h-3.5 w-3.5 md:h-4 md:w-4" />
                     <span>{event.date} {event.month} {event.year}</span>
                     <span>{event.countryFlag}</span>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1 text-sm text-primary font-medium group-hover:gap-2 transition-all">
+                <span className="hidden sm:inline-flex items-center gap-1 text-sm text-primary font-medium group-hover:gap-2 transition-all flex-shrink-0">
                   View Halo
                   <ChevronRight className="h-4 w-4" />
                 </span>
