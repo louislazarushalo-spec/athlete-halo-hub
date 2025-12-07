@@ -77,16 +77,16 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
     const isTwitter = item.platform === "twitter";
     return (
       <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in">
-        <div className="p-4 flex items-center gap-3 border-b border-border/50">
-          <img src={athlete.avatar} alt={athlete.name} className="w-10 h-10 rounded-full object-cover ring-2 ring-primary/20" />
-          <div className="flex-1">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-foreground">{athlete.name}</span>
-              <Badge variant="secondary" className={`text-xs ${item.platform === 'instagram' ? 'bg-gradient-to-r from-purple-600/20 to-pink-500/20 text-purple-300' : ''}`}>
+        <div className="p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-border/50">
+          <img src={athlete.avatar} alt={athlete.name} className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-primary/20" />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-1.5 md:gap-2 flex-wrap">
+              <span className="font-semibold text-sm md:text-base text-foreground truncate">{athlete.name}</span>
+              <Badge variant="secondary" className={`text-[10px] md:text-xs ${item.platform === 'instagram' ? 'bg-gradient-to-r from-purple-600/20 to-pink-500/20 text-purple-300' : ''}`}>
                 {config.label}
               </Badge>
             </div>
-            <span className="text-xs text-muted-foreground">
+            <span className="text-[10px] md:text-xs text-muted-foreground">
               {isTwitter ? `@${athlete.name.toLowerCase().replace(' ', '_')}` : item.timestamp}
             </span>
           </div>
@@ -102,38 +102,38 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
             )}
           </div>
         )}
-        <div className="p-4 space-y-3">
+        <div className="p-3 md:p-4 space-y-2 md:space-y-3">
           {isTwitter ? (
             <>
-              <p className="text-base leading-relaxed">{item.content}</p>
-              <div className="flex items-center gap-6 text-muted-foreground text-sm pt-2">
-                <button className="flex items-center gap-1.5 hover:text-blue-400 transition-colors">
-                  <MessageCircle className="h-4 w-4" />
+              <p className="text-sm md:text-base leading-relaxed">{item.content}</p>
+              <div className="flex items-center gap-4 md:gap-6 text-muted-foreground text-xs md:text-sm pt-2">
+                <button className="flex items-center gap-1 md:gap-1.5 hover:text-blue-400 transition-colors">
+                  <MessageCircle className="h-3.5 w-3.5 md:h-4 md:w-4" />
                   <span>{formatNumber(item.stats?.comments || 0)}</span>
                 </button>
-                <button className="flex items-center gap-1.5 hover:text-green-400 transition-colors">
+                <button className="flex items-center gap-1 md:gap-1.5 hover:text-green-400 transition-colors">
                   <span>🔄</span>
                   <span>{formatNumber(item.stats?.shares || 0)}</span>
                 </button>
-                <button className="flex items-center gap-1.5 hover:text-red-400 transition-colors">
-                  <Heart className="h-4 w-4" />
+                <button className="flex items-center gap-1 md:gap-1.5 hover:text-red-400 transition-colors">
+                  <Heart className="h-3.5 w-3.5 md:h-4 md:w-4" />
                   <span>{formatNumber(item.stats?.likes || 0)}</span>
                 </button>
               </div>
             </>
           ) : (
             <>
-              <div className="flex items-center gap-4">
-                <button className="flex items-center gap-1.5 text-muted-foreground hover:text-red-400 transition-all duration-200 hover:scale-110">
-                  <Heart className="h-5 w-5" />
-                  <span className="text-sm font-medium">{formatNumber(item.stats?.likes || 0)}</span>
+              <div className="flex items-center gap-3 md:gap-4">
+                <button className="flex items-center gap-1 md:gap-1.5 text-muted-foreground hover:text-red-400 transition-all duration-200 hover:scale-110">
+                  <Heart className="h-4 w-4 md:h-5 md:w-5" />
+                  <span className="text-xs md:text-sm font-medium">{formatNumber(item.stats?.likes || 0)}</span>
                 </button>
-                <button className="flex items-center gap-1.5 text-muted-foreground hover:text-blue-400 transition-all duration-200 hover:scale-110">
-                  <MessageCircle className="h-5 w-5" />
-                  <span className="text-sm font-medium">{formatNumber(item.stats?.comments || 0)}</span>
+                <button className="flex items-center gap-1 md:gap-1.5 text-muted-foreground hover:text-blue-400 transition-all duration-200 hover:scale-110">
+                  <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
+                  <span className="text-xs md:text-sm font-medium">{formatNumber(item.stats?.comments || 0)}</span>
                 </button>
               </div>
-              <p className="text-sm leading-relaxed">
+              <p className="text-xs md:text-sm leading-relaxed">
                 <span className="font-semibold text-foreground">{athlete.name.toLowerCase().replace(' ', '')}</span>{' '}
                 <span className="text-foreground/90">{item.content}</span>
               </p>
@@ -148,16 +148,16 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
   if (item.type === "video") {
     return (
       <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in">
-        <div className="p-4 flex items-center gap-3 border-b border-border/50">
-          <div className={`w-10 h-10 rounded-full ${config.bgClass} flex items-center justify-center font-bold ${config.textClass} text-sm shadow-lg`}>
-            {config.icon || <Play className="h-5 w-5" fill="white" />}
+        <div className="p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-border/50">
+          <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full ${config.bgClass} flex items-center justify-center font-bold ${config.textClass} text-xs md:text-sm shadow-lg`}>
+            {config.icon || <Play className="h-4 w-4 md:h-5 md:w-5" fill="white" />}
           </div>
           <div className="flex-1">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-foreground">{config.label}</span>
-              <Badge variant="secondary" className="text-xs bg-red-600/20 text-red-400 border-red-500/20">Video</Badge>
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <span className="font-semibold text-sm md:text-base text-foreground">{config.label}</span>
+              <Badge variant="secondary" className="text-[10px] md:text-xs bg-red-600/20 text-red-400 border-red-500/20">Video</Badge>
             </div>
-            <span className="text-xs text-muted-foreground">
+            <span className="text-[10px] md:text-xs text-muted-foreground">
               {item.platform === "youtube" ? "Official Highlights" : "Sports Coverage"}
             </span>
           </div>
@@ -165,19 +165,19 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
         <div className="relative aspect-video cursor-pointer overflow-hidden">
           <img src={item.image} alt="Video thumbnail" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-background/20 to-transparent flex items-center justify-center">
-            <div className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all duration-300 shadow-2xl">
-              <Play className="h-7 w-7 text-white ml-1" fill="white" />
+            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-red-600 flex items-center justify-center group-hover:scale-110 group-hover:bg-red-500 transition-all duration-300 shadow-2xl">
+              <Play className="h-5 w-5 md:h-7 md:w-7 text-white ml-0.5 md:ml-1" fill="white" />
             </div>
           </div>
           {item.stats?.duration && (
-            <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-background/90 backdrop-blur-sm rounded text-xs font-semibold">
+            <div className="absolute bottom-2 right-2 md:bottom-3 md:right-3 px-2 py-0.5 md:py-1 bg-background/90 backdrop-blur-sm rounded text-[10px] md:text-xs font-semibold">
               {item.stats.duration}
             </div>
           )}
         </div>
-        <div className="p-4 space-y-2">
-          <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">{item.title}</h4>
-          <p className="text-sm text-muted-foreground">
+        <div className="p-3 md:p-4 space-y-1 md:space-y-2">
+          <h4 className="font-semibold text-sm md:text-base text-foreground group-hover:text-primary transition-colors line-clamp-2">{item.title}</h4>
+          <p className="text-xs md:text-sm text-muted-foreground">
             {formatNumber(item.stats?.views || 0)} views • {item.timestamp}
           </p>
         </div>
@@ -189,33 +189,33 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
   if (item.type === "article") {
     return (
       <article className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in">
-        <div className="p-4 flex items-center gap-3 border-b border-border/50">
-          <div className={`w-10 h-10 rounded-full ${config.bgClass} flex items-center justify-center font-bold ${config.textClass} text-sm shadow-lg`}>
+        <div className="p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-border/50">
+          <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full ${config.bgClass} flex items-center justify-center font-bold ${config.textClass} text-xs md:text-sm shadow-lg`}>
             {config.icon}
           </div>
           <div className="flex-1">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-foreground">{config.label}</span>
-              <Badge variant="secondary" className="text-xs border-primary/20">Article</Badge>
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <span className="font-semibold text-sm md:text-base text-foreground">{config.label}</span>
+              <Badge variant="secondary" className="text-[10px] md:text-xs border-primary/20">Article</Badge>
             </div>
-            <span className="text-xs text-muted-foreground">Sports News • {item.timestamp}</span>
+            <span className="text-[10px] md:text-xs text-muted-foreground">Sports News • {item.timestamp}</span>
           </div>
         </div>
-        <div className="flex gap-4 p-4">
-          <div className="flex-1 space-y-2">
-            <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
+        <div className="flex gap-3 md:gap-4 p-3 md:p-4">
+          <div className="flex-1 space-y-1 md:space-y-2">
+            <h4 className="font-semibold text-sm md:text-base text-foreground group-hover:text-primary transition-colors leading-snug line-clamp-2">
               {item.title}
             </h4>
-            <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+            <p className="text-xs md:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
               {item.content}
             </p>
-            <div className="flex items-center gap-2 text-xs text-muted-foreground pt-1">
+            <div className="flex items-center gap-2 text-[10px] md:text-xs text-muted-foreground pt-1">
               <span>{item.stats?.readTime}</span>
               <span>•</span>
               <span className="text-primary">Read more →</span>
             </div>
           </div>
-          <div className="relative w-28 h-28 flex-shrink-0 rounded-lg overflow-hidden">
+          <div className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0 rounded-lg overflow-hidden">
             <img 
               src={item.image} 
               alt="Article" 
@@ -286,7 +286,7 @@ const AthletePage = () => {
       {/* Main content - blurred when not authenticated */}
       <div className={!isAuthenticated ? "blur-lg pointer-events-none select-none" : ""}>
         {/* Hero Banner - Full Width */}
-        <section className="relative h-[50vh] min-h-[400px] max-h-[600px] overflow-hidden">
+        <section className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] min-h-[300px] sm:min-h-[350px] md:min-h-[400px] max-h-[600px] overflow-hidden">
           <img
             src={athlete.banner}
             alt={`${athlete.name} banner`}
@@ -297,52 +297,53 @@ const AthletePage = () => {
         
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex items-end">
-          <div className="container mx-auto px-4 pb-8">
-            <div className="flex flex-col sm:flex-row items-start sm:items-end gap-6">
+          <div className="container mx-auto px-4 pb-4 sm:pb-6 md:pb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-end gap-4 sm:gap-6">
               {/* Large Avatar */}
               <div className="relative">
                 <img
                   src={athlete.avatar}
                   alt={athlete.name}
-                  className="w-28 h-28 sm:w-36 sm:h-36 lg:w-44 lg:h-44 rounded-2xl object-cover border-4 border-background shadow-2xl"
+                  className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-xl sm:rounded-2xl object-cover border-2 sm:border-4 border-background shadow-2xl"
                 />
-                <Badge className="absolute -bottom-2 -right-2 bg-primary text-primary-foreground">
+                <Badge className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-primary text-primary-foreground text-[10px] sm:text-xs">
                   {athlete.sport}
                 </Badge>
               </div>
 
               {/* Athlete Info */}
-              <div className="flex-1 pb-2">
-                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-foreground drop-shadow-lg">
+              <div className="flex-1 pb-0 sm:pb-2">
+                <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-1 sm:mb-2 text-foreground drop-shadow-lg">
                   {athlete.name}
                 </h1>
-                <p className="text-foreground/90 text-lg sm:text-xl mb-4 max-w-2xl drop-shadow-md">
+                <p className="text-foreground/90 text-sm sm:text-base md:text-lg lg:text-xl mb-3 sm:mb-4 max-w-2xl drop-shadow-md line-clamp-2 sm:line-clamp-none">
                   {athlete.tagline}
                 </p>
-                <div className="flex flex-wrap items-center gap-4 mb-3">
-                  <div className="flex items-center gap-2 text-foreground/80">
-                    <Users className="h-5 w-5" />
-                    <span className="text-sm font-medium">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-2 sm:mb-3">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-foreground/80">
+                    <Users className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <span className="text-xs sm:text-sm font-medium">
                       {athlete.followers.toLocaleString()} fans
                     </span>
                   </div>
                   <Button
                     variant={isFollowing ? "secondary" : "outline"}
-                    size="lg"
+                    size="sm"
                     onClick={handleFollow}
-                    className="shadow-lg border-foreground/20 hover:bg-foreground/10"
+                    className="shadow-lg border-foreground/20 hover:bg-foreground/10 text-xs sm:text-sm h-8 sm:h-9"
                   >
-                    {isFollowing ? <Check className="h-4 w-4" /> : <UserPlus className="h-4 w-4" />}
-                    {isFollowing ? "Following" : "Follow for Free"}
+                    {isFollowing ? <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> : <UserPlus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />}
+                    <span className="hidden xs:inline">{isFollowing ? "Following" : "Follow for Free"}</span>
+                    <span className="xs:hidden">{isFollowing ? "Following" : "Follow"}</span>
                   </Button>
                   {!isPremiumSubscribed && isArthurCazaux && (
                     <Link to={`/subscribe/${athlete.id}`}>
                       <Button
-                        size="lg"
-                        className="group relative premium-button bg-gradient-to-r from-primary via-primary to-blue-400 hover:from-primary/90 hover:via-primary/90 hover:to-blue-400/90 text-primary-foreground shadow-lg hover:shadow-glow-blue hover:-translate-y-0.5 transition-all duration-300 animate-glow-pulse"
+                        size="sm"
+                        className="group relative premium-button bg-gradient-to-r from-primary via-primary to-blue-400 hover:from-primary/90 hover:via-primary/90 hover:to-blue-400/90 text-primary-foreground shadow-lg hover:shadow-glow-blue hover:-translate-y-0.5 transition-all duration-300 animate-glow-pulse h-8 sm:h-9 text-xs sm:text-sm"
                       >
-                        <Lock className="h-4 w-4 animate-lock-glow group-hover:hidden" />
-                        <Star className="h-4 w-4 hidden group-hover:block" />
+                        <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-lock-glow group-hover:hidden" />
+                        <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4 hidden group-hover:block" />
                         <span className="group-hover:hidden">Subscribe</span>
                         <span className="hidden group-hover:inline">Unlock Premium</span>
                       </Button>
@@ -352,10 +353,10 @@ const AthletePage = () => {
                     <Link to={`/subscribe/${athlete.id}`}>
                       <Button
                         variant="gold"
-                        size="lg"
-                        className="shadow-lg"
+                        size="sm"
+                        className="shadow-lg h-8 sm:h-9 text-xs sm:text-sm"
                       >
-                        <Lock className="h-4 w-4" />
+                        <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                         Subscribe
                       </Button>
                     </Link>
@@ -364,7 +365,7 @@ const AthletePage = () => {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Badge 
-                          className="bg-primary/20 text-primary border-primary/30 px-3 py-1 cursor-pointer hover:bg-destructive/20 hover:text-destructive hover:border-destructive/30 transition-colors"
+                          className="bg-primary/20 text-primary border-primary/30 px-2 sm:px-3 py-0.5 sm:py-1 cursor-pointer hover:bg-destructive/20 hover:text-destructive hover:border-destructive/30 transition-colors text-[10px] sm:text-xs"
                           onClick={() => {
                             unsubscribe(athlete.id);
                             toast({
@@ -373,7 +374,7 @@ const AthletePage = () => {
                             });
                           }}
                         >
-                          <Check className="h-3 w-3 mr-1" />
+                          <Check className="h-2.5 w-2.5 sm:h-3 sm:w-3 mr-0.5 sm:mr-1" />
                           Premium Member
                         </Badge>
                       </TooltipTrigger>
@@ -384,56 +385,56 @@ const AthletePage = () => {
                   )}
                 </div>
                 {/* Social Media Links */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <a 
                     href={`https://instagram.com/arthurcazauxoff`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 text-white hover:scale-110 transition-transform duration-200 shadow-md"
+                    className="flex items-center justify-center w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 text-white hover:scale-110 transition-transform duration-200 shadow-md"
                   >
-                    <Instagram className="h-4 w-4" />
+                    <Instagram className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                   </a>
                   <a 
                     href={`https://facebook.com/${athlete.name.toLowerCase().replace(' ', '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-9 h-9 rounded-full bg-[#1877F2] text-white hover:scale-110 transition-transform duration-200 shadow-md"
+                    className="flex items-center justify-center w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-[#1877F2] text-white hover:scale-110 transition-transform duration-200 shadow-md"
                   >
-                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                   </a>
                   <a 
                     href={`https://twitter.com/${athlete.name.toLowerCase().replace(' ', '_')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-9 h-9 rounded-full bg-foreground text-background hover:scale-110 transition-transform duration-200 shadow-md"
+                    className="flex items-center justify-center w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-foreground text-background hover:scale-110 transition-transform duration-200 shadow-md"
                   >
-                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                   </a>
                   <a 
                     href={`https://tiktok.com/@${athlete.name.toLowerCase().replace(' ', '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-9 h-9 rounded-full bg-foreground text-background hover:scale-110 transition-transform duration-200 shadow-md"
+                    className="flex items-center justify-center w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-foreground text-background hover:scale-110 transition-transform duration-200 shadow-md"
                   >
-                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                    <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
                   </a>
                 </div>
                 {/* Sponsor Logos - Only for custom athletes */}
                 {isCustomAthlete && (
-                  <div className="flex items-center gap-4 mt-4">
-                    <span className="text-xs text-foreground/60 uppercase tracking-wider">Partners</span>
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 sm:gap-4 mt-3 sm:mt-4">
+                    <span className="text-[10px] sm:text-xs text-foreground/60 uppercase tracking-wider">Partners</span>
+                    <div className="flex items-center gap-2 sm:gap-3">
                       {isArthurCazaux && (
                         <>
-                          <img src={sponsorLacoste} alt="Lacoste" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorBabolat} alt="Babolat" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorExtia} alt="Extia Conseil" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorLacoste} alt="Lacoste" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorBabolat} alt="Babolat" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorExtia} alt="Extia Conseil" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
                       )}
                       {isMatthieuJalibert && (
                         <>
-                          <img src={sponsorAdidas} alt="Adidas" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorUBB} alt="UBB" className="h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorAdidas} alt="Adidas" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorUBB} alt="UBB" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
                       )}
                     </div>
@@ -446,74 +447,36 @@ const AthletePage = () => {
       </section>
 
       {/* Main Content Tabs */}
-      <section className="py-8 bg-background sticky-tabs">
+      <section className="py-4 sm:py-6 md:py-8 bg-background sticky-tabs">
         <div className="container mx-auto px-4">
           <Tabs defaultValue="life" className="w-full">
-            {/* Main Tab Navigation */}
-            <TabsList className="w-full max-w-5xl mx-auto grid grid-cols-5 mb-8 h-14 bg-muted/50">
-              <TabsTrigger value="life" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Camera className="h-4 w-4" />
-                <span className="hidden sm:inline">Inside My World</span>
-                <span className="sm:hidden">World</span>
-              </TabsTrigger>
-              <TabsTrigger value="gear" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <ShoppingBag className="h-4 w-4" />
-                <span className="hidden sm:inline">My Kit Room</span>
-                <span className="sm:hidden">Kit</span>
-              </TabsTrigger>
-              {isArthurCazaux ? (
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <TabsTrigger 
-                      value="training" 
-                      className={`flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}
-                    >
-                      {isPremiumSubscribed ? (
-                        <Dumbbell className="h-4 w-4" />
-                      ) : (
-                        <Lock className="h-4 w-4 animate-lock-glow text-primary" />
-                      )}
-                      <span className="hidden sm:inline">Performance Lab</span>
-                      <span className="sm:hidden">Lab</span>
-                    </TabsTrigger>
-                  </TooltipTrigger>
-                  {!isPremiumSubscribed && (
-                    <TooltipContent side="bottom" className="bg-card border-primary/30">
-                      <p className="text-sm font-medium">Premium Access Required</p>
-                    </TooltipContent>
-                  )}
-                </Tooltip>
-              ) : (
-                <TabsTrigger value="training" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  {isPremiumSubscribed ? (
-                    <Dumbbell className="h-4 w-4" />
-                  ) : (
-                    <Lock className="h-4 w-4" />
-                  )}
-                  <span className="hidden sm:inline">Performance Lab</span>
-                  <span className="sm:hidden">Lab</span>
+            {/* Main Tab Navigation - Horizontal scroll on mobile */}
+            <div className="overflow-x-auto -mx-4 px-4 pb-2 mb-4 sm:mb-6 md:mb-8">
+              <TabsList className="w-max min-w-full sm:w-full max-w-5xl mx-auto flex sm:grid sm:grid-cols-5 gap-1 h-11 sm:h-12 md:h-14 bg-muted/50">
+                <TabsTrigger value="life" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <Camera className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Inside My World</span>
+                  <span className="sm:hidden">World</span>
                 </TabsTrigger>
-              )}
-              <TabsTrigger value="cause" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                <Heart className="h-4 w-4" />
-                <span className="hidden sm:inline">My Causes</span>
-                <span className="sm:hidden">Causes</span>
-              </TabsTrigger>
-              {isCustomAthlete && (
-                isArthurCazaux ? (
+                <TabsTrigger value="gear" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <ShoppingBag className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">My Kit Room</span>
+                  <span className="sm:hidden">Kit</span>
+                </TabsTrigger>
+                {isArthurCazaux ? (
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <TabsTrigger 
-                        value="exclusive" 
-                        className={`flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}
+                        value="training" 
+                        className={`flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}
                       >
                         {isPremiumSubscribed ? (
-                          <Star className="h-4 w-4" />
+                          <Dumbbell className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                         ) : (
-                          <Lock className="h-4 w-4 animate-lock-glow text-primary" />
+                          <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-lock-glow text-primary" />
                         )}
-                        <span className="hidden sm:inline">Exclusive Zone</span>
-                        <span className="sm:hidden">Exclusive</span>
+                        <span className="hidden sm:inline">Performance Lab</span>
+                        <span className="sm:hidden">Lab</span>
                       </TabsTrigger>
                     </TooltipTrigger>
                     {!isPremiumSubscribed && (
@@ -523,51 +486,91 @@ const AthletePage = () => {
                     )}
                   </Tooltip>
                 ) : (
-                  <TabsTrigger value="exclusive" className="flex items-center gap-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <TabsTrigger value="training" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                     {isPremiumSubscribed ? (
-                      <Star className="h-4 w-4" />
+                      <Dumbbell className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                     ) : (
-                      <Lock className="h-4 w-4" />
+                      <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                     )}
-                    <span className="hidden sm:inline">Exclusive Zone</span>
-                    <span className="sm:hidden">Exclusive</span>
+                    <span className="hidden sm:inline">Performance Lab</span>
+                    <span className="sm:hidden">Lab</span>
                   </TabsTrigger>
-                )
-              )}
-            </TabsList>
+                )}
+                <TabsTrigger value="cause" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">My Causes</span>
+                  <span className="sm:hidden">Causes</span>
+                </TabsTrigger>
+                {isCustomAthlete && (
+                  isArthurCazaux ? (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <TabsTrigger 
+                          value="exclusive" 
+                          className={`flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}
+                        >
+                          {isPremiumSubscribed ? (
+                            <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                          ) : (
+                            <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-lock-glow text-primary" />
+                          )}
+                          <span className="hidden sm:inline">Exclusive Zone</span>
+                          <span className="sm:hidden">Exclusive</span>
+                        </TabsTrigger>
+                      </TooltipTrigger>
+                      {!isPremiumSubscribed && (
+                        <TooltipContent side="bottom" className="bg-card border-primary/30">
+                          <p className="text-sm font-medium">Premium Access Required</p>
+                        </TooltipContent>
+                      )}
+                    </Tooltip>
+                  ) : (
+                    <TabsTrigger value="exclusive" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                      {isPremiumSubscribed ? (
+                        <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                      ) : (
+                        <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                      )}
+                      <span className="hidden sm:inline">Exclusive Zone</span>
+                      <span className="sm:hidden">Exclusive</span>
+                    </TabsTrigger>
+                  )
+                )}
+              </TabsList>
+            </div>
 
             {/* MY LIFE TAB */}
             <TabsContent value="life" className="animate-fade-in">
               {/* Sub-tabs for Life section */}
-              <div className="flex gap-2 mb-8 border-b border-border pb-4 overflow-x-auto">
+              <div className="flex gap-2 mb-4 sm:mb-6 md:mb-8 border-b border-border pb-3 sm:pb-4 overflow-x-auto -mx-4 px-4">
                 <Button
                   variant={activeLifeTab === "events" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setActiveLifeTab("events")}
-                  className="rounded-full shrink-0"
+                  className="rounded-full shrink-0 h-8 sm:h-9 text-xs sm:text-sm"
                 >
-                  <Calendar className="h-4 w-4 mr-1" />
+                  <Calendar className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
                   Events
                 </Button>
                 <Button
                   variant={activeLifeTab === "news" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setActiveLifeTab("news")}
-                  className="rounded-full shrink-0"
+                  className="rounded-full shrink-0 h-8 sm:h-9 text-xs sm:text-sm"
                 >
-                  <Newspaper className="h-4 w-4 mr-1" />
+                  <Newspaper className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
                   Highlights
                 </Button>
                 <Button
                   variant={activeLifeTab === "music" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setActiveLifeTab("music")}
-                  className="rounded-full shrink-0"
+                  className="rounded-full shrink-0 h-8 sm:h-9 text-xs sm:text-sm"
                 >
                   {isPremiumSubscribed ? (
-                    <Music className="h-4 w-4 mr-1" />
+                    <Music className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
                   ) : (
-                    <Lock className="h-4 w-4 mr-1" />
+                    <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
                   )}
                   Playlist
                 </Button>
@@ -576,8 +579,8 @@ const AthletePage = () => {
               {/* My Events - Upcoming Tournaments */}
               {activeLifeTab === "events" && (
                 <div className="max-w-4xl mx-auto">
-                  <h3 className="text-2xl font-bold mb-6 text-foreground">Upcoming Events</h3>
-                  <div className="space-y-4">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-foreground">Upcoming Events</h3>
+                  <div className="space-y-3 sm:space-y-4">
                     {getEventsBySport(athlete.sport, athlete.gender).map((event, index) => {
                       const isMajor = event.category.includes("Grand Slam") || event.category.includes("Major") || event.category.includes("Finals") || event.category.includes("World") || event.category.includes("Ryder") || event.category.includes("Solheim");
                       return (
@@ -586,36 +589,36 @@ const AthletePage = () => {
                           className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in"
                           style={{ animationDelay: `${index * 0.05}s` }}
                         >
-                          <div className="flex flex-col md:flex-row">
-                            <div className={`md:w-32 ${isMajor ? 'bg-gradient-to-br from-primary to-primary/70' : 'bg-gradient-to-br from-blue-600 to-blue-800'} text-white p-6 flex flex-col items-center justify-center text-center`}>
-                              <span className="text-xs font-semibold uppercase tracking-wider">{event.month}</span>
-                              <span className="text-4xl font-bold my-1">{event.date}</span>
-                              <span className="text-xs opacity-90">{event.year}</span>
+                          <div className="flex flex-col sm:flex-row">
+                            <div className={`sm:w-28 md:w-32 ${isMajor ? 'bg-gradient-to-br from-primary to-primary/70' : 'bg-gradient-to-br from-blue-600 to-blue-800'} text-white p-3 sm:p-4 md:p-6 flex flex-row sm:flex-col items-center justify-center sm:justify-center text-center gap-2 sm:gap-0`}>
+                              <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider">{event.month}</span>
+                              <span className="text-2xl sm:text-3xl md:text-4xl font-bold sm:my-1">{event.date}</span>
+                              <span className="text-[10px] sm:text-xs opacity-90">{event.year}</span>
                             </div>
-                            <div className="flex-1 p-6">
-                              <div className="flex items-center gap-3 mb-2">
-                                <span className="text-2xl">{event.countryFlag}</span>
-                                <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                            <div className="flex-1 p-4 sm:p-5 md:p-6">
+                              <div className="flex items-center gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                                <span className="text-lg sm:text-2xl">{event.countryFlag}</span>
+                                <h4 className="text-base sm:text-lg md:text-xl font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
                                   {event.name}
                                 </h4>
                               </div>
-                              <div className="flex items-center gap-3 mb-3 flex-wrap">
-                                <Badge className={`${event.categoryColor} text-white border-0 text-xs font-bold shadow-md`}>
+                              <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 flex-wrap">
+                                <Badge className={`${event.categoryColor} text-white border-0 text-[10px] sm:text-xs font-bold shadow-md`}>
                                   {isMajor && '🏆 '}{event.category}
                                 </Badge>
                                 <div className="flex items-center gap-1 text-muted-foreground">
                                   <MapPin className="h-3 w-3" />
-                                  <span className="text-sm">{event.location}</span>
+                                  <span className="text-xs sm:text-sm">{event.location}</span>
                                 </div>
                               </div>
-                              <p className="text-sm text-muted-foreground mb-4">
+                              <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-none">
                                 {event.description}
                               </p>
-                              <div className="flex gap-3">
-                                <Button variant="outline" size="sm">
+                              <div className="flex gap-2 sm:gap-3">
+                                <Button variant="outline" size="sm" className="text-xs sm:text-sm h-8 sm:h-9">
                                   Get Tickets
                                 </Button>
-                                <Button variant="ghost" size="sm">
+                                <Button variant="ghost" size="sm" className="text-xs sm:text-sm h-8 sm:h-9">
                                   Where to watch
                                 </Button>
                               </div>
