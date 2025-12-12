@@ -25,7 +25,8 @@ import {
   Newspaper,
   Camera,
   ShoppingBag,
-  Star
+  Star,
+  BarChart3
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
@@ -36,6 +37,7 @@ import { Athlete } from "@/data/athletes";
 import { ShoppableGearSection } from "@/components/fan/sections/ShoppableGearSection";
 import { RegistrationGate } from "@/components/auth/RegistrationGate";
 import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSection";
+import { ArthurDataHub } from "@/components/athletes/DataHub/ArthurDataHub";
 import { MatthieuTrainingSection } from "@/components/athletes/MatthieuTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
 import { ArthurExclusiveZone } from "@/components/athletes/ArthurExclusiveZone";
@@ -234,7 +236,7 @@ const AthletePage = () => {
   const { id } = useParams<{ id: string }>();
   const athlete = getAthleteById(id || "");
   const [isFollowing, setIsFollowing] = useState(false);
-  const [activeLifeTab, setActiveLifeTab] = useState<"events" | "news" | "music" | "community">("events");
+  const [activeLifeTab, setActiveLifeTab] = useState<"events" | "news" | "music" | "community" | "datahub">("events");
   const { addToCart } = useCart();
   const { isAuthenticated } = useAuth();
   const { isSubscribed, unsubscribe } = useSubscription();
@@ -574,6 +576,17 @@ const AthletePage = () => {
                   )}
                   Playlist
                 </Button>
+                {isArthurCazaux && (
+                  <Button
+                    variant={activeLifeTab === "datahub" ? "default" : "ghost"}
+                    size="sm"
+                    onClick={() => setActiveLifeTab("datahub")}
+                    className="rounded-full shrink-0 h-8 sm:h-9 text-xs sm:text-sm"
+                  >
+                    <BarChart3 className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1" />
+                    Data Hub
+                  </Button>
+                )}
               </div>
 
               {/* My Events - Upcoming Tournaments */}
@@ -745,6 +758,11 @@ const AthletePage = () => {
                     </div>
                   </PremiumLockedContent>
                 )
+              )}
+
+              {/* Data Hub - Arthur Cazaux Only */}
+              {activeLifeTab === "datahub" && isArthurCazaux && (
+                <ArthurDataHub />
               )}
 
             </TabsContent>
