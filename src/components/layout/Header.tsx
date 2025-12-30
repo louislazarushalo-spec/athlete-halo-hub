@@ -18,7 +18,7 @@ import {
 export const Header = () => {
   const { totalItems } = useCart();
   const { theme, toggleTheme } = useTheme();
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, isAuthenticated, logout, getFullName } = useAuth();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -97,7 +97,7 @@ export const Header = () => {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="sm" className="hidden sm:flex gap-2">
                     <User className="h-4 w-4" />
-                    <span className="text-sm">{user.email?.split('@')[0]}</span>
+                    <span className="text-sm">{getFullName()}</span>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">

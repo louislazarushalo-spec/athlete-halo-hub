@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 
 const FanHomePage = () => {
-  const { user } = useAuth();
+  const { user, getDisplayName, getFullName } = useAuth();
   const { totalItems } = useCart();
 
   return (
@@ -47,10 +47,10 @@ const FanHomePage = () => {
               <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/30">
                 <Avatar className="h-8 w-8">
                   <AvatarFallback className="bg-gradient-to-br from-primary/60 to-primary/30 text-primary-foreground text-sm">
-                    {user ? user.email?.charAt(0).toUpperCase() : "?"}
+                    {user ? getDisplayName().charAt(0).toUpperCase() : "?"}
                   </AvatarFallback>
                 </Avatar>
-                <span className="text-sm font-medium">{user?.email?.split('@')[0]}</span>
+                <span className="text-sm font-medium">{getFullName()}</span>
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@ const FanHomePage = () => {
         <div className="px-4 md:px-6 py-6 md:py-8">
           {/* Welcome Message */}
           <div className="mb-6 md:mb-8">
-            <h1 className="font-display text-2xl md:text-3xl font-semibold">Welcome back Louis 👋</h1>
+            <h1 className="font-display text-2xl md:text-3xl font-semibold">Welcome back, {getDisplayName()} 👋</h1>
           </div>
 
           <YourHalosSection />
