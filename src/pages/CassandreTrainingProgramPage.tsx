@@ -8,8 +8,19 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { AthleteHeader } from "@/components/layout/AthleteHeader";
 
-// Training program banner image
-import bannerImage from "@/assets/cassandre-training-bike.jpg";
+// Training program images - matching the program cards
+import cassandreTrainingTransition from "@/assets/cassandre-training-transition.jpg";
+import cassandreTrainingRun from "@/assets/cassandre-training-run.jpg";
+import cassandreTrainingSwim from "@/assets/cassandre-training-swim.jpg";
+import cassandreStrength from "@/assets/cassandre-strength.jpg";
+
+// Program image mapping
+const programImages: Record<string, string> = {
+  "fitness-1": cassandreTrainingTransition,
+  "fitness-2": cassandreTrainingRun,
+  "fitness-3": cassandreTrainingSwim,
+  "fitness-4": cassandreStrength,
+};
 
 interface Exercise {
   name: string;
@@ -305,6 +316,7 @@ export default function CassandreTrainingProgramPage() {
 
   const isPremiumSubscribed = isSubscribed("cassandre-beaugrand");
   const programData = programId ? programsData[programId] || defaultProgram : defaultProgram;
+  const bannerImage = programId ? programImages[programId] || cassandreTrainingTransition : cassandreTrainingTransition;
 
   // Redirect non-premium users
   useEffect(() => {
