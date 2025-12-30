@@ -20,11 +20,12 @@ export const AthleteCard = ({ athlete, index = 0, hideAccessIndicators = false }
     >
       <article className="glass-card overflow-hidden transition-all duration-500 hover:border-primary/30 hover:shadow-glow-soft hover:scale-[1.02] active:scale-[0.98]">
         {/* Image */}
-        <div className="relative h-40 sm:h-48 overflow-hidden">
+        <div className="relative h-44 sm:h-52 overflow-hidden">
           <img
             src={athlete.avatar}
             alt={athlete.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+            className="w-full h-full object-contain bg-muted/20 transition-[filter] duration-500 group-hover:brightness-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
           

@@ -24,7 +24,8 @@ export const HomepageAthleteCard = ({ athlete, index = 0, hideAccessLabels = fal
           <img
             src={athlete.avatar}
             alt={athlete.name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+            className="w-full h-full object-contain bg-muted/20 transition-[filter] duration-500 group-hover:brightness-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
           
