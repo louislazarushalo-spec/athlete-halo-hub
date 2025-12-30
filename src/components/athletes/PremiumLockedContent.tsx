@@ -1,19 +1,21 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Lock, Crown, Sparkles, Star } from "lucide-react";
+import { Lock, Crown, Sparkles, Star, ArrowLeft } from "lucide-react";
 
 interface PremiumLockedContentProps {
   athleteId: string;
   athleteName: string;
   children: React.ReactNode;
   customSubtitle?: string;
+  onGoBack?: () => void;
 }
 
 export const PremiumLockedContent = ({ 
   athleteId, 
   athleteName, 
   children,
-  customSubtitle
+  customSubtitle,
+  onGoBack
 }: PremiumLockedContentProps) => {
   return (
     <div className="relative min-h-[400px]">
@@ -89,6 +91,19 @@ export const PremiumLockedContent = ({
                 Unlock Premium
               </Button>
             </Link>
+
+            {/* Back button */}
+            {onGoBack && (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={onGoBack}
+                className="mt-4 text-muted-foreground hover:text-foreground"
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Go back
+              </Button>
+            )}
 
             {/* Price hint */}
             <p className="mt-4 text-sm text-muted-foreground">
