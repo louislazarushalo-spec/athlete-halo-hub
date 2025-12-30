@@ -589,13 +589,15 @@ const AthletePage = () => {
             {/* MY LIFE TAB */}
             <TabsContent value="life" className="animate-fade-in">
               {/* Section Header */}
-              <div className="mb-6 sm:mb-8">
-                <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">Inside My World</h2>
-                <p className="text-sm sm:text-base text-muted-foreground">Get a glimpse into my daily life, upcoming events, career highlights, and the music that fuels my journey.</p>
+              <div className="text-center max-w-2xl mx-auto mb-6">
+                <h2 className="text-2xl font-bold mb-2">Inside My World</h2>
+                <p className="text-muted-foreground text-sm">
+                  Get a glimpse into my daily life, upcoming events, career highlights, and the music that fuels my journey.
+                </p>
               </div>
               
               {/* Sub-tabs for Life section */}
-              <div className="flex gap-2 mb-4 sm:mb-6 md:mb-8 border-b border-border pb-3 sm:pb-4 overflow-x-auto -mx-4 px-4">
+              <div className="flex items-center justify-center gap-2 mb-4 sm:mb-6 md:mb-8 border-b border-border pb-3 sm:pb-4 overflow-x-auto -mx-4 px-4">
                 <Button
                   variant={activeLifeTab === "events" ? "default" : "ghost"}
                   size="sm"
@@ -842,9 +844,11 @@ const AthletePage = () => {
 
             <TabsContent value="gear" className="animate-fade-in">
               {/* Section Header */}
-              <div className="mb-6 sm:mb-8">
-                <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">My Kit Room</h2>
-                <p className="text-sm sm:text-base text-muted-foreground">Discover the equipment, apparel, and accessories I trust to perform at my best. Shop my exact gear.</p>
+              <div className="text-center max-w-2xl mx-auto mb-6">
+                <h2 className="text-2xl font-bold mb-2">My Kit Room</h2>
+                <p className="text-muted-foreground text-sm">
+                  Discover the equipment, apparel, and accessories I trust to perform at my best. Shop my exact gear.
+                </p>
               </div>
               
               {athlete.gearCollections && athlete.gearCollections.length > 0 ? (
