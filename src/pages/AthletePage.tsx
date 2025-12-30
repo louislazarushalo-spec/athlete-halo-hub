@@ -247,6 +247,7 @@ const AthletePage = () => {
   const { id } = useParams<{ id: string }>();
   const athlete = getAthleteById(id || "");
   const [isFollowing, setIsFollowing] = useState(false);
+  const [activeMainTab, setActiveMainTab] = useState<string>("life");
   const [activeLifeTab, setActiveLifeTab] = useState<"events" | "news" | "music" | "community" | "datahub">("events");
   const { addToCart } = useCart();
   const { isAuthenticated } = useAuth();
@@ -285,6 +286,10 @@ const AthletePage = () => {
       title: "Added to cart",
       description: `${product.name} has been added to your cart.`,
     });
+  };
+
+  const handleGoBackFromPremium = () => {
+    setActiveMainTab("life");
   };
 
   const isArthurCazaux = athlete.id === "arthur-cazaux";
@@ -479,7 +484,7 @@ const AthletePage = () => {
       {/* Main Content Tabs */}
       <section className="py-4 sm:py-6 md:py-8 bg-background sticky-tabs">
         <div className="container mx-auto px-4">
-          <Tabs defaultValue="life" className="w-full">
+          <Tabs value={activeMainTab} onValueChange={setActiveMainTab} className="w-full">
             {/* Main Tab Navigation - Horizontal scroll on mobile */}
             <div className="overflow-x-auto -mx-4 px-4 pb-2 mb-4 sm:mb-6 md:mb-8">
               <TabsList className="w-max min-w-full sm:w-full max-w-5xl mx-auto flex sm:grid sm:grid-cols-5 gap-1 h-11 sm:h-12 md:h-14 bg-muted/50">
@@ -895,7 +900,7 @@ const AthletePage = () => {
                   </div>
                 )
               ) : (
-                <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name}>
+                <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name} onGoBack={handleGoBackFromPremium}>
                   {isCustomAthlete ? (
                     isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : <CassandreTrainingSection />
                   ) : (
@@ -992,6 +997,7 @@ const AthletePage = () => {
                   <PremiumLockedContent 
                     athleteId={athlete.id} 
                     athleteName={athlete.name}
+                    onGoBack={handleGoBackFromPremium}
                     customSubtitle={isArthurCazaux 
                       ? "Unlock prize draws, curated premium content, and members-only tennis discussions."
                       : isCassandreBeaugrand
