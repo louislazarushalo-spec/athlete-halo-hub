@@ -81,7 +81,7 @@ import arthurCazauxParisImg from "@/assets/arthur-cazaux-paris.png";
 import lacosteVarsityJacketImg from "@/assets/lacoste-varsity-jacket.png";
 import lacosteWhiteTshirtImg from "@/assets/lacoste-white-tshirt.png";
 import cassandreBeaugrandImg from "@/assets/cassandre-beaugrand.jpeg";
-import cassandreBeaugrandBannerImg from "@/assets/cassandre-beaugrand-banner.jpeg";
+import cassandreBeaugrandBannerImg from "@/assets/cassandre-beaugrand-banner.avif";
 
 export interface MediaFeedItem {
   id: string;
