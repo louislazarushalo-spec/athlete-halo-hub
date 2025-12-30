@@ -19,6 +19,8 @@ import CheckoutPage from "./pages/CheckoutPage";
 import CausePage from "./pages/CausePage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import AccountPage from "./pages/AccountPage";
 import SubscribePage from "./pages/SubscribePage";
 import SubscribePaymentPage from "./pages/SubscribePaymentPage";
@@ -71,6 +73,8 @@ const App = () => (
                   <Route path="/checkout" element={<CheckoutPage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/signup" element={<SignupPage />} />
+                  <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+                  <Route path="/reset-password" element={<ResetPasswordPage />} />
                   <Route path="/account" element={<AccountPage />} />
                   <Route path="/subscribe/:id" element={<SubscribePage />} />
                   <Route path="/subscribe/:id/payment" element={<SubscribePaymentPage />} />
