@@ -214,7 +214,7 @@ export const ArthurExclusiveZone = () => {
       </div>
 
       {/* Sub-tabs */}
-      <div className="flex items-center gap-2 border-b border-border/30 pb-4">
+      <div className="flex items-center justify-center gap-2 border-b border-border/30 pb-4">
         {tabs.map((tab) => (
           <Button
             key={tab.id}
