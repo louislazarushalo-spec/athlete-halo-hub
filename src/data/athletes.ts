@@ -83,6 +83,11 @@ import lacosteWhiteTshirtImg from "@/assets/lacoste-white-tshirt.png";
 import cassandreBeaugrandImg from "@/assets/cassandre-beaugrand.jpeg";
 import cassandreBeaugrandBannerImg from "@/assets/cassandre-beaugrand-banner.avif";
 
+// Cassandre Kit Room lifestyle images
+import cassandreKitSundaysImg from "@/assets/cassandre-kit-sundays.jpeg";
+import cassandreKitRideImg from "@/assets/cassandre-kit-ride.jpeg";
+import cassandreKitOffduyImg from "@/assets/cassandre-kit-offduty.jpeg";
+
 export interface MediaFeedItem {
   id: string;
   type: 'social' | 'article' | 'video';
@@ -7680,90 +7685,36 @@ export const athletes: Athlete[] = [
     ],
     gearCollections: [
       {
-        id: "cb-gc-olympic",
-        name: "Cassandre's Olympic Race Day Gear",
-        description: "The moment of a lifetime. Cassandre took to the start line in Paris for the Olympic triathlon, wearing her French tricolor race suit. Every piece of gear optimized for the ultimate test.",
-        actionImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=600&fit=crop",
-        products: [
-          {
-            id: "cb-p2",
-            name: "Signed Race Suit",
-            price: 149,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=600&fit=crop",
-            description: "Authentic race suit with signature.",
-            category: "athlete",
-            athleteId: "cassandre-beaugrand"
-          },
-          {
-            id: "cb-p3",
-            name: "Performance Wetsuit",
-            price: 299,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop",
-            description: "High-performance wetsuit for open water swimming.",
-            category: "partner",
-            athleteId: "cassandre-beaugrand"
-          },
-          {
-            id: "cb-p4",
-            name: "Triathlon Bike Shoes",
-            price: 189,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
-            description: "Quick-transition cycling shoes for triathletes.",
-            category: "partner",
-            athleteId: "cassandre-beaugrand"
-          },
-          {
-            id: "cb-p5",
-            name: "Race Day Nutrition Pack",
-            price: 45,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=600&fit=crop",
-            description: "Complete race day nutrition bundle.",
-            category: "partner",
-            athleteId: "cassandre-beaugrand"
-          }
-        ],
-        hotspots: {
-          'cb-p2': { x: 50, y: 35 },
-          'cb-p3': { x: 30, y: 50 },
-          'cb-p4': { x: 50, y: 85 },
-          'cb-p5': { x: 70, y: 50 }
-        }
+        id: "cb-gc-sundays",
+        name: "Sun days",
+        description: "",
+        actionImage: cassandreKitSundaysImg,
+        products: [],
+        hotspots: {}
       },
       {
-        id: "cb-gc-training",
-        name: "Cassandre's Training Session Kit",
-        description: "Early mornings in the pool, hours on the bike, kilometers on the run. This is the gear that powers every training session, built to endure the demands of a champion's preparation.",
-        actionImage: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop",
-        products: [
-          {
-            id: "cb-p1",
-            name: "Triathlon Training Program",
-            price: 79,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop",
-            description: "Complete 12-week triathlon training program.",
-            category: "athlete",
-            athleteId: "cassandre-beaugrand"
-          },
-          {
-            id: "cb-p6",
-            name: "Recovery Compression Kit",
-            price: 89,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=600&fit=crop",
-            description: "Full compression recovery set for post-race.",
-            category: "partner",
-            athleteId: "cassandre-beaugrand"
-          }
-        ],
-        hotspots: {
-          'cb-p1': { x: 50, y: 40 },
-          'cb-p6': { x: 50, y: 70 }
-        }
+        id: "cb-gc-track",
+        name: "Track routine",
+        description: "",
+        actionImage: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop", // Placeholder - needs JPEG/PNG version
+        products: [],
+        hotspots: {}
+      },
+      {
+        id: "cb-gc-ride",
+        name: "Ride mode",
+        description: "",
+        actionImage: cassandreKitRideImg,
+        products: [],
+        hotspots: {}
+      },
+      {
+        id: "cb-gc-offduty",
+        name: "Off-duty fit",
+        description: "",
+        actionImage: cassandreKitOffduyImg,
+        products: [],
+        hotspots: {}
       }
     ],
     cause: {
