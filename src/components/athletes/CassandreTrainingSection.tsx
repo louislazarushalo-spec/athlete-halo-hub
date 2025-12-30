@@ -187,7 +187,7 @@ export const CassandreTrainingSection = () => {
         <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Premium Members Only</Badge>
         <h2 className="text-2xl font-bold mb-2">Performance Lab</h2>
         <p className="text-muted-foreground text-sm">
-          Access Cassandre's complete training programs and exclusive content.
+          Train like me. My complete fitness, skills, nutrition, and mental routines — all in one place.
         </p>
       </div>
 

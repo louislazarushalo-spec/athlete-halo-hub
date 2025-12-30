@@ -208,7 +208,7 @@ export const MatthieuExclusiveZone = () => {
         <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Premium Members Only</Badge>
         <h2 className="text-2xl font-bold mb-2">Exclusive Zone</h2>
         <p className="text-muted-foreground text-sm">
-          Prize draws, curated content, and fan discussions — all in one place.
+          Win prizes, access content you won't find anywhere else, and connect with the community.
         </p>
       </div>
 
