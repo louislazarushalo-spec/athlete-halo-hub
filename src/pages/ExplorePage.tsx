@@ -9,11 +9,15 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Link } from "react-router-dom";
 
-const sportFilters = ["All", "Tennis", "Golf", "Cycling", "Rugby"];
-
 const ExplorePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("All");
+
+  // Extract unique sports from athletes data
+  const sportFilters = useMemo(() => {
+    const sports = [...new Set(athletes.map((athlete) => athlete.sport))].sort();
+    return ["All", ...sports];
+  }, []);
 
   // Randomize athletes once on component mount
   const randomizedAthletes = useMemo(() => {
