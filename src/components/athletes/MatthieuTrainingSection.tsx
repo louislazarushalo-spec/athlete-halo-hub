@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Dumbbell, Target, Apple, Brain } from "lucide-react";
 
 // Import fitness images
@@ -184,6 +185,15 @@ export const MatthieuTrainingSection = () => {
 
   return (
     <div className="space-y-6">
+      {/* Header with Premium Badge */}
+      <div className="text-center max-w-2xl mx-auto mb-6">
+        <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Premium Members Only</Badge>
+        <h2 className="text-2xl font-bold mb-2">Performance Lab</h2>
+        <p className="text-muted-foreground text-sm">
+          Access Matthieu's complete training programs and exclusive content.
+        </p>
+      </div>
+
       {/* Sub-tabs like My Life */}
       <div className="flex items-center gap-2 border-b border-border/30 pb-4">
         {trainingCategories.map((category) => (
