@@ -11,6 +11,12 @@ import cassandreTrainingTransition from "@/assets/cassandre-training-transition.
 import cassandreTrainingRun from "@/assets/cassandre-training-run.jpg";
 import cassandreTrainingSwim from "@/assets/cassandre-training-swim.jpg";
 
+// Import nutrition images
+import nutritionRaceFuel from "@/assets/nutrition-race-fuel.jpg";
+import nutritionTrainingBlock from "@/assets/nutrition-training-block.jpg";
+import nutritionTravel from "@/assets/nutrition-travel.jpg";
+import nutritionRecovery from "@/assets/nutrition-recovery.jpg";
+
 interface TrainingProgram {
   id: string;
   title: string;
@@ -101,25 +107,25 @@ const trainingCategories: TrainingCategory[] = [
         id: "nutrition-1",
         title: "Race Fuel Blueprint",
         description: "My fueling plan for WTCS/Olympic distance: before, during, after.",
-        image: cassandreTrainingRun
+        image: nutritionRaceFuel
       },
       {
         id: "nutrition-2",
         title: "Training Block Nutrition",
         description: "Daily structure to support volume, recovery, and consistency.",
-        image: cassandreTraining1
+        image: nutritionTrainingBlock
       },
       {
         id: "nutrition-3",
         title: "Travel Day Essentials",
         description: "What I pack and eat on the road to stay light, fueled, and ready.",
-        image: cassandreTrainingBike
+        image: nutritionTravel
       },
       {
         id: "nutrition-4",
         title: "Recovery Day Reset",
         description: "Hydration + protein + carbs to bounce back fast between sessions.",
-        image: cassandreTrainingSwim
+        image: nutritionRecovery
       }
     ]
   },
