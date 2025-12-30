@@ -100,6 +100,7 @@ import adidasMarronSkirtImg from "@/assets/adidas-marron-skirt.webp";
 import adidasSurvetMarronImg from "@/assets/adidas-survet-marron.webp";
 import adidasChaussetteImg from "@/assets/adidas-chaussette.webp";
 import adidasShoesControlImg from "@/assets/adidas-shoes-control.webp";
+import cassandreCauseWomenTriathlonImg from "@/assets/cassandre-cause-women-triathlon.jpg";
 
 export interface MediaFeedItem {
   id: string;
@@ -7866,7 +7867,7 @@ export const athletes: Athlete[] = [
       target: 35000,
       raised: 12500,
       currency: "€",
-      image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop"
+      image: cassandreCauseWomenTriathlonImg
     },
     mediaFeed: [
       {
