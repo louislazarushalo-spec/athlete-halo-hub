@@ -660,7 +660,7 @@ const AthletePage = () => {
                                 </Button>
                                 {athlete.sport.toLowerCase() === "triathlon" ? (
                                   <>
-                                    <a href="https://triathlon.org/events/wtcs" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://www.triathlonlive.tv/" target="_blank" rel="noopener noreferrer">
                                       <Button variant="ghost" size="sm" className="text-xs sm:text-sm h-8 sm:h-9">
                                         Where to watch
                                       </Button>
