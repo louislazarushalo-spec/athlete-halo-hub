@@ -960,6 +960,14 @@ const AthletePage = () => {
 
             {/* MY CAUSE TAB */}
             <TabsContent value="cause" className="animate-fade-in">
+              {/* Section Header */}
+              <div className="text-center max-w-2xl mx-auto mb-6">
+                <h2 className="text-2xl font-bold mb-2">My Causes</h2>
+                <p className="text-muted-foreground text-sm">
+                  Discover the causes and initiatives close to my heart. Join me in making a positive impact.
+                </p>
+              </div>
+              
               <div className="max-w-4xl mx-auto">
                 <div className="glass-card overflow-hidden">
                   <div className="grid md:grid-cols-2">
