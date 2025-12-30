@@ -20,8 +20,8 @@ const navItems = [
   { label: "Settings", icon: Settings, path: "/settings" },
 ];
 
-// Followed athletes: Arthur Cazaux, Tommy Fleetwood, Elisa Balsamo
-const followedAthleteIds = ['arthur-cazaux', 'tommy-fleetwood', 'elisa-balsamo'];
+// Followed athletes: Arthur Cazaux, Tommy Fleetwood, Cassandre Beaugrand
+const followedAthleteIds = ['arthur-cazaux', 'tommy-fleetwood', 'cassandre-beaugrand'];
 const followedAthletes = followedAthleteIds
   .map(id => getAthleteById(id))
   .filter(Boolean) as typeof athletes;
