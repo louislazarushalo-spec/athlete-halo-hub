@@ -10,7 +10,7 @@ interface AthleteCardProps {
 
 export const AthleteCard = ({ athlete, index = 0, hideAccessIndicators = false }: AthleteCardProps) => {
   // Check if athlete is a custom/premium athlete
-  const isCustomAthlete = athlete.id === "arthur-cazaux" || athlete.id === "matthieu-jalibert";
+  const isCustomAthlete = athlete.id === "arthur-cazaux" || athlete.id === "matthieu-jalibert" || athlete.id === "cassandre-beaugrand";
 
   return (
     <Link 
@@ -53,22 +53,22 @@ export const AthleteCard = ({ athlete, index = 0, hideAccessIndicators = false }
                 <span className="hidden xs:inline">My </span>Kit Room
               </span>
               
-              {/* Premium sections */}
+              {/* Premium sections - styled like Arthur's premium button */}
               {isCustomAthlete && (
                 <>
-                  <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-blue-500/20 border border-blue-500/40 rounded text-[9px] sm:text-[10px] text-blue-400 font-medium">
-                    <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-blue-400" />
+                  <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-gradient-to-r from-primary/20 via-primary/20 to-blue-400/20 border border-primary/40 rounded text-[9px] sm:text-[10px] text-primary font-medium shadow-[0_0_10px_hsl(217_91%_60%/0.3)] animate-glow-pulse">
+                    <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-primary animate-lock-glow" />
                     <span className="hidden xs:inline">Performance </span>Lab
                   </span>
-                  <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-blue-500/20 border border-blue-500/40 rounded text-[9px] sm:text-[10px] text-blue-400 font-medium">
-                    <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-blue-400" />
+                  <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-gradient-to-r from-primary/20 via-primary/20 to-blue-400/20 border border-primary/40 rounded text-[9px] sm:text-[10px] text-primary font-medium shadow-[0_0_10px_hsl(217_91%_60%/0.3)] animate-glow-pulse">
+                    <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-primary animate-lock-glow" />
                     Exclusive
                   </span>
                 </>
               )}
               {!isCustomAthlete && (
-                <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-blue-500/20 border border-blue-500/40 rounded text-[9px] sm:text-[10px] text-blue-400 font-medium">
-                  <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-blue-400" />
+                <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-gradient-to-r from-primary/20 via-primary/20 to-blue-400/20 border border-primary/40 rounded text-[9px] sm:text-[10px] text-primary font-medium shadow-[0_0_10px_hsl(217_91%_60%/0.3)] animate-glow-pulse">
+                  <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-primary animate-lock-glow" />
                   Training
                 </span>
               )}
