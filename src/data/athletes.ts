@@ -7715,7 +7715,7 @@ export const athletes: Athlete[] = [
           }
         ],
         hotspots: {
-          'cb-oakley-1': { x: 32, y: 28 }
+          'cb-oakley-1': { x: 58, y: 52 }
         }
       },
       {
