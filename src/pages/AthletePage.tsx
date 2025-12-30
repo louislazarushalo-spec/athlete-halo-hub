@@ -38,6 +38,7 @@ import { ShoppableGearSection } from "@/components/fan/sections/ShoppableGearSec
 import { RegistrationGate } from "@/components/auth/RegistrationGate";
 import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSection";
 import { ArthurDataHub } from "@/components/athletes/DataHub/ArthurDataHub";
+import { CassandreDataHub } from "@/components/athletes/DataHub/CassandreDataHub";
 import { MatthieuTrainingSection } from "@/components/athletes/MatthieuTrainingSection";
 import { CassandreTrainingSection } from "@/components/athletes/CassandreTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
@@ -602,7 +603,7 @@ const AthletePage = () => {
                   )}
                   Playlist
                 </Button>
-                {isArthurCazaux && (
+                {(isArthurCazaux || isCassandreBeaugrand) && (
                   <Button
                     variant={activeLifeTab === "datahub" ? "default" : "ghost"}
                     size="sm"
@@ -801,9 +802,12 @@ const AthletePage = () => {
                 )
               )}
 
-              {/* Data Hub - Arthur Cazaux Only */}
+              {/* Data Hub - Arthur Cazaux & Cassandre Beaugrand */}
               {activeLifeTab === "datahub" && isArthurCazaux && (
                 <ArthurDataHub />
+              )}
+              {activeLifeTab === "datahub" && isCassandreBeaugrand && (
+                <CassandreDataHub />
               )}
 
             </TabsContent>

@@ -4,16 +4,13 @@ import { Badge } from "@/components/ui/badge";
 
 export const CassandreExclusiveZone = () => {
   return (
-    <div className="max-w-5xl mx-auto space-y-8 animate-fade-in">
-      {/* Section Header */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center gap-2 mb-3">
-          <Star className="h-5 w-5 text-primary" />
-          <h3 className="text-2xl font-bold text-foreground">Exclusive Zone</h3>
-          <Star className="h-5 w-5 text-primary" />
-        </div>
-        <p className="text-muted-foreground max-w-md mx-auto">
-          Premium content and experiences only for Cassandre's closest supporters
+    <div className="max-w-5xl mx-auto space-y-12 animate-fade-in">
+      {/* Header - Matching Arthur's exact styling */}
+      <div className="text-center max-w-2xl mx-auto">
+        <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Members Only</Badge>
+        <h2 className="text-3xl font-bold mb-3">Exclusive Zone</h2>
+        <p className="text-muted-foreground">
+          Prize draws, curated content, and fan discussions — all in one place.
         </p>
       </div>
 

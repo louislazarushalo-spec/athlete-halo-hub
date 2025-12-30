@@ -163,8 +163,9 @@ export const CassandreTrainingSection = () => {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 sm:space-y-8 animate-fade-in">
-      {/* Section Header */}
+      {/* Section Header - Premium Badge matching Arthur's Exclusive Zone */}
       <div className="text-center mb-6 sm:mb-8">
+        <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Members Only</Badge>
         <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">Performance Lab</h3>
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
           Train like an Olympic champion with Cassandre's complete triathlon methodology
