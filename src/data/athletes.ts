@@ -85,6 +85,7 @@ import cassandreBeaugrandBannerImg from "@/assets/cassandre-beaugrand-banner.avi
 
 // Cassandre Kit Room lifestyle images
 import cassandreKitSundaysImg from "@/assets/cassandre-kit-sundays.jpeg";
+import cassandreKitTrackImg from "@/assets/cassandre-kit-track.jpg";
 import cassandreKitRideImg from "@/assets/cassandre-kit-ride.jpeg";
 import cassandreKitOffduyImg from "@/assets/cassandre-kit-offduty.jpeg";
 
@@ -7696,7 +7697,7 @@ export const athletes: Athlete[] = [
         id: "cb-gc-track",
         name: "Track routine",
         description: "",
-        actionImage: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop", // Placeholder - needs JPEG/PNG version
+        actionImage: cassandreKitTrackImg,
         products: [],
         hotspots: {}
       },
