@@ -653,13 +653,28 @@ const AthletePage = () => {
                               <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-none">
                                 {event.description}
                               </p>
-                              <div className="flex gap-2 sm:gap-3">
+                              <div className="flex gap-2 sm:gap-3 flex-wrap">
                                 <Button variant="outline" size="sm" className="text-xs sm:text-sm h-8 sm:h-9">
                                   Get Tickets
                                 </Button>
-                                <Button variant="ghost" size="sm" className="text-xs sm:text-sm h-8 sm:h-9">
-                                  Where to watch
-                                </Button>
+                                {athlete.sport.toLowerCase() === "triathlon" ? (
+                                  <>
+                                    <a href="https://triathlon.org/events/wtcs" target="_blank" rel="noopener noreferrer">
+                                      <Button variant="ghost" size="sm" className="text-xs sm:text-sm h-8 sm:h-9">
+                                        Where to watch
+                                      </Button>
+                                    </a>
+                                    <a href="https://triathlon.org/events/wtcs" target="_blank" rel="noopener noreferrer">
+                                      <Button variant="ghost" size="sm" className="text-xs sm:text-sm h-8 sm:h-9">
+                                        Register to race
+                                      </Button>
+                                    </a>
+                                  </>
+                                ) : (
+                                  <Button variant="ghost" size="sm" className="text-xs sm:text-sm h-8 sm:h-9">
+                                    Where to watch
+                                  </Button>
+                                )}
                               </div>
                             </div>
                           </div>
