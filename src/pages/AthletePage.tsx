@@ -543,40 +543,38 @@ const AthletePage = () => {
                     <span className="sm:hidden">Lab</span>
                   </TabsTrigger>
                 )}
-                {isCustomAthlete && (
-                  isArthurCazaux ? (
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <TabsTrigger 
-                          value="exclusive" 
-                          className={`flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}
-                        >
-                          {isPremiumSubscribed ? (
-                            <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                          ) : (
-                            <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-lock-glow text-primary" />
-                          )}
-                          <span className="hidden sm:inline">Exclusive Zone</span>
-                          <span className="sm:hidden">Exclusive</span>
-                        </TabsTrigger>
-                      </TooltipTrigger>
-                      {!isPremiumSubscribed && (
-                        <TooltipContent side="bottom" className="bg-card border-primary/30">
-                          <p className="text-sm font-medium">Premium Access Required</p>
-                        </TooltipContent>
-                      )}
-                    </Tooltip>
-                  ) : (
-                    <TabsTrigger value="exclusive" className={`flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}>
-                      {isPremiumSubscribed ? (
-                        <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                      ) : (
-                        <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-lock-glow text-primary" />
-                      )}
-                      <span className="hidden sm:inline">Exclusive Zone</span>
-                      <span className="sm:hidden">Exclusive</span>
-                    </TabsTrigger>
-                  )
+                {isArthurCazaux ? (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <TabsTrigger 
+                        value="exclusive" 
+                        className={`flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}
+                      >
+                        {isPremiumSubscribed ? (
+                          <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                        ) : (
+                          <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-lock-glow text-primary" />
+                        )}
+                        <span className="hidden sm:inline">Exclusive Zone</span>
+                        <span className="sm:hidden">Exclusive</span>
+                      </TabsTrigger>
+                    </TooltipTrigger>
+                    {!isPremiumSubscribed && (
+                      <TooltipContent side="bottom" className="bg-card border-primary/30">
+                        <p className="text-sm font-medium">Premium Access Required</p>
+                      </TooltipContent>
+                    )}
+                  </Tooltip>
+                ) : (
+                  <TabsTrigger value="exclusive" className={`flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}>
+                    {isPremiumSubscribed ? (
+                      <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    ) : (
+                      <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-lock-glow text-primary" />
+                    )}
+                    <span className="hidden sm:inline">Exclusive Zone</span>
+                    <span className="sm:hidden">Exclusive</span>
+                  </TabsTrigger>
                 )}
                 <TabsTrigger value="cause" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                   <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
@@ -893,32 +891,38 @@ const AthletePage = () => {
                 isCustomAthlete ? (
                   isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : <CassandreTrainingSection />
                 ) : (
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="space-y-6">
+                    {/* Header with Premium Badge */}
+                    <div className="text-center max-w-2xl mx-auto mb-6">
+                      <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Premium Members Only</Badge>
+                      <h2 className="text-2xl font-bold mb-2">Performance Lab</h2>
+                      <p className="text-muted-foreground text-sm">
+                        Train like me. My complete fitness, skills, nutrition, and mental routines — all in one place.
+                      </p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {athlete.training.map(post => (
-                        <article key={post.id} className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 transition-all">
-                          <div className="relative h-48 overflow-hidden">
-                            <img
-                              src={post.image}
-                              alt={post.title}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                              <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
-                                <Play className="h-6 w-6 text-primary-foreground ml-1" />
-                              </div>
-                            </div>
-                            <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
-                          </div>
-                          <div className="p-4">
-                            <h4 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
+                        <article 
+                          key={post.id} 
+                          className="relative rounded-xl overflow-hidden group cursor-pointer h-64"
+                        >
+                          <div 
+                            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                            style={{ backgroundImage: `url(${post.image})` }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                          <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                            <h4 className="font-semibold text-lg text-white mb-2 group-hover:text-primary transition-colors">
                               {post.title}
                             </h4>
-                            <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
+                            <p className="text-white/80 text-sm mb-4 line-clamp-2">
                               {post.description}
                             </p>
-                            <Button variant="outline" size="sm" className="w-full">
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              className="w-fit bg-white/10 border-white/20 text-white hover:bg-white/20"
+                            >
                               View Program
                             </Button>
                           </div>
@@ -932,22 +936,33 @@ const AthletePage = () => {
                   {isCustomAthlete ? (
                     isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : <CassandreTrainingSection />
                   ) : (
-                    <div>
-                      <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {athlete.training.slice(0, 3).map(post => (
-                          <article key={post.id} className="glass-card overflow-hidden">
-                            <div className="relative h-48 overflow-hidden">
-                              <img
-                                src={post.image}
-                                alt={post.title}
-                                className="w-full h-full object-cover"
-                              />
-                              <Badge className="absolute top-3 left-3 bg-accent">Training Program</Badge>
-                            </div>
-                            <div className="p-4">
-                              <h4 className="font-semibold text-lg mb-2">{post.title}</h4>
-                              <p className="text-muted-foreground text-sm line-clamp-2 mb-3">{post.description}</p>
+                    <div className="space-y-6">
+                      {/* Header with Premium Badge */}
+                      <div className="text-center max-w-2xl mx-auto mb-6">
+                        <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Premium Members Only</Badge>
+                        <h2 className="text-2xl font-bold mb-2">Performance Lab</h2>
+                        <p className="text-muted-foreground text-sm">
+                          Train like me. My complete fitness, skills, nutrition, and mental routines — all in one place.
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {athlete.training.slice(0, 4).map(post => (
+                          <article 
+                            key={post.id} 
+                            className="relative rounded-xl overflow-hidden h-64"
+                          >
+                            <div 
+                              className="absolute inset-0 bg-cover bg-center"
+                              style={{ backgroundImage: `url(${post.image})` }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                            <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                              <h4 className="font-semibold text-lg text-white mb-2">
+                                {post.title}
+                              </h4>
+                              <p className="text-white/80 text-sm mb-4 line-clamp-2">
+                                {post.description}
+                              </p>
                             </div>
                           </article>
                         ))}
@@ -1024,28 +1039,102 @@ const AthletePage = () => {
               </div>
             </TabsContent>
 
-            {/* EXCLUSIVE ZONE TAB - Custom Athletes Only */}
-            {isCustomAthlete && (
-              <TabsContent value="exclusive" className="animate-fade-in">
-                {isPremiumSubscribed ? (
+            {/* EXCLUSIVE ZONE TAB - All Athletes */}
+            <TabsContent value="exclusive" className="animate-fade-in">
+              {isPremiumSubscribed ? (
+                isCustomAthlete ? (
                   isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : <CassandreExclusiveZone />
                 ) : (
-                  <PremiumLockedContent 
-                    athleteId={athlete.id} 
-                    athleteName={athlete.name}
-                    onGoBack={handleGoBackFromPremium}
-                    customSubtitle={isArthurCazaux 
+                  <div className="space-y-6 max-w-5xl mx-auto">
+                    {/* Header */}
+                    <div className="text-center max-w-2xl mx-auto">
+                      <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Premium Members Only</Badge>
+                      <h2 className="text-2xl font-bold mb-2">Exclusive Zone</h2>
+                      <p className="text-muted-foreground text-sm">
+                        Win prizes, access content you won't find anywhere else, and connect with the community.
+                      </p>
+                    </div>
+                    
+                    {/* Coming Soon Content */}
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      <article className="glass-card p-6 text-center">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mx-auto mb-4 shadow-md">
+                          <Trophy className="h-6 w-6 text-white" />
+                        </div>
+                        <h4 className="font-semibold mb-2">Prize Draws</h4>
+                        <p className="text-sm text-muted-foreground">Win signed gear and exclusive experiences</p>
+                      </article>
+                      <article className="glass-card p-6 text-center">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mx-auto mb-4 shadow-md">
+                          <Play className="h-6 w-6 text-white" />
+                        </div>
+                        <h4 className="font-semibold mb-2">Exclusive Content</h4>
+                        <p className="text-sm text-muted-foreground">Behind-the-scenes and premium features</p>
+                      </article>
+                      <article className="glass-card p-6 text-center">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mx-auto mb-4 shadow-md">
+                          <MessageCircle className="h-6 w-6 text-white" />
+                        </div>
+                        <h4 className="font-semibold mb-2">Fan Discussions</h4>
+                        <p className="text-sm text-muted-foreground">Connect with other fans in the community</p>
+                      </article>
+                    </div>
+                  </div>
+                )
+              ) : (
+                <PremiumLockedContent 
+                  athleteId={athlete.id} 
+                  athleteName={athlete.name}
+                  onGoBack={handleGoBackFromPremium}
+                  customSubtitle={
+                    isArthurCazaux 
                       ? "Unlock prize draws, curated premium content, and members-only tennis discussions."
                       : isCassandreBeaugrand
                       ? "Unlock prize draws, curated premium content, and members-only triathlon discussions."
-                      : "Unlock prize draws, curated premium content, and members-only rugby discussions."
-                    }
-                  >
-                    {isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : <CassandreExclusiveZone />}
-                  </PremiumLockedContent>
-                )}
-              </TabsContent>
-            )}
+                      : isMatthieuJalibert
+                      ? "Unlock prize draws, curated premium content, and members-only rugby discussions."
+                      : `Unlock prize draws, curated premium content, and members-only ${athlete.sport.toLowerCase()} discussions.`
+                  }
+                >
+                  {isCustomAthlete ? (
+                    isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : <CassandreExclusiveZone />
+                  ) : (
+                    <div className="space-y-6 max-w-5xl mx-auto">
+                      <div className="text-center max-w-2xl mx-auto">
+                        <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Premium Members Only</Badge>
+                        <h2 className="text-2xl font-bold mb-2">Exclusive Zone</h2>
+                        <p className="text-muted-foreground text-sm">
+                          Win prizes, access content you won't find anywhere else, and connect with the community.
+                        </p>
+                      </div>
+                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <article className="glass-card p-6 text-center">
+                          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center mx-auto mb-4 shadow-md">
+                            <Trophy className="h-6 w-6 text-white" />
+                          </div>
+                          <h4 className="font-semibold mb-2">Prize Draws</h4>
+                          <p className="text-sm text-muted-foreground">Win signed gear and exclusive experiences</p>
+                        </article>
+                        <article className="glass-card p-6 text-center">
+                          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mx-auto mb-4 shadow-md">
+                            <Play className="h-6 w-6 text-white" />
+                          </div>
+                          <h4 className="font-semibold mb-2">Exclusive Content</h4>
+                          <p className="text-sm text-muted-foreground">Behind-the-scenes and premium features</p>
+                        </article>
+                        <article className="glass-card p-6 text-center">
+                          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mx-auto mb-4 shadow-md">
+                            <MessageCircle className="h-6 w-6 text-white" />
+                          </div>
+                          <h4 className="font-semibold mb-2">Fan Discussions</h4>
+                          <p className="text-sm text-muted-foreground">Connect with other fans in the community</p>
+                        </article>
+                      </div>
+                    </div>
+                  )}
+                </PremiumLockedContent>
+              )}
+            </TabsContent>
           </Tabs>
         </div>
       </section>
