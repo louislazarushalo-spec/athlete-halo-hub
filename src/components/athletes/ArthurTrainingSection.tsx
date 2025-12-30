@@ -179,10 +179,7 @@ export const ArthurTrainingSection = () => {
   const currentCategory = trainingCategories.find(cat => cat.id === activeCategory);
 
   const handleProgramClick = (programId: string) => {
-    // Only the rotational power program has a dedicated page for now
-    if (programId === "fitness-3") {
-      navigate("/athlete/arthur-cazaux/training/rotational-power");
-    }
+    navigate(`/athlete/arthur-cazaux/training/${programId}`);
   };
 
   return (
