@@ -1,6 +1,8 @@
-import { ExternalLink, Instagram, Heart, MessageCircle, Play, FileText } from "lucide-react";
+import { ExternalLink, Instagram, Heart, MessageCircle, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import cassandreBeaugrandImg from "@/assets/cassandre-beaugrand.jpeg";
 
 interface HighlightItem {
@@ -13,7 +15,7 @@ interface HighlightItem {
   title: string;
   summary?: string;
   url: string;
-  image?: string;
+  cmsImageIndex?: number; // Index to map to CMS images
 }
 
 // Platform configuration matching Arthur's style exactly
@@ -26,7 +28,7 @@ const platformConfig: Record<string, { label: string; bgClass: string; textClass
   eurosport: { label: "Eurosport", bgClass: "bg-blue-800", textClass: "text-white", icon: "ES" },
 };
 
-// Feed items sorted by date (most recent first)
+// Feed items sorted by date (most recent first) with CMS image indices
 const highlightsData: HighlightItem[] = [
   {
     id: "slowtwitch-2025-12-27",
@@ -37,7 +39,8 @@ const highlightsData: HighlightItem[] = [
     source: "Slowtwitch",
     title: "A Year in Triathlon: The Biggest Losses of 2025",
     summary: "A retrospective look at the most significant setbacks and challenges faced by top triathletes this season.",
-    url: "https://slowtwitch.com/triathlon/a-year-in-triathlon-the-biggest-losses-of-2025/"
+    url: "https://slowtwitch.com/triathlon/a-year-in-triathlon-the-biggest-losses-of-2025/",
+    cmsImageIndex: 0
   },
   {
     id: "220triathlon-2025-12-26",
@@ -48,7 +51,8 @@ const highlightsData: HighlightItem[] = [
     source: "220 Triathlon Magazine",
     title: "The parisienne powerhouse",
     summary: "In-depth profile of Cassandre Beaugrand and her journey to becoming an Olympic champion.",
-    url: "https://gb.readly.com/magazines/220-triathlon/2025-12-26/693c11d681cf24c7608d452b"
+    url: "https://gb.readly.com/magazines/220-triathlon/2025-12-26/693c11d681cf24c7608d452b",
+    cmsImageIndex: 1
   },
   {
     id: "instagram-2025-12-19",
@@ -58,7 +62,8 @@ const highlightsData: HighlightItem[] = [
     displayDate: "Dec 19, 2025",
     source: "Instagram",
     title: "Instagram post",
-    url: "https://www.instagram.com/p/CldV_WastvT/"
+    url: "https://www.instagram.com/p/CldV_WastvT/",
+    cmsImageIndex: 2
   },
   {
     id: "instagram-2025-12-14",
@@ -68,7 +73,8 @@ const highlightsData: HighlightItem[] = [
     displayDate: "Dec 14, 2025",
     source: "Instagram",
     title: "Instagram post",
-    url: "https://www.instagram.com/p/DQeNRghkqhz/?hl=en"
+    url: "https://www.instagram.com/p/DQeNRghkqhz/?hl=en",
+    cmsImageIndex: 3
   },
   {
     id: "worldtriathlon-2025-11-04",
@@ -79,7 +85,8 @@ const highlightsData: HighlightItem[] = [
     source: "World Triathlon",
     title: "The top stats of the female stars of the 2025 WTCS",
     summary: "Statistical breakdown of the leading women in WTCS 2025, featuring Beaugrand's performance metrics.",
-    url: "https://triathlon.org/news/the-top-stats-of-the-female-stars-of-the-2025-wtcs"
+    url: "https://triathlon.org/news/the-top-stats-of-the-female-stars-of-the-2025-wtcs",
+    cmsImageIndex: 4
   },
   {
     id: "tri247-2025-10-22",
@@ -90,7 +97,8 @@ const highlightsData: HighlightItem[] = [
     source: "TRI247",
     title: "Olympic champ Beaugrand on Wollongong DNF and why showing vulnerability is not a weakness",
     summary: "Candid interview with Beaugrand reflecting on her WTCS Grand Final experience and the importance of mental openness.",
-    url: "https://www.tri247.com/triathlon-news/elite/wtcs-wollongong-2025-cassandre-beaugrand-reaction"
+    url: "https://www.tri247.com/triathlon-news/elite/wtcs-wollongong-2025-cassandre-beaugrand-reaction",
+    cmsImageIndex: 5
   },
   {
     id: "worldtriathlon-2025-10-15",
@@ -101,7 +109,8 @@ const highlightsData: HighlightItem[] = [
     source: "World Triathlon",
     title: "Beaugrand and Potter set for another epic title tussle in The 'Gong",
     summary: "Official preview and season narrative heading into the WTCS Grand Final showdown.",
-    url: "https://triathlon.org/news/cassandre-beaugrand-and-beth-potter-set-for-another-epic-title-tussle-in-the-gong"
+    url: "https://triathlon.org/news/cassandre-beaugrand-and-beth-potter-set-for-another-epic-title-tussle-in-the-gong",
+    cmsImageIndex: 6
   },
   {
     id: "worldtriathlon-2025-09-17",
@@ -112,12 +121,13 @@ const highlightsData: HighlightItem[] = [
     source: "World Triathlon",
     title: "How WTCS Karlovy Vary shook up the 2025 WTCS rankings",
     summary: "Analysis of the ranking changes following the Karlovy Vary race and implications for the season finale.",
-    url: "https://triathlon.org/news/how-wtcs-karlovy-vary-shook-up-the-2025-wtcs-rankings"
+    url: "https://triathlon.org/news/how-wtcs-karlovy-vary-shook-up-the-2025-wtcs-rankings",
+    cmsImageIndex: 7
   }
 ];
 
 // Social Post Card - matches Arthur's Instagram/social card exactly
-const SocialFeedCard = ({ item, index }: { item: HighlightItem; index: number }) => {
+const SocialFeedCard = ({ item, index, imageUrl }: { item: HighlightItem; index: number; imageUrl?: string }) => {
   const config = platformConfig[item.platform];
   
   return (
@@ -142,14 +152,24 @@ const SocialFeedCard = ({ item, index }: { item: HighlightItem; index: number })
         </div>
       </div>
       
-      {/* Placeholder for Instagram image area */}
-      <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-muted/50 to-muted flex items-center justify-center">
-        <div className="text-center p-6">
-          <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full ${config.bgClass} flex items-center justify-center mx-auto mb-4 shadow-lg`}>
-            <Instagram className="h-8 w-8 md:h-10 md:w-10 text-white" />
+      {/* Instagram image area - using CMS image or placeholder */}
+      <div className="relative aspect-square overflow-hidden">
+        {imageUrl ? (
+          <img 
+            src={imageUrl} 
+            alt="Post" 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-muted/50 to-muted flex items-center justify-center">
+            <div className="text-center p-6">
+              <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full ${config.bgClass} flex items-center justify-center mx-auto mb-4 shadow-lg`}>
+                <Instagram className="h-8 w-8 md:h-10 md:w-10 text-white" />
+              </div>
+              <p className="text-sm text-muted-foreground">View this post on Instagram</p>
+            </div>
           </div>
-          <p className="text-sm text-muted-foreground">View this post on Instagram</p>
-        </div>
+        )}
       </div>
       
       <div className="p-3 md:p-4 space-y-2 md:space-y-3">
@@ -180,7 +200,7 @@ const SocialFeedCard = ({ item, index }: { item: HighlightItem; index: number })
 };
 
 // Article Card - matches Arthur's article card exactly
-const ArticleFeedCard = ({ item, index }: { item: HighlightItem; index: number }) => {
+const ArticleFeedCard = ({ item, index, imageUrl }: { item: HighlightItem; index: number; imageUrl?: string }) => {
   const config = platformConfig[item.platform];
   
   return (
@@ -222,8 +242,18 @@ const ArticleFeedCard = ({ item, index }: { item: HighlightItem; index: number }
               <span className="text-primary">Read more →</span>
             </div>
           </div>
-          <div className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0 rounded-lg overflow-hidden bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
-            <FileText className="h-8 w-8 text-muted-foreground/50" />
+          <div className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0 rounded-lg overflow-hidden">
+            {imageUrl ? (
+              <img 
+                src={imageUrl} 
+                alt="Article" 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
+                <FileText className="h-8 w-8 text-muted-foreground/50" />
+              </div>
+            )}
           </div>
         </div>
       </article>
@@ -262,14 +292,39 @@ const FollowCard = () => (
 );
 
 export const CassandreHighlights = () => {
+  const [cmsImages, setCmsImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchCmsImages = async () => {
+      const { data, error } = await supabase
+        .from('athlete_content')
+        .select('image_url')
+        .eq('athlete_id', 'cassandre-beaugrand')
+        .order('created_at', { ascending: false });
+
+      if (!error && data) {
+        setCmsImages(data.map(item => item.image_url));
+      }
+    };
+
+    fetchCmsImages();
+  }, []);
+
+  const getImageForItem = (item: HighlightItem): string | undefined => {
+    if (item.cmsImageIndex !== undefined && cmsImages[item.cmsImageIndex]) {
+      return cmsImages[item.cmsImageIndex];
+    }
+    return undefined;
+  };
+
   return (
     <div className="max-w-3xl mx-auto space-y-5">
       {highlightsData.map((item, index) => (
         <div key={item.id}>
           {item.type === "social" ? (
-            <SocialFeedCard item={item} index={index} />
+            <SocialFeedCard item={item} index={index} imageUrl={getImageForItem(item)} />
           ) : (
-            <ArticleFeedCard item={item} index={index} />
+            <ArticleFeedCard item={item} index={index} imageUrl={getImageForItem(item)} />
           )}
         </div>
       ))}
