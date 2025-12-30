@@ -119,7 +119,7 @@ const Index = () => {
             {/* Athletes Grid - Larger cards, premium spacing */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {featuredAthletes.map((athlete, index) => (
-                <HomepageAthleteCard key={athlete.id} athlete={athlete} index={index} />
+                <HomepageAthleteCard key={athlete.id} athlete={athlete} index={index} hideAccessLabels />
               ))}
             </div>
 
