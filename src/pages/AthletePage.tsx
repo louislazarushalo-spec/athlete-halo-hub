@@ -592,7 +592,7 @@ const AthletePage = () => {
               <div className="text-center max-w-2xl mx-auto mb-6">
                 <h2 className="text-2xl font-bold mb-2">Inside My World</h2>
                 <p className="text-muted-foreground text-sm">
-                  Get a glimpse into my daily life, upcoming events, career highlights, and the music that fuels my journey.
+                  Follow my journey — from upcoming competitions to behind-the-scenes moments and the soundtrack to my life.
                 </p>
               </div>
               
@@ -847,7 +847,7 @@ const AthletePage = () => {
               <div className="text-center max-w-2xl mx-auto mb-6">
                 <h2 className="text-2xl font-bold mb-2">My Kit Room</h2>
                 <p className="text-muted-foreground text-sm">
-                  Discover the equipment, apparel, and accessories I trust to perform at my best. Shop my exact gear.
+                  This is the gear I trust to compete at the highest level. Shop my exact setup.
                 </p>
               </div>
               
@@ -964,7 +964,7 @@ const AthletePage = () => {
               <div className="text-center max-w-2xl mx-auto mb-6">
                 <h2 className="text-2xl font-bold mb-2">My Causes</h2>
                 <p className="text-muted-foreground text-sm">
-                  Discover the causes and initiatives close to my heart. Join me in making a positive impact.
+                  These are the causes I care about. Join me in making a difference.
                 </p>
               </div>
               
