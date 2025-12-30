@@ -56,19 +56,19 @@ export const AthleteCard = ({ athlete, index = 0, hideAccessIndicators = false }
               {/* Premium sections */}
               {isCustomAthlete && (
                 <>
-                  <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-primary/10 border border-primary/30 rounded text-[9px] sm:text-[10px] text-primary font-medium">
-                    <Lock className="h-2 w-2 sm:h-2.5 sm:w-2.5" />
+                  <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-blue-500/20 border border-blue-500/40 rounded text-[9px] sm:text-[10px] text-blue-400 font-medium">
+                    <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-blue-400" />
                     <span className="hidden xs:inline">Performance </span>Lab
                   </span>
-                  <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-primary/10 border border-primary/30 rounded text-[9px] sm:text-[10px] text-primary font-medium">
-                    <Lock className="h-2 w-2 sm:h-2.5 sm:w-2.5" />
+                  <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-blue-500/20 border border-blue-500/40 rounded text-[9px] sm:text-[10px] text-blue-400 font-medium">
+                    <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-blue-400" />
                     Exclusive
                   </span>
                 </>
               )}
               {!isCustomAthlete && (
-                <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-primary/10 border border-primary/30 rounded text-[9px] sm:text-[10px] text-primary font-medium">
-                  <Lock className="h-2 w-2 sm:h-2.5 sm:w-2.5" />
+                <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-blue-500/20 border border-blue-500/40 rounded text-[9px] sm:text-[10px] text-blue-400 font-medium">
+                  <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-blue-400" />
                   Training
                 </span>
               )}
