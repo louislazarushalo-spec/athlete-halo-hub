@@ -90,6 +90,9 @@ import cassandreKitRideImg from "@/assets/cassandre-kit-ride.jpeg";
 import cassandreKitOffduyImg from "@/assets/cassandre-kit-offduty.jpeg";
 import oakleyProduct1Img from "@/assets/oakley-product-1.avif";
 import oakleyProduct2Img from "@/assets/oakley-product-2.avif";
+import huaweiWatchProductImg from "@/assets/huawei-watch-product.png";
+import adidasCropTopPinkImg from "@/assets/adidas-crop-top-pink.webp";
+import adidasLeggingBlackImg from "@/assets/adidas-legging-black.webp";
 
 export interface MediaFeedItem {
   id: string;
@@ -7730,25 +7733,36 @@ export const athletes: Athlete[] = [
             name: "Huawei Watch GT Runner",
             price: 299,
             currency: "€",
-            image: cassandreKitTrackImg,
+            image: huaweiWatchProductImg,
             description: "Professional running watch with AI coaching and dual-band GPS for accurate tracking.",
             category: "partner",
             athleteId: "cassandre-beaugrand"
           },
           {
             id: "cb-adidas-1",
-            name: "Adidas Training Top",
+            name: "Adidas Training Crop Top",
             price: 55,
             currency: "€",
-            image: cassandreKitTrackImg,
+            image: adidasCropTopPinkImg,
             description: "Lightweight training top with moisture-wicking AEROREADY technology.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-adidas-2",
+            name: "Adidas Techfit Leggings",
+            price: 45,
+            currency: "€",
+            image: adidasLeggingBlackImg,
+            description: "High-waisted compression leggings for maximum support and comfort.",
             category: "partner",
             athleteId: "cassandre-beaugrand"
           }
         ],
         hotspots: {
-          'cb-huawei-1': { x: 25, y: 65 },
-          'cb-adidas-1': { x: 50, y: 35 }
+          'cb-huawei-1': { x: 68, y: 70 },
+          'cb-adidas-1': { x: 50, y: 42 },
+          'cb-adidas-2': { x: 45, y: 82 }
         }
       },
       {
