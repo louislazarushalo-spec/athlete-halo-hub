@@ -88,6 +88,8 @@ import cassandreKitSundaysImg from "@/assets/cassandre-kit-sundays.jpeg";
 import cassandreKitTrackImg from "@/assets/cassandre-kit-track.jpg";
 import cassandreKitRideImg from "@/assets/cassandre-kit-ride.jpeg";
 import cassandreKitOffduyImg from "@/assets/cassandre-kit-offduty.jpeg";
+import oakleyProduct1Img from "@/assets/oakley-product-1.avif";
+import oakleyProduct2Img from "@/assets/oakley-product-2.avif";
 
 export interface MediaFeedItem {
   id: string;
@@ -7696,14 +7698,24 @@ export const athletes: Athlete[] = [
             name: "Oakley Sutro Lite Sunglasses",
             price: 169,
             currency: "€",
-            image: cassandreKitSundaysImg,
+            image: oakleyProduct1Img,
             description: "Lightweight performance sunglasses with Prizm lens technology for enhanced contrast.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-oakley-2",
+            name: "Oakley Sutro S",
+            price: 149,
+            currency: "€",
+            image: oakleyProduct2Img,
+            description: "Compact frame designed for smaller faces with Prizm Road lens for enhanced color and contrast.",
             category: "partner",
             athleteId: "cassandre-beaugrand"
           }
         ],
         hotspots: {
-          'cb-oakley-1': { x: 60, y: 45 }
+          'cb-oakley-1': { x: 32, y: 28 }
         }
       },
       {
