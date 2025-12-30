@@ -319,12 +319,15 @@ const AthletePage = () => {
           {/* Grey transparent gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-muted/40" />
           
-          {/* Back Button - positioned top-left with proper touch target for mobile */}
+          {/* Back Button - right on mobile to avoid avatar overlap */}
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-background/60 backdrop-blur-sm hover:bg-background/80 z-20 h-10 w-10 sm:h-10 sm:w-10 touch-manipulation"
-            onClick={() => navigate(-1)}
+            className="absolute top-4 right-4 sm:right-auto sm:left-4 bg-background/60 backdrop-blur-sm hover:bg-background/80 z-50 h-10 w-10 touch-manipulation"
+            onClick={() => {
+              if (window.history.length > 1) navigate(-1);
+              else navigate("/home");
+            }}
             aria-label="Go back"
           >
             <ArrowLeft className="h-5 w-5" />
@@ -334,12 +337,12 @@ const AthletePage = () => {
         <div className="absolute inset-0 flex items-end">
           <div className="container mx-auto px-4 pb-4 sm:pb-6 md:pb-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-end gap-4 sm:gap-6">
-              {/* Large Avatar - using object-top to focus on face */}
-              <div className="relative mt-12 sm:mt-0">
+              {/* Large Avatar - avoid cropping on mobile */}
+              <div className="relative">
                 <img
                   src={athlete.avatar}
                   alt={athlete.name}
-                  className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-xl sm:rounded-2xl object-cover object-top border-2 sm:border-4 border-background shadow-2xl"
+                  className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-xl sm:rounded-2xl object-contain bg-muted/30 border-2 sm:border-4 border-background shadow-2xl"
                 />
                 <Badge className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-primary text-primary-foreground text-[10px] sm:text-xs">
                   {athlete.sport}
