@@ -2,7 +2,7 @@ import { athletes } from "@/data/athletes";
 import { AthleteCard } from "@/components/athletes/AthleteCard";
 
 // Hardcoded followed athletes for demo
-const followedAthleteIds = ["arthur-cazaux", "tommy-fleetwood", "elisa-balsamo"];
+const followedAthleteIds = ["arthur-cazaux", "tommy-fleetwood", "cassandre-beaugrand"];
 
 export const YourHalosSection = () => {
   const followedAthletes = athletes.filter(a => followedAthleteIds.includes(a.id));
