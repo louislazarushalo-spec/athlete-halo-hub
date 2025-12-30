@@ -80,6 +80,8 @@ import elisaBalsamoImg from "@/assets/elisa-balsamo.png";
 import arthurCazauxParisImg from "@/assets/arthur-cazaux-paris.png";
 import lacosteVarsityJacketImg from "@/assets/lacoste-varsity-jacket.png";
 import lacosteWhiteTshirtImg from "@/assets/lacoste-white-tshirt.png";
+import cassandreBeaugrandImg from "@/assets/cassandre-beaugrand.jpeg";
+import cassandreBeaugrandBannerImg from "@/assets/cassandre-beaugrand-banner.jpeg";
 
 export interface MediaFeedItem {
   id: string;
@@ -7581,8 +7583,8 @@ export const athletes: Athlete[] = [
     gender: "female",
     bio: "French triathlete. Olympic champion. Relentless competitor.",
     tagline: "French triathlete. Train, gear up, and follow the journey.",
-    avatar: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=400&fit=crop",
-    banner: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1600&h=600&fit=crop",
+    avatar: cassandreBeaugrandImg,
+    banner: cassandreBeaugrandBannerImg,
     followers: 440000,
     training: [
       {
