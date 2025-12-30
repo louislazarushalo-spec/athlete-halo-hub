@@ -316,11 +316,11 @@ const AthletePage = () => {
           {/* Grey transparent gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-muted/40" />
           
-          {/* Back Button */}
+          {/* Back Button - positioned top-right on mobile to avoid avatar overlap */}
           <Button
             variant="ghost"
             size="icon"
-            className="absolute top-4 left-4 bg-background/50 backdrop-blur-sm hover:bg-background/70 z-10"
+            className="absolute top-4 right-4 sm:right-auto sm:left-4 bg-background/50 backdrop-blur-sm hover:bg-background/70 z-10"
             onClick={() => navigate(-1)}
           >
             <ArrowLeft className="h-5 w-5" />
