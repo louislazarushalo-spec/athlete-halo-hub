@@ -310,7 +310,7 @@ const AthletePage = () => {
       {/* Main content - blurred when not authenticated */}
       <div className={!isAuthenticated ? "blur-lg pointer-events-none select-none" : ""}>
         {/* Hero Banner - Full Width */}
-        <section className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] min-h-[300px] sm:min-h-[350px] md:min-h-[400px] max-h-[600px] overflow-hidden">
+        <section className={`relative ${isCustomAthlete ? "h-[62vh] min-h-[420px]" : "h-[40vh] min-h-[300px]"} sm:h-[45vh] md:h-[50vh] sm:min-h-[350px] md:min-h-[400px] max-h-[700px] overflow-hidden`}>
           <img
             src={athlete.banner}
             alt={`${athlete.name} banner`}
@@ -335,14 +335,14 @@ const AthletePage = () => {
         
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex items-end">
-          <div className="container mx-auto px-4 pb-4 sm:pb-6 md:pb-8">
-            <div className="flex flex-col sm:flex-row items-start sm:items-end gap-4 sm:gap-6 mt-16 sm:mt-0">
+          <div className="container mx-auto px-4 pb-2 sm:pb-6 md:pb-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-end gap-4 sm:gap-6">
               {/* Large Avatar - pushed below header on mobile */}
               <div className="relative">
                 <img
                   src={athlete.avatar}
                   alt={athlete.name}
-                  className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-xl sm:rounded-2xl object-cover object-top border-2 sm:border-4 border-background shadow-2xl"
+                  className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-xl sm:rounded-2xl object-contain bg-muted/20 border-2 sm:border-4 border-background shadow-2xl"
                 />
                 <Badge className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-primary text-primary-foreground text-[10px] sm:text-xs">
                   {athlete.sport}
