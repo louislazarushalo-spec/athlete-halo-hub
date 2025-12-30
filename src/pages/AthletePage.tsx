@@ -461,30 +461,30 @@ const AthletePage = () => {
                 </div>
                 {/* Sponsor Logos - Only for custom athletes */}
                 {isCustomAthlete && (
-                  <div className="flex items-center gap-2 sm:gap-4 mt-3 sm:mt-4">
-                    <span className="text-[10px] sm:text-xs text-foreground/60 uppercase tracking-wider">Partners</span>
-                    <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4 mt-3 sm:mt-4">
+                    <span className="text-[10px] sm:text-xs text-foreground/60 uppercase tracking-wider shrink-0">Partners</span>
+                    <div className="flex items-center gap-1.5 sm:gap-3 flex-wrap">
                       {isArthurCazaux && (
                         <>
-                          <img src={sponsorLacoste} alt="Lacoste" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorBabolat} alt="Babolat" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorExtia} alt="Extia Conseil" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorLacoste} alt="Lacoste" className="h-3.5 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorBabolat} alt="Babolat" className="h-3.5 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorExtia} alt="Extia Conseil" className="h-3.5 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
                       )}
                       {isMatthieuJalibert && (
                         <>
-                          <img src={sponsorAdidas} alt="Adidas" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorUBB} alt="UBB" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorAdidas} alt="Adidas" className="h-3.5 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorUBB} alt="UBB" className="h-3.5 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
                       )}
                       {isCassandreBeaugrand && (
                         <>
-                          <img src={sponsorAdidas} alt="Adidas" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorOakley} alt="Oakley" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorSpecialized} alt="Specialized" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorWeleda} alt="Weleda" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorNutripure} alt="Nutripure" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
-                          <img src={sponsorHuawei} alt="Huawei" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorAdidas} alt="Adidas" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorOakley} alt="Oakley" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorSpecialized} alt="Specialized" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorWeleda} alt="Weleda" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorNutripure} alt="Nutripure" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorHuawei} alt="Huawei" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
                       )}
                     </div>

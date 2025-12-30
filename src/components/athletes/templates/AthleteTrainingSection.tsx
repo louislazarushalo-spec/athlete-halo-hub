@@ -40,49 +40,49 @@ export const AthleteTrainingSection = ({ data }: AthleteTrainingSectionProps) =>
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header with Premium Badge */}
-      <div className="text-center max-w-2xl mx-auto mb-6">
-        <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Premium Members Only</Badge>
-        <h2 className="text-2xl font-bold mb-2">Performance Lab</h2>
-        <p className="text-muted-foreground text-sm">
+      <div className="text-center max-w-2xl mx-auto mb-4 sm:mb-6 px-2">
+        <Badge className="mb-3 sm:mb-4 bg-primary/20 text-primary border-primary/30 text-xs">Premium Members Only</Badge>
+        <h2 className="text-xl sm:text-2xl font-bold mb-1.5 sm:mb-2">Performance Lab</h2>
+        <p className="text-muted-foreground text-xs sm:text-sm">
           Train like me. My complete fitness, skills, nutrition, and mental routines — all in one place.
         </p>
       </div>
 
       {/* Sub-tabs like My Life */}
-      <div className="flex items-center justify-center gap-2 border-b border-border/30 pb-4">
+      <div className="flex items-center justify-center gap-1 sm:gap-2 border-b border-border/30 pb-3 sm:pb-4 overflow-x-auto -mx-4 px-4">
         {data.categories.map((category) => (
           <Button
             key={category.id}
             variant={activeCategory === category.id ? "default" : "ghost"}
             size="sm"
             onClick={() => setActiveCategory(category.id)}
-            className={`flex items-center gap-2 ${
+            className={`flex items-center gap-1 sm:gap-2 shrink-0 h-8 sm:h-9 text-xs sm:text-sm px-2.5 sm:px-3 ${
               activeCategory === category.id 
                 ? "bg-primary text-primary-foreground" 
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
             {category.icon}
-            {category.title}
+            <span className="hidden xs:inline">{category.title}</span>
           </Button>
         ))}
       </div>
 
       {/* Category Description */}
       {currentCategory && (
-        <p className="text-muted-foreground">{currentCategory.description}</p>
+        <p className="text-muted-foreground text-xs sm:text-sm">{currentCategory.description}</p>
       )}
 
       {/* Programs Grid */}
       {currentCategory && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           {currentCategory.programs.map((program) => (
             <article 
               key={program.id} 
               className={`relative rounded-xl overflow-hidden group cursor-pointer ${
-                program.image ? "h-64" : "glass-card p-5 flex flex-col"
+                program.image ? "h-48 sm:h-64" : "glass-card p-3 sm:p-5 flex flex-col"
               }`}
               onClick={() => handleProgramClick(program.id)}
             >
@@ -98,17 +98,17 @@ export const AthleteTrainingSection = ({ data }: AthleteTrainingSectionProps) =>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                   
                   {/* Content */}
-                  <div className="absolute inset-0 p-5 flex flex-col justify-end">
-                    <h4 className="font-semibold text-lg text-white mb-2 group-hover:text-primary transition-colors">
+                  <div className="absolute inset-0 p-3 sm:p-5 flex flex-col justify-end">
+                    <h4 className="font-semibold text-sm sm:text-lg text-white mb-1 sm:mb-2 group-hover:text-primary transition-colors line-clamp-2">
                       {program.title}
                     </h4>
-                    <p className="text-white/80 text-sm mb-4 line-clamp-2">
+                    <p className="text-white/80 text-xs sm:text-sm mb-2 sm:mb-4 line-clamp-2">
                       {program.description}
                     </p>
                     <Button 
                       variant="outline" 
                       size="sm" 
-                      className="w-fit bg-white/10 border-white/20 text-white hover:bg-white/20"
+                      className="w-fit bg-white/10 border-white/20 text-white hover:bg-white/20 h-7 sm:h-8 text-xs sm:text-sm"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleProgramClick(program.id);
@@ -120,16 +120,16 @@ export const AthleteTrainingSection = ({ data }: AthleteTrainingSectionProps) =>
                 </>
               ) : (
                 <>
-                  <h4 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors leading-snug">
+                  <h4 className="font-semibold text-sm sm:text-base mb-1.5 sm:mb-2 group-hover:text-primary transition-colors leading-snug">
                     {program.title}
                   </h4>
-                  <p className="text-muted-foreground text-sm mb-4 flex-1 leading-relaxed">
+                  <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4 flex-1 leading-relaxed line-clamp-3">
                     {program.description}
                   </p>
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="w-full mt-auto"
+                    className="w-full mt-auto h-8 text-xs sm:text-sm"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleProgramClick(program.id);

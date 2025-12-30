@@ -55,25 +55,25 @@ export const ShoppableGearSection = ({
   const productsWithHotspots = products.filter(p => p.hotspot);
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="font-display text-2xl font-semibold mb-1">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="px-1">
+        <h2 className="font-display text-xl sm:text-2xl font-semibold mb-1">
           {title || `Shop ${athleteName}'s gear`}
         </h2>
         {description && (
-          <p className="text-muted-foreground text-base">
+          <p className="text-muted-foreground text-sm sm:text-base line-clamp-2 sm:line-clamp-none">
             {description}
           </p>
         )}
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8 items-start">
+      <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 items-start">
         {/* Left: Action Image with Hotspots - Patreon Style */}
-        <div className="relative rounded-2xl overflow-hidden bg-muted flex-1 lg:max-w-[55%]">
+        <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-muted w-full lg:flex-1 lg:max-w-[55%]">
           <img
             src={actionImage}
             alt={`${athleteName} in action`}
-            className="w-full h-auto object-cover"
+            className="w-full h-auto object-cover max-h-[50vh] sm:max-h-none object-top"
           />
           
           {/* Hotspots with Popovers */}
@@ -154,47 +154,47 @@ export const ShoppableGearSection = ({
           ))}
 
           {/* Floating hint badge */}
-          <div className="absolute bottom-4 left-4 right-4">
-            <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm text-xs">
+          <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4">
+            <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm text-[10px] sm:text-xs">
               Click the + buttons to shop items
             </Badge>
           </div>
         </div>
 
         {/* Right: Product Grid - Same Level */}
-        <div className="flex-1 lg:max-w-[45%]">
-          <div className="mb-4 flex items-center justify-between">
-            <h3 className="font-display text-lg font-semibold">All items</h3>
-            <Badge variant="outline" className="text-xs">
+        <div className="w-full lg:flex-1 lg:max-w-[45%]">
+          <div className="mb-3 sm:mb-4 flex items-center justify-between">
+            <h3 className="font-display text-base sm:text-lg font-semibold">All items</h3>
+            <Badge variant="outline" className="text-[10px] sm:text-xs">
               {products.length} items
             </Badge>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-2 sm:gap-3">
             {products.map((product) => (
               <article
                 key={product.id}
                 id={`product-${product.id}`}
                 className="glass-card overflow-hidden group transition-all duration-300 hover:border-primary/30"
               >
-                <div className="relative h-28 overflow-hidden">
+                <div className="relative h-20 sm:h-28 overflow-hidden">
                   <img
                     src={product.image}
                     alt={product.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <button className="absolute top-2 right-2 w-6 h-6 rounded-full bg-card/80 backdrop-blur-sm flex items-center justify-center hover:bg-card transition-colors opacity-0 group-hover:opacity-100">
-                    <Heart className="h-3 w-3" />
+                  <button className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-card/80 backdrop-blur-sm flex items-center justify-center hover:bg-card transition-colors opacity-0 group-hover:opacity-100">
+                    <Heart className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                   </button>
                 </div>
 
-                <div className="p-3">
-                  <h4 className="font-medium text-xs mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                <div className="p-2 sm:p-3">
+                  <h4 className="font-medium text-[10px] sm:text-xs mb-1 line-clamp-1 group-hover:text-primary transition-colors">
                     {product.name}
                   </h4>
                   
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-display font-semibold text-sm">
+                  <div className="flex items-center justify-between gap-1.5 sm:gap-2">
+                    <span className="font-display font-semibold text-xs sm:text-sm">
                       {product.currency}{product.price}
                     </span>
                     
@@ -202,12 +202,12 @@ export const ShoppableGearSection = ({
                       size="sm"
                       variant={addedProducts.has(product.id) ? "secondary" : "default"}
                       onClick={() => handleAddToCart(product)}
-                      className="h-7 text-xs px-2"
+                      className="h-6 sm:h-7 text-[10px] sm:text-xs px-1.5 sm:px-2"
                     >
                       {addedProducts.has(product.id) ? (
-                        <Check className="h-3 w-3" />
+                        <Check className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                       ) : (
-                        <ShoppingCart className="h-3 w-3" />
+                        <ShoppingCart className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                       )}
                     </Button>
                   </div>
