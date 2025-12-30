@@ -93,6 +93,8 @@ import oakleyProduct2Img from "@/assets/oakley-product-2.avif";
 import huaweiWatchProductImg from "@/assets/huawei-watch-product.png";
 import adidasCropTopPinkImg from "@/assets/adidas-crop-top-pink.webp";
 import adidasLeggingBlackImg from "@/assets/adidas-legging-black.webp";
+import specializedBikeProductImg from "@/assets/specialized-bike-product.webp";
+import adidasTriathlonTenueImg from "@/assets/adidas-triathlon-tenue.jpeg";
 
 export interface MediaFeedItem {
   id: string;
@@ -7773,71 +7775,38 @@ export const athletes: Athlete[] = [
         products: [
           {
             id: "cb-specialized-1",
-            name: "Specialized S-Works Shiv TT",
+            name: "Specialized S-Works Aethos",
             price: 12999,
             currency: "€",
-            image: cassandreKitRideImg,
-            description: "The ultimate triathlon bike, designed for speed with integrated storage and aerodynamic perfection.",
-            category: "partner",
-            athleteId: "cassandre-beaugrand"
-          },
-          {
-            id: "cb-specialized-2",
-            name: "Specialized Tri Suit",
-            price: 249,
-            currency: "€",
-            image: cassandreKitRideImg,
-            description: "Race-day tri suit with quick-dry fabric and aerodynamic fit.",
+            image: specializedBikeProductImg,
+            description: "The ultimate road bike, designed for speed with lightweight carbon frame and race-winning aerodynamics.",
             category: "partner",
             athleteId: "cassandre-beaugrand"
           }
         ],
         hotspots: {
-          'cb-specialized-1': { x: 50, y: 75 },
-          'cb-specialized-2': { x: 50, y: 40 }
+          'cb-specialized-1': { x: 45, y: 55 }
         }
       },
       {
         id: "cb-gc-offduty",
         name: "Off-duty fit",
-        description: "Recovery days in style. Cassandre's Adidas lifestyle collection for when she's not racing.",
+        description: "Race-day ready. Cassandre's signature triathlon tenue for competition.",
         actionImage: cassandreKitOffduyImg,
         products: [
           {
-            id: "cb-adidas-2",
-            name: "Adidas Track Jacket",
-            price: 89,
+            id: "cb-triathlon-1",
+            name: "Adidas Triathlon Race Suit",
+            price: 189,
             currency: "€",
-            image: cassandreKitOffduyImg,
-            description: "Classic Adidas track jacket with iconic three stripes and zip-up design.",
-            category: "partner",
-            athleteId: "cassandre-beaugrand"
-          },
-          {
-            id: "cb-adidas-3",
-            name: "Adidas Mini Skirt",
-            price: 45,
-            currency: "€",
-            image: cassandreKitOffduyImg,
-            description: "Sporty mini skirt with comfortable stretch fabric.",
-            category: "partner",
-            athleteId: "cassandre-beaugrand"
-          },
-          {
-            id: "cb-adidas-4",
-            name: "Adidas Ozweego Sneakers",
-            price: 130,
-            currency: "€",
-            image: cassandreKitOffduyImg,
-            description: "Retro-inspired lifestyle sneakers with Adiprene cushioning.",
+            image: adidasTriathlonTenueImg,
+            description: "Official race-day triathlon suit with quick-dry fabric, aerodynamic fit, and bold design.",
             category: "partner",
             athleteId: "cassandre-beaugrand"
           }
         ],
         hotspots: {
-          'cb-adidas-2': { x: 50, y: 30 },
-          'cb-adidas-3': { x: 50, y: 55 },
-          'cb-adidas-4': { x: 50, y: 85 }
+          'cb-triathlon-1': { x: 50, y: 50 }
         }
       }
     ],
