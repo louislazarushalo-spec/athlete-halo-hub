@@ -119,6 +119,15 @@ export const swimmingEvents: AthleteEvent[] = [
   { id: "french-champs", name: "French Championships", date: "25", month: "Mar", year: "2025", location: "Chartres, France", country: "France", countryFlag: "🇫🇷", category: "National", categoryColor: "bg-blue-500", description: "French National Swimming Championships." },
 ];
 
+// Triathlon Events (WTCS - World Triathlon Championship Series)
+export const triathlonEvents: AthleteEvent[] = [
+  { id: "wtcs-abudhabi-2026", name: "WTCS Abu Dhabi", date: "27", month: "Mar", year: "2026", location: "Abu Dhabi, UAE", country: "UAE", countryFlag: "🇦🇪", category: "WTCS", categoryColor: "bg-gradient-to-r from-blue-500 to-cyan-500", description: "World Triathlon Championship Series in Abu Dhabi." },
+  { id: "wtcs-samarkand-2026", name: "WTCS Samarkand", date: "25", month: "Apr", year: "2026", location: "Samarkand, Uzbekistan", country: "Uzbekistan", countryFlag: "🇺🇿", category: "WTCS", categoryColor: "bg-gradient-to-r from-blue-500 to-cyan-500", description: "World Triathlon Championship Series in Samarkand." },
+  { id: "wtcs-yokohama-2026", name: "WTCS Yokohama", date: "16", month: "May", year: "2026", location: "Yokohama, Japan", country: "Japan", countryFlag: "🇯🇵", category: "WTCS", categoryColor: "bg-gradient-to-r from-blue-500 to-cyan-500", description: "World Triathlon Championship Series in Yokohama." },
+  { id: "wtcs-alghero-2026", name: "WTCS Alghero", date: "5", month: "Jun", year: "2026", location: "Alghero, Italy", country: "Italy", countryFlag: "🇮🇹", category: "WTCS", categoryColor: "bg-gradient-to-r from-blue-500 to-cyan-500", description: "World Triathlon Championship Series in Alghero." },
+  { id: "wtcs-quiberon-2026", name: "WTCS Quiberon", date: "20", month: "Jun", year: "2026", location: "Quiberon, France", country: "France", countryFlag: "🇫🇷", category: "WTCS", categoryColor: "bg-gradient-to-r from-blue-500 to-cyan-500", description: "World Triathlon Championship Series in Quiberon." },
+];
+
 // Month name to number mapping
 const monthToNumber: Record<string, number> = {
   "Jan": 0, "Feb": 1, "Mar": 2, "Apr": 3, "May": 4, "Jun": 5,
@@ -189,6 +198,9 @@ export const getEventsBySport = (sport: string, gender?: string): AthleteEvent[]
       break;
     case "swimming":
       events = swimmingEvents;
+      break;
+    case "triathlon":
+      events = triathlonEvents;
       break;
     default:
       events = [];
