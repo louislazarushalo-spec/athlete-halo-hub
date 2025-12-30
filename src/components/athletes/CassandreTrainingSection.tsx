@@ -176,8 +176,7 @@ export const CassandreTrainingSection = () => {
   const currentCategory = trainingCategories.find(cat => cat.id === activeCategory);
 
   const handleProgramClick = (programId: string) => {
-    // Placeholder for future navigation
-    console.log("Program clicked:", programId);
+    navigate(`/athlete/cassandre-beaugrand/training/${programId}`);
   };
 
   return (
