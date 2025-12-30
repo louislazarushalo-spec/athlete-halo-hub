@@ -149,7 +149,8 @@ export const femaleAthleteIds = [
   'deyna-castellanos', 'sydney-leroux', 'tatiana-flores',
   'crissa-jackson', 'angel-reese',
   'lily-he', 'nelly-korda', 'lexi-thompson',
-  'marianne-vos', 'elisa-balsamo'
+  'marianne-vos', 'elisa-balsamo',
+  'cassandre-beaugrand'
 ];
 
 export interface Post {
@@ -7570,6 +7571,340 @@ export const athletes: Athlete[] = [
         image: "https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?w=800&h=400&fit=crop",
         timestamp: "2 days ago",
         stats: { readTime: "5 min read" }
+      }
+    ]
+  },
+  {
+    id: "cassandre-beaugrand",
+    name: "Cassandre Beaugrand",
+    sport: "Triathlon",
+    gender: "female",
+    bio: "French triathlete. Olympic champion. Relentless competitor.",
+    tagline: "French triathlete. Train, gear up, and follow the journey.",
+    avatar: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=400&fit=crop",
+    banner: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1600&h=600&fit=crop",
+    followers: 440000,
+    training: [
+      {
+        id: "cb-t1",
+        title: "Triathlon Endurance Training",
+        description: "Building the foundation for swim, bike, and run excellence.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-10"
+      }
+    ],
+    life: [
+      {
+        id: "cb-l1",
+        title: "Life as an Olympic Champion",
+        description: "Behind the scenes of training, competing, and chasing gold.",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-03-12"
+      }
+    ],
+    gear: [
+      {
+        id: "cb-g1",
+        title: "My Race Day Setup",
+        description: "Full gear breakdown from swim to finish line.",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-03-08"
+      }
+    ],
+    products: [
+      {
+        id: "cb-p1",
+        name: "Triathlon Training Program",
+        price: 79,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop",
+        description: "Complete 12-week triathlon training program.",
+        category: "athlete",
+        athleteId: "cassandre-beaugrand"
+      },
+      {
+        id: "cb-p2",
+        name: "Signed Race Suit",
+        price: 149,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=600&fit=crop",
+        description: "Authentic race suit with signature.",
+        category: "athlete",
+        athleteId: "cassandre-beaugrand"
+      },
+      {
+        id: "cb-p3",
+        name: "Performance Wetsuit",
+        price: 299,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop",
+        description: "High-performance wetsuit for open water swimming.",
+        category: "partner",
+        athleteId: "cassandre-beaugrand"
+      },
+      {
+        id: "cb-p4",
+        name: "Triathlon Bike Shoes",
+        price: 189,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+        description: "Quick-transition cycling shoes for triathletes.",
+        category: "partner",
+        athleteId: "cassandre-beaugrand"
+      },
+      {
+        id: "cb-p5",
+        name: "Race Day Nutrition Pack",
+        price: 45,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=600&fit=crop",
+        description: "Complete race day nutrition bundle.",
+        category: "partner",
+        athleteId: "cassandre-beaugrand"
+      },
+      {
+        id: "cb-p6",
+        name: "Recovery Compression Kit",
+        price: 89,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=600&fit=crop",
+        description: "Full compression recovery set for post-race.",
+        category: "partner",
+        athleteId: "cassandre-beaugrand"
+      }
+    ],
+    gearCollections: [
+      {
+        id: "cb-gc-olympic",
+        name: "Cassandre's Olympic Race Day Gear",
+        description: "The moment of a lifetime. Cassandre took to the start line in Paris for the Olympic triathlon, wearing her French tricolor race suit. Every piece of gear optimized for the ultimate test.",
+        actionImage: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "cb-p2",
+            name: "Signed Race Suit",
+            price: 149,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=600&fit=crop",
+            description: "Authentic race suit with signature.",
+            category: "athlete",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-p3",
+            name: "Performance Wetsuit",
+            price: 299,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop",
+            description: "High-performance wetsuit for open water swimming.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-p4",
+            name: "Triathlon Bike Shoes",
+            price: 189,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&h=600&fit=crop",
+            description: "Quick-transition cycling shoes for triathletes.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-p5",
+            name: "Race Day Nutrition Pack",
+            price: 45,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=600&fit=crop",
+            description: "Complete race day nutrition bundle.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          }
+        ],
+        hotspots: {
+          'cb-p2': { x: 50, y: 35 },
+          'cb-p3': { x: 30, y: 50 },
+          'cb-p4': { x: 50, y: 85 },
+          'cb-p5': { x: 70, y: 50 }
+        }
+      },
+      {
+        id: "cb-gc-training",
+        name: "Cassandre's Training Session Kit",
+        description: "Early mornings in the pool, hours on the bike, kilometers on the run. This is the gear that powers every training session, built to endure the demands of a champion's preparation.",
+        actionImage: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "cb-p1",
+            name: "Triathlon Training Program",
+            price: 79,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop",
+            description: "Complete 12-week triathlon training program.",
+            category: "athlete",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-p6",
+            name: "Recovery Compression Kit",
+            price: 89,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&h=600&fit=crop",
+            description: "Full compression recovery set for post-race.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          }
+        ],
+        hotspots: {
+          'cb-p1': { x: 50, y: 40 },
+          'cb-p6': { x: 50, y: 70 }
+        }
+      }
+    ],
+    cause: {
+      id: "cb-c1",
+      title: "Women in Triathlon",
+      story: "Inspiring the next generation of female triathletes and breaking barriers in endurance sports.",
+      target: 35000,
+      raised: 12500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "cb-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Olympic champion 🥇🇫🇷 This moment will stay with me forever. Thank you Paris for the incredible support! 💙🤍❤️",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=800&fit=crop",
+        timestamp: "1 hour ago",
+        stats: { likes: 89000, comments: 2400 }
+      },
+      {
+        id: "cb-mf1b",
+        type: "social",
+        platform: "instagram",
+        content: "Morning swim session done ✅ The work never stops. Chasing the next goal 🏊‍♀️💪",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=800&fit=crop",
+        timestamp: "3 hours ago",
+        stats: { likes: 34500, comments: 876 }
+      },
+      {
+        id: "cb-mf2",
+        type: "social",
+        platform: "twitter",
+        content: "What an incredible feeling to race on home soil! The French crowd carried me through every kilometer. Merci infiniment 🙏🇫🇷",
+        image: "",
+        timestamp: "5 hours ago",
+        stats: { likes: 15600, comments: 445, shares: 2300 }
+      },
+      {
+        id: "cb-mf3",
+        type: "article",
+        platform: "lequipe",
+        title: "Cassandre Beaugrand: La reine du triathlon français",
+        content: "La championne olympique revient sur son parcours exceptionnel et ses ambitions pour l'avenir du triathlon français...",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop",
+        timestamp: "8 hours ago",
+        stats: { readTime: "5 min read" }
+      },
+      {
+        id: "cb-mf4",
+        type: "video",
+        platform: "youtube",
+        title: "Race Day Vlog: Behind the Scenes at Paris 2024",
+        content: "Join me for an exclusive look at my Olympic race day routine, from the early morning warmup to crossing the finish line.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=450&fit=crop",
+        timestamp: "12 hours ago",
+        stats: { views: 245000, duration: "14:32" }
+      },
+      {
+        id: "cb-mf5",
+        type: "social",
+        platform: "instagram",
+        content: "Bike check complete 🚴‍♀️ Ready for race day. Every detail matters when you're chasing gold 🏆",
+        image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&h=800&fit=crop",
+        timestamp: "18 hours ago",
+        stats: { likes: 28700, comments: 654 }
+      },
+      {
+        id: "cb-mf5b",
+        type: "social",
+        platform: "instagram",
+        content: "Recovery day essentials 🧘‍♀️ Taking care of body and mind is just as important as the hard sessions 💆‍♀️✨",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=800&fit=crop",
+        timestamp: "1 day ago",
+        stats: { likes: 41200, comments: 1123 }
+      },
+      {
+        id: "cb-mf6",
+        type: "article",
+        platform: "espn",
+        title: "Beaugrand's path to Olympic glory: A triathlon masterclass",
+        content: "How the French triathlete transformed herself into an Olympic champion through years of dedication and strategic training...",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "6 min read" }
+      },
+      {
+        id: "cb-mf7",
+        type: "video",
+        platform: "youtube",
+        title: "Highlights: Beaugrand dominates World Triathlon Series",
+        content: "Watch the key moments from Cassandre Beaugrand's commanding victory at the World Triathlon Series final.",
+        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=450&fit=crop",
+        timestamp: "3 days ago",
+        stats: { views: 178000, duration: "8:45" }
+      },
+      {
+        id: "cb-mf8",
+        type: "social",
+        platform: "twitter",
+        content: "Grateful for my incredible sponsors who believe in my journey. Together we're pushing the boundaries of what's possible 🙌🏅",
+        image: "",
+        timestamp: "4 days ago",
+        stats: { likes: 8900, comments: 234, shares: 1100 }
+      },
+      {
+        id: "cb-mf9",
+        type: "article",
+        platform: "bbc",
+        title: "Cassandre Beaugrand: France's triathlon star shines brightest in Paris",
+        content: "BBC Sport profiles the remarkable journey of the French triathlete who captured Olympic gold on home soil...",
+        image: "https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?w=800&h=400&fit=crop",
+        timestamp: "5 days ago",
+        stats: { readTime: "4 min read" }
+      },
+      {
+        id: "cb-mf9b",
+        type: "social",
+        platform: "instagram",
+        content: "Training camp vibes 🌴☀️ Putting in the work for the next challenge. No shortcuts, just hard work 💪🔥",
+        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&h=800&fit=crop",
+        timestamp: "5 days ago",
+        stats: { likes: 32100, comments: 789 }
+      },
+      {
+        id: "cb-mf10",
+        type: "social",
+        platform: "instagram",
+        content: "France, you gave me wings 🇫🇷❤️ Forever grateful for the journey that brought me here 🏆",
+        image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=800&fit=crop",
+        timestamp: "6 days ago",
+        stats: { likes: 56400, comments: 1567 }
+      },
+      {
+        id: "cb-mf11",
+        type: "video",
+        platform: "youtube",
+        title: "My Training Secrets: How I Prepare for Major Races",
+        content: "An in-depth look at my training methodology, nutrition strategy, and mental preparation for world-class triathlon racing.",
+        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=450&fit=crop",
+        timestamp: "1 week ago",
+        stats: { views: 312000, duration: "18:22" }
       }
     ]
   }

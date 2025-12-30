@@ -39,9 +39,11 @@ import { RegistrationGate } from "@/components/auth/RegistrationGate";
 import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSection";
 import { ArthurDataHub } from "@/components/athletes/DataHub/ArthurDataHub";
 import { MatthieuTrainingSection } from "@/components/athletes/MatthieuTrainingSection";
+import { CassandreTrainingSection } from "@/components/athletes/CassandreTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
 import { ArthurExclusiveZone } from "@/components/athletes/ArthurExclusiveZone";
 import { MatthieuExclusiveZone } from "@/components/athletes/MatthieuExclusiveZone";
+import { CassandreExclusiveZone } from "@/components/athletes/CassandreExclusiveZone";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -278,7 +280,8 @@ const AthletePage = () => {
 
   const isArthurCazaux = athlete.id === "arthur-cazaux";
   const isMatthieuJalibert = athlete.id === "matthieu-jalibert";
-  const isCustomAthlete = isArthurCazaux || isMatthieuJalibert;
+  const isCassandreBeaugrand = athlete.id === "cassandre-beaugrand";
+  const isCustomAthlete = isArthurCazaux || isMatthieuJalibert || isCassandreBeaugrand;
 
   const content = (
     <>
@@ -338,7 +341,7 @@ const AthletePage = () => {
                     <span className="hidden xs:inline">{isFollowing ? "Following" : "Follow for Free"}</span>
                     <span className="xs:hidden">{isFollowing ? "Following" : "Follow"}</span>
                   </Button>
-                  {!isPremiumSubscribed && isArthurCazaux && (
+                  {!isPremiumSubscribed && (isArthurCazaux || isCassandreBeaugrand) && (
                     <Link to={`/subscribe/${athlete.id}`}>
                       <Button
                         size="sm"
@@ -351,7 +354,7 @@ const AthletePage = () => {
                       </Button>
                     </Link>
                   )}
-                  {!isPremiumSubscribed && !isArthurCazaux && (
+                  {!isPremiumSubscribed && !isArthurCazaux && !isCassandreBeaugrand && (
                     <Link to={`/subscribe/${athlete.id}`}>
                       <Button
                         variant="gold"
@@ -438,6 +441,9 @@ const AthletePage = () => {
                           <img src={sponsorAdidas} alt="Adidas" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                           <img src={sponsorUBB} alt="UBB" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
+                      )}
+                      {isCassandreBeaugrand && (
+                        <span className="text-[10px] sm:text-xs text-muted-foreground italic">Partners coming soon</span>
                       )}
                     </div>
                   </div>
@@ -808,7 +814,7 @@ const AthletePage = () => {
             <TabsContent value="training" className="animate-fade-in">
               {isPremiumSubscribed ? (
                 isCustomAthlete ? (
-                  isArthurCazaux ? <ArthurTrainingSection /> : <MatthieuTrainingSection />
+                  isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : <CassandreTrainingSection />
                 ) : (
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
@@ -847,7 +853,7 @@ const AthletePage = () => {
               ) : (
                 <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name}>
                   {isCustomAthlete ? (
-                    isArthurCazaux ? <ArthurTrainingSection /> : <MatthieuTrainingSection />
+                    isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : <CassandreTrainingSection />
                   ) : (
                     <div>
                       <h3 className="text-xl font-semibold mb-4">Training Programs & Routines</h3>
@@ -937,17 +943,19 @@ const AthletePage = () => {
             {isCustomAthlete && (
               <TabsContent value="exclusive" className="animate-fade-in">
                 {isPremiumSubscribed ? (
-                  isArthurCazaux ? <ArthurExclusiveZone /> : <MatthieuExclusiveZone />
+                  isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : <CassandreExclusiveZone />
                 ) : (
                   <PremiumLockedContent 
                     athleteId={athlete.id} 
                     athleteName={athlete.name}
                     customSubtitle={isArthurCazaux 
                       ? "Unlock prize draws, curated premium content, and members-only tennis discussions."
+                      : isCassandreBeaugrand
+                      ? "Unlock prize draws, curated premium content, and members-only triathlon discussions."
                       : "Unlock prize draws, curated premium content, and members-only rugby discussions."
                     }
                   >
-                    {isArthurCazaux ? <ArthurExclusiveZone /> : <MatthieuExclusiveZone />}
+                    {isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : <CassandreExclusiveZone />}
                   </PremiumLockedContent>
                 )}
               </TabsContent>
