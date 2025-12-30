@@ -42,10 +42,12 @@ import { ArthurDataHub } from "@/components/athletes/DataHub/ArthurDataHub";
 import { CassandreDataHub } from "@/components/athletes/DataHub/CassandreDataHub";
 import { MatthieuTrainingSection } from "@/components/athletes/MatthieuTrainingSection";
 import { CassandreTrainingSection } from "@/components/athletes/CassandreTrainingSection";
+import { PierreTrainingSection } from "@/components/athletes/PierreTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
 import { ArthurExclusiveZone } from "@/components/athletes/ArthurExclusiveZone";
 import { MatthieuExclusiveZone } from "@/components/athletes/MatthieuExclusiveZone";
 import { CassandreExclusiveZone } from "@/components/athletes/CassandreExclusiveZone";
+import { PierreExclusiveZone } from "@/components/athletes/PierreExclusiveZone";
 import { CassandreHighlights } from "@/components/athletes/CassandreHighlights";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -297,7 +299,8 @@ const AthletePage = () => {
   const isArthurCazaux = athlete.id === "arthur-cazaux";
   const isMatthieuJalibert = athlete.id === "matthieu-jalibert";
   const isCassandreBeaugrand = athlete.id === "cassandre-beaugrand";
-  const isCustomAthlete = isArthurCazaux || isMatthieuJalibert || isCassandreBeaugrand;
+  const isPierreGasly = athlete.id === "pierre-gasly";
+  const isCustomAthlete = isArthurCazaux || isMatthieuJalibert || isCassandreBeaugrand || isPierreGasly;
 
   const content = (
     <>
@@ -889,7 +892,7 @@ const AthletePage = () => {
             <TabsContent value="training" className="animate-fade-in">
               {isPremiumSubscribed ? (
                 isCustomAthlete ? (
-                  isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : <CassandreTrainingSection />
+                  isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : isCassandreBeaugrand ? <CassandreTrainingSection /> : <PierreTrainingSection />
                 ) : (
                   <div className="space-y-6">
                     {/* Header with Premium Badge */}
@@ -934,7 +937,7 @@ const AthletePage = () => {
               ) : (
                 <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name} onGoBack={handleGoBackFromPremium}>
                   {isCustomAthlete ? (
-                    isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : <CassandreTrainingSection />
+                    isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : isCassandreBeaugrand ? <CassandreTrainingSection /> : <PierreTrainingSection />
                   ) : (
                     <div className="space-y-6">
                       {/* Header with Premium Badge */}
@@ -1043,7 +1046,7 @@ const AthletePage = () => {
             <TabsContent value="exclusive" className="animate-fade-in">
               {isPremiumSubscribed ? (
                 isCustomAthlete ? (
-                  isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : <CassandreExclusiveZone />
+                  isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : isCassandreBeaugrand ? <CassandreExclusiveZone /> : <PierreExclusiveZone />
                 ) : (
                   <div className="space-y-6 max-w-5xl mx-auto">
                     {/* Header */}
@@ -1093,11 +1096,13 @@ const AthletePage = () => {
                       ? "Unlock prize draws, curated premium content, and members-only triathlon discussions."
                       : isMatthieuJalibert
                       ? "Unlock prize draws, curated premium content, and members-only rugby discussions."
+                      : isPierreGasly
+                      ? "Unlock prize draws, curated premium content, and members-only F1 discussions."
                       : `Unlock prize draws, curated premium content, and members-only ${athlete.sport.toLowerCase()} discussions.`
                   }
                 >
                   {isCustomAthlete ? (
-                    isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : <CassandreExclusiveZone />
+                    isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : isCassandreBeaugrand ? <CassandreExclusiveZone /> : <PierreExclusiveZone />
                   ) : (
                     <div className="space-y-6 max-w-5xl mx-auto">
                       <div className="text-center max-w-2xl mx-auto">

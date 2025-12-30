@@ -785,3 +785,235 @@ export const cassandreTrainingData: AthleteTrainingSectionData = {
     }
   ]
 };
+
+// ============================================
+// PIERRE GASLY DATA
+// ============================================
+
+export const pierreExclusiveZoneData: AthleteExclusiveZoneData = {
+  athleteId: "pierre-gasly",
+  prizeDraws: [
+    {
+      id: "signed_helmet",
+      title: "Win Signed Pierre Gasly Race Helmet",
+      description: "Authenticated replica helmet signed by Pierre after his Monza victory celebration",
+      badge: "Ends Jan 15",
+      icon: Trophy,
+      iconBg: "from-amber-500 to-orange-600"
+    },
+    {
+      id: "gear_pack",
+      title: "Halo F1 Gear Pack",
+      description: "Premium Alpine team cap, race gloves replica, and exclusive paddock merchandise",
+      badge: "Monthly Draw",
+      icon: Gift,
+      iconBg: "from-green-500 to-emerald-600"
+    },
+    {
+      id: "virtual_qa",
+      title: "Virtual Q&A Access",
+      description: "Join a platform-hosted live Q&A session with Pierre and other fans",
+      badge: "Next: Feb 2025",
+      icon: Users,
+      iconBg: "from-blue-500 to-indigo-600"
+    },
+    {
+      id: "paddock_experience",
+      title: "Halo Paddock Experience Ticket",
+      description: "Attend an exclusive Halo-organized F1 race weekend experience",
+      badge: "Limited",
+      icon: Star,
+      iconBg: "from-purple-500 to-pink-600"
+    }
+  ],
+  exclusiveContent: [
+    {
+      id: "race_stats",
+      title: "Pierre's 2024 Season Stats Breakdown",
+      description: "Lap times, overtakes, qualifying performances, and key race metrics from the F1 season",
+      thumbnail: "/placeholder.svg",
+      type: "Stats",
+      icon: TrendingUp
+    },
+    {
+      id: "simulator_day",
+      title: "A Day in the Simulator",
+      description: "Behind-the-scenes look at Pierre's simulator sessions and race preparation",
+      thumbnail: "/placeholder.svg",
+      type: "Video",
+      icon: Play
+    },
+    {
+      id: "photo_gallery",
+      title: "Monza Victory Gallery",
+      description: "Exclusive photos from Pierre's iconic Italian Grand Prix win",
+      thumbnail: "/placeholder.svg",
+      type: "Gallery",
+      icon: Image
+    },
+    {
+      id: "race_breakdown",
+      title: "Race Strategy Breakdown",
+      description: "Analysis of Pierre's race-craft, overtaking moves, and tire management",
+      thumbnail: "/placeholder.svg",
+      type: "Analysis",
+      icon: TrendingUp
+    },
+    {
+      id: "monaco_moments",
+      title: "Monaco Home Race Moments",
+      description: "Key highlights and memorable moments from racing on home soil",
+      thumbnail: "/placeholder.svg",
+      type: "Highlights",
+      icon: Play
+    }
+  ],
+  discussionThreads: [
+    {
+      id: "race_reactions",
+      title: "Race Reactions",
+      description: "Discuss Pierre's latest races, results, and pivotal on-track moments",
+      participants: 2847,
+      lastActive: "1 hour ago"
+    },
+    {
+      id: "championship_predictions",
+      title: "Championship Predictions",
+      description: "Share your predictions for upcoming Grand Prix weekends and season standings",
+      participants: 3234,
+      lastActive: "20 min ago"
+    },
+    {
+      id: "sim_racing_tips",
+      title: "Sim Racing Tips (Fan to Fan)",
+      description: "Exchange sim racing setups, track guides, and improvement strategies",
+      participants: 1562,
+      lastActive: "45 min ago"
+    },
+    {
+      id: "f1_tech_talk",
+      title: "F1 Tech Talk",
+      description: "Discuss car setups, aerodynamics, and technical regulations",
+      participants: 923,
+      lastActive: "30 min ago"
+    }
+  ]
+};
+
+export const pierreTrainingData: AthleteTrainingSectionData = {
+  athleteSlug: "pierre-gasly",
+  categories: [
+    {
+      id: "fitness",
+      title: "Fitness",
+      description: "Build the physical foundation for elite F1 performance, including neck strength, G-force resistance, and cardiovascular endurance.",
+      icon: <Dumbbell className="h-4 w-4" />,
+      programs: [
+        {
+          id: "fitness-1",
+          title: "Neck & Core Strengthening",
+          description: "My essential routine for building the neck strength needed to handle 5G+ forces during cornering and braking."
+        },
+        {
+          id: "fitness-2",
+          title: "Cardiovascular Endurance Training",
+          description: "The cardio sessions I use to maintain peak heart rate performance across 2-hour races in extreme heat."
+        },
+        {
+          id: "fitness-3",
+          title: "Reaction Time & Reflexes",
+          description: "Drills and exercises to sharpen the split-second reactions needed for wheel-to-wheel racing."
+        },
+        {
+          id: "fitness-4",
+          title: "Heat Acclimatization Protocol",
+          description: "My approach to preparing for races in extreme temperatures like Singapore, Qatar, and Bahrain."
+        }
+      ]
+    },
+    {
+      id: "skills",
+      title: "Skills",
+      description: "Technical sessions focused on driving precision, race-craft, and simulator preparation.",
+      icon: <Target className="h-4 w-4" />,
+      programs: [
+        {
+          id: "skills-1",
+          title: "Braking Point Precision",
+          description: "How I train my braking consistency to hit the same points lap after lap under pressure."
+        },
+        {
+          id: "skills-2",
+          title: "Overtaking Techniques",
+          description: "The race-craft I use for late-braking moves, switchbacks, and creating overtaking opportunities."
+        },
+        {
+          id: "skills-3",
+          title: "Tire Management Mastery",
+          description: "Understanding tire degradation, temperature windows, and extending stint lengths."
+        },
+        {
+          id: "skills-4",
+          title: "Wet Weather Driving",
+          description: "Techniques for handling reduced grip, spray visibility, and aquaplaning in rain conditions."
+        }
+      ]
+    },
+    {
+      id: "nutrition",
+      title: "Nutrition",
+      description: "Fueling strategies for race weekends, travel recovery, and maintaining optimal weight.",
+      icon: <Apple className="h-4 w-4" />,
+      programs: [
+        {
+          id: "nutrition-1",
+          title: "Race Weekend Fuel",
+          description: "What I eat before, during, and after race weekends to maintain focus and physical performance."
+        },
+        {
+          id: "nutrition-2",
+          title: "Weight Management Protocol",
+          description: "Balancing muscle mass, hydration, and minimum weight requirements for optimal performance."
+        },
+        {
+          id: "nutrition-3",
+          title: "Travel & Jet Lag Recovery",
+          description: "Managing nutrition across 24 races and constant timezone changes throughout the season."
+        },
+        {
+          id: "nutrition-4",
+          title: "Hydration Strategy",
+          description: "My approach to staying hydrated when losing 2-3kg of fluid during a single race."
+        }
+      ]
+    },
+    {
+      id: "mental",
+      title: "Mental",
+      description: "Mental preparation for handling pressure, staying focused, and performing under the global spotlight.",
+      icon: <Brain className="h-4 w-4" />,
+      programs: [
+        {
+          id: "mental-1",
+          title: "Pre-Race Focus Routine",
+          description: "What I do in the hours before lights out to get into the zone and manage adrenaline."
+        },
+        {
+          id: "mental-2",
+          title: "Managing Race Pressure",
+          description: "How I stay calm during critical moments like safety car restarts, final laps, and title fights."
+        },
+        {
+          id: "mental-3",
+          title: "Bouncing Back from DNFs",
+          description: "The mental reset techniques I use after crashes, mechanical failures, or disappointing results."
+        },
+        {
+          id: "mental-4",
+          title: "Visualization & Track Prep",
+          description: "Using mental imagery to learn new circuits and prepare for every corner before arriving."
+        }
+      ]
+    }
+  ]
+};
