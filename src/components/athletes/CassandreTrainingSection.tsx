@@ -192,7 +192,7 @@ export const CassandreTrainingSection = () => {
       </div>
 
       {/* Sub-tabs like My Life */}
-      <div className="flex items-center gap-2 border-b border-border/30 pb-4">
+      <div className="flex items-center justify-center gap-2 border-b border-border/30 pb-4">
         {trainingCategories.map((category) => (
           <Button
             key={category.id}
