@@ -95,6 +95,7 @@ import adidasCropTopPinkImg from "@/assets/adidas-crop-top-pink.webp";
 import adidasLeggingBlackImg from "@/assets/adidas-legging-black.webp";
 import specializedBikeProductImg from "@/assets/specialized-bike-product.webp";
 import adidasTriathlonTenueImg from "@/assets/adidas-triathlon-tenue.jpeg";
+import adidasTriathlonTenue2Img from "@/assets/adidas-triathlon-tenue-2.jpeg";
 
 export interface MediaFeedItem {
   id: string;
@@ -7782,10 +7783,21 @@ export const athletes: Athlete[] = [
             description: "The ultimate road bike, designed for speed with lightweight carbon frame and race-winning aerodynamics.",
             category: "partner",
             athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-triathlon-ride",
+            name: "Adidas Triathlon Race Suit",
+            price: 189,
+            currency: "€",
+            image: adidasTriathlonTenue2Img,
+            description: "Official race-day triathlon suit with quick-dry fabric and aerodynamic fit for the bike leg.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
           }
         ],
         hotspots: {
-          'cb-specialized-1': { x: 45, y: 55 }
+          'cb-specialized-1': { x: 30, y: 62 },
+          'cb-triathlon-ride': { x: 72, y: 45 }
         }
       },
       {
