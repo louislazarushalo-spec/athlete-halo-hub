@@ -9,7 +9,7 @@ interface HomepageAthleteCardProps {
 
 export const HomepageAthleteCard = ({ athlete, index = 0 }: HomepageAthleteCardProps) => {
   // Check if athlete is a custom/premium athlete
-  const isCustomAthlete = athlete.id === "arthur-cazaux" || athlete.id === "matthieu-jalibert";
+  const isCustomAthlete = athlete.id === "arthur-cazaux" || athlete.id === "matthieu-jalibert" || athlete.id === "cassandre-beaugrand";
 
   return (
     <Link 
@@ -29,7 +29,7 @@ export const HomepageAthleteCard = ({ athlete, index = 0 }: HomepageAthleteCardP
           
           {/* Premium badge for custom athletes */}
           {isCustomAthlete && (
-            <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 bg-primary/90 backdrop-blur-sm rounded-full">
+            <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 sm:py-1 bg-gradient-to-r from-primary via-primary to-blue-400 backdrop-blur-sm rounded-full shadow-glow-blue animate-glow-pulse">
               <Crown className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-primary-foreground" />
               <span className="text-[10px] sm:text-xs font-semibold text-primary-foreground">Premium</span>
             </div>
@@ -52,9 +52,9 @@ export const HomepageAthleteCard = ({ athlete, index = 0 }: HomepageAthleteCardP
                 Free
               </span>
               
-              {/* Premium indicator */}
-              <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-blue-500/20 backdrop-blur-sm border border-blue-500/40 rounded text-[9px] sm:text-[10px] text-blue-400 font-medium">
-                <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-blue-400" />
+              {/* Premium indicator - styled like Arthur's premium button */}
+              <span className="inline-flex items-center gap-0.5 sm:gap-1 px-1.5 sm:px-2 py-0.5 bg-gradient-to-r from-primary/30 via-primary/30 to-blue-400/30 backdrop-blur-sm border border-primary/50 rounded text-[9px] sm:text-[10px] text-primary font-medium shadow-[0_0_12px_hsl(217_91%_60%/0.4)] animate-glow-pulse">
+                <Lock className="h-2.5 w-2.5 sm:h-3 sm:w-3 text-primary animate-lock-glow" />
                 {isCustomAthlete ? "4 Premium" : "1 Premium"}
               </span>
             </div>
