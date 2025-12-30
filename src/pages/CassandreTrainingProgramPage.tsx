@@ -370,7 +370,7 @@ export default function CassandreTrainingProgramPage() {
           variant="ghost"
           size="icon"
           className="absolute top-4 left-4 bg-background/50 backdrop-blur-sm hover:bg-background/70"
-          onClick={() => navigate(`/athlete/cassandre-beaugrand`)}
+          onClick={() => navigate(-1)}
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
