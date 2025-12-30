@@ -526,11 +526,6 @@ const AthletePage = () => {
                     <span className="sm:hidden">Lab</span>
                   </TabsTrigger>
                 )}
-                <TabsTrigger value="cause" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
-                  <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                  <span className="hidden sm:inline">My Causes</span>
-                  <span className="sm:hidden">Causes</span>
-                </TabsTrigger>
                 {isCustomAthlete && (
                   isArthurCazaux ? (
                     <Tooltip>
@@ -566,6 +561,11 @@ const AthletePage = () => {
                     </TabsTrigger>
                   )
                 )}
+                <TabsTrigger value="cause" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">My Causes</span>
+                  <span className="sm:hidden">Causes</span>
+                </TabsTrigger>
               </TabsList>
             </div>
 
