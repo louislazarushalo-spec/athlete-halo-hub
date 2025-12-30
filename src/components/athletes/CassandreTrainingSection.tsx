@@ -17,6 +17,9 @@ import nutritionTrainingBlock from "@/assets/nutrition-training-block.jpg";
 import nutritionTravel from "@/assets/nutrition-travel.jpg";
 import nutritionRecovery from "@/assets/nutrition-recovery.jpg";
 
+// Import mental images
+import cassandreMentalPrerace from "@/assets/cassandre-mental-prerace.jpg";
+
 interface TrainingProgram {
   id: string;
   title: string;
@@ -139,7 +142,7 @@ const trainingCategories: TrainingCategory[] = [
         id: "mental-1",
         title: "Pre-Race Calm Routine",
         description: "A quick routine to arrive clear, confident, and ready to race.",
-        image: cassandreTrainingSwim2
+        image: cassandreMentalPrerace
       },
       {
         id: "mental-2",
