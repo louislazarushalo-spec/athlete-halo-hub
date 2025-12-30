@@ -96,6 +96,10 @@ import adidasLeggingBlackImg from "@/assets/adidas-legging-black.webp";
 import specializedBikeProductImg from "@/assets/specialized-bike-product.webp";
 import adidasTriathlonTenueImg from "@/assets/adidas-triathlon-tenue.jpeg";
 import adidasTriathlonTenue2Img from "@/assets/adidas-triathlon-tenue-2.jpeg";
+import adidasMarronSkirtImg from "@/assets/adidas-marron-skirt.webp";
+import adidasSurvetMarronImg from "@/assets/adidas-survet-marron.webp";
+import adidasChaussetteImg from "@/assets/adidas-chaussette.webp";
+import adidasShoesControlImg from "@/assets/adidas-shoes-control.webp";
 
 export interface MediaFeedItem {
   id: string;
@@ -7803,22 +7807,55 @@ export const athletes: Athlete[] = [
       {
         id: "cb-gc-offduty",
         name: "Off-duty fit",
-        description: "Race-day ready. Cassandre's signature triathlon tenue for competition.",
+        description: "Recovery days in style. Cassandre's Adidas lifestyle collection for when she's not racing.",
         actionImage: cassandreKitOffduyImg,
         products: [
           {
-            id: "cb-triathlon-1",
-            name: "Adidas Triathlon Race Suit",
-            price: 189,
+            id: "cb-offduty-jacket",
+            name: "Adidas Track Jacket",
+            price: 95,
             currency: "€",
-            image: adidasTriathlonTenueImg,
-            description: "Official race-day triathlon suit with quick-dry fabric, aerodynamic fit, and bold design.",
+            image: adidasSurvetMarronImg,
+            description: "Classic Adidas track jacket with iconic three stripes in earth brown and turquoise.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-offduty-skirt",
+            name: "Adidas Mini Skirt",
+            price: 55,
+            currency: "€",
+            image: adidasMarronSkirtImg,
+            description: "Sporty mini skirt with comfortable stretch fabric and signature three stripes.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-offduty-socks",
+            name: "Adidas Crew Socks 3-Pack",
+            price: 18,
+            currency: "€",
+            image: adidasChaussetteImg,
+            description: "Classic white crew socks with Trefoil logo and cushioned comfort.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-offduty-shoes",
+            name: "Adidas Control Sneakers",
+            price: 140,
+            currency: "€",
+            image: adidasShoesControlImg,
+            description: "Retro-inspired lifestyle sneakers with premium cushioning and iconic design.",
             category: "partner",
             athleteId: "cassandre-beaugrand"
           }
         ],
         hotspots: {
-          'cb-triathlon-1': { x: 50, y: 50 }
+          'cb-offduty-jacket': { x: 50, y: 28 },
+          'cb-offduty-skirt': { x: 50, y: 55 },
+          'cb-offduty-socks': { x: 35, y: 78 },
+          'cb-offduty-shoes': { x: 50, y: 90 }
         }
       }
     ],
