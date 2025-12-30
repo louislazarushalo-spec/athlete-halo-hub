@@ -21,7 +21,8 @@ export const RecentlyViewedSection = () => {
             <img
               src={athlete.avatar}
               alt={athlete.name}
-              className="w-12 h-12 rounded-full object-cover"
+              loading="lazy"
+              className="w-12 h-12 rounded-full object-contain bg-muted/20"
             />
             <div>
               <p className="font-medium group-hover:text-primary transition-colors">{athlete.name}</p>
