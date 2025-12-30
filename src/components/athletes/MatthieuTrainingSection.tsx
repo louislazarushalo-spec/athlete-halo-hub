@@ -179,9 +179,7 @@ export const MatthieuTrainingSection = () => {
   const currentCategory = trainingCategories.find(cat => cat.id === activeCategory);
 
   const handleProgramClick = (programId: string) => {
-    if (programId === "fitness-1") {
-      navigate("/athlete/matthieu-jalibert/training/acceleration-speed");
-    }
+    navigate(`/athlete/matthieu-jalibert/training/${programId}`);
   };
 
   return (
