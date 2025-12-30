@@ -45,6 +45,7 @@ import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent
 import { ArthurExclusiveZone } from "@/components/athletes/ArthurExclusiveZone";
 import { MatthieuExclusiveZone } from "@/components/athletes/MatthieuExclusiveZone";
 import { CassandreExclusiveZone } from "@/components/athletes/CassandreExclusiveZone";
+import { CassandreHighlights } from "@/components/athletes/CassandreHighlights";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -686,19 +687,23 @@ const AthletePage = () => {
                 </div>
               )}
 
-              {/* My News Feed */}
+              {/* My News Feed / Highlights */}
               {activeLifeTab === "news" && (
-                <div className="max-w-3xl mx-auto space-y-5">
-                  {athlete.mediaFeed.map((item, index) => (
-                    <div 
-                      key={item.id} 
-                      className="animate-fade-in"
-                      style={{ animationDelay: `${index * 0.05}s` }}
-                    >
-                      <MediaFeedCard item={item} athlete={athlete} />
-                    </div>
-                  ))}
-                </div>
+                isCassandreBeaugrand ? (
+                  <CassandreHighlights />
+                ) : (
+                  <div className="max-w-3xl mx-auto space-y-5">
+                    {athlete.mediaFeed.map((item, index) => (
+                      <div 
+                        key={item.id} 
+                        className="animate-fade-in"
+                        style={{ animationDelay: `${index * 0.05}s` }}
+                      >
+                        <MediaFeedCard item={item} athlete={athlete} />
+                      </div>
+                    ))}
+                  </div>
+                )
               )}
 
               {/* My Music/Podcasts - Premium Locked */}
