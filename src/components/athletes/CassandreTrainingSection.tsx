@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Dumbbell, Target, Apple, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Dumbbell, Target, Apple, Brain } from "lucide-react";
 
 // Import Cassandre training images
 import cassandreTraining1 from "@/assets/cassandre-training-1.jpeg";
@@ -23,7 +22,7 @@ interface TrainingCategory {
   id: string;
   title: string;
   description: string;
-  icon: typeof Dumbbell;
+  icon: React.ReactNode;
   programs: TrainingProgram[];
 }
 
@@ -32,7 +31,7 @@ const trainingCategories: TrainingCategory[] = [
     id: "fitness",
     title: "Fitness",
     description: "Build endurance across swim, bike, and run with Cassandre's complete triathlon conditioning program.",
-    icon: Dumbbell,
+    icon: <Dumbbell className="h-4 w-4" />,
     programs: [
       {
         id: "fitness-1",
@@ -64,7 +63,7 @@ const trainingCategories: TrainingCategory[] = [
     id: "skills",
     title: "Skills",
     description: "Master technique across all three disciplines with sport-specific drills and form work.",
-    icon: Target,
+    icon: <Target className="h-4 w-4" />,
     programs: [
       {
         id: "skills-1",
@@ -96,7 +95,7 @@ const trainingCategories: TrainingCategory[] = [
     id: "nutrition",
     title: "Nutrition",
     description: "Fuel your training and racing with Cassandre's nutrition protocols for endurance performance.",
-    icon: Apple,
+    icon: <Apple className="h-4 w-4" />,
     programs: [
       {
         id: "nutrition-1",
@@ -128,7 +127,7 @@ const trainingCategories: TrainingCategory[] = [
     id: "mental",
     title: "Mental",
     description: "Develop champion mindset with mental training techniques used by Olympic gold medalists.",
-    icon: Brain,
+    icon: <Brain className="h-4 w-4" />,
     programs: [
       {
         id: "mental-1",
@@ -161,8 +160,8 @@ const trainingCategories: TrainingCategory[] = [
 export const CassandreTrainingSection = () => {
   const [activeCategory, setActiveCategory] = useState("fitness");
   const navigate = useNavigate();
-
-  const currentCategory = trainingCategories.find(c => c.id === activeCategory) || trainingCategories[0];
+  
+  const currentCategory = trainingCategories.find(cat => cat.id === activeCategory);
 
   const handleProgramClick = (programId: string) => {
     // Placeholder for future navigation
@@ -170,82 +169,100 @@ export const CassandreTrainingSection = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6 sm:space-y-8 animate-fade-in">
-      {/* Section Header - Premium Badge matching Arthur's Exclusive Zone */}
-      <div className="text-center mb-6 sm:mb-8">
-        <Badge className="mb-4 bg-primary/20 text-primary border-primary/30">Members Only</Badge>
-        <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2">Performance Lab</h3>
-        <p className="text-sm text-muted-foreground max-w-md mx-auto">
-          Train like an Olympic champion with Cassandre's complete triathlon methodology
-        </p>
-      </div>
-
-      {/* Category Selection */}
-      <div className="flex flex-wrap gap-2 sm:gap-3 justify-center mb-6 sm:mb-8">
-        {trainingCategories.map((category) => {
-          const Icon = category.icon;
-          return (
-            <Button
-              key={category.id}
-              variant={activeCategory === category.id ? "default" : "outline"}
-              size="sm"
-              onClick={() => setActiveCategory(category.id)}
-              className="rounded-full h-9 sm:h-10 px-4 sm:px-6 text-xs sm:text-sm"
-            >
-              <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1.5" />
-              {category.title}
-            </Button>
-          );
-        })}
+    <div className="space-y-6">
+      {/* Sub-tabs like My Life */}
+      <div className="flex items-center gap-2 border-b border-border/30 pb-4">
+        {trainingCategories.map((category) => (
+          <Button
+            key={category.id}
+            variant={activeCategory === category.id ? "default" : "ghost"}
+            size="sm"
+            onClick={() => setActiveCategory(category.id)}
+            className={`flex items-center gap-2 ${
+              activeCategory === category.id 
+                ? "bg-primary text-primary-foreground" 
+                : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            {category.icon}
+            {category.title}
+          </Button>
+        ))}
       </div>
 
       {/* Category Description */}
-      <div className="text-center mb-6 sm:mb-8">
-        <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto">
-          {currentCategory.description}
-        </p>
-      </div>
+      {currentCategory && (
+        <p className="text-muted-foreground">{currentCategory.description}</p>
+      )}
 
       {/* Programs Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        {currentCategory.programs.map((program, index) => (
-          <article 
-            key={program.id} 
-            className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in"
-            style={{ animationDelay: `${index * 0.1}s` }}
-            onClick={() => handleProgramClick(program.id)}
-          >
-            <div className="relative h-36 sm:h-44 overflow-hidden">
-              {program.image && (
-                <img
-                  src={program.image}
-                  alt={program.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+      {currentCategory && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {currentCategory.programs.map((program) => (
+            <article 
+              key={program.id} 
+              className={`relative rounded-xl overflow-hidden group cursor-pointer ${
+                program.image ? "h-64" : "glass-card p-5 flex flex-col"
+              }`}
+              onClick={() => handleProgramClick(program.id)}
+            >
+              {program.image ? (
+                <>
+                  {/* Background Image */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    style={{ backgroundImage: `url(${program.image})` }}
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                  
+                  {/* Content */}
+                  <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                    <h4 className="font-semibold text-lg text-white mb-2 group-hover:text-primary transition-colors">
+                      {program.title}
+                    </h4>
+                    <p className="text-white/80 text-sm mb-4 line-clamp-2">
+                      {program.description}
+                    </p>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-fit bg-white/10 border-white/20 text-white hover:bg-white/20"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleProgramClick(program.id);
+                      }}
+                    >
+                      View Program
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h4 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors leading-snug">
+                    {program.title}
+                  </h4>
+                  <p className="text-muted-foreground text-sm mb-4 flex-1 leading-relaxed">
+                    {program.description}
+                  </p>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full mt-auto"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleProgramClick(program.id);
+                    }}
+                  >
+                    View Program
+                  </Button>
+                </>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-              <Badge className="absolute top-3 left-3 bg-primary/90 text-primary-foreground text-[10px] sm:text-xs">
-                {currentCategory.title}
-              </Badge>
-            </div>
-            <div className="p-3 sm:p-4">
-              <h4 className="font-semibold text-sm sm:text-base mb-1 sm:mb-2 group-hover:text-primary transition-colors line-clamp-1">
-                {program.title}
-              </h4>
-              <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 mb-3">
-                {program.description}
-              </p>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="w-full text-xs sm:text-sm h-8 sm:h-9"
-              >
-                View Program
-              </Button>
-            </div>
-          </article>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
