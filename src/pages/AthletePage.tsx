@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { AthleteHeader } from "@/components/layout/AthleteHeader";
 import { Footer } from "@/components/layout/Footer";
@@ -26,7 +26,8 @@ import {
   Camera,
   ShoppingBag,
   Star,
-  BarChart3
+  BarChart3,
+  ArrowLeft
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
@@ -245,6 +246,7 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
 
 const AthletePage = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const athlete = getAthleteById(id || "");
   const [isFollowing, setIsFollowing] = useState(false);
   const [activeMainTab, setActiveMainTab] = useState<string>("life");
@@ -311,8 +313,18 @@ const AthletePage = () => {
             alt={`${athlete.name} banner`}
             className="w-full h-full object-cover"
           />
-        {/* Grey transparent gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-muted/40" />
+          {/* Grey transparent gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-muted/40" />
+          
+          {/* Back Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-4 left-4 bg-background/50 backdrop-blur-sm hover:bg-background/70 z-10"
+            onClick={() => navigate(-1)}
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
         
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex items-end">
