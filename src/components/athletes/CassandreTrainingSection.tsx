@@ -20,6 +20,9 @@ import nutritionRecovery from "@/assets/nutrition-recovery.jpg";
 // Import mental images
 import cassandreMentalPrerace from "@/assets/cassandre-mental-prerace.jpg";
 
+// Import strength image
+import cassandreStrength from "@/assets/cassandre-strength.jpg";
+
 interface TrainingProgram {
   id: string;
   title: string;
@@ -64,7 +67,7 @@ const trainingCategories: TrainingCategory[] = [
         id: "fitness-4",
         title: "Strength for Durability",
         description: "Simple strength work to stay resilient through heavy blocks and travel.",
-        image: cassandreTraining1
+        image: cassandreStrength
       }
     ]
   },
