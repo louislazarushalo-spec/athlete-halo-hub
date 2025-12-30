@@ -516,11 +516,11 @@ const AthletePage = () => {
                     )}
                   </Tooltip>
                 ) : (
-                  <TabsTrigger value="training" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                  <TabsTrigger value="training" className={`flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}>
                     {isPremiumSubscribed ? (
                       <Dumbbell className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                     ) : (
-                      <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                      <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-lock-glow text-primary" />
                     )}
                     <span className="hidden sm:inline">Performance Lab</span>
                     <span className="sm:hidden">Lab</span>
@@ -555,11 +555,11 @@ const AthletePage = () => {
                       )}
                     </Tooltip>
                   ) : (
-                    <TabsTrigger value="exclusive" className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                    <TabsTrigger value="exclusive" className={`flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground ${!isPremiumSubscribed ? 'locked-tab' : ''}`}>
                       {isPremiumSubscribed ? (
                         <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                       ) : (
-                        <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                        <Lock className="h-3.5 w-3.5 sm:h-4 sm:w-4 animate-lock-glow text-primary" />
                       )}
                       <span className="hidden sm:inline">Exclusive Zone</span>
                       <span className="sm:hidden">Exclusive</span>
