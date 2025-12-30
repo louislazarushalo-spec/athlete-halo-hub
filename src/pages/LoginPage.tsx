@@ -2,6 +2,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
@@ -12,6 +13,7 @@ const LoginPage = () => {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -86,7 +88,20 @@ const LoginPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                  <div className="mt-1.5 text-right">
+                  <div className="mt-1.5 flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <Checkbox 
+                        id="remember-me" 
+                        checked={rememberMe}
+                        onCheckedChange={(checked) => setRememberMe(checked === true)}
+                      />
+                      <Label 
+                        htmlFor="remember-me" 
+                        className="text-xs text-muted-foreground cursor-pointer"
+                      >
+                        Remember me
+                      </Label>
+                    </div>
                     <Link 
                       to="/forgot-password" 
                       className="text-xs text-muted-foreground hover:text-primary transition-colors"
