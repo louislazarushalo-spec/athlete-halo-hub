@@ -1124,7 +1124,7 @@ export default function TrainingProgramPage() {
       <AthleteHeader />
       
       {/* Banner Section */}
-      <div className="relative h-[400px] w-full overflow-hidden">
+      <div className="relative h-[400px] w-full overflow-hidden mt-16">
         <img 
           src={bannerImage} 
           alt={programData.title}
@@ -1136,7 +1136,7 @@ export default function TrainingProgramPage() {
         <Button
           variant="ghost"
           size="icon"
-          className="absolute top-4 left-4 bg-background/50 backdrop-blur-sm hover:bg-background/70"
+          className="absolute top-4 left-4 z-10 bg-background/50 backdrop-blur-sm hover:bg-background/70"
           onClick={() => navigate(-1)}
         >
           <ArrowLeft className="h-5 w-5" />
