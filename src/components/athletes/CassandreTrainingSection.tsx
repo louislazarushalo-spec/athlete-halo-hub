@@ -4,6 +4,14 @@ import { Dumbbell, Target, Apple, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+// Import Cassandre training images
+import cassandreTraining1 from "@/assets/cassandre-training-1.jpeg";
+import cassandreTrainingBike from "@/assets/cassandre-training-bike.jpg";
+import cassandreTrainingSwim2 from "@/assets/cassandre-training-swim-2.jpg";
+import cassandreTrainingTransition from "@/assets/cassandre-training-transition.jpg";
+import cassandreTrainingRun from "@/assets/cassandre-training-run.jpg";
+import cassandreTrainingSwim from "@/assets/cassandre-training-swim.jpg";
+
 interface TrainingProgram {
   id: string;
   title: string;
@@ -28,27 +36,27 @@ const trainingCategories: TrainingCategory[] = [
     programs: [
       {
         id: "fitness-1",
-        title: "Triathlon Endurance Base",
-        description: "8-week foundation program for multi-discipline endurance.",
-        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop"
+        title: "WTCS Brick Engine",
+        description: "Bike-to-run session to build race legs and lock in pace control off the bike.",
+        image: cassandreTrainingTransition
       },
       {
         id: "fitness-2",
-        title: "Transition Power",
-        description: "Speed up your T1 and T2 with explosive transition training.",
-        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&h=400&fit=crop"
+        title: "Run Speed & Economy",
+        description: "Intervals that sharpen speed while keeping stride smooth and efficient.",
+        image: cassandreTrainingRun
       },
       {
         id: "fitness-3",
-        title: "Race Day Conditioning",
-        description: "Peak performance training for competition day.",
-        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=400&fit=crop"
+        title: "Swim Aerobic Builder",
+        description: "Endurance set to hold form, rhythm, and pace under fatigue.",
+        image: cassandreTrainingSwim
       },
       {
         id: "fitness-4",
-        title: "Recovery & Mobility",
-        description: "Essential recovery protocols for triathlon athletes.",
-        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop"
+        title: "Strength for Durability",
+        description: "Simple strength work to stay resilient through heavy blocks and travel.",
+        image: cassandreTraining1
       }
     ]
   },
@@ -60,27 +68,27 @@ const trainingCategories: TrainingCategory[] = [
     programs: [
       {
         id: "skills-1",
-        title: "Open Water Swim Technique",
-        description: "Navigate waves, sighting, and pack swimming.",
-        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop"
+        title: "Transitions: T1 + T2",
+        description: "Reps that make transitions automatic: fast, calm, no wasted moves.",
+        image: cassandreTrainingTransition
       },
       {
         id: "skills-2",
-        title: "Bike Handling Mastery",
-        description: "Cornering, drafting, and race-day bike skills.",
-        image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&h=400&fit=crop"
+        title: "Open Water Confidence",
+        description: "Sighting, starts, drafting, and positioning for race-day chaos.",
+        image: cassandreTrainingSwim2
       },
       {
         id: "skills-3",
-        title: "Run Form Optimization",
-        description: "Efficient running technique off the bike.",
-        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&h=400&fit=crop"
+        title: "Bike Handling at Speed",
+        description: "Cornering, braking, and pack awareness to stay safe and sharp.",
+        image: cassandreTrainingBike
       },
       {
         id: "skills-4",
-        title: "Race Strategy Workshop",
-        description: "Tactical decisions that win races.",
-        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=400&fit=crop"
+        title: "Pacing Playbook",
+        description: "How I manage effort across swim/bike/run to finish strong, not empty.",
+        image: cassandreTrainingRun
       }
     ]
   },
@@ -92,27 +100,27 @@ const trainingCategories: TrainingCategory[] = [
     programs: [
       {
         id: "nutrition-1",
-        title: "Training Day Nutrition",
-        description: "Daily fueling strategies for multi-sport training.",
-        image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop"
+        title: "Race Fuel Blueprint",
+        description: "My fueling plan for WTCS/Olympic distance: before, during, after.",
+        image: cassandreTrainingRun
       },
       {
         id: "nutrition-2",
-        title: "Race Week Protocol",
-        description: "Carb loading and hydration for peak performance.",
-        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop"
+        title: "Training Block Nutrition",
+        description: "Daily structure to support volume, recovery, and consistency.",
+        image: cassandreTraining1
       },
       {
         id: "nutrition-3",
-        title: "In-Race Fueling",
-        description: "Gels, drinks, and timing for race day.",
-        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=400&fit=crop"
+        title: "Travel Day Essentials",
+        description: "What I pack and eat on the road to stay light, fueled, and ready.",
+        image: cassandreTrainingBike
       },
       {
         id: "nutrition-4",
-        title: "Recovery Nutrition",
-        description: "Post-training and post-race nutrition protocols.",
-        image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop"
+        title: "Recovery Day Reset",
+        description: "Hydration + protein + carbs to bounce back fast between sessions.",
+        image: cassandreTrainingSwim
       }
     ]
   },
@@ -124,27 +132,27 @@ const trainingCategories: TrainingCategory[] = [
     programs: [
       {
         id: "mental-1",
-        title: "Race Day Visualization",
-        description: "Mental rehearsal techniques for competition.",
-        image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=400&fit=crop"
+        title: "Pre-Race Calm Routine",
+        description: "A quick routine to arrive clear, confident, and ready to race.",
+        image: cassandreTrainingSwim2
       },
       {
         id: "mental-2",
-        title: "Pain Cave Mastery",
-        description: "Push through the dark moments in racing.",
-        image: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&h=400&fit=crop"
+        title: "Managing the Red Zone",
+        description: "Cues to stay composed when it hurts and decisions matter.",
+        image: cassandreTrainingTransition
       },
       {
         id: "mental-3",
-        title: "Pre-Race Focus",
-        description: "Calm the nerves and find your zone.",
-        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop"
+        title: "Reset After a Tough Race",
+        description: "How I review, learn, and move on without carrying weight.",
+        image: cassandreTrainingRun
       },
       {
         id: "mental-4",
-        title: "Champion's Mindset",
-        description: "Think like an Olympic champion.",
-        image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=400&fit=crop"
+        title: "Confidence Habits",
+        description: "Small daily practices that keep mindset stable through the season.",
+        image: cassandreTraining1
       }
     ]
   }
