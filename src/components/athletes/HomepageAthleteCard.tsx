@@ -25,7 +25,7 @@ export const HomepageAthleteCard = ({ athlete, index = 0, hideAccessLabels = fal
             src={athlete.avatar}
             alt={athlete.name}
             loading="lazy"
-            className="w-full h-full object-contain bg-muted/20 transition-[filter] duration-500 group-hover:brightness-105"
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
           

@@ -23,7 +23,7 @@ export const DiscoverAllSection = () => {
                   src={athlete.avatar}
                   alt={athlete.name}
                   loading="lazy"
-                  className="w-full h-full object-contain bg-muted/20"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                 <span className="absolute top-2 right-2 px-2 py-0.5 bg-primary/90 text-primary-foreground text-xs font-medium rounded-full">
