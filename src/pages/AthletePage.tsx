@@ -820,51 +820,22 @@ const AthletePage = () => {
             <TabsContent value="gear" className="animate-fade-in">
               {athlete.gearCollections && athlete.gearCollections.length > 0 ? (
                 <div className="space-y-16">
-                  {/* Check if this is lifestyle-only collections (no products) */}
-                  {athlete.gearCollections.some(c => c.products.length === 0) ? (
-                    // Lifestyle card grid (no products - simple image + title cards)
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                      {athlete.gearCollections.map((collection) => (
-                        <article 
-                          key={collection.id}
-                          className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 cursor-pointer"
-                        >
-                          <div className="relative aspect-[3/4] overflow-hidden">
-                            <img
-                              src={collection.actionImage}
-                              alt={collection.name}
-                              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-                            <div className="absolute bottom-0 left-0 right-0 p-4">
-                              <h4 className="font-display font-semibold text-base md:text-lg text-foreground drop-shadow-md">
-                                {collection.name}
-                              </h4>
-                            </div>
-                          </div>
-                        </article>
-                      ))}
+                  {/* Gear Collections Feed */}
+                  {athlete.gearCollections.map((collection, index) => (
+                    <div key={collection.id} className="space-y-6">
+                      {index > 0 && <div className="border-t border-border/50" />}
+                      <ShoppableGearSection
+                        athleteName={athlete.name}
+                        actionImage={collection.actionImage}
+                        title={collection.name}
+                        description={collection.description}
+                        products={collection.products.map(p => ({
+                          ...p,
+                          hotspot: collection.hotspots?.[p.id]
+                        }))}
+                      />
                     </div>
-                  ) : (
-                    // Shoppable gear collections (has products)
-                    <>
-                      {athlete.gearCollections.map((collection, index) => (
-                        <div key={collection.id} className="space-y-6">
-                          {index > 0 && <div className="border-t border-border/50" />}
-                          <ShoppableGearSection
-                            athleteName={athlete.name}
-                            actionImage={collection.actionImage}
-                            title={collection.name}
-                            description={collection.description}
-                            products={collection.products.map(p => ({
-                              ...p,
-                              hotspot: collection.hotspots?.[p.id]
-                            }))}
-                          />
-                        </div>
-                      ))}
-                    </>
-                  )}
+                  ))}
                 </div>
               ) : (
                 <ShoppableGearSection

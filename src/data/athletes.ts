@@ -7688,34 +7688,130 @@ export const athletes: Athlete[] = [
       {
         id: "cb-gc-sundays",
         name: "Sun days",
-        description: "",
+        description: "Golden hour training sessions call for the best eye protection. Cassandre relies on Oakley for both performance and style.",
         actionImage: cassandreKitSundaysImg,
-        products: [],
-        hotspots: {}
+        products: [
+          {
+            id: "cb-oakley-1",
+            name: "Oakley Sutro Lite Sunglasses",
+            price: 169,
+            currency: "€",
+            image: cassandreKitSundaysImg,
+            description: "Lightweight performance sunglasses with Prizm lens technology for enhanced contrast.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          }
+        ],
+        hotspots: {
+          'cb-oakley-1': { x: 60, y: 45 }
+        }
       },
       {
         id: "cb-gc-track",
         name: "Track routine",
-        description: "",
+        description: "Every interval counts. Cassandre tracks her performance with precision using Huawei wearables and trains in Adidas gear.",
         actionImage: cassandreKitTrackImg,
-        products: [],
-        hotspots: {}
+        products: [
+          {
+            id: "cb-huawei-1",
+            name: "Huawei Watch GT Runner",
+            price: 299,
+            currency: "€",
+            image: cassandreKitTrackImg,
+            description: "Professional running watch with AI coaching and dual-band GPS for accurate tracking.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-adidas-1",
+            name: "Adidas Training Top",
+            price: 55,
+            currency: "€",
+            image: cassandreKitTrackImg,
+            description: "Lightweight training top with moisture-wicking AEROREADY technology.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          }
+        ],
+        hotspots: {
+          'cb-huawei-1': { x: 25, y: 65 },
+          'cb-adidas-1': { x: 50, y: 35 }
+        }
       },
       {
         id: "cb-gc-ride",
         name: "Ride mode",
-        description: "",
+        description: "On the bike leg, every second matters. Cassandre's Specialized S-Works setup is built for speed.",
         actionImage: cassandreKitRideImg,
-        products: [],
-        hotspots: {}
+        products: [
+          {
+            id: "cb-specialized-1",
+            name: "Specialized S-Works Shiv TT",
+            price: 12999,
+            currency: "€",
+            image: cassandreKitRideImg,
+            description: "The ultimate triathlon bike, designed for speed with integrated storage and aerodynamic perfection.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-specialized-2",
+            name: "Specialized Tri Suit",
+            price: 249,
+            currency: "€",
+            image: cassandreKitRideImg,
+            description: "Race-day tri suit with quick-dry fabric and aerodynamic fit.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          }
+        ],
+        hotspots: {
+          'cb-specialized-1': { x: 50, y: 75 },
+          'cb-specialized-2': { x: 50, y: 40 }
+        }
       },
       {
         id: "cb-gc-offduty",
         name: "Off-duty fit",
-        description: "",
+        description: "Recovery days in style. Cassandre's Adidas lifestyle collection for when she's not racing.",
         actionImage: cassandreKitOffduyImg,
-        products: [],
-        hotspots: {}
+        products: [
+          {
+            id: "cb-adidas-2",
+            name: "Adidas Track Jacket",
+            price: 89,
+            currency: "€",
+            image: cassandreKitOffduyImg,
+            description: "Classic Adidas track jacket with iconic three stripes and zip-up design.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-adidas-3",
+            name: "Adidas Mini Skirt",
+            price: 45,
+            currency: "€",
+            image: cassandreKitOffduyImg,
+            description: "Sporty mini skirt with comfortable stretch fabric.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          },
+          {
+            id: "cb-adidas-4",
+            name: "Adidas Ozweego Sneakers",
+            price: 130,
+            currency: "€",
+            image: cassandreKitOffduyImg,
+            description: "Retro-inspired lifestyle sneakers with Adiprene cushioning.",
+            category: "partner",
+            athleteId: "cassandre-beaugrand"
+          }
+        ],
+        hotspots: {
+          'cb-adidas-2': { x: 50, y: 30 },
+          'cb-adidas-3': { x: 50, y: 55 },
+          'cb-adidas-4': { x: 50, y: 85 }
+        }
       }
     ],
     cause: {
