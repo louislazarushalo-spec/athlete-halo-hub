@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Lock, Crown, Sparkles, Star, ArrowLeft } from "lucide-react";
 
@@ -17,6 +17,16 @@ export const PremiumLockedContent = ({
   customSubtitle,
   onGoBack
 }: PremiumLockedContentProps) => {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    if (onGoBack) {
+      onGoBack();
+    } else {
+      navigate(-1);
+    }
+  };
+
   return (
     <div className="relative min-h-[400px]">
       {/* Blurred preview content with darker overlay */}
@@ -92,18 +102,16 @@ export const PremiumLockedContent = ({
               </Button>
             </Link>
 
-            {/* Back button */}
-            {onGoBack && (
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                onClick={onGoBack}
-                className="mt-4 text-muted-foreground hover:text-foreground"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Go back
-              </Button>
-            )}
+            {/* Back button - always visible */}
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={handleGoBack}
+              className="mt-4 text-muted-foreground hover:text-foreground"
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Go back
+            </Button>
 
             {/* Price hint */}
             <p className="mt-4 text-sm text-muted-foreground">
