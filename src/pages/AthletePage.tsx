@@ -68,6 +68,11 @@ import sponsorWeleda from "@/assets/sponsor-weleda.png";
 import sponsorNutripure from "@/assets/sponsor-nutripure.png";
 import sponsorHuawei from "@/assets/sponsor-huawei.png";
 
+// Sponsor logos for Tommy Fleetwood
+import sponsorNike from "@/assets/sponsor-nike.png";
+import sponsorTaylormade from "@/assets/sponsor-taylormade.png";
+import sponsorTagheuer from "@/assets/sponsor-tagheuer.png";
+
 // Helper functions for formatting
 const formatNumber = (num: number): string => {
   if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
@@ -300,7 +305,8 @@ const AthletePage = () => {
   const isMatthieuJalibert = athlete.id === "matthieu-jalibert";
   const isCassandreBeaugrand = athlete.id === "cassandre-beaugrand";
   const isPierreGasly = athlete.id === "pierre-gasly";
-  const isCustomAthlete = isArthurCazaux || isMatthieuJalibert || isCassandreBeaugrand || isPierreGasly;
+  const isTommyFleetwood = athlete.id === "tommy-fleetwood";
+  const isCustomAthlete = isArthurCazaux || isMatthieuJalibert || isCassandreBeaugrand || isPierreGasly || isTommyFleetwood;
 
   const content = (
     <>
@@ -451,8 +457,8 @@ const AthletePage = () => {
                   >
                     <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                   </a>
-                  {/* TikTok - only shown for non-Cassandre athletes */}
-                  {!isCassandreBeaugrand && (
+                  {/* TikTok - only shown for non-Cassandre and non-Tommy athletes */}
+                  {!isCassandreBeaugrand && !isTommyFleetwood && (
                     <a 
                       href={`https://tiktok.com/@${athlete.name.toLowerCase().replace(' ', '')}`}
                       target="_blank"
@@ -489,6 +495,13 @@ const AthletePage = () => {
                           <img src={sponsorWeleda} alt="Weleda" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                           <img src={sponsorNutripure} alt="Nutripure" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                           <img src={sponsorHuawei} alt="Huawei" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                        </>
+                      )}
+                      {isTommyFleetwood && (
+                        <>
+                          <img src={sponsorNike} alt="Nike" className="h-4 sm:h-7 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorTaylormade} alt="TaylorMade" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorTagheuer} alt="TAG Heuer" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
                       )}
                     </div>

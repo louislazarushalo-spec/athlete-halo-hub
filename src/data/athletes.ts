@@ -6287,7 +6287,7 @@ export const athletes: Athlete[] = [
     name: "Tommy Fleetwood",
     sport: "Golf",
     bio: "European Tour star. Ryder Cup hero. Welcome to my Halo.",
-    tagline: "England's flowing locks legend",
+    tagline: "Ryder Cup hero. European Tour champion. Pure ball striker.",
     avatar: tommyFleetwoodImg,
     banner: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1600&h=600&fit=crop",
     followers: 890000,
