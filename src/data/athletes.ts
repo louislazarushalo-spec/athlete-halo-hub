@@ -105,11 +105,12 @@ import cassandreCauseWomenTriathlonImg from "@/assets/cassandre-cause-women-tria
 export interface MediaFeedItem {
   id: string;
   type: 'social' | 'article' | 'video';
-  platform: 'instagram' | 'twitter' | 'youtube' | 'lequipe' | 'espn' | 'bbc';
+  platform: 'instagram' | 'twitter' | 'youtube' | 'lequipe' | 'espn' | 'bbc' | 'golfcom' | 'golfmagic' | 'bunkered' | 'insidegolf' | 'yahoosports';
   title?: string;
   content: string;
   image: string;
   timestamp: string;
+  url?: string;
   stats?: {
     likes?: number;
     comments?: number;
@@ -6490,32 +6491,88 @@ export const athletes: Athlete[] = [
     mediaFeed: [
       {
         id: "tf-mf1",
-        type: "social",
-        platform: "instagram",
-        content: "Always special playing at home. Thanks for the amazing support! 🏴󠁧󠁢󠁥󠁮󠁧󠁿⛳",
-        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=800&fit=crop",
-        timestamp: "3 hours ago",
-        stats: { likes: 89000, comments: 1200 }
+        type: "article",
+        platform: "golfcom",
+        title: "Tommy Fleetwood broke through in 2025. But his defeats told the story",
+        content: "A look at Fleetwood's breakthrough season and the lessons learned from near misses.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
+        timestamp: "Dec 22, 2025",
+        url: "https://golf.com/news/tommy-fleetwood-broke-through-2025-defeats/",
+        stats: { readTime: "6 min read" }
       },
       {
         id: "tf-mf2",
-        type: "video",
-        platform: "youtube",
-        title: "Tommy Fleetwood - Ryder Cup Highlights",
-        content: "The best moments from Europe's Ryder Cup hero.",
-        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=450&fit=crop",
-        timestamp: "5 days ago",
-        stats: { views: 1200000, duration: "14:23" }
+        type: "article",
+        platform: "golfmagic",
+        title: "Tommy Fleetwood on the disappointing parts of 2025",
+        content: "Fleetwood reflects on the highs and lows of his season on the PGA Tour.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=400&fit=crop",
+        timestamp: "Dec 19, 2025",
+        url: "https://www.golfmagic.com/tour/pga-tour/tommy-fleetwood-disappointing-parts-2025-i-didnt-really-do-year",
+        stats: { readTime: "5 min read" }
       },
       {
         id: "tf-mf3",
         type: "article",
-        platform: "bbc",
-        title: "Tommy Fleetwood: The heart of European golf",
-        content: "How the Southport native became a Ryder Cup legend...",
+        platform: "bunkered",
+        title: "Tommy Fleetwood: \"I'm at a higher level than I've ever been at\"",
+        content: "The Englishman discusses his evolution as a player and his goals for 2026.",
         image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
-        timestamp: "2 days ago",
-      stats: { readTime: "7 min read" }
+        timestamp: "Dec 19, 2025",
+        url: "https://www.bunkered.co.uk/golf-news/tommy-fleetwood-im-at-a-higher-level-than-ive-ever-been-at/",
+        stats: { readTime: "4 min read" }
+      },
+      {
+        id: "tf-mf4",
+        type: "social",
+        platform: "instagram",
+        content: "Another incredible week on tour. Thank you all for the amazing support! 🏌️‍♂️⛳",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=800&fit=crop",
+        timestamp: "Dec 17, 2025",
+        url: "https://www.instagram.com/officialtommyfleetwood/p/DP_pdxrEokO/",
+        stats: { likes: 89000, comments: 1200 }
+      },
+      {
+        id: "tf-mf5",
+        type: "article",
+        platform: "insidegolf",
+        title: "Finally! Fleetwood is a winner in the US",
+        content: "After years of close calls, Tommy Fleetwood finally claims victory on American soil.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=400&fit=crop",
+        timestamp: "Dec 17, 2025",
+        url: "https://www.insidegolf.com.au/news/finally-fleetwood-is-a-winner-in-the-us/",
+        stats: { readTime: "5 min read" }
+      },
+      {
+        id: "tf-mf6",
+        type: "article",
+        platform: "yahoosports",
+        title: "Tommy Fleetwood continues to have great perspective on 2025",
+        content: "Yahoo Sports examines Fleetwood's positive outlook on a transformative season.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
+        timestamp: "Dec 11, 2025",
+        url: "https://sports.yahoo.com/articles/tommy-fleetwood-continues-great-perspective-130000479.html",
+        stats: { readTime: "4 min read" }
+      },
+      {
+        id: "tf-mf7",
+        type: "social",
+        platform: "instagram",
+        content: "Back to work. Putting in the hours for next season 💪⛳",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=800&fit=crop",
+        timestamp: "Dec 9, 2025",
+        url: "https://www.instagram.com/officialtommyfleetwood/p/DMWCY_Nt6MN/",
+        stats: { likes: 72000, comments: 980 }
+      },
+      {
+        id: "tf-mf8",
+        type: "social",
+        platform: "instagram",
+        content: "Family time is the best time. Grateful for these moments ❤️",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=800&fit=crop",
+        timestamp: "Dec 8, 2025",
+        url: "https://www.instagram.com/officialtommyfleetwood/p/DKp3qaYtFqZ/",
+        stats: { likes: 95000, comments: 1500 }
       }
     ],
     events: [
