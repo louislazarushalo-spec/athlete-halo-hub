@@ -80,6 +80,7 @@ import tommyHighlight8Img from "@/assets/tommy-highlight-8.jpg";
 import tommyKitNikeTagheuerImg from "@/assets/tommy-kit-nike-tagheuer.jpg";
 import tommyKitNikeTaylormadeImg from "@/assets/tommy-kit-nike-taylormade.jpg";
 import tommyKitNikeLifestyleImg from "@/assets/tommy-kit-nike-lifestyle.jpg";
+import tommyFleetwoodBannerImg from "@/assets/tommy-fleetwood-banner.jpg";
 import nellyKordaImg from "@/assets/nelly-korda.png";
 import shaneLowryImg from "@/assets/shane-lowry.png";
 import lexiThompsonImg from "@/assets/lexi-thompson.png";
@@ -6301,7 +6302,7 @@ export const athletes: Athlete[] = [
     bio: "European Tour star. Ryder Cup hero. Welcome to my Halo.",
     tagline: "Ryder Cup hero. European Tour champion. Pure ball striker.",
     avatar: tommyFleetwoodImg,
-    banner: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1600&h=600&fit=crop",
+    banner: tommyFleetwoodBannerImg,
     followers: 890000,
     training: [
       {
