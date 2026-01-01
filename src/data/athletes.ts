@@ -6476,12 +6476,23 @@ export const athletes: Athlete[] = [
             description: "Tour-level putter from TaylorMade.",
             category: "partner",
             athleteId: "tommy-fleetwood"
+          },
+          {
+            id: "tf-gc2-p4",
+            name: "TAG Heuer Connected Golf",
+            price: 2150,
+            currency: "€",
+            image: tommyTagheuerWatchImg,
+            description: "Premium golf smartwatch from TAG Heuer with course mapping.",
+            category: "partner",
+            athleteId: "tommy-fleetwood"
           }
         ],
         hotspots: {
           "tf-gc2-p1": { x: 52, y: 42 },
           "tf-gc2-p2": { x: 42, y: 8 },
-          "tf-gc2-p3": { x: 50, y: 72 }
+          "tf-gc2-p3": { x: 50, y: 72 },
+          "tf-gc2-p4": { x: 82, y: 58 }
         }
       },
       {
