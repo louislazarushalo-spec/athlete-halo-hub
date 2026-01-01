@@ -6515,8 +6515,15 @@ export const athletes: Athlete[] = [
         content: "How the Southport native became a Ryder Cup legend...",
         image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=400&fit=crop",
         timestamp: "2 days ago",
-        stats: { readTime: "7 min read" }
+      stats: { readTime: "7 min read" }
       }
+    ],
+    events: [
+      { id: "tf-sentry-2026", name: "The Sentry", date: "5", month: "Jan", year: "2026", location: "Kapalua, Maui, Hawaii", country: "USA", countryFlag: "🇺🇸", category: "PGA TOUR", categoryColor: "bg-gradient-to-r from-blue-600 to-indigo-600", description: "Plantation Course at Kapalua" },
+      { id: "tf-sony-2026", name: "Sony Open in Hawaii", date: "12", month: "Jan", year: "2026", location: "Honolulu, Hawaii", country: "USA", countryFlag: "🇺🇸", category: "PGA TOUR", categoryColor: "bg-gradient-to-r from-blue-600 to-indigo-600", description: "Waialae Country Club" },
+      { id: "tf-amex-2026", name: "The American Express", date: "19", month: "Jan", year: "2026", location: "La Quinta, California", country: "USA", countryFlag: "🇺🇸", category: "PGA TOUR", categoryColor: "bg-gradient-to-r from-blue-600 to-indigo-600", description: "PGA WEST / La Quinta CC" },
+      { id: "tf-farmers-2026", name: "Farmers Insurance Open", date: "26", month: "Jan", year: "2026", location: "San Diego, California", country: "USA", countryFlag: "🇺🇸", category: "PGA TOUR", categoryColor: "bg-gradient-to-r from-blue-600 to-indigo-600", description: "Torrey Pines – South/North" },
+      { id: "tf-wm-2026", name: "WM Phoenix Open", date: "2", month: "Feb", year: "2026", location: "Scottsdale, Arizona", country: "USA", countryFlag: "🇺🇸", category: "PGA TOUR", categoryColor: "bg-gradient-to-r from-blue-600 to-indigo-600", description: "TPC Scottsdale – Stadium Course" }
     ]
   },
   {
