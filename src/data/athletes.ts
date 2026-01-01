@@ -6317,19 +6317,35 @@ export const athletes: Athlete[] = [
     training: [
       {
         id: "tf-t1",
-        title: "Ball Striking Excellence",
-        description: "The fundamentals behind my consistent iron play.",
+        title: "Iron Play Precision",
+        description: "Master the art of consistent ball striking with my approach to iron play.",
         image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
         category: "training",
         createdAt: "2024-02-08"
       },
       {
         id: "tf-t2",
-        title: "Links Golf Mastery",
-        description: "Playing in the wind and British conditions.",
+        title: "Short Game Secrets",
+        description: "Chipping, pitching, and bunker play techniques to lower your scores.",
         image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
         category: "training",
         createdAt: "2024-02-03"
+      },
+      {
+        id: "tf-t3",
+        title: "Putting Masterclass",
+        description: "Read greens like a pro and develop a repeatable stroke.",
+        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-01-28"
+      },
+      {
+        id: "tf-t4",
+        title: "Course Management",
+        description: "Strategic thinking and shot selection to play smarter golf.",
+        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-01-20"
       }
     ],
     life: [
