@@ -119,6 +119,10 @@ import tommyTagheuerWatchImg from "@/assets/tommy-tagheuer-watch.png";
 import tommyNikeCapWhiteImg from "@/assets/tommy-nike-cap-white.webp";
 import tommyNikePoloWhiteImg from "@/assets/tommy-nike-polo-white.jpg";
 import tommyTaylormadePutterImg from "@/assets/tommy-taylormade-putter.jpg";
+import tommyNikeCapLifestyleImg from "@/assets/tommy-nike-cap-lifestyle.webp";
+import tommyNikeHoodieImg from "@/assets/tommy-nike-hoodie.jpg";
+import tommyNikePantsImg from "@/assets/tommy-nike-pants.jpg";
+import tommyNikeGolfShoesImg from "@/assets/tommy-nike-golf-shoes.jpeg";
 
 export interface MediaFeedItem {
   id: string;
@@ -6503,39 +6507,50 @@ export const athletes: Athlete[] = [
         products: [
           {
             id: "tf-gc3-p1",
-            name: "Nike Hoodie",
-            price: 95,
+            name: "Nike Cap White",
+            price: 35,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=400&fit=crop",
-            description: "Premium performance hoodie from Nike.",
+            image: tommyNikeCapLifestyleImg,
+            description: "Classic Nike cap in white.",
             category: "partner",
             athleteId: "tommy-fleetwood"
           },
           {
             id: "tf-gc3-p2",
-            name: "Nike Trousers White",
-            price: 119,
+            name: "Nike Hoodie",
+            price: 95,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=400&fit=crop",
-            description: "Premium tour trousers from Nike.",
+            image: tommyNikeHoodieImg,
+            description: "Premium performance hoodie from Nike.",
             category: "partner",
             athleteId: "tommy-fleetwood"
           },
           {
             id: "tf-gc3-p3",
+            name: "Nike Trousers",
+            price: 119,
+            currency: "€",
+            image: tommyNikePantsImg,
+            description: "Premium tour trousers from Nike.",
+            category: "partner",
+            athleteId: "tommy-fleetwood"
+          },
+          {
+            id: "tf-gc3-p4",
             name: "Nike Golf Shoes",
             price: 159,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=400&fit=crop",
+            image: tommyNikeGolfShoesImg,
             description: "Tour-level golf shoes from Nike.",
             category: "partner",
             athleteId: "tommy-fleetwood"
           }
         ],
         hotspots: {
-          "tf-gc3-p1": { x: 50, y: 40 },
-          "tf-gc3-p2": { x: 50, y: 70 },
-          "tf-gc3-p3": { x: 50, y: 90 }
+          "tf-gc3-p1": { x: 50, y: 28 },
+          "tf-gc3-p2": { x: 48, y: 45 },
+          "tf-gc3-p3": { x: 50, y: 68 },
+          "tf-gc3-p4": { x: 48, y: 88 }
         }
       }
     ],
