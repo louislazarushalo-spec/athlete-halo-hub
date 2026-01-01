@@ -6440,9 +6440,9 @@ export const athletes: Athlete[] = [
           }
         ],
         hotspots: {
-          "tf-gc1-p1": { x: 58, y: 48 },
-          "tf-gc1-p2": { x: 62, y: 12 },
-          "tf-gc1-p3": { x: 82, y: 75 }
+          "tf-gc1-p1": { x: 62, y: 50 },
+          "tf-gc1-p2": { x: 58, y: 18 },
+          "tf-gc1-p3": { x: 78, y: 72 }
         }
       },
       {
@@ -6493,10 +6493,10 @@ export const athletes: Athlete[] = [
           }
         ],
         hotspots: {
-          "tf-gc2-p1": { x: 52, y: 42 },
-          "tf-gc2-p2": { x: 42, y: 8 },
-          "tf-gc2-p3": { x: 50, y: 72 },
-          "tf-gc2-p4": { x: 82, y: 58 }
+          "tf-gc2-p1": { x: 52, y: 45 },
+          "tf-gc2-p2": { x: 38, y: 10 },
+          "tf-gc2-p3": { x: 48, y: 70 },
+          "tf-gc2-p4": { x: 78, y: 62 }
         }
       },
       {
@@ -6557,11 +6557,11 @@ export const athletes: Athlete[] = [
           }
         ],
         hotspots: {
-          "tf-gc3-p1": { x: 50, y: 28 },
-          "tf-gc3-p2": { x: 48, y: 45 },
-          "tf-gc3-p3": { x: 50, y: 68 },
-          "tf-gc3-p4": { x: 48, y: 88 },
-          "tf-gc3-p5": { x: 48, y: 76 }
+          "tf-gc3-p1": { x: 50, y: 32 },
+          "tf-gc3-p2": { x: 52, y: 48 },
+          "tf-gc3-p3": { x: 52, y: 62 },
+          "tf-gc3-p4": { x: 52, y: 82 },
+          "tf-gc3-p5": { x: 50, y: 72 }
         }
       }
     ],
