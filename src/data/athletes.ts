@@ -6442,7 +6442,7 @@ export const athletes: Athlete[] = [
         hotspots: {
           "tf-gc1-p1": { x: 62, y: 50 },
           "tf-gc1-p2": { x: 58, y: 18 },
-          "tf-gc1-p3": { x: 78, y: 72 }
+          "tf-gc1-p3": { x: 76, y: 68 }
         }
       },
       {
