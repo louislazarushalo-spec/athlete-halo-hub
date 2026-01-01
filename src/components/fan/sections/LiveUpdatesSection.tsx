@@ -53,7 +53,7 @@ export const LiveUpdatesSection = () => {
                       <img
                         src={athlete.avatar}
                         alt={athlete.name}
-                        className="w-full h-full rounded-full object-cover"
+                        className="w-full h-full rounded-full object-cover object-top"
                       />
                     </div>
                     <div className="absolute -bottom-0.5 -right-0.5 w-5 h-5 rounded-full bg-card border-2 border-background flex items-center justify-center">

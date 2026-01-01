@@ -96,7 +96,7 @@ export const FanSidebar = () => {
               <img
                 src={athlete.avatar}
                 alt={athlete.name}
-                className="w-8 h-8 rounded-full object-cover ring-2 ring-transparent group-hover:ring-primary/30 transition-all"
+                className="w-8 h-8 rounded-full object-cover object-top ring-2 ring-transparent group-hover:ring-primary/30 transition-all"
               />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium truncate group-hover:text-primary transition-colors">
@@ -122,7 +122,7 @@ export const FanSidebar = () => {
               <img
                 src={athlete.avatar}
                 alt={athlete.name}
-                className="w-7 h-7 rounded-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+                className="w-7 h-7 rounded-full object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity"
               />
               <p className="text-sm text-muted-foreground truncate group-hover:text-foreground transition-colors">
                 {athlete.name}

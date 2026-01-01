@@ -74,7 +74,7 @@ export const UpcomingEventsSection = () => {
                 <img
                   src={event.athlete.avatar}
                   alt={event.athlete.name}
-                  className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover ring-2 ring-border flex-shrink-0"
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover object-top ring-2 ring-border flex-shrink-0"
                 />
                 <div className="flex-1 min-w-0">
                   <h3 className="font-semibold text-sm md:text-base group-hover:text-primary transition-colors line-clamp-1">
