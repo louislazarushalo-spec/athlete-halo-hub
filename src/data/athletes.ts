@@ -116,6 +116,9 @@ import cassandreCauseWomenTriathlonImg from "@/assets/cassandre-cause-women-tria
 import tommyNikePoloImg from "@/assets/tommy-nike-polo.jpeg";
 import tommyNikeCapImg from "@/assets/tommy-nike-cap.jpeg";
 import tommyTagheuerWatchImg from "@/assets/tommy-tagheuer-watch.png";
+import tommyNikeCapWhiteImg from "@/assets/tommy-nike-cap-white.webp";
+import tommyNikePoloWhiteImg from "@/assets/tommy-nike-polo-white.jpg";
+import tommyTaylormadePutterImg from "@/assets/tommy-taylormade-putter.jpg";
 
 export interface MediaFeedItem {
   id: string;
@@ -6449,7 +6452,7 @@ export const athletes: Athlete[] = [
             name: "Nike Polo White",
             price: 89,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=400&fit=crop",
+            image: tommyNikePoloWhiteImg,
             description: "Premium white tour polo from Nike.",
             category: "partner",
             athleteId: "tommy-fleetwood"
@@ -6459,7 +6462,7 @@ export const athletes: Athlete[] = [
             name: "Nike Cap White",
             price: 35,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=400&fit=crop",
+            image: tommyNikeCapWhiteImg,
             description: "Tour-level Nike cap in white.",
             category: "partner",
             athleteId: "tommy-fleetwood"
@@ -6469,16 +6472,16 @@ export const athletes: Athlete[] = [
             name: "TaylorMade Spider Putter",
             price: 399,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=400&fit=crop",
+            image: tommyTaylormadePutterImg,
             description: "Tour-level putter from TaylorMade.",
             category: "partner",
             athleteId: "tommy-fleetwood"
           }
         ],
         hotspots: {
-          "tf-gc2-p1": { x: 50, y: 45 },
-          "tf-gc2-p2": { x: 48, y: 15 },
-          "tf-gc2-p3": { x: 45, y: 80 }
+          "tf-gc2-p1": { x: 52, y: 42 },
+          "tf-gc2-p2": { x: 42, y: 8 },
+          "tf-gc2-p3": { x: 50, y: 72 }
         }
       },
       {
