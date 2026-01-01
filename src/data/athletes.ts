@@ -6393,8 +6393,8 @@ export const athletes: Athlete[] = [
     gearCollections: [
       {
         id: "tf-gc1",
-        name: "Nike & TAG Heuer",
-        description: "Victory moment. Tommy lifts the DP World Championship trophy in his signature Nike polo, with his TAG Heuer watch catching the light. The complete champion's look.",
+        name: "Tommy's Kit at the DP World Tour Championship in Dubai",
+        description: "The ultimate season finale under the desert sun. Tommy lifted the trophy at Jumeirah Golf Estates in his signature Nike polo, with his TAG Heuer Connected catching the golden hour light—a moment of pure triumph.",
         actionImage: tommyKitNikeTagheuerImg,
         products: [
           {
@@ -6436,8 +6436,8 @@ export const athletes: Athlete[] = [
       },
       {
         id: "tf-gc2",
-        name: "Nike & TaylorMade",
-        description: "Focus on the greens. Tommy studies his line with the Spider putter, dressed in all-white Nike from head to toe. Pure concentration.",
+        name: "Tommy's White Kit at The Open Championship in Royal Liverpool",
+        description: "On the storied links of Hoylake, Tommy studied his birdie putt on the 18th with laser focus. Dressed in all-white Nike from head to toe, Spider putter in hand—this was links golf at its purest.",
         actionImage: tommyKitNikeTaylormadeImg,
         products: [
           {
@@ -6479,8 +6479,8 @@ export const athletes: Athlete[] = [
       },
       {
         id: "tf-gc3",
-        name: "Nike Lifestyle",
-        description: "Off-course vibes at Royal Portrush. Tommy relaxes on the iconic bench, sporting a navy Nike hoodie with classic white trousers. Links golf at its finest.",
+        name: "Tommy's Off-Course Style at Royal Portrush Practice Round",
+        description: "A quiet moment before The Open. Tommy relaxed on the iconic bench overlooking the Dunluce Links, sporting a navy Nike hoodie with classic white trousers—the calm before the competitive storm.",
         actionImage: tommyKitNikeLifestyleImg,
         products: [
           {
