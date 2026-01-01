@@ -145,28 +145,61 @@ export type Database = {
       }
       profiles: {
         Row: {
+          age: number | null
+          city: string | null
+          country: string | null
           created_at: string
           email: string | null
           first_name: string | null
+          followed_athletes_preferences: string[] | null
           id: string
           last_name: string | null
           last_sign_in: string | null
+          notification_email_updates: boolean | null
+          notification_new_programs: boolean | null
+          notification_partner_offers: boolean | null
+          notification_product_drops: boolean | null
+          postcode: string | null
+          sports_preferences: string[] | null
+          street: string | null
         }
         Insert: {
+          age?: number | null
+          city?: string | null
+          country?: string | null
           created_at?: string
           email?: string | null
           first_name?: string | null
+          followed_athletes_preferences?: string[] | null
           id: string
           last_name?: string | null
           last_sign_in?: string | null
+          notification_email_updates?: boolean | null
+          notification_new_programs?: boolean | null
+          notification_partner_offers?: boolean | null
+          notification_product_drops?: boolean | null
+          postcode?: string | null
+          sports_preferences?: string[] | null
+          street?: string | null
         }
         Update: {
+          age?: number | null
+          city?: string | null
+          country?: string | null
           created_at?: string
           email?: string | null
           first_name?: string | null
+          followed_athletes_preferences?: string[] | null
           id?: string
           last_name?: string | null
           last_sign_in?: string | null
+          notification_email_updates?: boolean | null
+          notification_new_programs?: boolean | null
+          notification_partner_offers?: boolean | null
+          notification_product_drops?: boolean | null
+          postcode?: string | null
+          sports_preferences?: string[] | null
+          street?: string | null
         }
         Relationships: []
       }

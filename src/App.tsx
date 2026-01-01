@@ -78,7 +78,11 @@ const App = () => (
                   <Route path="/signup" element={<SignupPage />} />
                   <Route path="/forgot-password" element={<ForgotPasswordPage />} />
                   <Route path="/reset-password" element={<ResetPasswordPage />} />
-                  <Route path="/account" element={<AccountPage />} />
+                  <Route path="/account" element={
+                    <ProtectedRoute>
+                      <AccountPage />
+                    </ProtectedRoute>
+                  } />
                   <Route path="/subscribe/:id" element={<SubscribePage />} />
                   <Route path="/subscribe/:id/payment" element={<SubscribePaymentPage />} />
                   <Route path="/subscribe/:id/success" element={<SubscribeSuccessPage />} />
