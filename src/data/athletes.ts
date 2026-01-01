@@ -6544,13 +6544,24 @@ export const athletes: Athlete[] = [
             description: "Tour-level golf shoes from Nike.",
             category: "partner",
             athleteId: "tommy-fleetwood"
+          },
+          {
+            id: "tf-gc3-p5",
+            name: "TaylorMade Spider Putter",
+            price: 399,
+            currency: "€",
+            image: tommyTaylormadePutterImg,
+            description: "Tour-level putter from TaylorMade.",
+            category: "partner",
+            athleteId: "tommy-fleetwood"
           }
         ],
         hotspots: {
           "tf-gc3-p1": { x: 50, y: 28 },
           "tf-gc3-p2": { x: 48, y: 45 },
           "tf-gc3-p3": { x: 50, y: 68 },
-          "tf-gc3-p4": { x: 48, y: 88 }
+          "tf-gc3-p4": { x: 48, y: 88 },
+          "tf-gc3-p5": { x: 48, y: 76 }
         }
       }
     ],
