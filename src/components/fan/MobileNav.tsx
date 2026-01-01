@@ -92,7 +92,7 @@ export const MobileNav = () => {
                 <img
                   src={athlete.avatar}
                   alt={athlete.name}
-                  className="w-8 h-8 rounded-full object-cover"
+                  className="w-8 h-8 rounded-full object-cover object-top"
                 />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium truncate">{athlete.name}</p>

@@ -44,7 +44,7 @@ export const ActiveNowSection = () => {
                     <img
                       src={athlete.avatar}
                       alt={athlete.name}
-                      className="w-16 h-16 rounded-full object-cover ring-2 ring-primary/50 group-hover:ring-primary transition-all"
+                      className="w-16 h-16 rounded-full object-cover object-top ring-2 ring-primary/50 group-hover:ring-primary transition-all"
                     />
                     <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
                       <UpdateIcon className="h-3 w-3 text-primary-foreground" />

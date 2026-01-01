@@ -51,7 +51,7 @@ export const TrainLikeThemSection = () => {
                     <img
                       src={athlete.avatar}
                       alt={athlete.name}
-                      className="w-6 h-6 rounded-full object-cover"
+                      className="w-6 h-6 rounded-full object-cover object-top"
                     />
                     <span className="text-xs text-muted-foreground">{athlete.name}</span>
                   </div>

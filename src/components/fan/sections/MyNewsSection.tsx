@@ -89,7 +89,7 @@ export const MyNewsSection = () => {
                       <img
                         src={item.athlete.avatar}
                         alt={item.athlete.name}
-                        className="w-5 h-5 md:w-6 md:h-6 rounded-full object-cover"
+                        className="w-5 h-5 md:w-6 md:h-6 rounded-full object-cover object-top"
                       />
                       <span className="text-xs md:text-sm text-muted-foreground">{item.athlete.name}</span>
                       <span className="text-muted-foreground hidden sm:inline">•</span>
