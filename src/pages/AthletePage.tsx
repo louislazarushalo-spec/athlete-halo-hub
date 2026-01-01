@@ -665,7 +665,7 @@ const AthletePage = () => {
                 <div className="max-w-4xl mx-auto">
                   <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-foreground">Upcoming Events</h3>
                   <div className="space-y-3 sm:space-y-4">
-                    {getEventsBySport(athlete.sport, athlete.gender).map((event, index) => {
+                    {(athlete.events || getEventsBySport(athlete.sport, athlete.gender)).map((event, index) => {
                       const isMajor = event.category.includes("Grand Slam") || event.category.includes("Major") || event.category.includes("Finals") || event.category.includes("World") || event.category.includes("Ryder") || event.category.includes("Solheim");
                       return (
                         <article 
