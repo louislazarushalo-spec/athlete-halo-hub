@@ -87,6 +87,11 @@ const platformConfig: Record<string, { label: string; bgClass: string; textClass
   lequipe: { label: "L'Équipe", bgClass: "bg-blue-600", textClass: "text-white", icon: "L'É" },
   espn: { label: "ESPN", bgClass: "bg-gradient-to-br from-purple-600 to-pink-500", textClass: "text-white", icon: "ESPN" },
   bbc: { label: "BBC Sport", bgClass: "bg-orange-600", textClass: "text-white", icon: "BBC" },
+  golfcom: { label: "GOLF.com", bgClass: "bg-emerald-600", textClass: "text-white", icon: "GOLF" },
+  golfmagic: { label: "Golf Magic", bgClass: "bg-green-600", textClass: "text-white", icon: "GM" },
+  bunkered: { label: "Bunkered", bgClass: "bg-slate-700", textClass: "text-white", icon: "B" },
+  insidegolf: { label: "Inside Golf", bgClass: "bg-teal-600", textClass: "text-white", icon: "IG" },
+  yahoosports: { label: "Yahoo Sports", bgClass: "bg-purple-600", textClass: "text-white", icon: "Y!" },
 };
 
 // MediaFeedCard component
@@ -96,14 +101,16 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
   // Social Post (Instagram/Twitter)
   if (item.type === "social") {
     const isTwitter = item.platform === "twitter";
-    return (
+    const isInstagram = item.platform === "instagram";
+    
+    const socialContent = (
       <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in">
         <div className="p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-border/50">
           <img src={athlete.avatar} alt={athlete.name} className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-primary/20" />
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-1.5 md:gap-2 flex-wrap">
               <span className="font-semibold text-sm md:text-base text-foreground truncate">{athlete.name}</span>
-              <Badge variant="secondary" className={`text-[10px] md:text-xs ${item.platform === 'instagram' ? 'bg-gradient-to-r from-purple-600/20 to-pink-500/20 text-purple-300' : ''}`}>
+              <Badge variant="secondary" className={`text-[10px] md:text-xs ${isInstagram ? 'bg-gradient-to-r from-purple-600/20 to-pink-500/20 text-purple-300' : ''}`}>
                 {config.label}
               </Badge>
             </div>
@@ -144,15 +151,20 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
             </>
           ) : (
             <>
-              <div className="flex items-center gap-3 md:gap-4">
-                <button className="flex items-center gap-1 md:gap-1.5 text-muted-foreground hover:text-red-400 transition-all duration-200 hover:scale-110">
-                  <Heart className="h-4 w-4 md:h-5 md:w-5" />
-                  <span className="text-xs md:text-sm font-medium">{formatNumber(item.stats?.likes || 0)}</span>
-                </button>
-                <button className="flex items-center gap-1 md:gap-1.5 text-muted-foreground hover:text-blue-400 transition-all duration-200 hover:scale-110">
-                  <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
-                  <span className="text-xs md:text-sm font-medium">{formatNumber(item.stats?.comments || 0)}</span>
-                </button>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3 md:gap-4">
+                  <button className="flex items-center gap-1 md:gap-1.5 text-muted-foreground hover:text-red-400 transition-all duration-200 hover:scale-110">
+                    <Heart className="h-4 w-4 md:h-5 md:w-5" />
+                    <span className="text-xs md:text-sm font-medium">{formatNumber(item.stats?.likes || 0)}</span>
+                  </button>
+                  <button className="flex items-center gap-1 md:gap-1.5 text-muted-foreground hover:text-blue-400 transition-all duration-200 hover:scale-110">
+                    <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
+                    <span className="text-xs md:text-sm font-medium">{formatNumber(item.stats?.comments || 0)}</span>
+                  </button>
+                </div>
+                {item.url && isInstagram && (
+                  <span className="text-xs md:text-sm text-primary font-medium">View on Instagram →</span>
+                )}
               </div>
               <p className="text-xs md:text-sm leading-relaxed">
                 <span className="font-semibold text-foreground">{athlete.name.toLowerCase().replace(' ', '')}</span>{' '}
@@ -163,6 +175,15 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
         </div>
       </article>
     );
+
+    if (item.url) {
+      return (
+        <a href={item.url} target="_blank" rel="noopener noreferrer" className="block">
+          {socialContent}
+        </a>
+      );
+    }
+    return socialContent;
   }
 
   // Video (YouTube/ESPN)
@@ -206,9 +227,9 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
     );
   }
 
-  // Article (L'Équipe/ESPN/BBC)
+  // Article (L'Équipe/ESPN/BBC/Golf sites)
   if (item.type === "article") {
-    return (
+    const articleContent = (
       <article className="glass-card overflow-hidden group cursor-pointer hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in">
         <div className="p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-border/50">
           <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full ${config.bgClass} flex items-center justify-center font-bold ${config.textClass} text-xs md:text-sm shadow-lg`}>
@@ -233,7 +254,7 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
             <div className="flex items-center gap-2 text-[10px] md:text-xs text-muted-foreground pt-1">
               <span>{item.stats?.readTime}</span>
               <span>•</span>
-              <span className="text-primary">Read more →</span>
+              <span className="text-primary font-medium">Read article →</span>
             </div>
           </div>
           <div className="relative w-20 h-20 md:w-28 md:h-28 flex-shrink-0 rounded-lg overflow-hidden">
@@ -246,6 +267,15 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
         </div>
       </article>
     );
+
+    if (item.url) {
+      return (
+        <a href={item.url} target="_blank" rel="noopener noreferrer" className="block">
+          {articleContent}
+        </a>
+      );
+    }
+    return articleContent;
   }
 
   return null;
