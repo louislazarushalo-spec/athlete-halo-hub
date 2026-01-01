@@ -113,6 +113,9 @@ import adidasSurvetMarronImg from "@/assets/adidas-survet-marron.webp";
 import adidasChaussetteImg from "@/assets/adidas-chaussette.webp";
 import adidasShoesControlImg from "@/assets/adidas-shoes-control.webp";
 import cassandreCauseWomenTriathlonImg from "@/assets/cassandre-cause-women-triathlon.jpg";
+import tommyNikePoloImg from "@/assets/tommy-nike-polo.jpeg";
+import tommyNikeCapImg from "@/assets/tommy-nike-cap.jpeg";
+import tommyTagheuerWatchImg from "@/assets/tommy-tagheuer-watch.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -6403,7 +6406,7 @@ export const athletes: Athlete[] = [
             name: "Nike Polo",
             price: 89,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=400&h=400&fit=crop",
+            image: tommyNikePoloImg,
             description: "Premium tour polo from Nike.",
             category: "partner",
             athleteId: "tommy-fleetwood"
@@ -6413,7 +6416,7 @@ export const athletes: Athlete[] = [
             name: "Nike Cap",
             price: 35,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=400&fit=crop",
+            image: tommyNikeCapImg,
             description: "Tour-level Nike cap.",
             category: "partner",
             athleteId: "tommy-fleetwood"
@@ -6423,16 +6426,16 @@ export const athletes: Athlete[] = [
             name: "TAG Heuer Connected",
             price: 2150,
             currency: "€",
-            image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=400&fit=crop",
+            image: tommyTagheuerWatchImg,
             description: "Premium golf smartwatch from TAG Heuer.",
             category: "partner",
             athleteId: "tommy-fleetwood"
           }
         ],
         hotspots: {
-          "tf-gc1-p1": { x: 45, y: 35 },
-          "tf-gc1-p2": { x: 50, y: 15 },
-          "tf-gc1-p3": { x: 75, y: 55 }
+          "tf-gc1-p1": { x: 48, y: 52 },
+          "tf-gc1-p2": { x: 48, y: 12 },
+          "tf-gc1-p3": { x: 72, y: 68 }
         }
       },
       {
