@@ -40,6 +40,7 @@ import { RegistrationGate } from "@/components/auth/RegistrationGate";
 import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSection";
 import { ArthurDataHub } from "@/components/athletes/DataHub/ArthurDataHub";
 import { CassandreDataHub } from "@/components/athletes/DataHub/CassandreDataHub";
+import { PierreDataHub } from "@/components/athletes/DataHub/PierreDataHub";
 import { MatthieuTrainingSection } from "@/components/athletes/MatthieuTrainingSection";
 import { CassandreTrainingSection } from "@/components/athletes/CassandreTrainingSection";
 import { PierreTrainingSection } from "@/components/athletes/PierreTrainingSection";
@@ -702,7 +703,7 @@ const AthletePage = () => {
                   )}
                   Playlist
                 </Button>
-                {(isArthurCazaux || isCassandreBeaugrand) && (
+                {(isArthurCazaux || isCassandreBeaugrand || isPierreGasly) && (
                   <Button
                     variant={activeLifeTab === "datahub" ? "default" : "ghost"}
                     size="sm"
@@ -907,12 +908,15 @@ const AthletePage = () => {
                 )
               )}
 
-              {/* Data Hub - Arthur Cazaux & Cassandre Beaugrand */}
+              {/* Data Hub - Arthur Cazaux, Cassandre Beaugrand & Pierre Gasly */}
               {activeLifeTab === "datahub" && isArthurCazaux && (
                 <ArthurDataHub />
               )}
               {activeLifeTab === "datahub" && isCassandreBeaugrand && (
                 <CassandreDataHub />
+              )}
+              {activeLifeTab === "datahub" && isPierreGasly && (
+                <PierreDataHub />
               )}
 
             </TabsContent>
