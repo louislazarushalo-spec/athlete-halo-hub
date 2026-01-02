@@ -49,6 +49,12 @@ import cassandreTrainingSwim from "@/assets/cassandre-training-swim.jpg";
 import cassandreStrength from "@/assets/cassandre-strength.jpg";
 import cassandreMentalPrerace from "@/assets/cassandre-mental-prerace.jpg";
 
+// Tommy Fleetwood Images
+import tommyFitness1 from "@/assets/tommy-fitness-1.jpg";
+import tommyFitness2 from "@/assets/tommy-fitness-2.jpg";
+import tommyFitness3 from "@/assets/tommy-fitness-3.jpg";
+import tommyFitness4 from "@/assets/tommy-fitness-4.jpg";
+
 // ============================================
 // ARTHUR CAZAUX DATA
 // ============================================
@@ -1034,22 +1040,26 @@ export const tommyTrainingData: AthleteTrainingSectionData = {
         {
           id: "fitness-1",
           title: "Golf-Specific Mobility",
-          description: "My daily mobility routine to maintain full range of motion and prevent injury throughout the season."
+          description: "My daily mobility routine to maintain full range of motion and prevent injury throughout the season.",
+          image: tommyFitness1
         },
         {
           id: "fitness-2",
           title: "Rotational Power Training",
-          description: "The strength work that generates clubhead speed and distance off the tee."
+          description: "The strength work that generates clubhead speed and distance off the tee.",
+          image: tommyFitness2
         },
         {
           id: "fitness-3",
           title: "Walking Endurance Protocol",
-          description: "Building the stamina to stay sharp through 4 rounds of championship golf."
+          description: "Building the stamina to stay sharp through 4 rounds of championship golf.",
+          image: tommyFitness3
         },
         {
           id: "fitness-4",
           title: "Core Stability for Ball Striking",
-          description: "The foundation of consistent contact — core exercises for tour-level stability."
+          description: "The foundation of consistent contact — core exercises for tour-level stability.",
+          image: tommyFitness4
         }
       ]
     },
@@ -1062,22 +1072,26 @@ export const tommyTrainingData: AthleteTrainingSectionData = {
         {
           id: "skills-1",
           title: "Iron Play Precision",
-          description: "Master the art of consistent ball striking with my approach to iron play."
+          description: "Master the art of consistent ball striking with my approach to iron play.",
+          image: tommyFitness1
         },
         {
           id: "skills-2",
           title: "Short Game Secrets",
-          description: "Chipping, pitching, and bunker play techniques to lower your scores."
+          description: "Chipping, pitching, and bunker play techniques to lower your scores.",
+          image: tommyFitness2
         },
         {
           id: "skills-3",
           title: "Putting Masterclass",
-          description: "Read greens like a pro and develop a repeatable stroke."
+          description: "Read greens like a pro and develop a repeatable stroke.",
+          image: tommyFitness3
         },
         {
           id: "skills-4",
           title: "Driver Control",
-          description: "Finding fairways consistently with my approach to tee shots."
+          description: "Finding fairways consistently with my approach to tee shots.",
+          image: tommyFitness4
         }
       ]
     },
@@ -1090,22 +1104,26 @@ export const tommyTrainingData: AthleteTrainingSectionData = {
         {
           id: "nutrition-1",
           title: "Tournament Week Fuel",
-          description: "What I eat before, during, and after rounds to maintain focus and energy."
+          description: "What I eat before, during, and after rounds to maintain focus and energy.",
+          image: tommyFitness1
         },
         {
           id: "nutrition-2",
           title: "On-Course Nutrition",
-          description: "Managing energy levels during a 5-hour round with the right snacks and hydration."
+          description: "Managing energy levels during a 5-hour round with the right snacks and hydration.",
+          image: tommyFitness2
         },
         {
           id: "nutrition-3",
           title: "Travel & Jet Lag Recovery",
-          description: "How I manage nutrition across time zones and international tournaments."
+          description: "How I manage nutrition across time zones and international tournaments.",
+          image: tommyFitness3
         },
         {
           id: "nutrition-4",
           title: "Off-Season Recovery Eating",
-          description: "The nutrition approach I use during training blocks and rest periods."
+          description: "The nutrition approach I use during training blocks and rest periods.",
+          image: tommyFitness4
         }
       ]
     },
@@ -1118,22 +1136,26 @@ export const tommyTrainingData: AthleteTrainingSectionData = {
         {
           id: "mental-1",
           title: "Pre-Round Focus Routine",
-          description: "What I do on the range and practice green to lock in mentally before teeing off."
+          description: "What I do on the range and practice green to lock in mentally before teeing off.",
+          image: tommyFitness1
         },
         {
           id: "mental-2",
           title: "Managing Major Championship Pressure",
-          description: "How I stay calm and execute on the biggest stages in golf."
+          description: "How I stay calm and execute on the biggest stages in golf.",
+          image: tommyFitness2
         },
         {
           id: "mental-3",
           title: "Bouncing Back from Bad Holes",
-          description: "The mental reset techniques I use after bogeys or worse to stay in the round."
+          description: "The mental reset techniques I use after bogeys or worse to stay in the round.",
+          image: tommyFitness3
         },
         {
           id: "mental-4",
           title: "Course Management Mindset",
-          description: "Strategic thinking and decision-making under competitive pressure."
+          description: "Strategic thinking and decision-making under competitive pressure.",
+          image: tommyFitness4
         }
       ]
     }
