@@ -54,6 +54,18 @@ import tommyFitness1 from "@/assets/tommy-fitness-1.jpg";
 import tommyFitness2 from "@/assets/tommy-fitness-2.jpg";
 import tommyFitness3 from "@/assets/tommy-fitness-3.jpg";
 import tommyFitness4 from "@/assets/tommy-fitness-4.jpg";
+import tommySkills1 from "@/assets/tommy-skills-1.jpg";
+import tommySkills2 from "@/assets/tommy-skills-2.jpg";
+import tommySkills3 from "@/assets/tommy-skills-3.jpg";
+import tommySkills4 from "@/assets/tommy-skills-4.jpg";
+import tommyNutrition1 from "@/assets/tommy-nutrition-1.jpg";
+import tommyNutrition2 from "@/assets/tommy-nutrition-2.jpg";
+import tommyNutrition3 from "@/assets/tommy-nutrition-3.jpg";
+import tommyNutrition4 from "@/assets/tommy-nutrition-4.jpg";
+import tommyMental1 from "@/assets/tommy-mental-1.jpg";
+import tommyMental2 from "@/assets/tommy-mental-2.jpg";
+import tommyMental3 from "@/assets/tommy-mental-3.jpg";
+import tommyMental4 from "@/assets/tommy-mental-4.jpg";
 
 // ============================================
 // ARTHUR CAZAUX DATA
@@ -1073,25 +1085,25 @@ export const tommyTrainingData: AthleteTrainingSectionData = {
           id: "skills-1",
           title: "Iron Play Precision",
           description: "Master the art of consistent ball striking with my approach to iron play.",
-          image: tommyFitness1
+          image: tommySkills1
         },
         {
           id: "skills-2",
           title: "Short Game Secrets",
           description: "Chipping, pitching, and bunker play techniques to lower your scores.",
-          image: tommyFitness2
+          image: tommySkills2
         },
         {
           id: "skills-3",
           title: "Putting Masterclass",
           description: "Read greens like a pro and develop a repeatable stroke.",
-          image: tommyFitness3
+          image: tommySkills3
         },
         {
           id: "skills-4",
           title: "Driver Control",
           description: "Finding fairways consistently with my approach to tee shots.",
-          image: tommyFitness4
+          image: tommySkills4
         }
       ]
     },
@@ -1105,25 +1117,25 @@ export const tommyTrainingData: AthleteTrainingSectionData = {
           id: "nutrition-1",
           title: "Tournament Week Fuel",
           description: "What I eat before, during, and after rounds to maintain focus and energy.",
-          image: tommyFitness1
+          image: tommyNutrition1
         },
         {
           id: "nutrition-2",
           title: "On-Course Nutrition",
           description: "Managing energy levels during a 5-hour round with the right snacks and hydration.",
-          image: tommyFitness2
+          image: tommyNutrition2
         },
         {
           id: "nutrition-3",
           title: "Travel & Jet Lag Recovery",
           description: "How I manage nutrition across time zones and international tournaments.",
-          image: tommyFitness3
+          image: tommyNutrition3
         },
         {
           id: "nutrition-4",
           title: "Off-Season Recovery Eating",
           description: "The nutrition approach I use during training blocks and rest periods.",
-          image: tommyFitness4
+          image: tommyNutrition4
         }
       ]
     },
@@ -1137,25 +1149,25 @@ export const tommyTrainingData: AthleteTrainingSectionData = {
           id: "mental-1",
           title: "Pre-Round Focus Routine",
           description: "What I do on the range and practice green to lock in mentally before teeing off.",
-          image: tommyFitness1
+          image: tommyMental1
         },
         {
           id: "mental-2",
           title: "Managing Major Championship Pressure",
           description: "How I stay calm and execute on the biggest stages in golf.",
-          image: tommyFitness2
+          image: tommyMental2
         },
         {
           id: "mental-3",
           title: "Bouncing Back from Bad Holes",
           description: "The mental reset techniques I use after bogeys or worse to stay in the round.",
-          image: tommyFitness3
+          image: tommyMental3
         },
         {
           id: "mental-4",
           title: "Course Management Mindset",
           description: "Strategic thinking and decision-making under competitive pressure.",
-          image: tommyFitness4
+          image: tommyMental4
         }
       ]
     }
