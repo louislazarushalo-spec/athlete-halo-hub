@@ -75,6 +75,15 @@ import sponsorNike from "@/assets/sponsor-nike.png";
 import sponsorTaylormade from "@/assets/sponsor-taylormade.png";
 import sponsorTagheuer from "@/assets/sponsor-tagheuer.png";
 
+// Sponsor logos for Pierre Gasly
+import sponsorGivenchy from "@/assets/sponsor-givenchy.jpeg";
+import sponsorAix from "@/assets/sponsor-aix.jpeg";
+import sponsorHawkers from "@/assets/sponsor-hawkers.jpeg";
+import sponsorIntegraconnect from "@/assets/sponsor-integraconnect.jpeg";
+import sponsorMoser from "@/assets/sponsor-moser.jpeg";
+import sponsorReebok from "@/assets/sponsor-reebok.jpeg";
+import sponsorSonic from "@/assets/sponsor-sonic.jpeg";
+
 // Helper functions for formatting
 const formatNumber = (num: number): string => {
   if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
@@ -536,6 +545,17 @@ const AthletePage = () => {
                           <img src={sponsorNike} alt="Nike" className="h-4 sm:h-7 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                           <img src={sponsorTaylormade} alt="TaylorMade" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                           <img src={sponsorTagheuer} alt="TAG Heuer" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                        </>
+                      )}
+                      {isPierreGasly && (
+                        <>
+                          <img src={sponsorReebok} alt="Reebok" className="h-4 sm:h-7 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorGivenchy} alt="Givenchy" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorMoser} alt="H. Moser & Cie" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorHawkers} alt="Hawkers" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorAix} alt="AIX Investissement" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorIntegraconnect} alt="IntegraConnect" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorSonic} alt="Sonic" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
                       )}
                     </div>
