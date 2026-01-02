@@ -58,14 +58,14 @@ export const AthleteTrainingSection = ({ data }: AthleteTrainingSectionProps) =>
             variant={activeCategory === category.id ? "default" : "ghost"}
             size="sm"
             onClick={() => setActiveCategory(category.id)}
-            className={`flex items-center gap-1 sm:gap-2 shrink-0 h-8 sm:h-9 text-xs sm:text-sm px-2.5 sm:px-3 ${
+            className={`flex items-center gap-1.5 sm:gap-2 shrink-0 h-8 sm:h-9 text-xs sm:text-sm px-2.5 sm:px-3 ${
               activeCategory === category.id 
                 ? "bg-primary text-primary-foreground" 
                 : "text-muted-foreground hover:text-foreground"
             }`}
           >
             {category.icon}
-            <span className="hidden xs:inline">{category.title}</span>
+            <span className="hidden md:inline">{category.title}</span>
           </Button>
         ))}
       </div>
