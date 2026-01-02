@@ -14,12 +14,24 @@ import fitness2 from "@/assets/tommy-fitness-2.jpg";
 import fitness3 from "@/assets/tommy-fitness-3.jpg";
 import fitness4 from "@/assets/tommy-fitness-4.jpg";
 
-// Program image mapping
+// Program image mapping - using fitness images for all categories for now
 const programImages: Record<string, string> = {
   "fitness-1": fitness1,
   "fitness-2": fitness2,
   "fitness-3": fitness3,
   "fitness-4": fitness4,
+  "skills-1": fitness1,
+  "skills-2": fitness2,
+  "skills-3": fitness3,
+  "skills-4": fitness4,
+  "nutrition-1": fitness1,
+  "nutrition-2": fitness2,
+  "nutrition-3": fitness3,
+  "nutrition-4": fitness4,
+  "mental-1": fitness1,
+  "mental-2": fitness2,
+  "mental-3": fitness3,
+  "mental-4": fitness4,
 };
 
 interface Exercise {
@@ -50,7 +62,262 @@ interface ProgramData {
 }
 
 const programsData: Record<string, ProgramData> = {
+  // ============================================
+  // FITNESS PROGRAMS
+  // ============================================
   "fitness-1": {
+    title: "Golf-Specific Mobility",
+    description: "A 4-week mobility program designed to maintain full range of motion and prevent injury throughout the season. The foundation for a pain-free, powerful golf swing.",
+    category: "Fitness Program",
+    stats: {
+      duration: "20–30 min per session",
+      exercises: "8–10",
+      length: "4 weeks"
+    },
+    equipment: ["Foam roller", "Resistance bands", "Yoga mat", "Lacrosse ball"],
+    targetAreas: ["Hip mobility", "Thoracic rotation", "Shoulder flexibility", "Ankle mobility"],
+    weeks: [
+      {
+        number: 1,
+        title: "Foundation Mobility",
+        focus: "Establishing baseline flexibility and movement patterns",
+        exercises: [
+          { name: "Foam Roll Full Body", equipment: "Foam roller", thumbnail: "🧘" },
+          { name: "Hip 90/90 Stretches", equipment: "Yoga mat", thumbnail: "🦵" },
+          { name: "Thoracic Spine Rotations", equipment: "Foam roller", thumbnail: "🔄" },
+          { name: "Shoulder Circles & Stretches", equipment: "Bands", thumbnail: "💫" },
+          { name: "Ankle Mobility Drills", equipment: "Yoga mat", thumbnail: "👟" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Golf-Specific Patterns",
+        focus: "Mobility patterns that mirror the golf swing",
+        exercises: [
+          { name: "Backswing Hip Loading", equipment: "Bands", thumbnail: "⛳" },
+          { name: "Follow-Through Stretch", equipment: "Yoga mat", thumbnail: "🏌️" },
+          { name: "Address Position Holds", equipment: "Yoga mat", thumbnail: "🎯" },
+          { name: "Wrist & Forearm Mobility", equipment: "Lacrosse ball", thumbnail: "✋" },
+          { name: "Spinal Wave Movements", equipment: "Yoga mat", thumbnail: "🐍" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Dynamic Flexibility",
+        focus: "Active mobility and controlled movements",
+        exercises: [
+          { name: "World's Greatest Stretch", equipment: "Yoga mat", thumbnail: "🌍" },
+          { name: "Leg Swings & Circles", equipment: "Bodyweight", thumbnail: "🔄" },
+          { name: "Arm Circles & Shoulder Flow", equipment: "Bodyweight", thumbnail: "💫" },
+          { name: "Rotation with Resistance", equipment: "Bands", thumbnail: "⚡" },
+          { name: "Active Hip Openers", equipment: "Yoga mat", thumbnail: "🦵" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Pre-Round Integration",
+        focus: "Complete warm-up routine for tournament golf",
+        exercises: [
+          { name: "5-Minute Wake-Up Flow", equipment: "Yoga mat", thumbnail: "☀️" },
+          { name: "Range Warm-Up Sequence", equipment: "Bodyweight", thumbnail: "🏌️" },
+          { name: "First Tee Prep Routine", equipment: "Bodyweight", thumbnail: "⛳" },
+          { name: "Between-Holes Stretches", equipment: "Bodyweight", thumbnail: "🔄" },
+          { name: "Post-Round Recovery", equipment: "Foam roller", thumbnail: "😴" }
+        ]
+      }
+    ]
+  },
+  "fitness-2": {
+    title: "Rotational Power Training",
+    description: "A 4-week strength program designed to generate clubhead speed and distance off the tee. Build the explosive rotational power that separates tour players from amateurs.",
+    category: "Fitness Program",
+    stats: {
+      duration: "45–60 min per session",
+      exercises: "6–8",
+      length: "4 weeks"
+    },
+    equipment: ["Dumbbells", "Medicine ball", "Resistance bands", "Cable machine"],
+    targetAreas: ["Core rotation", "Hip power", "Shoulder stability", "Glute activation"],
+    weeks: [
+      {
+        number: 1,
+        title: "Core Activation & Stability",
+        focus: "Building foundational core strength and rotation patterns",
+        exercises: [
+          { name: "Dead Bug with Rotation", equipment: "Bodyweight", thumbnail: "🏋️" },
+          { name: "Pallof Press Hold", equipment: "Bands", thumbnail: "💪" },
+          { name: "Medicine Ball Side Throw", equipment: "Medicine ball", thumbnail: "🎾" },
+          { name: "Bird Dog with Reach", equipment: "Bodyweight", thumbnail: "🧘" },
+          { name: "Rotational Plank", equipment: "Bodyweight", thumbnail: "🔥" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Power Development",
+        focus: "Increasing resistance and movement velocity",
+        exercises: [
+          { name: "Rotational Band Pull", equipment: "Bands", thumbnail: "💪" },
+          { name: "Weighted Russian Twist", equipment: "Dumbbells", thumbnail: "🏋️" },
+          { name: "Medicine Ball Slam (Rotational)", equipment: "Medicine ball", thumbnail: "💥" },
+          { name: "Landmine Rotation Press", equipment: "Barbell", thumbnail: "⚡" },
+          { name: "Cable Woodchop", equipment: "Cable machine", thumbnail: "⛳" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Explosive Rotational Power",
+        focus: "Maximum power output for swing speed",
+        exercises: [
+          { name: "Rotational Box Jump", equipment: "Plyo box", thumbnail: "🚀" },
+          { name: "Medicine Ball Shotput Throw", equipment: "Medicine ball", thumbnail: "💪" },
+          { name: "Explosive Cable Rotation", equipment: "Cable machine", thumbnail: "⚡" },
+          { name: "Jumping Lunge with Twist", equipment: "Bodyweight", thumbnail: "🔥" },
+          { name: "Speed Rotational Slams", equipment: "Medicine ball", thumbnail: "💥" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Golf-Specific Integration",
+        focus: "Translating power to the golf swing",
+        exercises: [
+          { name: "Backswing Power Rotation", equipment: "Bands", thumbnail: "🏌️" },
+          { name: "Downswing Explosive Pull", equipment: "Cable machine", thumbnail: "⛳" },
+          { name: "Split-Stance Rotational Throw", equipment: "Medicine ball", thumbnail: "💪" },
+          { name: "Address to Impact Simulation", equipment: "Bands", thumbnail: "⚡" },
+          { name: "Full Swing Power Sequence", equipment: "Medicine ball", thumbnail: "🏆" }
+        ]
+      }
+    ]
+  },
+  "fitness-3": {
+    title: "Walking Endurance Protocol",
+    description: "A 4-week program designed to build the stamina to stay sharp through 4 rounds of championship golf. Walking 18 holes is more demanding than most realize.",
+    category: "Fitness Program",
+    stats: {
+      duration: "45–90 min per session",
+      exercises: "5–7",
+      length: "4 weeks"
+    },
+    equipment: ["Walking shoes", "Heart rate monitor", "Resistance bands"],
+    targetAreas: ["Cardiovascular endurance", "Leg stamina", "Mental focus", "Energy management"],
+    weeks: [
+      {
+        number: 1,
+        title: "Aerobic Base Building",
+        focus: "Establishing cardiovascular foundation",
+        exercises: [
+          { name: "Continuous Walking (45 min)", equipment: "Walking shoes", thumbnail: "🚶" },
+          { name: "Light Interval Walking", equipment: "Walking shoes", thumbnail: "⚡" },
+          { name: "Hill Walking Introduction", equipment: "Walking shoes", thumbnail: "⛰️" },
+          { name: "Breathing Control Practice", equipment: "Bodyweight", thumbnail: "🧘" },
+          { name: "Active Recovery Walks", equipment: "Walking shoes", thumbnail: "🔄" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Course Simulation",
+        focus: "Mimicking tournament walking demands",
+        exercises: [
+          { name: "18-Hole Distance Walk", equipment: "Walking shoes", thumbnail: "⛳" },
+          { name: "Variable Terrain Training", equipment: "Walking shoes", thumbnail: "🏔️" },
+          { name: "Walk-Stop-Walk Intervals", equipment: "Walking shoes", thumbnail: "⏱️" },
+          { name: "Carry Bag Simulation", equipment: "Weighted pack", thumbnail: "🎒" },
+          { name: "Focus During Fatigue", equipment: "Mental", thumbnail: "🧠" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Leg Strength Endurance",
+        focus: "Building leg stamina for walking",
+        exercises: [
+          { name: "Walking Lunges", equipment: "Bodyweight", thumbnail: "🦵" },
+          { name: "Step-Up Endurance", equipment: "Step", thumbnail: "📈" },
+          { name: "Calf Raises (High Rep)", equipment: "Bodyweight", thumbnail: "👟" },
+          { name: "Single-Leg Balance Work", equipment: "Bodyweight", thumbnail: "⚖️" },
+          { name: "Extended Uphill Walking", equipment: "Walking shoes", thumbnail: "⛰️" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Tournament Simulation",
+        focus: "Race-day readiness for 4-day events",
+        exercises: [
+          { name: "Back-to-Back Long Walks", equipment: "Walking shoes", thumbnail: "🏆" },
+          { name: "Early Morning Sessions", equipment: "Walking shoes", thumbnail: "☀️" },
+          { name: "Mental Sharpness Under Fatigue", equipment: "Mental", thumbnail: "🧠" },
+          { name: "Recovery Between Rounds", equipment: "Foam roller", thumbnail: "🔄" },
+          { name: "Championship Week Simulation", equipment: "Full gear", thumbnail: "🏅" }
+        ]
+      }
+    ]
+  },
+  "fitness-4": {
+    title: "Core Stability for Ball Striking",
+    description: "A 4-week program focused on the core stability that underpins consistent contact. The foundation of repeatable, powerful ball striking.",
+    category: "Fitness Program",
+    stats: {
+      duration: "30–45 min per session",
+      exercises: "6–8",
+      length: "4 weeks"
+    },
+    equipment: ["Yoga mat", "Stability ball", "Resistance bands", "Medicine ball"],
+    targetAreas: ["Core stability", "Anti-rotation", "Balance", "Posture"],
+    weeks: [
+      {
+        number: 1,
+        title: "Foundation Stability",
+        focus: "Building baseline core control",
+        exercises: [
+          { name: "Dead Bug Progressions", equipment: "Yoga mat", thumbnail: "🐛" },
+          { name: "Plank Variations", equipment: "Yoga mat", thumbnail: "💪" },
+          { name: "Bird Dog Holds", equipment: "Yoga mat", thumbnail: "🐕" },
+          { name: "Glute Bridge Series", equipment: "Yoga mat", thumbnail: "🍑" },
+          { name: "Hollow Body Holds", equipment: "Yoga mat", thumbnail: "🧘" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Anti-Rotation Training",
+        focus: "Resisting rotation for swing control",
+        exercises: [
+          { name: "Pallof Press (All Directions)", equipment: "Bands", thumbnail: "⚡" },
+          { name: "Single-Arm Farmer Carry", equipment: "Dumbbell", thumbnail: "🏋️" },
+          { name: "Side Plank with Reach", equipment: "Yoga mat", thumbnail: "➡️" },
+          { name: "Anti-Rotation Chops", equipment: "Cable/Bands", thumbnail: "🔄" },
+          { name: "Stir the Pot", equipment: "Stability ball", thumbnail: "🥣" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Dynamic Core Control",
+        focus: "Maintaining stability during movement",
+        exercises: [
+          { name: "Cable Rotation Holds", equipment: "Cable machine", thumbnail: "💪" },
+          { name: "Medicine Ball Circles", equipment: "Medicine ball", thumbnail: "⭕" },
+          { name: "Stability Ball Pike", equipment: "Stability ball", thumbnail: "🎯" },
+          { name: "Turkish Get-Up (Light)", equipment: "Kettlebell", thumbnail: "🏋️" },
+          { name: "Bear Crawl Patterns", equipment: "Bodyweight", thumbnail: "🐻" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Swing Integration",
+        focus: "Core stability in golf-specific positions",
+        exercises: [
+          { name: "Address Position Core Holds", equipment: "Bands", thumbnail: "⛳" },
+          { name: "Backswing Stability Drill", equipment: "Bands", thumbnail: "🏌️" },
+          { name: "Impact Position Holds", equipment: "Bands", thumbnail: "💥" },
+          { name: "Balance Board Swings", equipment: "Balance board", thumbnail: "⚖️" },
+          { name: "Full Swing with Band Resistance", equipment: "Bands", thumbnail: "🏆" }
+        ]
+      }
+    ]
+  },
+
+  // ============================================
+  // SKILLS PROGRAMS
+  // ============================================
+  "skills-1": {
     title: "Iron Play Precision",
     description: "A 4-week program designed to develop the consistency, timing, and technique needed for tour-level iron shots. Build the ball-striking foundation that allows you to attack pins and control trajectory.",
     category: "Skills Program",
@@ -115,7 +382,7 @@ const programsData: Record<string, ProgramData> = {
       }
     ]
   },
-  "fitness-2": {
+  "skills-2": {
     title: "Short Game Secrets",
     description: "A 4-week deep dive into chipping, pitching, and bunker play. Learn the techniques I use to get up and down from anywhere and save strokes around the green.",
     category: "Skills Program",
@@ -180,7 +447,7 @@ const programsData: Record<string, ProgramData> = {
       }
     ]
   },
-  "fitness-3": {
+  "skills-3": {
     title: "Putting Masterclass",
     description: "A 4-week program to transform your putting. Learn to read greens, develop a repeatable stroke, and drain more putts under pressure. The fastest way to lower your scores.",
     category: "Skills Program",
@@ -245,64 +512,568 @@ const programsData: Record<string, ProgramData> = {
       }
     ]
   },
-  "fitness-4": {
-    title: "Course Management",
-    description: "A 4-week strategic program focused on smart decision-making, shot selection, and mental approach. Learn to play smarter golf and shoot lower scores without changing your swing.",
-    category: "Mental Program",
+  "skills-4": {
+    title: "Driver Control",
+    description: "A 4-week program focused on finding fairways consistently. Master the techniques for reliable tee shots that set up scoring opportunities.",
+    category: "Skills Program",
     stats: {
-      duration: "On-course & analysis sessions",
-      exercises: "5–7 concepts",
+      duration: "60–75 min per session",
+      exercises: "5–6",
       length: "4 weeks"
     },
-    equipment: ["Full bag", "Course access", "Notebook", "Shot tracking app"],
-    targetAreas: ["Decision making", "Risk assessment", "Mental approach", "Score management"],
+    equipment: ["Driver", "3-wood", "Range balls", "Alignment sticks", "Launch monitor (optional)"],
+    targetAreas: ["Accuracy", "Consistency", "Shot shaping", "Course management"],
     weeks: [
       {
         number: 1,
-        title: "Tee Shot Strategy",
-        focus: "Making smart decisions off the tee",
+        title: "Fundamentals & Setup",
+        focus: "Building a reliable driver setup",
         exercises: [
-          { name: "Target Zone Mapping", equipment: "Notebook", thumbnail: "🗺️" },
-          { name: "Miss Pattern Analysis", equipment: "Shot tracker", thumbnail: "📊" },
-          { name: "Driver vs. Iron Decision Framework", equipment: "Full bag", thumbnail: "🤔" },
-          { name: "Penalty Avoidance Planning", equipment: "Course map", thumbnail: "⚠️" },
-          { name: "Angle of Attack Selection", equipment: "Full bag", thumbnail: "📐" }
+          { name: "Tee Height Optimization", equipment: "Driver", thumbnail: "⛳" },
+          { name: "Ball Position Mapping", equipment: "Alignment sticks", thumbnail: "🎯" },
+          { name: "Stance Width & Alignment", equipment: "Alignment sticks", thumbnail: "📐" },
+          { name: "Grip Pressure Control", equipment: "Driver", thumbnail: "✋" },
+          { name: "Pre-Shot Routine Development", equipment: "Driver", thumbnail: "🧠" }
         ]
       },
       {
         number: 2,
-        title: "Approach Shot Selection",
-        focus: "Attacking pins wisely and managing misses",
+        title: "Contact & Launch",
+        focus: "Optimizing strike location and launch conditions",
         exercises: [
-          { name: "Pin Position Assessment", equipment: "Course", thumbnail: "🎯" },
-          { name: "Miss Side Selection", equipment: "Yardage book", thumbnail: "↔️" },
-          { name: "Yardage Verification Habits", equipment: "Rangefinder", thumbnail: "📏" },
-          { name: "Elevation & Wind Adjustments", equipment: "Notebook", thumbnail: "💨" },
-          { name: "Safe Zone Targeting", equipment: "Course", thumbnail: "✅" }
+          { name: "Center-Face Contact Drills", equipment: "Impact tape", thumbnail: "🎯" },
+          { name: "Launch Angle Awareness", equipment: "Driver", thumbnail: "📈" },
+          { name: "Swing Path Control", equipment: "Alignment sticks", thumbnail: "↗️" },
+          { name: "Tempo & Timing Work", equipment: "Driver", thumbnail: "🎵" },
+          { name: "3-Wood Consistency", equipment: "3-wood", thumbnail: "🏌️" }
         ]
       },
       {
         number: 3,
-        title: "Scoring Situations",
-        focus: "Maximizing opportunities and minimizing damage",
+        title: "Shot Shaping",
+        focus: "Controlling ball flight for any situation",
         exercises: [
-          { name: "Par-5 Strategy Optimization", equipment: "Course", thumbnail: "🦅" },
-          { name: "Short Par-4 Attack Plans", equipment: "Full bag", thumbnail: "⚡" },
-          { name: "Bogey Avoidance Mindset", equipment: "Mental", thumbnail: "🧠" },
-          { name: "Up & Down Conversion Focus", equipment: "Short game", thumbnail: "💪" },
-          { name: "Birdie Hole Identification", equipment: "Course analysis", thumbnail: "🔥" }
+          { name: "Stock Fade Development", equipment: "Driver", thumbnail: "↗️" },
+          { name: "Stock Draw Development", equipment: "Driver", thumbnail: "↖️" },
+          { name: "Low Stinger Practice", equipment: "3-wood", thumbnail: "⬇️" },
+          { name: "High Bomb for Soft Landing", equipment: "Driver", thumbnail: "⬆️" },
+          { name: "Wind Strategy Shots", equipment: "Driver", thumbnail: "💨" }
         ]
       },
       {
         number: 4,
-        title: "Competitive Mindset",
-        focus: "Managing pressure and making clutch decisions",
+        title: "Course Strategy",
+        focus: "Smart tee shot decisions for scoring",
         exercises: [
-          { name: "First Tee Nerves Management", equipment: "Mental", thumbnail: "😤" },
-          { name: "Recovery Shot Mentality", equipment: "Course", thumbnail: "🔄" },
-          { name: "Closing Holes Strategy", equipment: "Full bag", thumbnail: "🏁" },
-          { name: "Score Awareness Balance", equipment: "Mental", thumbnail: "⚖️" },
-          { name: "Post-Round Analysis Routine", equipment: "Notebook", thumbnail: "📝" }
+          { name: "Target Selection Practice", equipment: "Driver", thumbnail: "🎯" },
+          { name: "Miss Pattern Management", equipment: "Driver", thumbnail: "📊" },
+          { name: "Pressure Tee Shots", equipment: "Driver", thumbnail: "💪" },
+          { name: "First Tee Execution", equipment: "Driver", thumbnail: "1️⃣" },
+          { name: "18-Hole Strategy Session", equipment: "Full bag", thumbnail: "🏆" }
+        ]
+      }
+    ]
+  },
+
+  // ============================================
+  // NUTRITION PROGRAMS
+  // ============================================
+  "nutrition-1": {
+    title: "Tournament Week Fuel",
+    description: "A complete guide to what I eat before, during, and after rounds to maintain focus and energy. Optimize your nutrition for peak performance on competition days.",
+    category: "Nutrition Program",
+    stats: {
+      duration: "Full day plan",
+      exercises: "5 meal windows",
+      length: "Ongoing"
+    },
+    equipment: ["Kitchen access", "Meal prep containers", "Hydration bottles"],
+    targetAreas: ["Pre-round energy", "On-course fueling", "Post-round recovery", "Hydration"],
+    weeks: [
+      {
+        number: 1,
+        title: "Pre-Round Nutrition",
+        focus: "Fueling 2-3 hours before tee time",
+        exercises: [
+          { name: "Tournament Breakfast Options", equipment: "Kitchen", thumbnail: "🥣" },
+          { name: "Timing Your Last Meal", equipment: "Clock", thumbnail: "⏰" },
+          { name: "Hydration Start Protocol", equipment: "Water bottle", thumbnail: "💧" },
+          { name: "Pre-Round Snack Options", equipment: "Kitchen", thumbnail: "🍌" },
+          { name: "Avoiding Digestive Issues", equipment: "Kitchen", thumbnail: "✅" }
+        ]
+      },
+      {
+        number: 2,
+        title: "On-Course Nutrition",
+        focus: "Maintaining energy through 18 holes",
+        exercises: [
+          { name: "Portable Snack Selection", equipment: "Golf bag", thumbnail: "🥪" },
+          { name: "Timing Energy Intake", equipment: "Course", thumbnail: "⏱️" },
+          { name: "Blood Sugar Management", equipment: "Snacks", thumbnail: "📈" },
+          { name: "Hydration During Play", equipment: "Bottles", thumbnail: "💧" },
+          { name: "Avoiding Energy Crashes", equipment: "Planning", thumbnail: "⚡" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Post-Round Recovery",
+        focus: "Refueling for the next day",
+        exercises: [
+          { name: "Immediate Post-Round Snack", equipment: "Clubhouse", thumbnail: "🍎" },
+          { name: "Recovery Meal Planning", equipment: "Kitchen", thumbnail: "🍽️" },
+          { name: "Protein for Muscle Recovery", equipment: "Kitchen", thumbnail: "🥩" },
+          { name: "Anti-Inflammatory Foods", equipment: "Kitchen", thumbnail: "🥗" },
+          { name: "Sleep-Promoting Evening Meal", equipment: "Kitchen", thumbnail: "😴" }
+        ]
+      },
+      {
+        number: 4,
+        title: "4-Day Event Planning",
+        focus: "Nutrition strategy for major championships",
+        exercises: [
+          { name: "Weekly Meal Prep", equipment: "Kitchen", thumbnail: "📋" },
+          { name: "Hotel Room Solutions", equipment: "Portable items", thumbnail: "🏨" },
+          { name: "Restaurant Strategy", equipment: "Menu knowledge", thumbnail: "🍽️" },
+          { name: "Energy Management Day-to-Day", equipment: "Planning", thumbnail: "📊" },
+          { name: "Championship Sunday Fuel", equipment: "Full prep", thumbnail: "🏆" }
+        ]
+      }
+    ]
+  },
+  "nutrition-2": {
+    title: "On-Course Nutrition",
+    description: "Managing energy levels during a 5-hour round with the right snacks and hydration. The difference between fading on the back nine and finishing strong.",
+    category: "Nutrition Program",
+    stats: {
+      duration: "During round",
+      exercises: "5–6 checkpoints",
+      length: "Every round"
+    },
+    equipment: ["Golf bag cooler", "Water bottles", "Portable snacks"],
+    targetAreas: ["Sustained energy", "Mental focus", "Hydration", "Blood sugar stability"],
+    weeks: [
+      {
+        number: 1,
+        title: "Understanding Energy Needs",
+        focus: "How golf depletes your body",
+        exercises: [
+          { name: "Calorie Expenditure Awareness", equipment: "Knowledge", thumbnail: "🔥" },
+          { name: "Mental Energy Demands", equipment: "Knowledge", thumbnail: "🧠" },
+          { name: "Weather Impact on Needs", equipment: "Knowledge", thumbnail: "☀️" },
+          { name: "Personal Energy Mapping", equipment: "Journal", thumbnail: "📓" },
+          { name: "Identifying Your Weak Holes", equipment: "Analysis", thumbnail: "📊" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Snack Selection",
+        focus: "Choosing the right on-course foods",
+        exercises: [
+          { name: "Complex Carb Options", equipment: "Snacks", thumbnail: "🥖" },
+          { name: "Protein-Rich Portables", equipment: "Snacks", thumbnail: "🥜" },
+          { name: "Quick Energy Foods", equipment: "Snacks", thumbnail: "🍌" },
+          { name: "Avoiding Heavy Foods", equipment: "Knowledge", thumbnail: "❌" },
+          { name: "Building Your Bag Kit", equipment: "Golf bag", thumbnail: "🎒" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Timing & Strategy",
+        focus: "When to eat and drink",
+        exercises: [
+          { name: "Every 3-Hole Check-In", equipment: "Watch", thumbnail: "⏰" },
+          { name: "Par-5 Fueling Opportunities", equipment: "Course", thumbnail: "⛳" },
+          { name: "Turn Hydration Boost", equipment: "Clubhouse", thumbnail: "💧" },
+          { name: "Back Nine Energy Protocol", equipment: "Snacks", thumbnail: "📈" },
+          { name: "Clutch Hole Preparation", equipment: "Planning", thumbnail: "💪" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Hydration Mastery",
+        focus: "Staying properly hydrated throughout",
+        exercises: [
+          { name: "Pre-Round Hydration Loading", equipment: "Bottles", thumbnail: "💧" },
+          { name: "Electrolyte Balance", equipment: "Sports drinks", thumbnail: "⚡" },
+          { name: "Weather-Adjusted Intake", equipment: "Planning", thumbnail: "☀️" },
+          { name: "Avoiding Over-Hydration", equipment: "Knowledge", thumbnail: "⚖️" },
+          { name: "Signs of Dehydration", equipment: "Awareness", thumbnail: "⚠️" }
+        ]
+      }
+    ]
+  },
+  "nutrition-3": {
+    title: "Travel & Jet Lag Recovery",
+    description: "How I manage nutrition across time zones and international tournaments. Essential for any golfer competing on a global schedule.",
+    category: "Nutrition Program",
+    stats: {
+      duration: "Travel days",
+      exercises: "5 strategies",
+      length: "Ongoing"
+    },
+    equipment: ["Portable snacks", "Water bottle", "Supplements"],
+    targetAreas: ["Jet lag management", "Digestive health", "Energy consistency", "Sleep quality"],
+    weeks: [
+      {
+        number: 1,
+        title: "Pre-Travel Preparation",
+        focus: "Setting up for success before you leave",
+        exercises: [
+          { name: "Adjusting Sleep Schedule", equipment: "Planning", thumbnail: "😴" },
+          { name: "Packing Healthy Snacks", equipment: "Snacks", thumbnail: "🎒" },
+          { name: "Hydration Pre-Loading", equipment: "Bottles", thumbnail: "💧" },
+          { name: "Researching Destination Food", equipment: "Research", thumbnail: "🔍" },
+          { name: "Supplement Preparation", equipment: "Supplements", thumbnail: "💊" }
+        ]
+      },
+      {
+        number: 2,
+        title: "In-Flight Nutrition",
+        focus: "Eating and drinking on long flights",
+        exercises: [
+          { name: "Avoiding Airline Food Traps", equipment: "Knowledge", thumbnail: "❌" },
+          { name: "Healthy Carry-On Snacks", equipment: "Snacks", thumbnail: "🥜" },
+          { name: "Hydration During Flight", equipment: "Bottles", thumbnail: "💧" },
+          { name: "Caffeine & Alcohol Strategy", equipment: "Planning", thumbnail: "☕" },
+          { name: "Movement & Digestion", equipment: "Bodyweight", thumbnail: "🚶" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Arrival Adaptation",
+        focus: "First 48 hours in a new timezone",
+        exercises: [
+          { name: "Meal Timing Adjustment", equipment: "Clock", thumbnail: "⏰" },
+          { name: "Light Exposure & Eating", equipment: "Sunlight", thumbnail: "☀️" },
+          { name: "Local Food Selection", equipment: "Restaurants", thumbnail: "🍽️" },
+          { name: "Digestive Reset Protocol", equipment: "Kitchen", thumbnail: "🥗" },
+          { name: "Sleep Support Foods", equipment: "Kitchen", thumbnail: "😴" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Maintaining Performance",
+        focus: "Staying sharp across multiple time zones",
+        exercises: [
+          { name: "Consistent Eating Windows", equipment: "Planning", thumbnail: "📅" },
+          { name: "Energy-Boosting Meals", equipment: "Kitchen", thumbnail: "⚡" },
+          { name: "Avoiding GI Issues Abroad", equipment: "Knowledge", thumbnail: "✅" },
+          { name: "Return Travel Preparation", equipment: "Planning", thumbnail: "✈️" },
+          { name: "Long-Term Schedule Management", equipment: "Calendar", thumbnail: "📆" }
+        ]
+      }
+    ]
+  },
+  "nutrition-4": {
+    title: "Off-Season Recovery Eating",
+    description: "The nutrition approach I use during training blocks and rest periods. Building strength, allowing recovery, and preparing for the next season.",
+    category: "Nutrition Program",
+    stats: {
+      duration: "Off-season",
+      exercises: "5 focus areas",
+      length: "8–12 weeks"
+    },
+    equipment: ["Kitchen access", "Meal prep containers", "Scale"],
+    targetAreas: ["Muscle building", "Recovery", "Body composition", "Energy balance"],
+    weeks: [
+      {
+        number: 1,
+        title: "Recovery Phase Nutrition",
+        focus: "Allowing your body to recover from the season",
+        exercises: [
+          { name: "Calorie Adjustment", equipment: "Planning", thumbnail: "📊" },
+          { name: "Anti-Inflammatory Focus", equipment: "Kitchen", thumbnail: "🥗" },
+          { name: "Sleep Support Nutrition", equipment: "Kitchen", thumbnail: "😴" },
+          { name: "Gut Health Reset", equipment: "Kitchen", thumbnail: "🦠" },
+          { name: "Stress Reduction Foods", equipment: "Kitchen", thumbnail: "🧘" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Building Phase Nutrition",
+        focus: "Fueling strength and fitness gains",
+        exercises: [
+          { name: "Protein Timing Strategy", equipment: "Kitchen", thumbnail: "🥩" },
+          { name: "Carb Cycling Basics", equipment: "Planning", thumbnail: "🍞" },
+          { name: "Training Day vs. Rest Day", equipment: "Planning", thumbnail: "📅" },
+          { name: "Supplement Protocol", equipment: "Supplements", thumbnail: "💊" },
+          { name: "Tracking Progress", equipment: "Scale/Journal", thumbnail: "📈" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Body Composition",
+        focus: "Optimizing weight for performance",
+        exercises: [
+          { name: "Finding Your Optimal Weight", equipment: "Analysis", thumbnail: "⚖️" },
+          { name: "Lean Mass Preservation", equipment: "Kitchen", thumbnail: "💪" },
+          { name: "Sustainable Eating Habits", equipment: "Planning", thumbnail: "✅" },
+          { name: "Meal Prep Mastery", equipment: "Kitchen", thumbnail: "🍱" },
+          { name: "Flexibility & Enjoyment", equipment: "Balance", thumbnail: "🎉" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Pre-Season Transition",
+        focus: "Preparing for competition nutrition",
+        exercises: [
+          { name: "Testing Tournament Meals", equipment: "Kitchen", thumbnail: "🧪" },
+          { name: "Dialing In Timing", equipment: "Planning", thumbnail: "⏰" },
+          { name: "Travel Prep Nutrition", equipment: "Planning", thumbnail: "✈️" },
+          { name: "Competition Weight Target", equipment: "Scale", thumbnail: "🎯" },
+          { name: "Mental Prep Through Nutrition", equipment: "Knowledge", thumbnail: "🧠" }
+        ]
+      }
+    ]
+  },
+
+  // ============================================
+  // MENTAL PROGRAMS
+  // ============================================
+  "mental-1": {
+    title: "Pre-Round Focus Routine",
+    description: "What I do on the range and practice green to lock in mentally before teeing off. A consistent pre-round routine is the foundation of confident golf.",
+    category: "Mental Program",
+    stats: {
+      duration: "60–90 min pre-round",
+      exercises: "5 phases",
+      length: "Every round"
+    },
+    equipment: ["Full bag", "Practice facility", "Notebook"],
+    targetAreas: ["Focus", "Confidence", "Visualization", "Routine consistency"],
+    weeks: [
+      {
+        number: 1,
+        title: "Morning Preparation",
+        focus: "Setting up your day for success",
+        exercises: [
+          { name: "Wake-Up Routine", equipment: "Hotel/home", thumbnail: "☀️" },
+          { name: "Breakfast & Mindset", equipment: "Kitchen", thumbnail: "🥣" },
+          { name: "Intention Setting", equipment: "Notebook", thumbnail: "📝" },
+          { name: "Visualization Preview", equipment: "Mental", thumbnail: "🧠" },
+          { name: "Travel to Course Routine", equipment: "Car", thumbnail: "🚗" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Range Warm-Up",
+        focus: "Technical preparation with purpose",
+        exercises: [
+          { name: "Dynamic Stretching Routine", equipment: "Bodyweight", thumbnail: "🧘" },
+          { name: "Short to Long Club Progression", equipment: "Full bag", thumbnail: "📈" },
+          { name: "Stock Shot Confirmation", equipment: "All clubs", thumbnail: "✅" },
+          { name: "Shot Shape Check", equipment: "Irons/woods", thumbnail: "↗️" },
+          { name: "Finishing with Confidence", equipment: "Driver", thumbnail: "💪" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Short Game Prep",
+        focus: "Building touch and feel",
+        exercises: [
+          { name: "Putting Green Speed Read", equipment: "Putter", thumbnail: "🏌️" },
+          { name: "Distance Control Drills", equipment: "Putter", thumbnail: "📏" },
+          { name: "Chipping Touch Development", equipment: "Wedges", thumbnail: "🎯" },
+          { name: "Bunker Feel Check", equipment: "Sand wedge", thumbnail: "🏖️" },
+          { name: "Final Confidence Putts", equipment: "Putter", thumbnail: "✅" }
+        ]
+      },
+      {
+        number: 4,
+        title: "First Tee Preparation",
+        focus: "The final minutes before you play",
+        exercises: [
+          { name: "First Tee Visualization", equipment: "Mental", thumbnail: "🧠" },
+          { name: "Breathing & Calming", equipment: "Bodyweight", thumbnail: "🌬️" },
+          { name: "Positive Self-Talk", equipment: "Mental", thumbnail: "💬" },
+          { name: "Physical Readiness Check", equipment: "Bodyweight", thumbnail: "💪" },
+          { name: "Commitment to Process", equipment: "Mental", thumbnail: "🏆" }
+        ]
+      }
+    ]
+  },
+  "mental-2": {
+    title: "Managing Major Championship Pressure",
+    description: "How I stay calm and execute on the biggest stages in golf. The mental strategies that separate good golfers from great ones.",
+    category: "Mental Program",
+    stats: {
+      duration: "Ongoing practice",
+      exercises: "5 strategies",
+      length: "Career-long"
+    },
+    equipment: ["Journal", "Breathing techniques", "Visualization"],
+    targetAreas: ["Pressure management", "Composure", "Decision-making", "Clutch performance"],
+    weeks: [
+      {
+        number: 1,
+        title: "Understanding Pressure",
+        focus: "Recognizing and accepting pressure",
+        exercises: [
+          { name: "Pressure Trigger Identification", equipment: "Journal", thumbnail: "📓" },
+          { name: "Physical Response Awareness", equipment: "Self-analysis", thumbnail: "💓" },
+          { name: "Reframing Pressure as Privilege", equipment: "Mental", thumbnail: "🏆" },
+          { name: "Historical Pressure Moments", equipment: "Reflection", thumbnail: "🔙" },
+          { name: "Building Pressure Tolerance", equipment: "Practice", thumbnail: "📈" }
+        ]
+      },
+      {
+        number: 2,
+        title: "In-the-Moment Techniques",
+        focus: "Tools for when pressure hits",
+        exercises: [
+          { name: "Box Breathing Method", equipment: "Bodyweight", thumbnail: "🌬️" },
+          { name: "Muscle Tension Release", equipment: "Bodyweight", thumbnail: "💪" },
+          { name: "Thought Stopping Techniques", equipment: "Mental", thumbnail: "🛑" },
+          { name: "Refocusing Cue Words", equipment: "Mental", thumbnail: "💬" },
+          { name: "Process Over Outcome Focus", equipment: "Mental", thumbnail: "🎯" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Pre-Shot Routine Under Pressure",
+        focus: "Maintaining routine when it matters most",
+        exercises: [
+          { name: "Slowing Down Deliberately", equipment: "Mental", thumbnail: "🐢" },
+          { name: "Visualization Clarity", equipment: "Mental", thumbnail: "🧠" },
+          { name: "Commitment to the Shot", equipment: "Mental", thumbnail: "✅" },
+          { name: "Physical Trigger Consistency", equipment: "Routine", thumbnail: "🔄" },
+          { name: "Post-Shot Routine", equipment: "Mental", thumbnail: "🚶" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Championship Mindset",
+        focus: "Thinking like a major champion",
+        exercises: [
+          { name: "Sunday Back Nine Visualization", equipment: "Mental", thumbnail: "🏆" },
+          { name: "One Shot at a Time Philosophy", equipment: "Mental", thumbnail: "1️⃣" },
+          { name: "Embracing the Moment", equipment: "Mental", thumbnail: "🌟" },
+          { name: "Confidence in Preparation", equipment: "Reflection", thumbnail: "💪" },
+          { name: "Legacy & Purpose Thinking", equipment: "Journal", thumbnail: "📖" }
+        ]
+      }
+    ]
+  },
+  "mental-3": {
+    title: "Bouncing Back from Bad Holes",
+    description: "The mental reset techniques I use after bogeys or worse to stay in the round. Every great round includes recovery from adversity.",
+    category: "Mental Program",
+    stats: {
+      duration: "In-round application",
+      exercises: "5 reset strategies",
+      length: "Every round"
+    },
+    equipment: ["Mental techniques", "Breathing", "Journal (post-round)"],
+    targetAreas: ["Resilience", "Emotional control", "Focus recovery", "Momentum management"],
+    weeks: [
+      {
+        number: 1,
+        title: "Understanding Your Reactions",
+        focus: "Recognizing emotional patterns after mistakes",
+        exercises: [
+          { name: "Reaction Pattern Mapping", equipment: "Journal", thumbnail: "📓" },
+          { name: "Physical Anger Signals", equipment: "Self-awareness", thumbnail: "😤" },
+          { name: "Mental Spiral Recognition", equipment: "Mental", thumbnail: "🌀" },
+          { name: "Impact on Following Shots", equipment: "Analysis", thumbnail: "📊" },
+          { name: "Creating Awareness Triggers", equipment: "Mental", thumbnail: "⚠️" }
+        ]
+      },
+      {
+        number: 2,
+        title: "The Reset Walk",
+        focus: "Using the walk to the next tee",
+        exercises: [
+          { name: "10-Yard Rule", equipment: "Mental", thumbnail: "🚶" },
+          { name: "Deep Breathing During Walk", equipment: "Bodyweight", thumbnail: "🌬️" },
+          { name: "Physical Release Techniques", equipment: "Bodyweight", thumbnail: "💪" },
+          { name: "Positive Memory Recall", equipment: "Mental", thumbnail: "😊" },
+          { name: "Next Shot Visualization", equipment: "Mental", thumbnail: "🧠" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Perspective Techniques",
+        focus: "Maintaining proper perspective",
+        exercises: [
+          { name: "Big Picture Thinking", equipment: "Mental", thumbnail: "🖼️" },
+          { name: "Statistics Reality Check", equipment: "Knowledge", thumbnail: "📊" },
+          { name: "Gratitude Practice", equipment: "Mental", thumbnail: "🙏" },
+          { name: "Opportunity Reframe", equipment: "Mental", thumbnail: "✨" },
+          { name: "Energy Conservation", equipment: "Mental", thumbnail: "🔋" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Building Resilience",
+        focus: "Long-term mental toughness development",
+        exercises: [
+          { name: "Post-Round Review Process", equipment: "Journal", thumbnail: "📝" },
+          { name: "Learning from Mistakes", equipment: "Analysis", thumbnail: "📚" },
+          { name: "Resilience Visualization", equipment: "Mental", thumbnail: "💎" },
+          { name: "Practice Under Adversity", equipment: "Practice", thumbnail: "💪" },
+          { name: "Success Story Collection", equipment: "Journal", thumbnail: "🏆" }
+        ]
+      }
+    ]
+  },
+  "mental-4": {
+    title: "Course Management Mindset",
+    description: "Strategic thinking and decision-making under competitive pressure. The mental game of playing smart golf.",
+    category: "Mental Program",
+    stats: {
+      duration: "Every round",
+      exercises: "5 decision frameworks",
+      length: "Career-long"
+    },
+    equipment: ["Yardage book", "Notebook", "Course knowledge"],
+    targetAreas: ["Decision-making", "Risk assessment", "Patience", "Score management"],
+    weeks: [
+      {
+        number: 1,
+        title: "Pre-Round Strategy",
+        focus: "Planning before you play",
+        exercises: [
+          { name: "Course Study & Notes", equipment: "Yardage book", thumbnail: "📖" },
+          { name: "Pin Sheet Analysis", equipment: "Course info", thumbnail: "📍" },
+          { name: "Weather Impact Planning", equipment: "Weather app", thumbnail: "🌤️" },
+          { name: "Personal Strength Mapping", equipment: "Self-analysis", thumbnail: "💪" },
+          { name: "Risk-Reward Identification", equipment: "Notes", thumbnail: "⚖️" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Tee Shot Decisions",
+        focus: "Smart choices off the tee",
+        exercises: [
+          { name: "Target Selection Process", equipment: "Mental", thumbnail: "🎯" },
+          { name: "Miss Side Planning", equipment: "Knowledge", thumbnail: "↔️" },
+          { name: "Club Selection Framework", equipment: "Full bag", thumbnail: "🏌️" },
+          { name: "Ego Management", equipment: "Mental", thumbnail: "🧘" },
+          { name: "Position Over Distance", equipment: "Strategy", thumbnail: "📍" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Approach Shot Strategy",
+        focus: "Attacking pins wisely",
+        exercises: [
+          { name: "Pin Position Assessment", equipment: "Eyes", thumbnail: "👁️" },
+          { name: "Safe Zone Identification", equipment: "Knowledge", thumbnail: "✅" },
+          { name: "Distance Verification", equipment: "Rangefinder", thumbnail: "📏" },
+          { name: "Lie & Conditions Check", equipment: "Assessment", thumbnail: "🔍" },
+          { name: "Commit & Execute", equipment: "Mental", thumbnail: "💪" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Scoring Zone Decisions",
+        focus: "Smart play inside 100 yards",
+        exercises: [
+          { name: "Up & Down Strategy", equipment: "Short game", thumbnail: "⛳" },
+          { name: "Putt Reading Patience", equipment: "Putter", thumbnail: "👀" },
+          { name: "Lag Putt Philosophy", equipment: "Putter", thumbnail: "🎯" },
+          { name: "Bogey Avoidance Mindset", equipment: "Mental", thumbnail: "🛡️" },
+          { name: "Birdie Opportunity Recognition", equipment: "Awareness", thumbnail: "🦅" }
         ]
       }
     ]
