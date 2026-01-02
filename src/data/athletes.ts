@@ -1656,6 +1656,18 @@ export const athletes: Athlete[] = [
         timestamp: "1 week ago",
         stats: { readTime: "8 min read" }
       }
+    ],
+    events: [
+      { id: "pg-aus-2026", name: "Australian Grand Prix", date: "15", month: "Mar", year: "2026", location: "Melbourne, Australia", country: "Australia", countryFlag: "🇦🇺", category: "Grand Prix", categoryColor: "bg-red-600", description: "Season opener at Albert Park Circuit" },
+      { id: "pg-china-2026", name: "Chinese Grand Prix", date: "22", month: "Mar", year: "2026", location: "Shanghai, China", country: "China", countryFlag: "🇨🇳", category: "Grand Prix", categoryColor: "bg-red-600", description: "Shanghai International Circuit" },
+      { id: "pg-japan-2026", name: "Japanese Grand Prix", date: "5", month: "Apr", year: "2026", location: "Suzuka, Japan", country: "Japan", countryFlag: "🇯🇵", category: "Grand Prix", categoryColor: "bg-red-600", description: "Iconic figure-8 circuit at Suzuka" },
+      { id: "pg-bahrain-2026", name: "Bahrain Grand Prix", date: "12", month: "Apr", year: "2026", location: "Sakhir, Bahrain", country: "Bahrain", countryFlag: "🇧🇭", category: "Grand Prix", categoryColor: "bg-red-600", description: "Night race under the lights at Bahrain International Circuit" },
+      { id: "pg-miami-2026", name: "Miami Grand Prix", date: "3", month: "May", year: "2026", location: "Miami, USA", country: "USA", countryFlag: "🇺🇸", category: "Grand Prix", categoryColor: "bg-red-600", description: "Street circuit around Hard Rock Stadium" },
+      { id: "pg-emilia-2026", name: "Emilia Romagna Grand Prix", date: "17", month: "May", year: "2026", location: "Imola, Italy", country: "Italy", countryFlag: "🇮🇹", category: "Grand Prix", categoryColor: "bg-red-600", description: "Historic Autodromo Enzo e Dino Ferrari" },
+      { id: "pg-monaco-2026", name: "Monaco Grand Prix", date: "24", month: "May", year: "2026", location: "Monte-Carlo, Monaco", country: "Monaco", countryFlag: "🇲🇨", category: "Grand Prix", categoryColor: "bg-gradient-to-r from-yellow-500 to-amber-500", description: "The jewel of F1 - iconic street circuit" },
+      { id: "pg-canada-2026", name: "Canadian Grand Prix", date: "14", month: "Jun", year: "2026", location: "Montreal, Canada", country: "Canada", countryFlag: "🇨🇦", category: "Grand Prix", categoryColor: "bg-red-600", description: "Circuit Gilles Villeneuve on Île Notre-Dame" },
+      { id: "pg-france-2026", name: "French Grand Prix", date: "28", month: "Jun", year: "2026", location: "Le Castellet, France", country: "France", countryFlag: "🇫🇷", category: "Home Race", categoryColor: "bg-gradient-to-r from-blue-500 to-red-500", description: "Home race at Circuit Paul Ricard" },
+      { id: "pg-austria-2026", name: "Austrian Grand Prix", date: "5", month: "Jul", year: "2026", location: "Spielberg, Austria", country: "Austria", countryFlag: "🇦🇹", category: "Grand Prix", categoryColor: "bg-red-600", description: "Red Bull Ring in the Styrian mountains" }
     ]
   },
   {
