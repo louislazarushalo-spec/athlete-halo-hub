@@ -1027,29 +1027,113 @@ export const tommyTrainingData: AthleteTrainingSectionData = {
   categories: [
     {
       id: "fitness",
+      title: "Fitness",
+      description: "Build the physical foundation for 72-hole major championship performance.",
+      icon: <Dumbbell className="h-4 w-4" />,
+      programs: [
+        {
+          id: "fitness-1",
+          title: "Golf-Specific Mobility",
+          description: "My daily mobility routine to maintain full range of motion and prevent injury throughout the season."
+        },
+        {
+          id: "fitness-2",
+          title: "Rotational Power Training",
+          description: "The strength work that generates clubhead speed and distance off the tee."
+        },
+        {
+          id: "fitness-3",
+          title: "Walking Endurance Protocol",
+          description: "Building the stamina to stay sharp through 4 rounds of championship golf."
+        },
+        {
+          id: "fitness-4",
+          title: "Core Stability for Ball Striking",
+          description: "The foundation of consistent contact — core exercises for tour-level stability."
+        }
+      ]
+    },
+    {
+      id: "skills",
       title: "Skills",
       description: "Master the techniques that have made Tommy one of the most admired ball-strikers on tour.",
       icon: <Target className="h-4 w-4" />,
       programs: [
         {
-          id: "fitness-1",
+          id: "skills-1",
           title: "Iron Play Precision",
           description: "Master the art of consistent ball striking with my approach to iron play."
         },
         {
-          id: "fitness-2",
+          id: "skills-2",
           title: "Short Game Secrets",
           description: "Chipping, pitching, and bunker play techniques to lower your scores."
         },
         {
-          id: "fitness-3",
+          id: "skills-3",
           title: "Putting Masterclass",
           description: "Read greens like a pro and develop a repeatable stroke."
         },
         {
-          id: "fitness-4",
-          title: "Course Management",
-          description: "Strategic thinking and shot selection to play smarter golf."
+          id: "skills-4",
+          title: "Driver Control",
+          description: "Finding fairways consistently with my approach to tee shots."
+        }
+      ]
+    },
+    {
+      id: "nutrition",
+      title: "Nutrition",
+      description: "Fueling my body for peak performance across a 30-event global schedule.",
+      icon: <Apple className="h-4 w-4" />,
+      programs: [
+        {
+          id: "nutrition-1",
+          title: "Tournament Week Fuel",
+          description: "What I eat before, during, and after rounds to maintain focus and energy."
+        },
+        {
+          id: "nutrition-2",
+          title: "On-Course Nutrition",
+          description: "Managing energy levels during a 5-hour round with the right snacks and hydration."
+        },
+        {
+          id: "nutrition-3",
+          title: "Travel & Jet Lag Recovery",
+          description: "How I manage nutrition across time zones and international tournaments."
+        },
+        {
+          id: "nutrition-4",
+          title: "Off-Season Recovery Eating",
+          description: "The nutrition approach I use during training blocks and rest periods."
+        }
+      ]
+    },
+    {
+      id: "mental",
+      title: "Mental",
+      description: "Building the mindset to handle pressure, stay patient, and compete at my best.",
+      icon: <Brain className="h-4 w-4" />,
+      programs: [
+        {
+          id: "mental-1",
+          title: "Pre-Round Focus Routine",
+          description: "What I do on the range and practice green to lock in mentally before teeing off."
+        },
+        {
+          id: "mental-2",
+          title: "Managing Major Championship Pressure",
+          description: "How I stay calm and execute on the biggest stages in golf."
+        },
+        {
+          id: "mental-3",
+          title: "Bouncing Back from Bad Holes",
+          description: "The mental reset techniques I use after bogeys or worse to stay in the round."
+        },
+        {
+          id: "mental-4",
+          title: "Course Management Mindset",
+          description: "Strategic thinking and decision-making under competitive pressure."
         }
       ]
     }
