@@ -123,6 +123,10 @@ import tommyNikeCapLifestyleImg from "@/assets/tommy-nike-cap-lifestyle.webp";
 import tommyNikeHoodieImg from "@/assets/tommy-nike-hoodie.jpg";
 import tommyNikePantsImg from "@/assets/tommy-nike-pants.jpg";
 import tommyNikeGolfShoesImg from "@/assets/tommy-nike-golf-shoes.jpeg";
+import tommyFitness1Img from "@/assets/tommy-fitness-1.jpg";
+import tommyFitness2Img from "@/assets/tommy-fitness-2.jpg";
+import tommyFitness3Img from "@/assets/tommy-fitness-3.jpg";
+import tommyFitness4Img from "@/assets/tommy-fitness-4.jpg";
 
 export interface MediaFeedItem {
   id: string;
@@ -6319,7 +6323,7 @@ export const athletes: Athlete[] = [
         id: "tf-t1",
         title: "Iron Play Precision",
         description: "Master the art of consistent ball striking with my approach to iron play.",
-        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        image: tommyFitness1Img,
         category: "training",
         createdAt: "2024-02-08"
       },
@@ -6327,7 +6331,7 @@ export const athletes: Athlete[] = [
         id: "tf-t2",
         title: "Short Game Secrets",
         description: "Chipping, pitching, and bunker play techniques to lower your scores.",
-        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        image: tommyFitness2Img,
         category: "training",
         createdAt: "2024-02-03"
       },
@@ -6335,7 +6339,7 @@ export const athletes: Athlete[] = [
         id: "tf-t3",
         title: "Putting Masterclass",
         description: "Read greens like a pro and develop a repeatable stroke.",
-        image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=500&fit=crop",
+        image: tommyFitness3Img,
         category: "training",
         createdAt: "2024-01-28"
       },
@@ -6343,7 +6347,7 @@ export const athletes: Athlete[] = [
         id: "tf-t4",
         title: "Course Management",
         description: "Strategic thinking and shot selection to play smarter golf.",
-        image: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&h=500&fit=crop",
+        image: tommyFitness4Img,
         category: "training",
         createdAt: "2024-01-20"
       }

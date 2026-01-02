@@ -43,6 +43,7 @@ import { CassandreDataHub } from "@/components/athletes/DataHub/CassandreDataHub
 import { MatthieuTrainingSection } from "@/components/athletes/MatthieuTrainingSection";
 import { CassandreTrainingSection } from "@/components/athletes/CassandreTrainingSection";
 import { PierreTrainingSection } from "@/components/athletes/PierreTrainingSection";
+import { TommyTrainingSection } from "@/components/athletes/TommyTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
 import { ArthurExclusiveZone } from "@/components/athletes/ArthurExclusiveZone";
 import { MatthieuExclusiveZone } from "@/components/athletes/MatthieuExclusiveZone";
@@ -941,7 +942,7 @@ const AthletePage = () => {
             <TabsContent value="training" className="animate-fade-in">
               {isPremiumSubscribed ? (
                 isCustomAthlete ? (
-                  isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : isCassandreBeaugrand ? <CassandreTrainingSection /> : <PierreTrainingSection />
+                  isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : isCassandreBeaugrand ? <CassandreTrainingSection /> : isPierreGasly ? <PierreTrainingSection /> : isTommyFleetwood ? <TommyTrainingSection /> : <PierreTrainingSection />
                 ) : (
                   <div className="space-y-6">
                     {/* Header with Premium Badge */}
@@ -986,7 +987,7 @@ const AthletePage = () => {
               ) : (
                 <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name} onGoBack={handleGoBackFromPremium}>
                   {isCustomAthlete ? (
-                    isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : isCassandreBeaugrand ? <CassandreTrainingSection /> : <PierreTrainingSection />
+                    isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : isCassandreBeaugrand ? <CassandreTrainingSection /> : isPierreGasly ? <PierreTrainingSection /> : isTommyFleetwood ? <TommyTrainingSection /> : <PierreTrainingSection />
                   ) : (
                     <div className="space-y-6">
                       {/* Header with Premium Badge */}

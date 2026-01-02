@@ -1017,3 +1017,41 @@ export const pierreTrainingData: AthleteTrainingSectionData = {
     }
   ]
 };
+
+// ============================================
+// TOMMY FLEETWOOD DATA
+// ============================================
+
+export const tommyTrainingData: AthleteTrainingSectionData = {
+  athleteSlug: "tommy-fleetwood",
+  categories: [
+    {
+      id: "fitness",
+      title: "Skills",
+      description: "Master the techniques that have made Tommy one of the most admired ball-strikers on tour.",
+      icon: <Target className="h-4 w-4" />,
+      programs: [
+        {
+          id: "fitness-1",
+          title: "Iron Play Precision",
+          description: "Master the art of consistent ball striking with my approach to iron play."
+        },
+        {
+          id: "fitness-2",
+          title: "Short Game Secrets",
+          description: "Chipping, pitching, and bunker play techniques to lower your scores."
+        },
+        {
+          id: "fitness-3",
+          title: "Putting Masterclass",
+          description: "Read greens like a pro and develop a repeatable stroke."
+        },
+        {
+          id: "fitness-4",
+          title: "Course Management",
+          description: "Strategic thinking and shot selection to play smarter golf."
+        }
+      ]
+    }
+  ]
+};
