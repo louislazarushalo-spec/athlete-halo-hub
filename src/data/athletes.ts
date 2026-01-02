@@ -5,6 +5,7 @@ import leonMarchandImg from "@/assets/leon-marchand.png";
 import victorWembanyamaImg from "@/assets/victor-wembanyama.png";
 import teddyRinerImg from "@/assets/teddy-riner.png";
 import pierreGaslyImg from "@/assets/pierre-gasly.png";
+import pierreGaslyBannerImg from "@/assets/pierre-gasly-banner.jpg";
 import julianAlaphilippeImg from "@/assets/julian-alaphilippe.png";
 import arthurRinderknechImg from "@/assets/arthur-rinderknech.png";
 import gaelMonfilsImg from "@/assets/gael-monfils.png";
@@ -1508,7 +1509,7 @@ export const athletes: Athlete[] = [
     bio: "Formula 1 driver. Speed, precision, passion. Welcome to my cockpit.",
     tagline: "French F1 star pushing the limits",
     avatar: pierreGaslyImg,
-    banner: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1600&h=600&fit=crop",
+    banner: pierreGaslyBannerImg,
     followers: 512000,
     training: [
       {
