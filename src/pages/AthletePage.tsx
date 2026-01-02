@@ -49,6 +49,7 @@ import { ArthurExclusiveZone } from "@/components/athletes/ArthurExclusiveZone";
 import { MatthieuExclusiveZone } from "@/components/athletes/MatthieuExclusiveZone";
 import { CassandreExclusiveZone } from "@/components/athletes/CassandreExclusiveZone";
 import { PierreExclusiveZone } from "@/components/athletes/PierreExclusiveZone";
+import { TommyExclusiveZone } from "@/components/athletes/TommyExclusiveZone";
 import { CassandreHighlights } from "@/components/athletes/CassandreHighlights";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -1096,7 +1097,7 @@ const AthletePage = () => {
             <TabsContent value="exclusive" className="animate-fade-in">
               {isPremiumSubscribed ? (
                 isCustomAthlete ? (
-                  isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : isCassandreBeaugrand ? <CassandreExclusiveZone /> : <PierreExclusiveZone />
+                  isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : isCassandreBeaugrand ? <CassandreExclusiveZone /> : isPierreGasly ? <PierreExclusiveZone /> : isTommyFleetwood ? <TommyExclusiveZone /> : <PierreExclusiveZone />
                 ) : (
                   <div className="space-y-6 max-w-5xl mx-auto">
                     {/* Header */}
@@ -1148,11 +1149,13 @@ const AthletePage = () => {
                       ? "Unlock prize draws, curated premium content, and members-only rugby discussions."
                       : isPierreGasly
                       ? "Unlock prize draws, curated premium content, and members-only F1 discussions."
+                      : isTommyFleetwood
+                      ? "Unlock prize draws, curated premium content, and members-only golf discussions."
                       : `Unlock prize draws, curated premium content, and members-only ${athlete.sport.toLowerCase()} discussions.`
                   }
                 >
                   {isCustomAthlete ? (
-                    isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : isCassandreBeaugrand ? <CassandreExclusiveZone /> : <PierreExclusiveZone />
+                    isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : isCassandreBeaugrand ? <CassandreExclusiveZone /> : isPierreGasly ? <PierreExclusiveZone /> : isTommyFleetwood ? <TommyExclusiveZone /> : <PierreExclusiveZone />
                   ) : (
                     <div className="space-y-6 max-w-5xl mx-auto">
                       <div className="text-center max-w-2xl mx-auto">

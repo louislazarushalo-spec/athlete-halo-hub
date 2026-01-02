@@ -1040,6 +1040,116 @@ export const pierreTrainingData: AthleteTrainingSectionData = {
 // TOMMY FLEETWOOD DATA
 // ============================================
 
+export const tommyExclusiveZoneData: AthleteExclusiveZoneData = {
+  athleteId: "tommy-fleetwood",
+  prizeDraws: [
+    {
+      id: "signed_glove",
+      title: "Win Signed Tommy Fleetwood Golf Glove",
+      description: "Authenticated Nike golf glove signed by Tommy after his Ryder Cup performance",
+      badge: "Ends Jan 15",
+      icon: Trophy,
+      iconBg: "from-amber-500 to-orange-600"
+    },
+    {
+      id: "gear_pack",
+      title: "Halo Golf Gear Pack",
+      description: "Premium TaylorMade golf balls, Nike cap, Tour towel, and divot tool curated by Halo",
+      badge: "Monthly Draw",
+      icon: Gift,
+      iconBg: "from-green-500 to-emerald-600"
+    },
+    {
+      id: "virtual_qa",
+      title: "Virtual Q&A Access",
+      description: "Join a platform-hosted live session on course management and swing tips with Tommy",
+      badge: "Next: Feb 2025",
+      icon: Users,
+      iconBg: "from-blue-500 to-indigo-600"
+    },
+    {
+      id: "pro_am_experience",
+      title: "Halo Pro-Am Experience",
+      description: "Attend an exclusive Halo-organized golf day at a championship course",
+      badge: "Limited",
+      icon: Star,
+      iconBg: "from-purple-500 to-pink-600"
+    }
+  ],
+  exclusiveContent: [
+    {
+      id: "season_stats",
+      title: "Tommy's 2024 Season Stats Breakdown",
+      description: "Driving accuracy, greens in regulation, and key performance metrics from the PGA and DP World Tours",
+      thumbnail: tommySkills1,
+      type: "Stats",
+      icon: TrendingUp
+    },
+    {
+      id: "practice_routine",
+      title: "A Day at the Practice Range",
+      description: "Behind-the-scenes look at Tommy's typical practice session before a tournament",
+      thumbnail: tommySkills2,
+      type: "Video",
+      icon: Play
+    },
+    {
+      id: "ryder_cup_gallery",
+      title: "Ryder Cup Moments Gallery",
+      description: "Exclusive photos from Tommy's memorable Ryder Cup performances",
+      thumbnail: tommySkills3,
+      type: "Gallery",
+      icon: Image
+    },
+    {
+      id: "course_breakdown",
+      title: "Course Strategy Breakdown",
+      description: "How Tommy approaches Augusta National, St Andrews, and other major venues",
+      thumbnail: tommySkills4,
+      type: "Analysis",
+      icon: TrendingUp
+    },
+    {
+      id: "major_moments",
+      title: "Major Championship Highlights",
+      description: "Key moments and close calls from The Open, US Open, and PGA Championship",
+      thumbnail: tommyMental2,
+      type: "Highlights",
+      icon: Play
+    }
+  ],
+  discussionThreads: [
+    {
+      id: "tournament_reactions",
+      title: "Tournament Reactions",
+      description: "Discuss Tommy's latest rounds, results, and pivotal moments on tour",
+      participants: 1547,
+      lastActive: "2 hours ago"
+    },
+    {
+      id: "major_predictions",
+      title: "Major Championship Predictions",
+      description: "Share your predictions for The Open, Masters, US Open, and PGA Championship",
+      participants: 2834,
+      lastActive: "30 min ago"
+    },
+    {
+      id: "swing_tips",
+      title: "Swing Tips (Fan to Fan)",
+      description: "Exchange golf tips, drills, and improvement strategies inspired by Tommy's technique",
+      participants: 962,
+      lastActive: "1 hour ago"
+    },
+    {
+      id: "gear_talk",
+      title: "Golf Gear Talk",
+      description: "Discuss clubs, balls, shoes, and equipment choices from TaylorMade and Nike",
+      participants: 723,
+      lastActive: "45 min ago"
+    }
+  ]
+};
+
 export const tommyTrainingData: AthleteTrainingSectionData = {
   athleteSlug: "tommy-fleetwood",
   categories: [
