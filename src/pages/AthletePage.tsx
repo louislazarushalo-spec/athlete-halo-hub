@@ -51,6 +51,7 @@ import { CassandreExclusiveZone } from "@/components/athletes/CassandreExclusive
 import { PierreExclusiveZone } from "@/components/athletes/PierreExclusiveZone";
 import { TommyExclusiveZone } from "@/components/athletes/TommyExclusiveZone";
 import { CassandreHighlights } from "@/components/athletes/CassandreHighlights";
+import { PierreHighlights } from "@/components/athletes/PierreHighlights";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -788,6 +789,8 @@ const AthletePage = () => {
               {activeLifeTab === "news" && (
                 isCassandreBeaugrand ? (
                   <CassandreHighlights />
+                ) : isPierreGasly ? (
+                  <PierreHighlights />
                 ) : (
                   <div className="max-w-3xl mx-auto space-y-5">
                     {athlete.mediaFeed.map((item, index) => (
