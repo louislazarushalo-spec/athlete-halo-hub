@@ -26,8 +26,11 @@ const followedAthletes = followedAthleteIds
   .map(id => getAthleteById(id))
   .filter(Boolean) as typeof athletes;
 
-// Simulated recently viewed (last 3)
-const recentlyViewed = athletes.slice(0, 3);
+// Simulated recently viewed: Pierre Gasly, Paul Pogba, Iga Swiatek
+const recentlyViewedIds = ['pierre-gasly', 'paul-pogba', 'iga-swiatek'];
+const recentlyViewed = recentlyViewedIds
+  .map(id => getAthleteById(id))
+  .filter(Boolean) as typeof athletes;
 
 export const FanSidebar = () => {
   const location = useLocation();
