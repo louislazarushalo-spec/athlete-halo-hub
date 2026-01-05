@@ -8,6 +8,7 @@ import pierreGaslyImg from "@/assets/pierre-gasly.png";
 import pierreGaslyBannerImg from "@/assets/pierre-gasly-banner.jpg";
 import pierreReebokOutfitImg from "@/assets/pierre-reebok-outfit.jpg";
 import pierreBogeyGangOutfitImg from "@/assets/pierre-bogey-gang-outfit.jpg";
+import pierreReebokJacketImg from "@/assets/pierre-reebok-jacket.jpg";
 import julianAlaphilippeImg from "@/assets/julian-alaphilippe.png";
 import arthurRinderknechImg from "@/assets/arthur-rinderknech.png";
 import gaelMonfilsImg from "@/assets/gael-monfils.png";
@@ -1603,36 +1604,14 @@ export const athletes: Athlete[] = [
             name: "Reebok Vector Track Jacket",
             price: 139,
             currency: "€",
-            image: pierreReebokOutfitImg,
-            description: "Iconic red and navy track jacket with Reebok Vector design.",
-            category: "partner",
-            athleteId: "pierre-gasly"
-          },
-          {
-            id: "pg-reebok-tshirt",
-            name: "Reebok Classic White Tee",
-            price: 35,
-            currency: "€",
-            image: pierreReebokOutfitImg,
-            description: "Premium cotton white t-shirt, the perfect base layer.",
-            category: "partner",
-            athleteId: "pierre-gasly"
-          },
-          {
-            id: "pg-reebok-pants",
-            name: "Reebok Classic Trousers",
-            price: 89,
-            currency: "€",
-            image: pierreReebokOutfitImg,
-            description: "Sleek black trousers for a refined streetwear look.",
+            image: pierreReebokJacketImg,
+            description: "Iconic red and black track jacket with Reebok Vector design.",
             category: "partner",
             athleteId: "pierre-gasly"
           }
         ],
         hotspots: {
-          'pg-reebok-jacket': { x: 50, y: 32 },
-          'pg-reebok-tshirt': { x: 50, y: 50 },
-          'pg-reebok-pants': { x: 50, y: 78 }
+          'pg-reebok-jacket': { x: 50, y: 40 }
         }
       },
       {
