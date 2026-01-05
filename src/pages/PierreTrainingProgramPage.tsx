@@ -13,6 +13,10 @@ import pierreFitness1 from "@/assets/pierre-fitness-1.jpg";
 import pierreFitness2 from "@/assets/pierre-fitness-2.jpg";
 import pierreFitness3 from "@/assets/pierre-fitness-3.png";
 import pierreFitness4 from "@/assets/pierre-fitness-4.jpg";
+import pierreSkills1 from "@/assets/pierre-skills-1.jpg";
+import pierreSkills2 from "@/assets/pierre-skills-2.jpg";
+import pierreSkills3 from "@/assets/pierre-skills-3.jpg";
+import pierreSkills4 from "@/assets/pierre-skills-4.jpg";
 
 // Program image mapping
 const programImages: Record<string, string> = {
@@ -20,6 +24,10 @@ const programImages: Record<string, string> = {
   "fitness-2": pierreFitness2,
   "fitness-3": pierreFitness3,
   "fitness-4": pierreFitness4,
+  "skills-1": pierreSkills1,
+  "skills-2": pierreSkills2,
+  "skills-3": pierreSkills3,
+  "skills-4": pierreSkills4,
 };
 
 interface Exercise {
@@ -302,6 +310,254 @@ const programsData: Record<string, ProgramData> = {
           { name: "Recovery Optimization", equipment: "Cold bath", thumbnail: "❄️" },
           { name: "Race Week Heat Protocol", equipment: "Sauna", thumbnail: "🏎️" },
           { name: "Maintenance Heat Sessions", equipment: "Mixed", thumbnail: "🔄" }
+        ]
+      }
+    ]
+  },
+  "skills-1": {
+    title: "Braking Point Precision",
+    description: "A 4-week program focused on mastering the art of late braking. In F1, braking 5 meters later than your rival can make the difference between winning and losing a position. This program trains consistency, confidence, and precision at the limit.",
+    category: "Skills Program",
+    stats: {
+      duration: "60–90 min per session",
+      exercises: "5–7",
+      length: "4 weeks"
+    },
+    equipment: ["Racing simulator", "Telemetry software", "Data analysis tools", "Video review system"],
+    targetAreas: ["Braking consistency", "Trail braking", "Reference points", "Pressure modulation"],
+    weeks: [
+      {
+        number: 1,
+        title: "Braking Fundamentals",
+        focus: "Establishing consistent reference points and technique",
+        exercises: [
+          { name: "Fixed Braking Point Drills", equipment: "Simulator", thumbnail: "🎯" },
+          { name: "Brake Pressure Analysis", equipment: "Telemetry", thumbnail: "📊" },
+          { name: "Corner Entry Speed Work", equipment: "Simulator", thumbnail: "🏎️" },
+          { name: "Visual Reference Training", equipment: "Track walk video", thumbnail: "👁️" },
+          { name: "Consistency Lap Runs", equipment: "Simulator", thumbnail: "🔄" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Trail Braking Introduction",
+        focus: "Learning to carry brake into the corner",
+        exercises: [
+          { name: "Trail Brake Progression", equipment: "Simulator", thumbnail: "🔥" },
+          { name: "Brake Release Timing", equipment: "Telemetry", thumbnail: "⏱️" },
+          { name: "Corner Rotation Analysis", equipment: "Data tools", thumbnail: "📈" },
+          { name: "Weight Transfer Awareness", equipment: "Simulator", thumbnail: "⚖️" },
+          { name: "Sector Time Comparison", equipment: "Telemetry", thumbnail: "📊" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Limit Exploration",
+        focus: "Finding the absolute braking limit",
+        exercises: [
+          { name: "Progressive Late Braking", equipment: "Simulator", thumbnail: "🚀" },
+          { name: "Lock-Up Recovery Drills", equipment: "Simulator", thumbnail: "🔒" },
+          { name: "ABS-Off Threshold Work", equipment: "Simulator", thumbnail: "💪" },
+          { name: "Overtaking Brake Zones", equipment: "Simulator", thumbnail: "⚔️" },
+          { name: "Dirty Air Braking", equipment: "Simulator", thumbnail: "💨" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Race Application",
+        focus: "Applying skills under race pressure",
+        exercises: [
+          { name: "Race Start Braking", equipment: "Simulator", thumbnail: "🏁" },
+          { name: "Defensive Braking Lines", equipment: "Simulator", thumbnail: "🛡️" },
+          { name: "Fuel Load Adaptation", equipment: "Simulator", thumbnail: "⛽" },
+          { name: "Tire Degradation Braking", equipment: "Simulator", thumbnail: "🔄" },
+          { name: "Full Race Simulation", equipment: "Simulator", thumbnail: "🏆" }
+        ]
+      }
+    ]
+  },
+  "skills-2": {
+    title: "Overtaking Techniques",
+    description: "A 4-week masterclass in race-craft and overtaking. From late-braking lunges to strategic positioning, this program covers all the techniques needed to make passes stick while racing wheel-to-wheel at 300+ km/h.",
+    category: "Skills Program",
+    stats: {
+      duration: "75–90 min per session",
+      exercises: "5–6",
+      length: "4 weeks"
+    },
+    equipment: ["Racing simulator", "Multi-car practice mode", "Video analysis", "Telemetry comparison"],
+    targetAreas: ["Overtaking execution", "Defensive driving", "Race positioning", "DRS utilization"],
+    weeks: [
+      {
+        number: 1,
+        title: "Positioning Fundamentals",
+        focus: "Setting up overtaking opportunities",
+        exercises: [
+          { name: "Slipstream Positioning", equipment: "Simulator", thumbnail: "💨" },
+          { name: "DRS Zone Optimization", equipment: "Simulator", thumbnail: "📍" },
+          { name: "Exit Speed Priority", equipment: "Telemetry", thumbnail: "🚀" },
+          { name: "Gap Management", equipment: "Simulator", thumbnail: "📏" },
+          { name: "Tire Advantage Exploitation", equipment: "Simulator", thumbnail: "🎯" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Attack Techniques",
+        focus: "Executing clean overtakes",
+        exercises: [
+          { name: "Late-Brake Lunges", equipment: "Simulator", thumbnail: "⚔️" },
+          { name: "Switchback Moves", equipment: "Simulator", thumbnail: "🔄" },
+          { name: "Around the Outside", equipment: "Simulator", thumbnail: "🌀" },
+          { name: "Dummy Moves", equipment: "Simulator", thumbnail: "🎭" },
+          { name: "Cross-Over Techniques", equipment: "Simulator", thumbnail: "✖️" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Defense & Counter-Attack",
+        focus: "Protecting position and responding to attacks",
+        exercises: [
+          { name: "Defensive Line Selection", equipment: "Simulator", thumbnail: "🛡️" },
+          { name: "Legal Blocking Techniques", equipment: "Simulator", thumbnail: "🚧" },
+          { name: "Counter-Attack Setup", equipment: "Simulator", thumbnail: "⚡" },
+          { name: "Brake Point Defense", equipment: "Simulator", thumbnail: "🔒" },
+          { name: "Position Swap Management", equipment: "Simulator", thumbnail: "🔀" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Race Scenarios",
+        focus: "Multi-lap battles and strategic overtaking",
+        exercises: [
+          { name: "Multi-Lap Pressure", equipment: "Simulator", thumbnail: "⏱️" },
+          { name: "Pack Racing Tactics", equipment: "Simulator", thumbnail: "👥" },
+          { name: "Restart Aggression", equipment: "Simulator", thumbnail: "🏁" },
+          { name: "Final Lap Scenarios", equipment: "Simulator", thumbnail: "🏆" },
+          { name: "Championship Pressure Sims", equipment: "Simulator", thumbnail: "🎖️" }
+        ]
+      }
+    ]
+  },
+  "skills-3": {
+    title: "Tire Management Mastery",
+    description: "A 4-week program on the critical skill of tire management. Understanding how to extend stint lengths, manage degradation, and optimize grip windows can be worth multiple positions in a race. This is where championships are won.",
+    category: "Skills Program",
+    stats: {
+      duration: "90–120 min per session",
+      exercises: "4–6",
+      length: "4 weeks"
+    },
+    equipment: ["Racing simulator with tire model", "Telemetry software", "Data analysis", "Strategy tools"],
+    targetAreas: ["Tire preservation", "Temperature management", "Degradation understanding", "Strategic pacing"],
+    weeks: [
+      {
+        number: 1,
+        title: "Tire Basics",
+        focus: "Understanding tire behavior and feedback",
+        exercises: [
+          { name: "Tire Warm-Up Protocols", equipment: "Simulator", thumbnail: "🌡️" },
+          { name: "Grip Level Recognition", equipment: "Simulator", thumbnail: "🎯" },
+          { name: "Temperature Window Finding", equipment: "Telemetry", thumbnail: "📊" },
+          { name: "Compound Comparison Runs", equipment: "Simulator", thumbnail: "🔄" },
+          { name: "Feedback Sensitivity Drills", equipment: "Simulator", thumbnail: "👐" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Preservation Techniques",
+        focus: "Extending tire life through driving style",
+        exercises: [
+          { name: "Smooth Input Training", equipment: "Simulator", thumbnail: "🌊" },
+          { name: "Lift and Coast Practice", equipment: "Simulator", thumbnail: "⛵" },
+          { name: "Understeer Prevention", equipment: "Simulator", thumbnail: "🔄" },
+          { name: "Rear Tire Saving", equipment: "Simulator", thumbnail: "🛞" },
+          { name: "Stint Simulation Runs", equipment: "Simulator", thumbnail: "⏱️" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Degradation Management",
+        focus: "Racing fast on worn tires",
+        exercises: [
+          { name: "High-Deg Adaptation", equipment: "Simulator", thumbnail: "📉" },
+          { name: "Line Adjustment Strategy", equipment: "Simulator", thumbnail: "🛤️" },
+          { name: "Brake Balance Changes", equipment: "Simulator", thumbnail: "⚖️" },
+          { name: "Pace Management", equipment: "Telemetry", thumbnail: "📈" },
+          { name: "Delta Time Control", equipment: "Simulator", thumbnail: "⏱️" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Strategic Application",
+        focus: "Race-winning tire strategy execution",
+        exercises: [
+          { name: "Undercut Defense", equipment: "Simulator", thumbnail: "🛡️" },
+          { name: "Overcut Execution", equipment: "Simulator", thumbnail: "⚔️" },
+          { name: "Tire Cliff Awareness", equipment: "Telemetry", thumbnail: "🪨" },
+          { name: "Full Race Tire Management", equipment: "Simulator", thumbnail: "🏆" },
+          { name: "Strategy Adaptation Drills", equipment: "Strategy tools", thumbnail: "🧠" }
+        ]
+      }
+    ]
+  },
+  "skills-4": {
+    title: "Wet Weather Driving",
+    description: "A 4-week program mastering the art of driving in the rain. Wet races are where legends are made—from Senna at Donington to my own Monza victory. This program covers everything from finding grip to managing spray and aquaplaning.",
+    category: "Skills Program",
+    stats: {
+      duration: "60–90 min per session",
+      exercises: "5–6",
+      length: "4 weeks"
+    },
+    equipment: ["Racing simulator with weather", "Variable conditions mode", "Onboard video analysis", "Track condition tools"],
+    targetAreas: ["Wet grip finding", "Aquaplaning management", "Visibility adaptation", "Intermediate conditions"],
+    weeks: [
+      {
+        number: 1,
+        title: "Wet Fundamentals",
+        focus: "Basic wet weather techniques and line selection",
+        exercises: [
+          { name: "Wet Line Discovery", equipment: "Simulator", thumbnail: "🌧️" },
+          { name: "Grip Level Assessment", equipment: "Simulator", thumbnail: "🎯" },
+          { name: "Smooth Input Practice", equipment: "Simulator", thumbnail: "🌊" },
+          { name: "Spray Management", equipment: "Simulator", thumbnail: "💨" },
+          { name: "Standing Water Recognition", equipment: "Simulator", thumbnail: "🌊" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Confidence Building",
+        focus: "Increasing speed and commitment in wet conditions",
+        exercises: [
+          { name: "Progressive Pace Building", equipment: "Simulator", thumbnail: "📈" },
+          { name: "Aquaplane Recovery", equipment: "Simulator", thumbnail: "🚗" },
+          { name: "Braking on Wet Track", equipment: "Simulator", thumbnail: "🔒" },
+          { name: "Corner Exit Traction", equipment: "Simulator", thumbnail: "⚡" },
+          { name: "Kerb Avoidance Drills", equipment: "Simulator", thumbnail: "🚧" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Intermediate Mastery",
+        focus: "Drying track and tire crossover decisions",
+        exercises: [
+          { name: "Changing Conditions", equipment: "Simulator", thumbnail: "🔄" },
+          { name: "Dry Line Emergence", equipment: "Simulator", thumbnail: "☀️" },
+          { name: "Tire Crossover Timing", equipment: "Strategy tools", thumbnail: "⏱️" },
+          { name: "Mixed Conditions Racing", equipment: "Simulator", thumbnail: "🌤️" },
+          { name: "Risk Assessment", equipment: "Video analysis", thumbnail: "🧠" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Race Excellence",
+        focus: "Winning in wet conditions",
+        exercises: [
+          { name: "Wet Race Starts", equipment: "Simulator", thumbnail: "🏁" },
+          { name: "Safety Car Restarts", equipment: "Simulator", thumbnail: "🚗" },
+          { name: "Overtaking in Spray", equipment: "Simulator", thumbnail: "💨" },
+          { name: "Full Wet Race Simulation", equipment: "Simulator", thumbnail: "🏆" },
+          { name: "Legendary Wet Drives Study", equipment: "Video analysis", thumbnail: "📺" }
         ]
       }
     ]
