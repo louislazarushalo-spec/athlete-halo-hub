@@ -6,6 +6,8 @@ import victorWembanyamaImg from "@/assets/victor-wembanyama.png";
 import teddyRinerImg from "@/assets/teddy-riner.png";
 import pierreGaslyImg from "@/assets/pierre-gasly.png";
 import pierreGaslyBannerImg from "@/assets/pierre-gasly-banner.jpg";
+import pierreReebokOutfitImg from "@/assets/pierre-reebok-outfit.jpg";
+import pierreBogeyGangOutfitImg from "@/assets/pierre-bogey-gang-outfit.jpg";
 import julianAlaphilippeImg from "@/assets/julian-alaphilippe.png";
 import arthurRinderknechImg from "@/assets/arthur-rinderknech.png";
 import gaelMonfilsImg from "@/assets/gael-monfils.png";
@@ -1587,6 +1589,105 @@ export const athletes: Athlete[] = [
         description: "Official Alpine F1 team merchandise.",
         category: "partner",
         athleteId: "pierre-gasly"
+      }
+    ],
+    gearCollections: [
+      {
+        id: "pg-gc-reebok",
+        name: "Pierre's Reebok Street Style",
+        description: "Off the track, Pierre brings the same intensity to his style. Captured in the streets of Monaco, this Reebok look combines vintage racing aesthetics with modern streetwear for a look that's unmistakably Pierre.",
+        actionImage: pierreReebokOutfitImg,
+        products: [
+          {
+            id: "pg-reebok-jacket",
+            name: "Reebok Vector Track Jacket",
+            price: 139,
+            currency: "€",
+            image: pierreReebokOutfitImg,
+            description: "Iconic red and navy track jacket with Reebok Vector design.",
+            category: "partner",
+            athleteId: "pierre-gasly"
+          },
+          {
+            id: "pg-reebok-tshirt",
+            name: "Reebok Classic White Tee",
+            price: 35,
+            currency: "€",
+            image: pierreReebokOutfitImg,
+            description: "Premium cotton white t-shirt, the perfect base layer.",
+            category: "partner",
+            athleteId: "pierre-gasly"
+          },
+          {
+            id: "pg-reebok-pants",
+            name: "Reebok Classic Trousers",
+            price: 89,
+            currency: "€",
+            image: pierreReebokOutfitImg,
+            description: "Sleek black trousers for a refined streetwear look.",
+            category: "partner",
+            athleteId: "pierre-gasly"
+          }
+        ],
+        hotspots: {
+          'pg-reebok-jacket': { x: 50, y: 32 },
+          'pg-reebok-tshirt': { x: 50, y: 50 },
+          'pg-reebok-pants': { x: 50, y: 78 }
+        }
+      },
+      {
+        id: "pg-gc-bogeygang",
+        name: "Pierre's Golf Style with Bogey Gang",
+        description: "When Pierre's not racing, you'll find him on the golf course. This exclusive collaboration with Bogey Gang showcases his love for the game with a refined yet playful approach to golf fashion.",
+        actionImage: pierreBogeyGangOutfitImg,
+        products: [
+          {
+            id: "pg-bg-polo",
+            name: "Bogey Gang Classic Polo",
+            price: 95,
+            currency: "€",
+            image: pierreBogeyGangOutfitImg,
+            description: "Forest green polo with signature BG embroidery.",
+            category: "partner",
+            athleteId: "pierre-gasly"
+          },
+          {
+            id: "pg-bg-pants",
+            name: "Bogey Gang White Trousers",
+            price: 129,
+            currency: "€",
+            image: pierreBogeyGangOutfitImg,
+            description: "Tailored white trousers for the modern golfer.",
+            category: "partner",
+            athleteId: "pierre-gasly"
+          },
+          {
+            id: "pg-bg-shoes",
+            name: "Golf Performance Shoes",
+            price: 159,
+            currency: "€",
+            image: pierreBogeyGangOutfitImg,
+            description: "White golf shoes with premium grip and comfort.",
+            category: "partner",
+            athleteId: "pierre-gasly"
+          },
+          {
+            id: "pg-bg-watch",
+            name: "Luxury Sport Watch",
+            price: 450,
+            currency: "€",
+            image: pierreBogeyGangOutfitImg,
+            description: "Precision timepiece for the gentleman golfer.",
+            category: "partner",
+            athleteId: "pierre-gasly"
+          }
+        ],
+        hotspots: {
+          'pg-bg-polo': { x: 50, y: 28 },
+          'pg-bg-pants': { x: 50, y: 58 },
+          'pg-bg-shoes': { x: 50, y: 88 },
+          'pg-bg-watch': { x: 35, y: 50 }
+        }
       }
     ],
     cause: {
