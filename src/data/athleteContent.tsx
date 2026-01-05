@@ -62,6 +62,10 @@ import pierreMental1 from "@/assets/pierre-mental-1.jpg";
 import pierreMental2 from "@/assets/pierre-mental-2.jpeg";
 import pierreMental3 from "@/assets/pierre-mental-3.jpg";
 import pierreMental4 from "@/assets/pierre-mental-4.jpg";
+import pierreNutrition1 from "@/assets/nutrition-race-fuel.jpg";
+import pierreNutrition2 from "@/assets/nutrition-training-block.jpg";
+import pierreNutrition3 from "@/assets/nutrition-travel.jpg";
+import pierreNutrition4 from "@/assets/nutrition-recovery.jpg";
 
 // Tommy Fleetwood Images
 import tommyFitness1 from "@/assets/tommy-fitness-1.jpg";
@@ -1008,22 +1012,26 @@ export const pierreTrainingData: AthleteTrainingSectionData = {
         {
           id: "nutrition-1",
           title: "Race Weekend Fuel",
-          description: "What I eat before, during, and after race weekends to maintain focus and physical performance."
+          description: "What I eat before, during, and after race weekends to maintain focus and physical performance.",
+          image: pierreNutrition1
         },
         {
           id: "nutrition-2",
           title: "Weight Management Protocol",
-          description: "Balancing muscle mass, hydration, and minimum weight requirements for optimal performance."
+          description: "Balancing muscle mass, hydration, and minimum weight requirements for optimal performance.",
+          image: pierreNutrition2
         },
         {
           id: "nutrition-3",
           title: "Travel & Jet Lag Recovery",
-          description: "Managing nutrition across 24 races and constant timezone changes throughout the season."
+          description: "Managing nutrition across 24 races and constant timezone changes throughout the season.",
+          image: pierreNutrition3
         },
         {
           id: "nutrition-4",
           title: "Hydration Strategy",
-          description: "My approach to staying hydrated when losing 2-3kg of fluid during a single race."
+          description: "My approach to staying hydrated when losing 2-3kg of fluid during a single race.",
+          image: pierreNutrition4
         }
       ]
     },
