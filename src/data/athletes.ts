@@ -9,6 +9,7 @@ import pierreGaslyBannerImg from "@/assets/pierre-gasly-banner.jpg";
 import pierreReebokOutfitImg from "@/assets/pierre-reebok-outfit.jpg";
 import pierreBogeyGangOutfitImg from "@/assets/pierre-bogey-gang-outfit.jpg";
 import pierreReebokJacketImg from "@/assets/pierre-reebok-jacket.jpg";
+import pierreBogeyGangPoloImg from "@/assets/pierre-bogey-gang-polo.png";
 import julianAlaphilippeImg from "@/assets/julian-alaphilippe.png";
 import arthurRinderknechImg from "@/assets/arthur-rinderknech.png";
 import gaelMonfilsImg from "@/assets/gael-monfils.png";
@@ -1625,47 +1626,14 @@ export const athletes: Athlete[] = [
             name: "Bogey Gang Classic Polo",
             price: 95,
             currency: "€",
-            image: pierreBogeyGangOutfitImg,
+            image: pierreBogeyGangPoloImg,
             description: "Forest green polo with signature BG embroidery.",
-            category: "partner",
-            athleteId: "pierre-gasly"
-          },
-          {
-            id: "pg-bg-pants",
-            name: "Bogey Gang White Trousers",
-            price: 129,
-            currency: "€",
-            image: pierreBogeyGangOutfitImg,
-            description: "Tailored white trousers for the modern golfer.",
-            category: "partner",
-            athleteId: "pierre-gasly"
-          },
-          {
-            id: "pg-bg-shoes",
-            name: "Golf Performance Shoes",
-            price: 159,
-            currency: "€",
-            image: pierreBogeyGangOutfitImg,
-            description: "White golf shoes with premium grip and comfort.",
-            category: "partner",
-            athleteId: "pierre-gasly"
-          },
-          {
-            id: "pg-bg-watch",
-            name: "Luxury Sport Watch",
-            price: 450,
-            currency: "€",
-            image: pierreBogeyGangOutfitImg,
-            description: "Precision timepiece for the gentleman golfer.",
             category: "partner",
             athleteId: "pierre-gasly"
           }
         ],
         hotspots: {
-          'pg-bg-polo': { x: 50, y: 28 },
-          'pg-bg-pants': { x: 50, y: 58 },
-          'pg-bg-shoes': { x: 50, y: 88 },
-          'pg-bg-watch': { x: 35, y: 50 }
+          'pg-bg-polo': { x: 50, y: 35 }
         }
       }
     ],
