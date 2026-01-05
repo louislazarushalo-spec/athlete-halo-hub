@@ -359,11 +359,11 @@ const AthletePage = () => {
       {/* Main content - blurred when not authenticated */}
       <div className={!isAuthenticated ? "blur-lg pointer-events-none select-none" : ""}>
         {/* Hero Banner - Full Width */}
-        <section className={`relative ${isCustomAthlete ? "h-[62vh] min-h-[420px]" : "h-[40vh] min-h-[300px]"} sm:h-[45vh] md:h-[50vh] sm:min-h-[350px] md:min-h-[400px] max-h-[700px] overflow-hidden`}>
+        <section className={`relative ${isCustomAthlete ? "h-[50vh] min-h-[320px]" : "h-[40vh] min-h-[300px]"} sm:h-[45vh] md:h-[55vh] sm:min-h-[350px] md:min-h-[400px] max-h-[600px] overflow-hidden`}>
           <img
             src={athlete.banner}
             alt={`${athlete.name} banner`}
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover ${isPierreGasly ? "object-[center_25%] sm:object-[center_30%] md:object-center" : ""}`}
           />
           {/* Grey transparent gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-muted/40" />
