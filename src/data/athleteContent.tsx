@@ -58,6 +58,10 @@ import pierreSkills1 from "@/assets/pierre-skills-1.jpg";
 import pierreSkills2 from "@/assets/pierre-skills-2.jpg";
 import pierreSkills3 from "@/assets/pierre-skills-3.jpg";
 import pierreSkills4 from "@/assets/pierre-skills-4.jpg";
+import pierreMental1 from "@/assets/pierre-mental-1.jpg";
+import pierreMental2 from "@/assets/pierre-mental-2.jpeg";
+import pierreMental3 from "@/assets/pierre-mental-3.jpg";
+import pierreMental4 from "@/assets/pierre-mental-4.jpg";
 
 // Tommy Fleetwood Images
 import tommyFitness1 from "@/assets/tommy-fitness-1.jpg";
@@ -1032,22 +1036,26 @@ export const pierreTrainingData: AthleteTrainingSectionData = {
         {
           id: "mental-1",
           title: "Pre-Race Focus Routine",
-          description: "What I do in the hours before lights out to get into the zone and manage adrenaline."
+          description: "What I do in the hours before lights out to get into the zone and manage adrenaline.",
+          image: pierreMental1
         },
         {
           id: "mental-2",
           title: "Managing Race Pressure",
-          description: "How I stay calm during critical moments like safety car restarts, final laps, and title fights."
+          description: "How I stay calm during critical moments like safety car restarts, final laps, and title fights.",
+          image: pierreMental2
         },
         {
           id: "mental-3",
           title: "Bouncing Back from DNFs",
-          description: "The mental reset techniques I use after crashes, mechanical failures, or disappointing results."
+          description: "The mental reset techniques I use after crashes, mechanical failures, or disappointing results.",
+          image: pierreMental3
         },
         {
           id: "mental-4",
           title: "Visualization & Track Prep",
-          description: "Using mental imagery to learn new circuits and prepare for every corner before arriving."
+          description: "Using mental imagery to learn new circuits and prepare for every corner before arriving.",
+          image: pierreMental4
         }
       ]
     }
