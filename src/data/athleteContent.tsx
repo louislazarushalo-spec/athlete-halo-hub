@@ -49,6 +49,12 @@ import cassandreTrainingSwim from "@/assets/cassandre-training-swim.jpg";
 import cassandreStrength from "@/assets/cassandre-strength.jpg";
 import cassandreMentalPrerace from "@/assets/cassandre-mental-prerace.jpg";
 
+// Pierre Gasly Images
+import pierreFitness1 from "@/assets/pierre-fitness-1.jpg";
+import pierreFitness2 from "@/assets/pierre-fitness-2.jpg";
+import pierreFitness3 from "@/assets/pierre-fitness-3.png";
+import pierreFitness4 from "@/assets/pierre-fitness-4.jpg";
+
 // Tommy Fleetwood Images
 import tommyFitness1 from "@/assets/tommy-fitness-1.jpg";
 import tommyFitness2 from "@/assets/tommy-fitness-2.jpg";
@@ -930,22 +936,26 @@ export const pierreTrainingData: AthleteTrainingSectionData = {
         {
           id: "fitness-1",
           title: "Neck & Core Strengthening",
-          description: "My essential routine for building the neck strength needed to handle 5G+ forces during cornering and braking."
+          description: "My essential routine for building the neck strength needed to handle 5G+ forces during cornering and braking.",
+          image: pierreFitness1
         },
         {
           id: "fitness-2",
           title: "Cardiovascular Endurance Training",
-          description: "The cardio sessions I use to maintain peak heart rate performance across 2-hour races in extreme heat."
+          description: "The cardio sessions I use to maintain peak heart rate performance across 2-hour races in extreme heat.",
+          image: pierreFitness2
         },
         {
           id: "fitness-3",
           title: "Reaction Time & Reflexes",
-          description: "Drills and exercises to sharpen the split-second reactions needed for wheel-to-wheel racing."
+          description: "Drills and exercises to sharpen the split-second reactions needed for wheel-to-wheel racing.",
+          image: pierreFitness3
         },
         {
           id: "fitness-4",
           title: "Heat Acclimatization Protocol",
-          description: "My approach to preparing for races in extreme temperatures like Singapore, Qatar, and Bahrain."
+          description: "My approach to preparing for races in extreme temperatures like Singapore, Qatar, and Bahrain.",
+          image: pierreFitness4
         }
       ]
     },
