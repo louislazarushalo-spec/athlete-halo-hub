@@ -12,6 +12,7 @@ import pierreReebokJacketImg from "@/assets/pierre-reebok-jacket.jpg";
 import pierreBogeyGangPoloImg from "@/assets/pierre-bogey-gang-polo.png";
 import pierreHawkersGolfImg from "@/assets/pierre-hawkers-golf.png";
 import pierreHawkersSunglassesImg from "@/assets/pierre-hawkers-sunglasses.png";
+import pierreCauseYouthImg from "@/assets/pierre-cause-youth.jpg";
 import julianAlaphilippeImg from "@/assets/julian-alaphilippe.png";
 import arthurRinderknechImg from "@/assets/arthur-rinderknech.png";
 import gaelMonfilsImg from "@/assets/gael-monfils.png";
@@ -1667,7 +1668,7 @@ export const athletes: Athlete[] = [
       target: 45000,
       raised: 19800,
       currency: "€",
-      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&h=400&fit=crop"
+      image: pierreCauseYouthImg
     },
     mediaFeed: [
       {
