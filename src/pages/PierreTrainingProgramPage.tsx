@@ -21,6 +21,10 @@ import pierreMental1 from "@/assets/pierre-mental-1.jpg";
 import pierreMental2 from "@/assets/pierre-mental-2.jpeg";
 import pierreMental3 from "@/assets/pierre-mental-3.jpg";
 import pierreMental4 from "@/assets/pierre-mental-4.jpg";
+import pierreNutrition1 from "@/assets/nutrition-race-fuel.jpg";
+import pierreNutrition2 from "@/assets/nutrition-training-block.jpg";
+import pierreNutrition3 from "@/assets/nutrition-travel.jpg";
+import pierreNutrition4 from "@/assets/nutrition-recovery.jpg";
 
 // Program image mapping
 const programImages: Record<string, string> = {
@@ -36,6 +40,10 @@ const programImages: Record<string, string> = {
   "mental-2": pierreMental2,
   "mental-3": pierreMental3,
   "mental-4": pierreMental4,
+  "nutrition-1": pierreNutrition1,
+  "nutrition-2": pierreNutrition2,
+  "nutrition-3": pierreNutrition3,
+  "nutrition-4": pierreNutrition4,
 };
 
 interface Exercise {
@@ -814,6 +822,254 @@ const programsData: Record<string, ProgramData> = {
           { name: "Weather Condition Prep", equipment: "Quiet space", thumbnail: "🌧️" },
           { name: "Pressure Moment Rehearsal", equipment: "Quiet space", thumbnail: "💪" },
           { name: "Success Outcome Imagery", equipment: "Quiet space", thumbnail: "🏆" }
+        ]
+      }
+    ]
+  },
+  "nutrition-1": {
+    title: "Race Weekend Fuel",
+    description: "A 4-week nutrition program designed around the unique demands of an F1 race weekend. From Thursday arrivals to Sunday podiums, learn how I fuel my body for maximum focus, reaction time, and physical endurance across intense 2-hour races.",
+    category: "Nutrition Program",
+    stats: {
+      duration: "Daily planning",
+      exercises: "4–5 meal strategies",
+      length: "4 weeks"
+    },
+    equipment: ["Meal prep containers", "Portable snacks", "Hydration systems", "Nutrition tracking app", "Team chef coordination"],
+    targetAreas: ["Pre-race energy", "In-cockpit hydration", "Post-race recovery", "Mental clarity"],
+    weeks: [
+      {
+        number: 1,
+        title: "Pre-Race Foundation",
+        focus: "Building glycogen stores and optimizing pre-race nutrition",
+        exercises: [
+          { name: "Carb Loading Strategy", equipment: "Meal planning", thumbnail: "🍝" },
+          { name: "Thursday Arrival Nutrition", equipment: "Travel meals", thumbnail: "✈️" },
+          { name: "Friday Practice Fuel", equipment: "Quick snacks", thumbnail: "⚡" },
+          { name: "Evening Recovery Meals", equipment: "Team chef", thumbnail: "🍽️" },
+          { name: "Sleep Optimization Foods", equipment: "Meal timing", thumbnail: "😴" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Qualifying Day Fuel",
+        focus: "Peak mental sharpness for Saturday sessions",
+        exercises: [
+          { name: "Morning Brain Foods", equipment: "Omega-3 sources", thumbnail: "🧠" },
+          { name: "Between Sessions Snacks", equipment: "Portable options", thumbnail: "🍌" },
+          { name: "Qualifying Window Nutrition", equipment: "Light meals", thumbnail: "⏱️" },
+          { name: "Post-Quali Recovery", equipment: "Protein focus", thumbnail: "💪" },
+          { name: "Evening Prep Meals", equipment: "Balanced dinner", thumbnail: "🍽️" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Race Day Execution",
+        focus: "Optimal fueling for 2 hours of intense racing",
+        exercises: [
+          { name: "Race Morning Breakfast", equipment: "4 hours pre-race", thumbnail: "🌅" },
+          { name: "Pre-Race Energy Timing", equipment: "2 hours pre-race", thumbnail: "⏰" },
+          { name: "In-Car Hydration Mix", equipment: "Drink system", thumbnail: "💧" },
+          { name: "Immediate Post-Race Fuel", equipment: "Recovery shake", thumbnail: "🥤" },
+          { name: "Celebration Nutrition", equipment: "Balanced approach", thumbnail: "🏆" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Recovery & Travel",
+        focus: "Post-race recovery and travel nutrition",
+        exercises: [
+          { name: "Monday Recovery Focus", equipment: "Anti-inflammatory", thumbnail: "🔄" },
+          { name: "Travel Day Eating", equipment: "Portable meals", thumbnail: "✈️" },
+          { name: "Jet Lag Nutrition", equipment: "Timing strategy", thumbnail: "🌍" },
+          { name: "Light Training Support", equipment: "Moderate intake", thumbnail: "🏃" },
+          { name: "Next Race Prep Begins", equipment: "Cycle planning", thumbnail: "📅" }
+        ]
+      }
+    ]
+  },
+  "nutrition-2": {
+    title: "Weight Management Protocol",
+    description: "A 4-week program for managing the delicate balance between muscle mass, hydration, and the minimum weight requirements in F1. Every kilogram matters in racing performance, and this protocol helps optimize body composition while maintaining strength and endurance.",
+    category: "Nutrition Program",
+    stats: {
+      duration: "Daily monitoring",
+      exercises: "5–6 strategies",
+      length: "4 weeks"
+    },
+    equipment: ["Body composition scale", "Food scale", "Tracking app", "Hydration monitor", "Meal prep system"],
+    targetAreas: ["Lean muscle retention", "Fat optimization", "Hydration balance", "Energy maintenance"],
+    weeks: [
+      {
+        number: 1,
+        title: "Baseline Assessment",
+        focus: "Understanding current composition and targets",
+        exercises: [
+          { name: "Body Composition Analysis", equipment: "DEXA scan", thumbnail: "📊" },
+          { name: "Current Diet Audit", equipment: "Food diary", thumbnail: "📝" },
+          { name: "Caloric Needs Calculation", equipment: "Tracking app", thumbnail: "🔢" },
+          { name: "Protein Requirement Setting", equipment: "Goal planning", thumbnail: "🎯" },
+          { name: "Weigh-In Protocol Setup", equipment: "Scale routine", thumbnail: "⚖️" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Macro Optimization",
+        focus: "Fine-tuning macronutrient ratios",
+        exercises: [
+          { name: "Protein Timing Strategy", equipment: "Meal scheduling", thumbnail: "🥩" },
+          { name: "Carb Cycling Introduction", equipment: "Training calendar", thumbnail: "🔄" },
+          { name: "Strategic Fat Intake", equipment: "Healthy sources", thumbnail: "🥑" },
+          { name: "Pre-Training Nutrition", equipment: "Energy foods", thumbnail: "⚡" },
+          { name: "Post-Training Recovery", equipment: "Recovery meals", thumbnail: "💪" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Race Weight Targeting",
+        focus: "Achieving optimal race weight without compromising performance",
+        exercises: [
+          { name: "Strategic Water Loading", equipment: "Hydration plan", thumbnail: "💧" },
+          { name: "Low-Residue Race Prep", equipment: "Fiber timing", thumbnail: "🍽️" },
+          { name: "Weight Cut Protocol", equipment: "Safe methods", thumbnail: "⚖️" },
+          { name: "Energy Preservation", equipment: "Calorie balance", thumbnail: "🔋" },
+          { name: "Performance Monitoring", equipment: "Testing protocol", thumbnail: "📈" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Maintenance & Sustainability",
+        focus: "Long-term weight management across the season",
+        exercises: [
+          { name: "Seasonal Planning", equipment: "Calendar approach", thumbnail: "📅" },
+          { name: "Travel Weight Management", equipment: "Portable solutions", thumbnail: "✈️" },
+          { name: "Off-Season Strategy", equipment: "Flexibility balance", thumbnail: "🏖️" },
+          { name: "Mental Relationship with Food", equipment: "Mindful eating", thumbnail: "🧠" },
+          { name: "Regular Reassessment", equipment: "Monthly reviews", thumbnail: "🔄" }
+        ]
+      }
+    ]
+  },
+  "nutrition-3": {
+    title: "Travel & Jet Lag Recovery",
+    description: "A 4-week program for managing nutrition across 24 races and constant timezone changes throughout the F1 season. Learn how I minimize jet lag effects, maintain consistent energy, and fuel properly while living out of suitcases across five continents.",
+    category: "Nutrition Program",
+    stats: {
+      duration: "Ongoing throughout season",
+      exercises: "4–5 strategies",
+      length: "4 weeks"
+    },
+    equipment: ["Portable supplements", "Travel snacks", "Hydration bottles", "Melatonin (as advised)", "Meal planning app"],
+    targetAreas: ["Circadian rhythm support", "Gut health on travel", "Energy consistency", "Immune support"],
+    weeks: [
+      {
+        number: 1,
+        title: "Pre-Travel Preparation",
+        focus: "Preparing the body for timezone shifts",
+        exercises: [
+          { name: "Sleep Schedule Shifting", equipment: "Light exposure", thumbnail: "🌅" },
+          { name: "Gut Preparation", equipment: "Probiotics", thumbnail: "🦠" },
+          { name: "Meal Timing Adjustment", equipment: "Gradual shifts", thumbnail: "⏰" },
+          { name: "Hydration Pre-Loading", equipment: "Water intake boost", thumbnail: "💧" },
+          { name: "Supplement Packing", equipment: "Travel kit", thumbnail: "💊" }
+        ]
+      },
+      {
+        number: 2,
+        title: "In-Flight Nutrition",
+        focus: "Eating and drinking during long-haul flights",
+        exercises: [
+          { name: "Flight Meal Strategy", equipment: "Packed alternatives", thumbnail: "✈️" },
+          { name: "Hydration Protocol", equipment: "Electrolytes", thumbnail: "💧" },
+          { name: "Alcohol/Caffeine Management", equipment: "Timing control", thumbnail: "☕" },
+          { name: "Bloating Prevention", equipment: "Light foods", thumbnail: "🎈" },
+          { name: "Arrival Meal Planning", equipment: "Destination prep", thumbnail: "🍽️" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Destination Adaptation",
+        focus: "Quick adaptation to new timezones",
+        exercises: [
+          { name: "First Day Meal Timing", equipment: "Local schedule", thumbnail: "🌍" },
+          { name: "Caffeine Strategic Use", equipment: "Timing protocol", thumbnail: "☕" },
+          { name: "Light Exposure Eating", equipment: "Outdoor meals", thumbnail: "☀️" },
+          { name: "Sleep Support Foods", equipment: "Tryptophan sources", thumbnail: "😴" },
+          { name: "Gut Resync Protocol", equipment: "Fiber timing", thumbnail: "🔄" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Ongoing Season Management",
+        focus: "Maintaining nutrition quality across back-to-back races",
+        exercises: [
+          { name: "Hotel Room Prep", equipment: "Portable supplies", thumbnail: "🏨" },
+          { name: "Restaurant Navigation", equipment: "Menu selection", thumbnail: "📋" },
+          { name: "Immune Support Focus", equipment: "Vitamin strategy", thumbnail: "🛡️" },
+          { name: "Consistency Anchors", equipment: "Familiar foods", thumbnail: "⚓" },
+          { name: "Energy Maintenance", equipment: "Snack strategy", thumbnail: "⚡" }
+        ]
+      }
+    ]
+  },
+  "nutrition-4": {
+    title: "Hydration Strategy",
+    description: "A 4-week program focused on the critical importance of hydration for F1 drivers. During a race, I can lose 2-3kg of body fluid in cockpit temperatures exceeding 50°C. This program covers pre-race hydration, in-car drink strategies, and rapid post-race rehydration.",
+    category: "Nutrition Program",
+    stats: {
+      duration: "Daily practice",
+      exercises: "4–5 protocols",
+      length: "4 weeks"
+    },
+    equipment: ["Hydration monitor", "Electrolyte supplements", "In-car drink system", "Urine color chart", "Sweat testing kit"],
+    targetAreas: ["Pre-race hydration", "In-race fluid management", "Post-race recovery", "Heat adaptation"],
+    weeks: [
+      {
+        number: 1,
+        title: "Hydration Fundamentals",
+        focus: "Understanding individual hydration needs",
+        exercises: [
+          { name: "Sweat Rate Testing", equipment: "Scale + training", thumbnail: "💧" },
+          { name: "Electrolyte Profile", equipment: "Sweat patch", thumbnail: "🧪" },
+          { name: "Daily Intake Baseline", equipment: "Tracking app", thumbnail: "📊" },
+          { name: "Urine Monitoring", equipment: "Color chart", thumbnail: "🎨" },
+          { name: "Hydration Timing", equipment: "Schedule", thumbnail: "⏰" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Pre-Race Loading",
+        focus: "Optimal hydration in the 24-48 hours before racing",
+        exercises: [
+          { name: "48-Hour Protocol", equipment: "Electrolyte drinks", thumbnail: "📅" },
+          { name: "Morning-Of Strategy", equipment: "Fluid timing", thumbnail: "🌅" },
+          { name: "Electrolyte Balance", equipment: "Sodium focus", thumbnail: "🧂" },
+          { name: "Avoiding Over-Hydration", equipment: "Volume control", thumbnail: "⚖️" },
+          { name: "Final Pre-Race Drink", equipment: "Timing protocol", thumbnail: "⏱️" }
+        ]
+      },
+      {
+        number: 3,
+        title: "In-Race Management",
+        focus: "Staying hydrated during 2-hour races in extreme heat",
+        exercises: [
+          { name: "Drink System Setup", equipment: "Car preparation", thumbnail: "🏎️" },
+          { name: "Drinking Technique", equipment: "Practice drills", thumbnail: "💪" },
+          { name: "Concentration Mixing", equipment: "Custom formula", thumbnail: "🔬" },
+          { name: "Strategic Sipping", equipment: "Lap timing", thumbnail: "📍" },
+          { name: "Hot Race Adaptations", equipment: "Ice integration", thumbnail: "🧊" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Recovery Rehydration",
+        focus: "Rapid and complete post-race fluid restoration",
+        exercises: [
+          { name: "Immediate Post-Race", equipment: "Recovery drinks", thumbnail: "🥤" },
+          { name: "Weight Loss Replacement", equipment: "1.5x protocol", thumbnail: "⚖️" },
+          { name: "Electrolyte Replacement", equipment: "Sodium focus", thumbnail: "🧂" },
+          { name: "Evening Rehydration", equipment: "Steady intake", thumbnail: "🌙" },
+          { name: "Next Day Monitoring", equipment: "Verification", thumbnail: "✅" }
         ]
       }
     ]
