@@ -66,6 +66,12 @@ import pierreNutrition1 from "@/assets/nutrition-race-fuel.jpg";
 import pierreNutrition2 from "@/assets/nutrition-training-block.jpg";
 import pierreNutrition3 from "@/assets/nutrition-travel.jpg";
 import pierreNutrition4 from "@/assets/nutrition-recovery.jpg";
+import pierreHighlight1 from "@/assets/pierre-highlight-1.jpg";
+import pierreHighlight2 from "@/assets/pierre-highlight-2.jpg";
+import pierreHighlight3 from "@/assets/pierre-highlight-3.png";
+import pierreHighlight4 from "@/assets/pierre-highlight-4.png";
+import pierreHighlight5 from "@/assets/pierre-highlight-5.png";
+import pierreHighlight6 from "@/assets/pierre-highlight-6.png";
 
 // Tommy Fleetwood Images
 import tommyFitness1 from "@/assets/tommy-fitness-1.jpg";
@@ -832,31 +838,31 @@ export const pierreExclusiveZoneData: AthleteExclusiveZoneData = {
     {
       id: "signed_helmet",
       title: "Win Signed Pierre Gasly Race Helmet",
-      description: "Authenticated replica helmet signed by Pierre after his Monza victory celebration",
+      description: "Authenticated 1:2 scale replica helmet signed by Pierre after his Monza 2020 victory — the most emotional win in F1 history",
       badge: "Ends Jan 15",
       icon: Trophy,
       iconBg: "from-amber-500 to-orange-600"
     },
     {
-      id: "gear_pack",
-      title: "Halo F1 Gear Pack",
-      description: "Premium Alpine team cap, race gloves replica, and exclusive paddock merchandise",
+      id: "race_gloves",
+      title: "Race-Worn Gloves Giveaway",
+      description: "Genuine race-worn Alpine F1 gloves from the 2024 season with certificate of authenticity",
       badge: "Monthly Draw",
       icon: Gift,
       iconBg: "from-green-500 to-emerald-600"
     },
     {
-      id: "virtual_qa",
-      title: "Virtual Q&A Access",
-      description: "Join a platform-hosted live Q&A session with Pierre and other fans",
+      id: "virtual_garage_tour",
+      title: "Virtual Factory Tour with Pierre",
+      description: "Join an exclusive virtual walkthrough of the Alpine F1 factory in Enstone with Pierre as your guide",
       badge: "Next: Feb 2025",
       icon: Users,
       iconBg: "from-blue-500 to-indigo-600"
     },
     {
-      id: "paddock_experience",
-      title: "Halo Paddock Experience Ticket",
-      description: "Attend an exclusive Halo-organized F1 race weekend experience",
+      id: "monaco_gp_experience",
+      title: "Monaco GP VIP Experience",
+      description: "Win a paddock pass and yacht viewing experience for Pierre's home Grand Prix in Monaco",
       badge: "Limited",
       icon: Star,
       iconBg: "from-purple-500 to-pink-600"
@@ -864,74 +870,89 @@ export const pierreExclusiveZoneData: AthleteExclusiveZoneData = {
   ],
   exclusiveContent: [
     {
-      id: "race_stats",
-      title: "Pierre's 2024 Season Stats Breakdown",
-      description: "Lap times, overtakes, qualifying performances, and key race metrics from the F1 season",
-      thumbnail: "/placeholder.svg",
-      type: "Stats",
-      icon: TrendingUp
-    },
-    {
-      id: "simulator_day",
-      title: "A Day in the Simulator",
-      description: "Behind-the-scenes look at Pierre's simulator sessions and race preparation",
-      thumbnail: "/placeholder.svg",
+      id: "onboard_analysis",
+      title: "Onboard Lap Analysis with Pierre",
+      description: "Watch Pierre break down his qualifying laps sector by sector, explaining braking points, racing lines, and setup choices",
+      thumbnail: pierreHighlight1,
       type: "Video",
       icon: Play
     },
     {
-      id: "photo_gallery",
-      title: "Monza Victory Gallery",
-      description: "Exclusive photos from Pierre's iconic Italian Grand Prix win",
-      thumbnail: "/placeholder.svg",
-      type: "Gallery",
-      icon: Image
+      id: "monza_2020_story",
+      title: "The Monza Victory Story",
+      description: "The full story behind Pierre's emotional 2020 Italian GP win — from tragedy to triumph, in his own words",
+      thumbnail: pierreHighlight2,
+      type: "Documentary",
+      icon: Play
     },
     {
-      id: "race_breakdown",
-      title: "Race Strategy Breakdown",
-      description: "Analysis of Pierre's race-craft, overtaking moves, and tire management",
-      thumbnail: "/placeholder.svg",
-      type: "Analysis",
+      id: "season_stats",
+      title: "2024 Season Performance Deep Dive",
+      description: "Detailed breakdown of lap times, overtakes, qualifying battles, and race pace compared to teammates and rivals",
+      thumbnail: pierreHighlight3,
+      type: "Stats",
       icon: TrendingUp
     },
     {
-      id: "monaco_moments",
-      title: "Monaco Home Race Moments",
-      description: "Key highlights and memorable moments from racing on home soil",
-      thumbnail: "/placeholder.svg",
-      type: "Highlights",
+      id: "simulator_session",
+      title: "Inside the F1 Simulator",
+      description: "Go behind the scenes at Alpine's state-of-the-art simulator and see how Pierre prepares for race weekends",
+      thumbnail: pierreHighlight4,
+      type: "Video",
       icon: Play
+    },
+    {
+      id: "race_engineer_comms",
+      title: "Radio Highlights Collection",
+      description: "Exclusive extended team radio from key moments — strategy calls, celebrations, and intense battles",
+      thumbnail: pierreHighlight5,
+      type: "Audio",
+      icon: Play
+    },
+    {
+      id: "helmet_design_story",
+      title: "Helmet Design Process",
+      description: "How Pierre designs his race helmets — from initial sketches to the finished product honoring Anthoine Hubert",
+      thumbnail: pierreHighlight6,
+      type: "Gallery",
+      icon: Image
     }
   ],
   discussionThreads: [
     {
-      id: "race_reactions",
-      title: "Race Reactions",
-      description: "Discuss Pierre's latest races, results, and pivotal on-track moments",
-      participants: 2847,
-      lastActive: "1 hour ago"
+      id: "race_weekend_live",
+      title: "Race Weekend Live Chat",
+      description: "Live discussion during every Grand Prix — quali predictions, race reactions, and post-race analysis",
+      participants: 4521,
+      lastActive: "5 min ago"
     },
     {
-      id: "championship_predictions",
-      title: "Championship Predictions",
-      description: "Share your predictions for upcoming Grand Prix weekends and season standings",
-      participants: 3234,
+      id: "alpine_development",
+      title: "Alpine 2025 Car Discussion",
+      description: "Discuss the A525 development, new regulations, and what changes could help Pierre challenge for podiums",
+      participants: 2847,
       lastActive: "20 min ago"
     },
     {
-      id: "sim_racing_tips",
-      title: "Sim Racing Tips (Fan to Fan)",
-      description: "Exchange sim racing setups, track guides, and improvement strategies",
-      participants: 1562,
+      id: "sim_racing_community",
+      title: "Sim Racing Setup Exchange",
+      description: "Share your F1 game setups for each circuit, compare lap times, and get tips from the community",
+      participants: 1823,
       lastActive: "45 min ago"
     },
     {
-      id: "f1_tech_talk",
-      title: "F1 Tech Talk",
-      description: "Discuss car setups, aerodynamics, and technical regulations",
-      participants: 923,
-      lastActive: "30 min ago"
+      id: "driver_market_rumors",
+      title: "Driver Market & Team News",
+      description: "Discuss the latest F1 driver market rumors, contract situations, and team movements",
+      participants: 3156,
+      lastActive: "10 min ago"
+    },
+    {
+      id: "karting_beginners",
+      title: "Getting Into Karting",
+      description: "Advice for fans wanting to start karting — equipment, tracks, and tips inspired by Pierre's journey",
+      participants: 892,
+      lastActive: "1 hour ago"
     }
   ]
 };
