@@ -10,6 +10,8 @@ import pierreReebokOutfitImg from "@/assets/pierre-reebok-outfit.jpg";
 import pierreBogeyGangOutfitImg from "@/assets/pierre-bogey-gang-outfit.jpg";
 import pierreReebokJacketImg from "@/assets/pierre-reebok-jacket.jpg";
 import pierreBogeyGangPoloImg from "@/assets/pierre-bogey-gang-polo.png";
+import pierreHawkersGolfImg from "@/assets/pierre-hawkers-golf.png";
+import pierreHawkersSunglassesImg from "@/assets/pierre-hawkers-sunglasses.png";
 import julianAlaphilippeImg from "@/assets/julian-alaphilippe.png";
 import arthurRinderknechImg from "@/assets/arthur-rinderknech.png";
 import gaelMonfilsImg from "@/assets/gael-monfils.png";
@@ -1634,6 +1636,27 @@ export const athletes: Athlete[] = [
         ],
         hotspots: {
           'pg-bg-polo': { x: 50, y: 35 }
+        }
+      },
+      {
+        id: "pg-gc-hawkers",
+        name: "Pierre's Golf Look with Hawkers",
+        description: "Pierre brings his signature style to the fairway with Hawkers eyewear. Relaxed yet refined, this golf course look combines classic polo styling with premium sunglasses for the ultimate on-course aesthetic.",
+        actionImage: pierreHawkersGolfImg,
+        products: [
+          {
+            id: "pg-hawkers-sunglasses",
+            name: "Hawkers Core Sunglasses",
+            price: 75,
+            currency: "€",
+            image: pierreHawkersSunglassesImg,
+            description: "Premium brown gradient sunglasses with Hawkers signature design.",
+            category: "partner",
+            athleteId: "pierre-gasly"
+          }
+        ],
+        hotspots: {
+          'pg-hawkers-sunglasses': { x: 50, y: 15 }
         }
       }
     ],
