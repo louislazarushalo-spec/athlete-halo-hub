@@ -1,9 +1,10 @@
-import { Trophy, TrendingUp, Target, Award, Flag, Timer, Gauge, Zap } from "lucide-react";
+import { Trophy, TrendingUp, Target, Award, Flag, Timer, Gauge, Zap, History } from "lucide-react";
 import { StatCard } from "./StatCard";
 import { PierreSeasonChart } from "./PierreSeasonChart";
 import { PierreQualifyingChart } from "./PierreQualifyingChart";
 import { PierreRacePerformanceGauge } from "./PierreRacePerformanceGauge";
 import { PierreUpcomingRaceBlock } from "./PierreUpcomingRaceBlock";
+import { PierreHistoricalChart } from "./PierreHistoricalChart";
 
 // Placeholder data - easily replaceable with API/CMS data
 const globalStats = {
@@ -66,10 +67,19 @@ export const PierreDataHub = () => {
         </div>
       </div>
       
+      {/* Historical Performance Trends */}
+      <div>
+        <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 sm:mb-4 flex items-center gap-2">
+          <History className="h-4 w-4" />
+          Historical Performance
+        </h4>
+        <PierreHistoricalChart />
+      </div>
+      
       {/* Performance Charts */}
       <div>
         <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3 sm:mb-4">
-          Performance Analytics
+          2025 Season Analytics
         </h4>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           <PierreSeasonChart />
