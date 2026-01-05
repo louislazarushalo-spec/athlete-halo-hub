@@ -54,6 +54,10 @@ import pierreFitness1 from "@/assets/pierre-fitness-1.jpg";
 import pierreFitness2 from "@/assets/pierre-fitness-2.jpg";
 import pierreFitness3 from "@/assets/pierre-fitness-3.png";
 import pierreFitness4 from "@/assets/pierre-fitness-4.jpg";
+import pierreSkills1 from "@/assets/pierre-skills-1.jpg";
+import pierreSkills2 from "@/assets/pierre-skills-2.jpg";
+import pierreSkills3 from "@/assets/pierre-skills-3.jpg";
+import pierreSkills4 from "@/assets/pierre-skills-4.jpg";
 
 // Tommy Fleetwood Images
 import tommyFitness1 from "@/assets/tommy-fitness-1.jpg";
@@ -968,22 +972,26 @@ export const pierreTrainingData: AthleteTrainingSectionData = {
         {
           id: "skills-1",
           title: "Braking Point Precision",
-          description: "How I train my braking consistency to hit the same points lap after lap under pressure."
+          description: "How I train my braking consistency to hit the same points lap after lap under pressure.",
+          image: pierreSkills1
         },
         {
           id: "skills-2",
           title: "Overtaking Techniques",
-          description: "The race-craft I use for late-braking moves, switchbacks, and creating overtaking opportunities."
+          description: "The race-craft I use for late-braking moves, switchbacks, and creating overtaking opportunities.",
+          image: pierreSkills2
         },
         {
           id: "skills-3",
           title: "Tire Management Mastery",
-          description: "Understanding tire degradation, temperature windows, and extending stint lengths."
+          description: "Understanding tire degradation, temperature windows, and extending stint lengths.",
+          image: pierreSkills3
         },
         {
           id: "skills-4",
           title: "Wet Weather Driving",
-          description: "Techniques for handling reduced grip, spray visibility, and aquaplaning in rain conditions."
+          description: "Techniques for handling reduced grip, spray visibility, and aquaplaning in rain conditions.",
+          image: pierreSkills4
         }
       ]
     },
