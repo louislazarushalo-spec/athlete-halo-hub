@@ -17,6 +17,10 @@ import pierreSkills1 from "@/assets/pierre-skills-1.jpg";
 import pierreSkills2 from "@/assets/pierre-skills-2.jpg";
 import pierreSkills3 from "@/assets/pierre-skills-3.jpg";
 import pierreSkills4 from "@/assets/pierre-skills-4.jpg";
+import pierreMental1 from "@/assets/pierre-mental-1.jpg";
+import pierreMental2 from "@/assets/pierre-mental-2.jpeg";
+import pierreMental3 from "@/assets/pierre-mental-3.jpg";
+import pierreMental4 from "@/assets/pierre-mental-4.jpg";
 
 // Program image mapping
 const programImages: Record<string, string> = {
@@ -28,6 +32,10 @@ const programImages: Record<string, string> = {
   "skills-2": pierreSkills2,
   "skills-3": pierreSkills3,
   "skills-4": pierreSkills4,
+  "mental-1": pierreMental1,
+  "mental-2": pierreMental2,
+  "mental-3": pierreMental3,
+  "mental-4": pierreMental4,
 };
 
 interface Exercise {
@@ -558,6 +566,254 @@ const programsData: Record<string, ProgramData> = {
           { name: "Overtaking in Spray", equipment: "Simulator", thumbnail: "💨" },
           { name: "Full Wet Race Simulation", equipment: "Simulator", thumbnail: "🏆" },
           { name: "Legendary Wet Drives Study", equipment: "Video analysis", thumbnail: "📺" }
+        ]
+      }
+    ]
+  },
+  "mental-1": {
+    title: "Pre-Race Focus Routine",
+    description: "A 4-week program on mental preparation for race day. From the moment I wake up to lights out, every F1 driver has rituals and routines to get into the zone. This program shares my approach to managing adrenaline and finding peak focus.",
+    category: "Mental Program",
+    stats: {
+      duration: "30–60 min per session",
+      exercises: "4–6",
+      length: "4 weeks"
+    },
+    equipment: ["Quiet space", "Meditation app", "Music playlist", "Breathing timer", "Journal"],
+    targetAreas: ["Race day focus", "Adrenaline management", "Pre-race anxiety", "Mental clarity"],
+    weeks: [
+      {
+        number: 1,
+        title: "Morning Routine Foundation",
+        focus: "Establishing race morning rituals",
+        exercises: [
+          { name: "Wake-Up Mindfulness", equipment: "Quiet space", thumbnail: "🌅" },
+          { name: "Controlled Breathing (Box)", equipment: "Breathing timer", thumbnail: "🌬️" },
+          { name: "Race Day Journaling", equipment: "Journal", thumbnail: "📝" },
+          { name: "Intention Setting", equipment: "Quiet space", thumbnail: "🎯" },
+          { name: "Physical Activation", equipment: "Bodyweight", thumbnail: "💪" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Paddock to Garage",
+        focus: "Managing energy through race preparation",
+        exercises: [
+          { name: "Team Brief Focus", equipment: "Quiet space", thumbnail: "🤝" },
+          { name: "Data Review Mindset", equipment: "Focus app", thumbnail: "📊" },
+          { name: "Walkabout Grounding", equipment: "Track walk", thumbnail: "🚶" },
+          { name: "Energy Conservation", equipment: "Quiet space", thumbnail: "🔋" },
+          { name: "Hydration Ritual", equipment: "Water bottle", thumbnail: "💧" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Cockpit Preparation",
+        focus: "Final mental preparation before lights out",
+        exercises: [
+          { name: "Visor Down Routine", equipment: "Quiet space", thumbnail: "🏎️" },
+          { name: "Formation Lap Focus", equipment: "Visualization", thumbnail: "🔄" },
+          { name: "Grid Box Centering", equipment: "Breathing", thumbnail: "🧘" },
+          { name: "Start Sequence Visualization", equipment: "Mental imagery", thumbnail: "🏁" },
+          { name: "Adrenaline Channeling", equipment: "Breathing timer", thumbnail: "⚡" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Race Day Mastery",
+        focus: "Complete pre-race mental protocol",
+        exercises: [
+          { name: "Full Morning Protocol", equipment: "Mixed", thumbnail: "🌅" },
+          { name: "Pressure Scenario Practice", equipment: "Visualization", thumbnail: "💪" },
+          { name: "Focus Trigger Development", equipment: "Personal cue", thumbnail: "🎯" },
+          { name: "Race Simulation Mental Prep", equipment: "Simulator", thumbnail: "🏆" },
+          { name: "Routine Refinement", equipment: "Journal", thumbnail: "✨" }
+        ]
+      }
+    ]
+  },
+  "mental-2": {
+    title: "Managing Race Pressure",
+    description: "A 4-week program for staying calm and making clear decisions during the most intense moments of racing. From safety car restarts to final lap battles, this program trains the mental skills needed to thrive under pressure.",
+    category: "Mental Program",
+    stats: {
+      duration: "45–60 min per session",
+      exercises: "5–6",
+      length: "4 weeks"
+    },
+    equipment: ["Racing simulator", "Heart rate monitor", "Stress scenarios", "Breathing tools", "Video review"],
+    targetAreas: ["Pressure performance", "Decision clarity", "Emotional control", "Crisis management"],
+    weeks: [
+      {
+        number: 1,
+        title: "Pressure Awareness",
+        focus: "Understanding your pressure responses",
+        exercises: [
+          { name: "Heart Rate Monitoring", equipment: "HR monitor", thumbnail: "❤️" },
+          { name: "Pressure Point Identification", equipment: "Journal", thumbnail: "📝" },
+          { name: "Breathing Under Load", equipment: "Breathing timer", thumbnail: "🌬️" },
+          { name: "Stress Response Journaling", equipment: "Journal", thumbnail: "📖" },
+          { name: "Recovery Baseline", equipment: "HR monitor", thumbnail: "📊" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Control Techniques",
+        focus: "Developing pressure management tools",
+        exercises: [
+          { name: "Tactical Breathing", equipment: "Breathing timer", thumbnail: "🌬️" },
+          { name: "Positive Self-Talk Scripts", equipment: "Journal", thumbnail: "💬" },
+          { name: "Focus Cue Development", equipment: "Personal triggers", thumbnail: "🎯" },
+          { name: "Arousal Regulation", equipment: "HR monitor", thumbnail: "📈" },
+          { name: "Pressure Simulation Lite", equipment: "Simulator", thumbnail: "🏎️" }
+        ]
+      },
+      {
+        number: 3,
+        title: "High-Stakes Scenarios",
+        focus: "Practicing under simulated race pressure",
+        exercises: [
+          { name: "Safety Car Restart Sims", equipment: "Simulator", thumbnail: "🚗" },
+          { name: "Final Lap Battles", equipment: "Simulator", thumbnail: "🏁" },
+          { name: "Championship Decider", equipment: "Simulator", thumbnail: "🏆" },
+          { name: "Radio Pressure Handling", equipment: "Simulator", thumbnail: "📻" },
+          { name: "Split-Second Decisions", equipment: "Simulator", thumbnail: "⚡" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Pressure Mastery",
+        focus: "Thriving in high-pressure moments",
+        exercises: [
+          { name: "Full Pressure Race Sim", equipment: "Simulator", thumbnail: "🏎️" },
+          { name: "Post-Pressure Recovery", equipment: "Breathing", thumbnail: "🧘" },
+          { name: "Mental Debrief Practice", equipment: "Journal", thumbnail: "📝" },
+          { name: "Clutch Performance Training", equipment: "Simulator", thumbnail: "💪" },
+          { name: "Pressure Routine Integration", equipment: "Mixed", thumbnail: "✨" }
+        ]
+      }
+    ]
+  },
+  "mental-3": {
+    title: "Bouncing Back from DNFs",
+    description: "A 4-week program on mental resilience after disappointment. Whether it's a crash, mechanical failure, or mistake, learning to reset and come back stronger is essential. This program shares my techniques for processing setbacks and returning to peak performance.",
+    category: "Mental Program",
+    stats: {
+      duration: "30–45 min per session",
+      exercises: "4–5",
+      length: "4 weeks"
+    },
+    equipment: ["Journal", "Video review", "Support network", "Quiet space", "Exercise equipment"],
+    targetAreas: ["Resilience building", "Setback processing", "Confidence restoration", "Forward focus"],
+    weeks: [
+      {
+        number: 1,
+        title: "Processing Disappointment",
+        focus: "Healthy ways to handle setbacks",
+        exercises: [
+          { name: "Immediate Reset Protocol", equipment: "Breathing", thumbnail: "🔄" },
+          { name: "Emotion Acknowledgment", equipment: "Journal", thumbnail: "📝" },
+          { name: "Physical Release", equipment: "Exercise", thumbnail: "💪" },
+          { name: "Support Circle Connection", equipment: "Phone/in-person", thumbnail: "🤝" },
+          { name: "Sleep Reset", equipment: "Quiet space", thumbnail: "😴" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Analysis Without Blame",
+        focus: "Objective review and learning",
+        exercises: [
+          { name: "Fact-Based Debrief", equipment: "Data/video", thumbnail: "📊" },
+          { name: "What I Controlled", equipment: "Journal", thumbnail: "🎯" },
+          { name: "Learning Extraction", equipment: "Journal", thumbnail: "📚" },
+          { name: "Team Debrief Mindset", equipment: "Meeting", thumbnail: "🤝" },
+          { name: "Future Application Plan", equipment: "Journal", thumbnail: "📋" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Confidence Rebuilding",
+        focus: "Restoring self-belief after setbacks",
+        exercises: [
+          { name: "Success Recall", equipment: "Video/memory", thumbnail: "🏆" },
+          { name: "Competence Reminders", equipment: "Journal", thumbnail: "💪" },
+          { name: "Gradual Challenge Progression", equipment: "Simulator", thumbnail: "📈" },
+          { name: "Positive Feedback Integration", equipment: "Team input", thumbnail: "👍" },
+          { name: "Visualization Success", equipment: "Mental imagery", thumbnail: "🌟" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Forward Momentum",
+        focus: "Turning setbacks into motivation",
+        exercises: [
+          { name: "Next Race Focus", equipment: "Preparation", thumbnail: "🏎️" },
+          { name: "Goal Recommitment", equipment: "Journal", thumbnail: "🎯" },
+          { name: "Hunger Channeling", equipment: "Motivation work", thumbnail: "🔥" },
+          { name: "Comeback Visualization", equipment: "Mental imagery", thumbnail: "🚀" },
+          { name: "Resilience Routine", equipment: "Mixed", thumbnail: "✨" }
+        ]
+      }
+    ]
+  },
+  "mental-4": {
+    title: "Visualization & Track Prep",
+    description: "A 4-week program on using mental imagery to prepare for circuits. Before I even arrive at a track, I've driven hundreds of laps in my mind. This program teaches the visualization techniques used by elite drivers to learn new tracks and optimize performance.",
+    category: "Mental Program",
+    stats: {
+      duration: "30–45 min per session",
+      exercises: "4–6",
+      length: "4 weeks"
+    },
+    equipment: ["Onboard videos", "Track maps", "Quiet space", "VR headset (optional)", "Notes/journal"],
+    targetAreas: ["Track memorization", "Corner visualization", "Braking references", "Race scenarios"],
+    weeks: [
+      {
+        number: 1,
+        title: "Visualization Basics",
+        focus: "Developing mental imagery skills",
+        exercises: [
+          { name: "Sensory Recall Practice", equipment: "Quiet space", thumbnail: "🧠" },
+          { name: "Simple Lap Imagery", equipment: "Quiet space", thumbnail: "🔄" },
+          { name: "Visual Clarity Training", equipment: "Onboard video", thumbnail: "👁️" },
+          { name: "Feeling-Based Imagery", equipment: "Quiet space", thumbnail: "🎯" },
+          { name: "Speed of Imagery", equipment: "Timer", thumbnail: "⏱️" }
+        ]
+      },
+      {
+        number: 2,
+        title: "Track Learning",
+        focus: "Memorizing new circuits through visualization",
+        exercises: [
+          { name: "Sector-by-Sector Study", equipment: "Track map", thumbnail: "📍" },
+          { name: "Reference Point Memorization", equipment: "Onboard video", thumbnail: "🎯" },
+          { name: "Braking Zone Visualization", equipment: "Quiet space", thumbnail: "🔒" },
+          { name: "Corner Character Study", equipment: "Track notes", thumbnail: "📝" },
+          { name: "Full Lap Mental Drives", equipment: "Quiet space", thumbnail: "🏎️" }
+        ]
+      },
+      {
+        number: 3,
+        title: "Performance Imagery",
+        focus: "Visualizing optimal performance",
+        exercises: [
+          { name: "Perfect Lap Visualization", equipment: "Quiet space", thumbnail: "🏆" },
+          { name: "Problem Corner Focus", equipment: "Video + imagery", thumbnail: "🔧" },
+          { name: "Qualifying Lap Imagery", equipment: "Quiet space", thumbnail: "⏱️" },
+          { name: "Race Start Scenarios", equipment: "Quiet space", thumbnail: "🏁" },
+          { name: "Overtaking Opportunity Spots", equipment: "Track analysis", thumbnail: "⚔️" }
+        ]
+      },
+      {
+        number: 4,
+        title: "Race Preparation",
+        focus: "Complete race weekend mental preparation",
+        exercises: [
+          { name: "Full Race Visualization", equipment: "Quiet space", thumbnail: "🏎️" },
+          { name: "Strategy Scenario Imaging", equipment: "Strategy notes", thumbnail: "📋" },
+          { name: "Weather Condition Prep", equipment: "Quiet space", thumbnail: "🌧️" },
+          { name: "Pressure Moment Rehearsal", equipment: "Quiet space", thumbnail: "💪" },
+          { name: "Success Outcome Imagery", equipment: "Quiet space", thumbnail: "🏆" }
         ]
       }
     ]
