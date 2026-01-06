@@ -7,6 +7,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
+import { z } from "zod";
+
+const loginSchema = z.object({
+  email: z.string().trim().email({ message: "Please enter a valid email address" }).max(255, { message: "Email must be less than 255 characters" }),
+  password: z.string().min(1, { message: "Password is required" }).max(72, { message: "Password must be less than 72 characters" }),
+});
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -15,9 +21,29 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+    
+    const result = loginSchema.safeParse({ email, password });
+    
+    if (!result.success) {
+      const fieldErrors: { email?: string; password?: string } = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0] === 'email') fieldErrors.email = err.message;
+        if (err.path[0] === 'password') fieldErrors.password = err.message;
+      });
+      setErrors(fieldErrors);
+      toast({
+        title: "Invalid input",
+        description: fieldErrors.email || fieldErrors.password || "Please check your input.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setLoading(true);
     
     try {
@@ -76,7 +102,11 @@ const LoginPage = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className={errors.email ? "border-destructive" : ""}
                   />
+                  {errors.email && (
+                    <p className="text-xs text-destructive mt-1">{errors.email}</p>
+                  )}
                 </div>
                 <div>
                   <Label htmlFor="password">Password</Label>
@@ -87,7 +117,11 @@ const LoginPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className={errors.password ? "border-destructive" : ""}
                   />
+                  {errors.password && (
+                    <p className="text-xs text-destructive mt-1">{errors.password}</p>
+                  )}
                   <div className="mt-1.5 flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                       <Checkbox 
