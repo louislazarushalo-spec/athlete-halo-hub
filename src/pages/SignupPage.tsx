@@ -6,6 +6,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
+import { z } from "zod";
+
+const signupSchema = z.object({
+  email: z.string().trim().email({ message: "Please enter a valid email address" }).max(255, { message: "Email must be less than 255 characters" }),
+  password: z.string()
+    .min(8, { message: "Password must be at least 8 characters" })
+    .max(72, { message: "Password must be less than 72 characters" })
+    .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter" })
+    .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter" })
+    .regex(/[0-9]/, { message: "Password must contain at least one number" }),
+});
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -13,14 +24,24 @@ const SignupPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
     
-    if (password.length < 6) {
+    const result = signupSchema.safeParse({ email, password });
+    
+    if (!result.success) {
+      const fieldErrors: { email?: string; password?: string } = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0] === 'email') fieldErrors.email = err.message;
+        if (err.path[0] === 'password') fieldErrors.password = err.message;
+      });
+      setErrors(fieldErrors);
       toast({
-        title: "Invalid password",
-        description: "Password must be at least 6 characters long.",
+        title: "Invalid input",
+        description: fieldErrors.email || fieldErrors.password || "Please check your input.",
         variant: "destructive",
       });
       return;
@@ -84,7 +105,11 @@ const SignupPage = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className={errors.email ? "border-destructive" : ""}
                   />
+                  {errors.email && (
+                    <p className="text-xs text-destructive mt-1">{errors.email}</p>
+                  )}
                 </div>
                 <div>
                   <Label htmlFor="password">Password</Label>
@@ -95,11 +120,15 @@ const SignupPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    minLength={6}
+                    minLength={8}
+                    className={errors.password ? "border-destructive" : ""}
                   />
                   <p className="text-xs text-muted-foreground mt-1">
-                    Must be at least 6 characters
+                    Min 8 characters with uppercase, lowercase, and number
                   </p>
+                  {errors.password && (
+                    <p className="text-xs text-destructive mt-1">{errors.password}</p>
+                  )}
                 </div>
                 <Button 
                   type="submit" 
