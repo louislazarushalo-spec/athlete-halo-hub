@@ -41,6 +41,7 @@ import { ArthurTrainingSection } from "@/components/athletes/ArthurTrainingSecti
 import { ArthurDataHub } from "@/components/athletes/DataHub/ArthurDataHub";
 import { CassandreDataHub } from "@/components/athletes/DataHub/CassandreDataHub";
 import { PierreDataHub } from "@/components/athletes/DataHub/PierreDataHub";
+import { TommyDataHub } from "@/components/athletes/DataHub/TommyDataHub";
 import { MatthieuTrainingSection } from "@/components/athletes/MatthieuTrainingSection";
 import { CassandreTrainingSection } from "@/components/athletes/CassandreTrainingSection";
 import { PierreTrainingSection } from "@/components/athletes/PierreTrainingSection";
@@ -917,6 +918,9 @@ const AthletePage = () => {
               )}
               {activeLifeTab === "datahub" && isPierreGasly && (
                 <PierreDataHub />
+              )}
+              {activeLifeTab === "datahub" && isTommyFleetwood && (
+                <TommyDataHub />
               )}
 
             </TabsContent>
