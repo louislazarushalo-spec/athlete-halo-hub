@@ -1,5 +1,5 @@
-import { TrendingUp, TrendingDown, Minus, Trophy, Target, Percent, Award } from "lucide-react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell, AreaChart, Area } from "recharts";
+import { TrendingUp, TrendingDown, Minus, Trophy, Target, Percent, Award, MapPin } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell, AreaChart, Area, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from "recharts";
 
 // Global Statistics - Golf specific
 const globalStats = {
@@ -51,6 +51,16 @@ const roundPerformanceData = [
   { hole: 16, score: -1, cumulative: -6 },
   { hole: 17, score: 0, cumulative: -6 },
   { hole: 18, score: -1, cumulative: -7 },
+];
+
+// Course History - Performance at major championship venues
+const courseHistoryData = [
+  { course: "Augusta National", bestFinish: 2, appearances: 8, avgScore: 71.2, cuts: 7, shortName: "Augusta" },
+  { course: "St Andrews", bestFinish: 4, appearances: 5, avgScore: 69.8, cuts: 5, shortName: "St Andrews" },
+  { course: "Wentworth", bestFinish: 1, appearances: 10, avgScore: 68.5, cuts: 10, shortName: "Wentworth" },
+  { course: "Royal Liverpool", bestFinish: 4, appearances: 4, avgScore: 70.1, cuts: 4, shortName: "R. Liverpool" },
+  { course: "Carnoustie", bestFinish: 2, appearances: 3, avgScore: 69.5, cuts: 3, shortName: "Carnoustie" },
+  { course: "Royal Troon", bestFinish: 6, appearances: 4, avgScore: 70.8, cuts: 4, shortName: "R. Troon" },
 ];
 
 // Recent tournament results
@@ -276,6 +286,122 @@ export const TommyDataHub = () => {
             </div>
             <p className="text-[10px] md:text-xs text-muted-foreground text-center">
               Final Round: 65 (-7) | Arnold Palmer Invitational
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Course History Section */}
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-semibold text-foreground">Course History</h3>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+          {/* Course Performance Chart */}
+          <div className="glass-card p-4 md:p-5 space-y-3">
+            <div className="flex items-center gap-2">
+              <MapPin className="h-4 w-4 text-primary" />
+              <h4 className="font-medium text-foreground text-sm md:text-base">Best Finishes by Venue</h4>
+            </div>
+            <div className="h-56 md:h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart 
+                  data={courseHistoryData} 
+                  margin={{ top: 10, right: 10, left: -10, bottom: 40 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
+                  <XAxis 
+                    dataKey="shortName" 
+                    tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 9 }}
+                    axisLine={{ stroke: 'hsl(var(--border))' }}
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis 
+                    reversed
+                    domain={[1, 20]}
+                    tick={{ fill: 'hsl(var(--muted-foreground))', fontSize: 10 }}
+                    axisLine={{ stroke: 'hsl(var(--border))' }}
+                    label={{ value: 'Best Finish', angle: -90, position: 'insideLeft', style: { fill: 'hsl(var(--muted-foreground))', fontSize: 10 } }}
+                  />
+                  <Tooltip 
+                    content={({ active, payload }) => {
+                      if (active && payload && payload.length) {
+                        const data = payload[0].payload;
+                        return (
+                          <div className="bg-card/95 backdrop-blur-sm border border-border/50 rounded-lg p-3 shadow-lg">
+                            <p className="text-sm font-medium text-foreground">{data.course}</p>
+                            <div className="space-y-1 mt-1">
+                              <p className="text-xs text-muted-foreground">
+                                Best: <span className="text-primary font-semibold">{data.bestFinish}{getOrdinalSuffix(data.bestFinish)}</span>
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                Appearances: <span className="text-foreground">{data.appearances}</span>
+                              </p>
+                              <p className="text-xs text-muted-foreground">
+                                Avg Score: <span className="text-foreground">{data.avgScore}</span>
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    }}
+                  />
+                  <Bar 
+                    dataKey="bestFinish" 
+                    fill="hsl(var(--primary))" 
+                    radius={[4, 4, 0, 0]}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <p className="text-[10px] md:text-xs text-muted-foreground text-center">
+              Lower bar = better finish position
+            </p>
+          </div>
+
+          {/* Course Stats Table */}
+          <div className="glass-card p-4 md:p-5 space-y-3">
+            <div className="flex items-center gap-2">
+              <Trophy className="h-4 w-4 text-primary" />
+              <h4 className="font-medium text-foreground text-sm md:text-base">Major Venue Performance</h4>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border/50">
+                    <th className="text-left py-2 px-2 text-muted-foreground font-medium text-xs">Venue</th>
+                    <th className="text-center py-2 px-2 text-muted-foreground font-medium text-xs">Best</th>
+                    <th className="text-center py-2 px-2 text-muted-foreground font-medium text-xs">Played</th>
+                    <th className="text-center py-2 px-2 text-muted-foreground font-medium text-xs">Avg</th>
+                    <th className="text-center py-2 px-2 text-muted-foreground font-medium text-xs">Cuts</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {courseHistoryData.map((course, index) => (
+                    <tr key={index} className="border-b border-border/30 hover:bg-muted/20 transition-colors">
+                      <td className="py-2 px-2 text-foreground font-medium text-xs">{course.shortName}</td>
+                      <td className="py-2 px-2 text-center">
+                        <span className={`inline-flex items-center justify-center px-1.5 py-0.5 rounded text-xs font-medium ${
+                          course.bestFinish === 1 ? "bg-yellow-500/20 text-yellow-400" :
+                          course.bestFinish === 2 ? "bg-gray-400/20 text-gray-300" :
+                          course.bestFinish <= 5 ? "bg-green-500/20 text-green-400" :
+                          "bg-muted text-muted-foreground"
+                        }`}>
+                          {course.bestFinish}{getOrdinalSuffix(course.bestFinish)}
+                        </span>
+                      </td>
+                      <td className="py-2 px-2 text-center text-muted-foreground text-xs">{course.appearances}</td>
+                      <td className="py-2 px-2 text-center text-primary font-medium text-xs">{course.avgScore}</td>
+                      <td className="py-2 px-2 text-center text-foreground text-xs">{course.cuts}/{course.appearances}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[10px] md:text-xs text-muted-foreground text-center">
+              Featuring Open Championship & DP World Tour venues
             </p>
           </div>
         </div>
