@@ -704,7 +704,7 @@ const AthletePage = () => {
                   )}
                   Playlist
                 </Button>
-                {(isArthurCazaux || isCassandreBeaugrand || isPierreGasly) && (
+                {(isArthurCazaux || isCassandreBeaugrand || isPierreGasly || isTommyFleetwood) && (
                   <Button
                     variant={activeLifeTab === "datahub" ? "default" : "ghost"}
                     size="sm"
