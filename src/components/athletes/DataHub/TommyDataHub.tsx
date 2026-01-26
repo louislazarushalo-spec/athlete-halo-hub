@@ -244,7 +244,10 @@ export const TommyDataHub = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Award className="h-4 w-4 text-primary" />
-                <h4 className="font-medium text-foreground text-sm md:text-base">Sample Round</h4>
+                <div>
+                  <h4 className="font-medium text-foreground text-sm md:text-base">Sample Round</h4>
+                  <p className="text-[9px] text-muted-foreground">brought to you by</p>
+                </div>
               </div>
               <img 
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/TaylorMade_Golf_Logo.svg/512px-TaylorMade_Golf_Logo.svg.png" 
