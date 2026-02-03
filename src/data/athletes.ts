@@ -145,6 +145,12 @@ import nicVonRuppPortraitImg from "@/assets/nic-von-rupp-portrait.jpg";
 import nicVonRuppProfileImg from "@/assets/nic-von-rupp-profile.png";
 import nicVonRuppWaveImg from "@/assets/nic-von-rupp-wave.png";
 
+// Nic Von Rupp Kit Room images
+import nicKitSessionImg from "@/assets/nic-kit-session.png";
+import nicKitCrewImg from "@/assets/nic-kit-crew.png";
+import nicKitWatchImg from "@/assets/nic-kit-watch.png";
+import nicKitOutfitImg from "@/assets/nic-kit-outfit.png";
+
 export interface MediaFeedItem {
   id: string;
   type: 'social' | 'article' | 'video';
@@ -8362,58 +8368,36 @@ export const athletes: Athlete[] = [
     ],
     gearCollections: [
       {
-        id: "nvr-gc-nazare",
-        name: "Nic's Gear for Nazaré Big Wave Season",
-        description: "The Atlantic roars. Nazaré delivers. Nic paddles out into the world's biggest waves wearing his trusted gear setup, ready to push the limits of what's possible in giant surf.",
-        actionImage: nicVonRuppNazare1Img,
-        products: [
-          {
-            id: "nvr-p1",
-            name: "Big Wave Surfboard",
-            price: 1200,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=600&h=600&fit=crop",
-            description: "Custom-shaped big wave gun for Nazaré conditions.",
-            category: "partner",
-            athleteId: "nic-von-rupp"
-          },
-          {
-            id: "nvr-p2",
-            name: "Impact Vest",
-            price: 280,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=600&fit=crop",
-            description: "High-performance impact vest for big wave protection.",
-            category: "partner",
-            athleteId: "nic-von-rupp"
-          },
-          {
-            id: "nvr-p3",
-            name: "Premium Wetsuit 4/3",
-            price: 450,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=600&fit=crop",
-            description: "Cold water wetsuit for Portuguese winter swells.",
-            category: "partner",
-            athleteId: "nic-von-rupp"
-          },
-          {
-            id: "nvr-p5",
-            name: "Leash - Big Wave",
-            price: 65,
-            currency: "€",
-            image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=600&h=600&fit=crop",
-            description: "Heavy-duty leash designed for big wave conditions.",
-            category: "partner",
-            athleteId: "nic-von-rupp"
-          }
-        ],
-        hotspots: {
-          'nvr-p1': { x: 50, y: 75 },
-          'nvr-p2': { x: 50, y: 35 },
-          'nvr-p3': { x: 50, y: 50 },
-          'nvr-p5': { x: 30, y: 85 }
-        }
+        id: "nvr-gc-session",
+        name: "End of day session",
+        description: "",
+        actionImage: nicKitSessionImg,
+        products: [],
+        hotspots: {}
+      },
+      {
+        id: "nvr-gc-crew",
+        name: "Fun times with the crew",
+        description: "",
+        actionImage: nicKitCrewImg,
+        products: [],
+        hotspots: {}
+      },
+      {
+        id: "nvr-gc-watch",
+        name: "Getting ready",
+        description: "",
+        actionImage: nicKitWatchImg,
+        products: [],
+        hotspots: {}
+      },
+      {
+        id: "nvr-gc-outfit",
+        name: "Time to observe",
+        description: "",
+        actionImage: nicKitOutfitImg,
+        products: [],
+        hotspots: {}
       }
     ],
     cause: {
