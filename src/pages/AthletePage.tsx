@@ -90,6 +90,15 @@ import sponsorMoser from "@/assets/sponsor-moser.jpeg";
 import sponsorReebok from "@/assets/sponsor-reebok.jpeg";
 import sponsorSonic from "@/assets/sponsor-sonic.jpeg";
 
+// Sponsor logos for Nic Von Rupp
+import sponsorTudor from "@/assets/sponsor-tudor.png";
+import sponsorMoncler from "@/assets/sponsor-moncler.png";
+import sponsorSisley from "@/assets/sponsor-sisley.png";
+import sponsorPyzel from "@/assets/sponsor-pyzel.png";
+import sponsorYamaha from "@/assets/sponsor-yamaha.png";
+import sponsorHurley from "@/assets/sponsor-hurley.png";
+import sponsorAG1 from "@/assets/sponsor-ag1.png";
+
 // Helper functions for formatting
 const formatNumber = (num: number): string => {
   if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
@@ -567,13 +576,13 @@ const AthletePage = () => {
                       )}
                       {isNicVonRupp && (
                         <>
-                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Tudor</span>
-                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Moncler</span>
-                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Sisley Paris</span>
-                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Pyzel</span>
-                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Yamaha</span>
-                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Hurley</span>
-                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">AG1</span>
+                          <img src={sponsorTudor} alt="Tudor" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorMoncler} alt="Moncler" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorSisley} alt="Sisley Paris" className="h-3 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorPyzel} alt="Pyzel" className="h-3.5 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorYamaha} alt="Yamaha" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorHurley} alt="Hurley" className="h-3.5 sm:h-5 object-contain opacity-80 hover:opacity-100 transition-opacity" />
+                          <img src={sponsorAG1} alt="AG1" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
                       )}
                     </div>
