@@ -565,6 +565,17 @@ const AthletePage = () => {
                           <img src={sponsorSonic} alt="Sonic" className="h-4 sm:h-6 object-contain opacity-80 hover:opacity-100 transition-opacity" />
                         </>
                       )}
+                      {isNicVonRupp && (
+                        <>
+                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Tudor</span>
+                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Moncler</span>
+                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Sisley Paris</span>
+                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Pyzel</span>
+                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Yamaha</span>
+                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">Hurley</span>
+                          <span className="px-2 py-0.5 bg-foreground/10 border border-foreground/20 rounded text-[10px] sm:text-xs font-medium text-foreground/80">AG1</span>
+                        </>
+                      )}
                     </div>
                   </div>
                 )}
