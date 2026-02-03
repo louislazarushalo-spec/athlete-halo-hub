@@ -42,16 +42,19 @@ import { ArthurDataHub } from "@/components/athletes/DataHub/ArthurDataHub";
 import { CassandreDataHub } from "@/components/athletes/DataHub/CassandreDataHub";
 import { PierreDataHub } from "@/components/athletes/DataHub/PierreDataHub";
 import { TommyDataHub } from "@/components/athletes/DataHub/TommyDataHub";
+import { NicDataHub } from "@/components/athletes/DataHub/NicDataHub";
 import { MatthieuTrainingSection } from "@/components/athletes/MatthieuTrainingSection";
 import { CassandreTrainingSection } from "@/components/athletes/CassandreTrainingSection";
 import { PierreTrainingSection } from "@/components/athletes/PierreTrainingSection";
 import { TommyTrainingSection } from "@/components/athletes/TommyTrainingSection";
+import { NicTrainingSection } from "@/components/athletes/NicTrainingSection";
 import { PremiumLockedContent } from "@/components/athletes/PremiumLockedContent";
 import { ArthurExclusiveZone } from "@/components/athletes/ArthurExclusiveZone";
 import { MatthieuExclusiveZone } from "@/components/athletes/MatthieuExclusiveZone";
 import { CassandreExclusiveZone } from "@/components/athletes/CassandreExclusiveZone";
 import { PierreExclusiveZone } from "@/components/athletes/PierreExclusiveZone";
 import { TommyExclusiveZone } from "@/components/athletes/TommyExclusiveZone";
+import { NicExclusiveZone } from "@/components/athletes/NicExclusiveZone";
 import { CassandreHighlights } from "@/components/athletes/CassandreHighlights";
 import { PierreHighlights } from "@/components/athletes/PierreHighlights";
 import { useSubscription } from "@/contexts/SubscriptionContext";
@@ -350,7 +353,8 @@ const AthletePage = () => {
   const isCassandreBeaugrand = athlete.id === "cassandre-beaugrand";
   const isPierreGasly = athlete.id === "pierre-gasly";
   const isTommyFleetwood = athlete.id === "tommy-fleetwood";
-  const isCustomAthlete = isArthurCazaux || isMatthieuJalibert || isCassandreBeaugrand || isPierreGasly || isTommyFleetwood;
+  const isNicVonRupp = athlete.id === "nic-von-rupp";
+  const isCustomAthlete = isArthurCazaux || isMatthieuJalibert || isCassandreBeaugrand || isPierreGasly || isTommyFleetwood || isNicVonRupp;
 
   const content = (
     <>
@@ -704,7 +708,7 @@ const AthletePage = () => {
                   )}
                   Playlist
                 </Button>
-                {(isArthurCazaux || isCassandreBeaugrand || isPierreGasly || isTommyFleetwood) && (
+                {(isArthurCazaux || isCassandreBeaugrand || isPierreGasly || isTommyFleetwood || isNicVonRupp) && (
                   <Button
                     variant={activeLifeTab === "datahub" ? "default" : "ghost"}
                     size="sm"
@@ -909,7 +913,7 @@ const AthletePage = () => {
                 )
               )}
 
-              {/* Data Hub - Arthur Cazaux, Cassandre Beaugrand & Pierre Gasly */}
+              {/* Data Hub - Custom Athletes */}
               {activeLifeTab === "datahub" && isArthurCazaux && (
                 <ArthurDataHub />
               )}
@@ -921,6 +925,9 @@ const AthletePage = () => {
               )}
               {activeLifeTab === "datahub" && isTommyFleetwood && (
                 <TommyDataHub />
+              )}
+              {activeLifeTab === "datahub" && isNicVonRupp && (
+                <NicDataHub />
               )}
 
             </TabsContent>
@@ -974,7 +981,7 @@ const AthletePage = () => {
             <TabsContent value="training" className="animate-fade-in">
               {isPremiumSubscribed ? (
                 isCustomAthlete ? (
-                  isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : isCassandreBeaugrand ? <CassandreTrainingSection /> : isPierreGasly ? <PierreTrainingSection /> : isTommyFleetwood ? <TommyTrainingSection /> : <PierreTrainingSection />
+                  isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : isCassandreBeaugrand ? <CassandreTrainingSection /> : isPierreGasly ? <PierreTrainingSection /> : isTommyFleetwood ? <TommyTrainingSection /> : isNicVonRupp ? <NicTrainingSection /> : <ArthurTrainingSection />
                 ) : (
                   <div className="space-y-6">
                     {/* Header with Premium Badge */}
@@ -1019,7 +1026,7 @@ const AthletePage = () => {
               ) : (
                 <PremiumLockedContent athleteId={athlete.id} athleteName={athlete.name} onGoBack={handleGoBackFromPremium}>
                   {isCustomAthlete ? (
-                    isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : isCassandreBeaugrand ? <CassandreTrainingSection /> : isPierreGasly ? <PierreTrainingSection /> : isTommyFleetwood ? <TommyTrainingSection /> : <PierreTrainingSection />
+                    isArthurCazaux ? <ArthurTrainingSection /> : isMatthieuJalibert ? <MatthieuTrainingSection /> : isCassandreBeaugrand ? <CassandreTrainingSection /> : isPierreGasly ? <PierreTrainingSection /> : isTommyFleetwood ? <TommyTrainingSection /> : isNicVonRupp ? <NicTrainingSection /> : <ArthurTrainingSection />
                   ) : (
                     <div className="space-y-6">
                       {/* Header with Premium Badge */}
@@ -1128,7 +1135,7 @@ const AthletePage = () => {
             <TabsContent value="exclusive" className="animate-fade-in">
               {isPremiumSubscribed ? (
                 isCustomAthlete ? (
-                  isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : isCassandreBeaugrand ? <CassandreExclusiveZone /> : isPierreGasly ? <PierreExclusiveZone /> : isTommyFleetwood ? <TommyExclusiveZone /> : <PierreExclusiveZone />
+                  isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : isCassandreBeaugrand ? <CassandreExclusiveZone /> : isPierreGasly ? <PierreExclusiveZone /> : isTommyFleetwood ? <TommyExclusiveZone /> : isNicVonRupp ? <NicExclusiveZone /> : <ArthurExclusiveZone />
                 ) : (
                   <div className="space-y-6 max-w-5xl mx-auto">
                     {/* Header */}
@@ -1186,7 +1193,7 @@ const AthletePage = () => {
                   }
                 >
                   {isCustomAthlete ? (
-                    isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : isCassandreBeaugrand ? <CassandreExclusiveZone /> : isPierreGasly ? <PierreExclusiveZone /> : isTommyFleetwood ? <TommyExclusiveZone /> : <PierreExclusiveZone />
+                    isArthurCazaux ? <ArthurExclusiveZone /> : isMatthieuJalibert ? <MatthieuExclusiveZone /> : isCassandreBeaugrand ? <CassandreExclusiveZone /> : isPierreGasly ? <PierreExclusiveZone /> : isTommyFleetwood ? <TommyExclusiveZone /> : isNicVonRupp ? <NicExclusiveZone /> : <ArthurExclusiveZone />
                   ) : (
                     <div className="space-y-6 max-w-5xl mx-auto">
                       <div className="text-center max-w-2xl mx-auto">

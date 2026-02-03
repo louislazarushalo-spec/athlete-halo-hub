@@ -1338,3 +1338,251 @@ export const tommyTrainingData: AthleteTrainingSectionData = {
     }
   ]
 };
+
+// ============================================
+// NIC VON RUPP DATA
+// ============================================
+
+export const nicExclusiveZoneData: AthleteExclusiveZoneData = {
+  athleteId: "nic-von-rupp",
+  prizeDraws: [
+    {
+      id: "signed_board",
+      title: "Win Signed Nic Von Rupp Surfboard",
+      description: "Authenticated custom big wave gun signed by Nic after his Nazaré season",
+      badge: "Ends Jan 15",
+      icon: Trophy,
+      iconBg: "from-amber-500 to-orange-600"
+    },
+    {
+      id: "gear_pack",
+      title: "Halo Surf Gear Pack",
+      description: "Premium wetsuit, impact vest, and surf accessories curated by Halo",
+      badge: "Monthly Draw",
+      icon: Gift,
+      iconBg: "from-green-500 to-emerald-600"
+    },
+    {
+      id: "virtual_qa",
+      title: "Virtual Q&A Access",
+      description: "Join a platform-hosted live Q&A session with Nic and other fans",
+      badge: "Next: Feb 2025",
+      icon: Users,
+      iconBg: "from-blue-500 to-indigo-600"
+    },
+    {
+      id: "meetup_event",
+      title: "Halo Surf Meetup Ticket",
+      description: "Attend an exclusive Halo-organized surf event in Nazaré",
+      badge: "Limited",
+      icon: Star,
+      iconBg: "from-purple-500 to-pink-600"
+    }
+  ],
+  exclusiveContent: [
+    {
+      id: "wave_stats",
+      title: "Nic's 2024 Big Wave Season Stats",
+      description: "Wave heights, successful rides, and key performance metrics from the WSL Big Wave Tour",
+      thumbnail: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=400&h=300&fit=crop",
+      type: "Stats",
+      icon: TrendingUp
+    },
+    {
+      id: "training_day",
+      title: "A Day of Ocean Training",
+      description: "Behind-the-scenes look at Nic's breath-hold and conditioning work",
+      thumbnail: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop",
+      type: "Video",
+      icon: Play
+    },
+    {
+      id: "photo_gallery",
+      title: "Nazaré Season Gallery",
+      description: "Exclusive photos from Nic's biggest waves at Praia do Norte",
+      thumbnail: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=400&h=300&fit=crop",
+      type: "Gallery",
+      icon: Image
+    },
+    {
+      id: "wave_breakdown",
+      title: "Big Wave Breakdown",
+      description: "Analysis of Nic's approach to reading and riding giant waves",
+      thumbnail: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=400&h=300&fit=crop",
+      type: "Analysis",
+      icon: TrendingUp
+    },
+    {
+      id: "portugal_moments",
+      title: "Portuguese Coast Highlights",
+      description: "Key moments from sessions along the Portuguese coastline",
+      thumbnail: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop",
+      type: "Highlights",
+      icon: Play
+    }
+  ],
+  discussionThreads: [
+    {
+      id: "swell_reactions",
+      title: "Swell Reactions",
+      description: "Discuss Nic's latest sessions, wave sizes, and standout rides",
+      participants: 1247,
+      lastActive: "2 hours ago"
+    },
+    {
+      id: "swell_predictions",
+      title: "Swell Predictions",
+      description: "Share your predictions for upcoming big wave events and conditions",
+      participants: 2134,
+      lastActive: "30 min ago"
+    },
+    {
+      id: "training_tips",
+      title: "Training Tips (Fan to Fan)",
+      description: "Exchange surf training advice, breath-hold techniques, and ocean conditioning",
+      participants: 862,
+      lastActive: "1 hour ago"
+    },
+    {
+      id: "gear_talk",
+      title: "Surf Gear Talk",
+      description: "Discuss boards, wetsuits, safety equipment, and gear choices",
+      participants: 623,
+      lastActive: "45 min ago"
+    }
+  ]
+};
+
+export const nicTrainingData: AthleteTrainingSectionData = {
+  athleteSlug: "nic-von-rupp",
+  categories: [
+    {
+      id: "fitness",
+      title: "Fitness",
+      description: "Build the physical foundation for big wave surfing, including breath-hold, power, and ocean conditioning.",
+      icon: <Dumbbell className="h-4 w-4" />,
+      programs: [
+        {
+          id: "fitness-1",
+          title: "Breath-Hold Training",
+          description: "My breath-hold progression program for surviving long hold-downs in giant surf.",
+          image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=500&fit=crop"
+        },
+        {
+          id: "fitness-2",
+          title: "Ocean Swimming Conditioning",
+          description: "The swimming and paddling workouts I use to build endurance for heavy water.",
+          image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=500&fit=crop"
+        },
+        {
+          id: "fitness-3",
+          title: "Explosive Power for Pop-Ups",
+          description: "The strength and plyometric work that keeps my pop-up fast on critical drops.",
+          image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=800&h=500&fit=crop"
+        },
+        {
+          id: "fitness-4",
+          title: "Recovery and Mobility",
+          description: "My mobility and recovery routine after heavy sessions to stay loose and injury-free.",
+          image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=500&fit=crop"
+        }
+      ]
+    },
+    {
+      id: "skills",
+      title: "Skills",
+      description: "Technical sessions focused on big wave positioning, line selection, and survival.",
+      icon: <Target className="h-4 w-4" />,
+      programs: [
+        {
+          id: "skills-1",
+          title: "Reading Big Wave Sets",
+          description: "How I analyze swell direction, period, and lineup positioning for optimal wave selection.",
+          image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=500&fit=crop"
+        },
+        {
+          id: "skills-2",
+          title: "Critical Drop Technique",
+          description: "The mechanics of committing to steep drops and maintaining control on the way down.",
+          image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=500&fit=crop"
+        },
+        {
+          id: "skills-3",
+          title: "Barrel Navigation",
+          description: "Positioning and body mechanics for surviving inside giant barrels.",
+          image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=500&fit=crop"
+        },
+        {
+          id: "skills-4",
+          title: "Safety and Rescue Protocols",
+          description: "Jet ski coordination, inflation vest use, and survival techniques in heavy water.",
+          image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=800&h=500&fit=crop"
+        }
+      ]
+    },
+    {
+      id: "nutrition",
+      title: "Nutrition",
+      description: "Fueling my body for long sessions, recovery, and peak ocean performance.",
+      icon: <Apple className="h-4 w-4" />,
+      programs: [
+        {
+          id: "nutrition-1",
+          title: "Big Swell Day Fuel",
+          description: "What I eat before, during, and after heavy sessions to maintain energy and focus.",
+          image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop"
+        },
+        {
+          id: "nutrition-2",
+          title: "Training Block Nutrition",
+          description: "The higher-calorie meal structure I follow during intense preparation phases.",
+          image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop"
+        },
+        {
+          id: "nutrition-3",
+          title: "Travel and Competition Eating",
+          description: "How I manage nutrition while traveling the world chasing swells.",
+          image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop"
+        },
+        {
+          id: "nutrition-4",
+          title: "Hydration and Supplements",
+          description: "My approach to staying hydrated in the ocean and the supplements I trust.",
+          image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop"
+        }
+      ]
+    },
+    {
+      id: "mental",
+      title: "Mental",
+      description: "Building the mindset to face fear, commit to giants, and perform under pressure.",
+      icon: <Brain className="h-4 w-4" />,
+      programs: [
+        {
+          id: "mental-1",
+          title: "Pre-Swell Visualization",
+          description: "How I mentally prepare in the days leading up to a massive swell event.",
+          image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=500&fit=crop"
+        },
+        {
+          id: "mental-2",
+          title: "Managing Fear on Giant Waves",
+          description: "The techniques I use to stay calm and committed when dropping into the unknown.",
+          image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=500&fit=crop"
+        },
+        {
+          id: "mental-3",
+          title: "Post-Wipeout Recovery",
+          description: "Mental reset strategies after heavy hold-downs and near misses.",
+          image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=500&fit=crop"
+        },
+        {
+          id: "mental-4",
+          title: "Flow State in Big Waves",
+          description: "How I access deep focus and intuition when everything is on the line.",
+          image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=500&fit=crop"
+        }
+      ]
+    }
+  ]
+};

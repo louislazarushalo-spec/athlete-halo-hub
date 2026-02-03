@@ -8249,6 +8249,292 @@ export const athletes: Athlete[] = [
         stats: { views: 312000, duration: "18:22" }
       }
     ]
+  },
+  {
+    id: "nic-von-rupp",
+    name: "Nic Von Rupp",
+    sport: "Surf",
+    bio: "Portuguese big wave surfer. Train, gear up, and follow the journey.",
+    tagline: "Chasing giants from Nazaré to the world's most powerful swells",
+    avatar: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=400&h=400&fit=crop",
+    banner: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=1600&h=600&fit=crop",
+    followers: 388000,
+    training: [
+      {
+        id: "nvr-t1",
+        title: "Big Wave Preparation",
+        description: "Building the strength and breath-hold capacity for monster swells.",
+        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=500&fit=crop",
+        category: "training",
+        createdAt: "2024-03-10"
+      }
+    ],
+    life: [
+      {
+        id: "nvr-l1",
+        title: "Life on the North Shore",
+        description: "Behind the scenes of chasing the biggest waves on the planet.",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=500&fit=crop",
+        category: "life",
+        createdAt: "2024-03-12"
+      }
+    ],
+    gear: [
+      {
+        id: "nvr-g1",
+        title: "My Big Wave Setup",
+        description: "The boards, wetsuits, and safety gear I trust in giant surf.",
+        image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=800&h=500&fit=crop",
+        category: "gear",
+        createdAt: "2024-03-08"
+      }
+    ],
+    products: [
+      {
+        id: "nvr-p1",
+        name: "Big Wave Surfboard",
+        price: 1200,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=600&h=600&fit=crop",
+        description: "Custom-shaped big wave gun for Nazaré conditions.",
+        category: "partner",
+        athleteId: "nic-von-rupp"
+      },
+      {
+        id: "nvr-p2",
+        name: "Impact Vest",
+        price: 280,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=600&fit=crop",
+        description: "High-performance impact vest for big wave protection.",
+        category: "partner",
+        athleteId: "nic-von-rupp"
+      },
+      {
+        id: "nvr-p3",
+        name: "Premium Wetsuit 4/3",
+        price: 450,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=600&fit=crop",
+        description: "Cold water wetsuit for Portuguese winter swells.",
+        category: "partner",
+        athleteId: "nic-von-rupp"
+      },
+      {
+        id: "nvr-p4",
+        name: "Surf Wax Pack",
+        price: 15,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=600&h=600&fit=crop",
+        description: "Cold water wax for optimal grip.",
+        category: "partner",
+        athleteId: "nic-von-rupp"
+      },
+      {
+        id: "nvr-p5",
+        name: "Leash - Big Wave",
+        price: 65,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=600&h=600&fit=crop",
+        description: "Heavy-duty leash designed for big wave conditions.",
+        category: "partner",
+        athleteId: "nic-von-rupp"
+      },
+      {
+        id: "nvr-p6",
+        name: "Surf Fins Set",
+        price: 120,
+        currency: "€",
+        image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=600&h=600&fit=crop",
+        description: "High-performance fins for speed and control.",
+        category: "partner",
+        athleteId: "nic-von-rupp"
+      }
+    ],
+    gearCollections: [
+      {
+        id: "nvr-gc-nazare",
+        name: "Nic's Gear for Nazaré Big Wave Season",
+        description: "The Atlantic roars. Nazaré delivers. Nic paddles out into the world's biggest waves wearing his trusted gear setup, ready to push the limits of what's possible in giant surf.",
+        actionImage: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=600&fit=crop",
+        products: [
+          {
+            id: "nvr-p1",
+            name: "Big Wave Surfboard",
+            price: 1200,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=600&h=600&fit=crop",
+            description: "Custom-shaped big wave gun for Nazaré conditions.",
+            category: "partner",
+            athleteId: "nic-von-rupp"
+          },
+          {
+            id: "nvr-p2",
+            name: "Impact Vest",
+            price: 280,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=600&fit=crop",
+            description: "High-performance impact vest for big wave protection.",
+            category: "partner",
+            athleteId: "nic-von-rupp"
+          },
+          {
+            id: "nvr-p3",
+            name: "Premium Wetsuit 4/3",
+            price: 450,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=600&fit=crop",
+            description: "Cold water wetsuit for Portuguese winter swells.",
+            category: "partner",
+            athleteId: "nic-von-rupp"
+          },
+          {
+            id: "nvr-p5",
+            name: "Leash - Big Wave",
+            price: 65,
+            currency: "€",
+            image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=600&h=600&fit=crop",
+            description: "Heavy-duty leash designed for big wave conditions.",
+            category: "partner",
+            athleteId: "nic-von-rupp"
+          }
+        ],
+        hotspots: {
+          'nvr-p1': { x: 50, y: 75 },
+          'nvr-p2': { x: 50, y: 35 },
+          'nvr-p3': { x: 50, y: 50 },
+          'nvr-p5': { x: 30, y: 85 }
+        }
+      }
+    ],
+    cause: {
+      id: "nvr-c1",
+      title: "Ocean Conservation",
+      story: "Protecting our oceans and beaches for future generations of surfers.",
+      target: 25000,
+      raised: 8500,
+      currency: "€",
+      image: "https://images.unsplash.com/photo-1484291470158-b8f8d608850d?w=800&h=400&fit=crop"
+    },
+    mediaFeed: [
+      {
+        id: "nvr-mf1",
+        type: "social",
+        platform: "instagram",
+        content: "Nazaré never disappoints 🌊 When the Atlantic awakens, we answer the call. This is what we live for 🇵🇹💪",
+        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=800&fit=crop",
+        timestamp: "1 hour ago",
+        stats: { likes: 45200, comments: 1287 }
+      },
+      {
+        id: "nvr-mf2",
+        type: "social",
+        platform: "twitter",
+        content: "Another day, another giant swell on the horizon. The forecast is looking incredible for the next few days. Time to prepare! 🌊🏄‍♂️ #Nazaré #BigWave",
+        image: "",
+        timestamp: "5 hours ago",
+        stats: { likes: 12300, comments: 456, shares: 2100 }
+      },
+      {
+        id: "nvr-mf3",
+        type: "article",
+        platform: "espn",
+        title: "Nic Von Rupp: Portugal's Big Wave Pioneer",
+        content: "The Portuguese surfer continues to push the boundaries of what's possible at Nazaré, cementing his legacy as one of the sport's most fearless competitors...",
+        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=400&fit=crop",
+        timestamp: "8 hours ago",
+        stats: { readTime: "6 min read" }
+      },
+      {
+        id: "nvr-mf4",
+        type: "video",
+        platform: "youtube",
+        title: "POV: Riding a 60ft Wave at Nazaré",
+        content: "Experience the raw power of Nazaré from Nic's perspective as he drops into one of the biggest waves of the season.",
+        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=450&fit=crop",
+        timestamp: "12 hours ago",
+        stats: { views: 892000, duration: "4:32" }
+      },
+      {
+        id: "nvr-mf5",
+        type: "social",
+        platform: "instagram",
+        content: "Training never stops 💪 Breath-hold work and ocean conditioning. When the big day comes, you have to be ready 🌊",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=800&fit=crop",
+        timestamp: "18 hours ago",
+        stats: { likes: 28900, comments: 654 }
+      },
+      {
+        id: "nvr-mf6",
+        type: "article",
+        platform: "bbc",
+        title: "The Science Behind Nazaré's Monster Waves",
+        content: "BBC Sport explores how underwater canyons create the world's biggest surfable waves, featuring insights from big wave surfer Nic Von Rupp...",
+        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=400&fit=crop",
+        timestamp: "2 days ago",
+        stats: { readTime: "5 min read" }
+      },
+      {
+        id: "nvr-mf7",
+        type: "video",
+        platform: "youtube",
+        title: "Big Wave Season 2024: Best Moments Compilation",
+        content: "Relive the most incredible rides from this year's big wave season featuring Nic Von Rupp and the world's top chargers.",
+        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=450&fit=crop",
+        timestamp: "3 days ago",
+        stats: { views: 1250000, duration: "12:18" }
+      },
+      {
+        id: "nvr-mf8",
+        type: "social",
+        platform: "twitter",
+        content: "Grateful for another season of incredible waves and even better people. Big shoutout to my team and sponsors for making this possible 🙏🌊 #BigWave #Portugal",
+        image: "",
+        timestamp: "4 days ago",
+        stats: { likes: 8700, comments: 234, shares: 1450 }
+      }
+    ],
+    events: [
+      {
+        id: "nvr-e1",
+        name: "Nazaré Big Wave Season",
+        date: "15",
+        month: "OCT",
+        year: "2025",
+        location: "Nazaré",
+        country: "Portugal",
+        countryFlag: "🇵🇹",
+        category: "Big Wave",
+        categoryColor: "bg-blue-600",
+        description: "The most anticipated big wave event of the year at Praia do Norte."
+      },
+      {
+        id: "nvr-e2",
+        name: "WSL Big Wave Awards",
+        date: "28",
+        month: "APR",
+        year: "2025",
+        location: "Santa Monica",
+        country: "USA",
+        countryFlag: "🇺🇸",
+        category: "Awards",
+        categoryColor: "bg-amber-600",
+        description: "Annual celebration of the year's biggest rides and boldest performances."
+      },
+      {
+        id: "nvr-e3",
+        name: "Jaws Challenge",
+        date: "01",
+        month: "DEC",
+        year: "2025",
+        location: "Maui",
+        country: "USA",
+        countryFlag: "🇺🇸",
+        category: "Big Wave",
+        categoryColor: "bg-blue-600",
+        description: "Pe'ahi delivers some of the most powerful waves on the planet."
+      }
+    ]
   }
 ];
 
