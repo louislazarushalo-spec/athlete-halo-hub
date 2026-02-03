@@ -142,6 +142,8 @@ import nicVonRuppBannerImg from "@/assets/nic-von-rupp-banner.jpg";
 import nicVonRuppNazare1Img from "@/assets/nic-von-rupp-nazare-1.jpg";
 import nicVonRuppNazare2Img from "@/assets/nic-von-rupp-nazare-2.jpg";
 import nicVonRuppPortraitImg from "@/assets/nic-von-rupp-portrait.jpg";
+import nicVonRuppProfileImg from "@/assets/nic-von-rupp-profile.png";
+import nicVonRuppWaveImg from "@/assets/nic-von-rupp-wave.png";
 
 export interface MediaFeedItem {
   id: string;
@@ -8263,8 +8265,8 @@ export const athletes: Athlete[] = [
     sport: "Surf",
     bio: "Portuguese big wave surfer. Train, gear up, and follow the journey.",
     tagline: "Chasing giants from Nazaré to the world's most powerful swells",
-    avatar: nicVonRuppImg,
-    banner: nicVonRuppBannerImg,
+    avatar: nicVonRuppProfileImg,
+    banner: nicVonRuppWaveImg,
     followers: 388000,
     training: [
       {
