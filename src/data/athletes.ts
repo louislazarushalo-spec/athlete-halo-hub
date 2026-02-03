@@ -136,6 +136,13 @@ import tommyFitness2Img from "@/assets/tommy-fitness-2.jpg";
 import tommyFitness3Img from "@/assets/tommy-fitness-3.jpg";
 import tommyFitness4Img from "@/assets/tommy-fitness-4.jpg";
 
+// Nic Von Rupp images
+import nicVonRuppImg from "@/assets/nic-von-rupp.jpg";
+import nicVonRuppBannerImg from "@/assets/nic-von-rupp-banner.jpg";
+import nicVonRuppNazare1Img from "@/assets/nic-von-rupp-nazare-1.jpg";
+import nicVonRuppNazare2Img from "@/assets/nic-von-rupp-nazare-2.jpg";
+import nicVonRuppPortraitImg from "@/assets/nic-von-rupp-portrait.jpg";
+
 export interface MediaFeedItem {
   id: string;
   type: 'social' | 'article' | 'video';
@@ -8256,15 +8263,15 @@ export const athletes: Athlete[] = [
     sport: "Surf",
     bio: "Portuguese big wave surfer. Train, gear up, and follow the journey.",
     tagline: "Chasing giants from Nazaré to the world's most powerful swells",
-    avatar: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=400&h=400&fit=crop",
-    banner: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=1600&h=600&fit=crop",
+    avatar: nicVonRuppImg,
+    banner: nicVonRuppBannerImg,
     followers: 388000,
     training: [
       {
         id: "nvr-t1",
         title: "Big Wave Preparation",
         description: "Building the strength and breath-hold capacity for monster swells.",
-        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=500&fit=crop",
+        image: nicVonRuppNazare1Img,
         category: "training",
         createdAt: "2024-03-10"
       }
@@ -8274,7 +8281,7 @@ export const athletes: Athlete[] = [
         id: "nvr-l1",
         title: "Life on the North Shore",
         description: "Behind the scenes of chasing the biggest waves on the planet.",
-        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=500&fit=crop",
+        image: nicVonRuppPortraitImg,
         category: "life",
         createdAt: "2024-03-12"
       }
@@ -8284,7 +8291,7 @@ export const athletes: Athlete[] = [
         id: "nvr-g1",
         title: "My Big Wave Setup",
         description: "The boards, wetsuits, and safety gear I trust in giant surf.",
-        image: "https://images.unsplash.com/photo-1531722569936-825d3dd91b15?w=800&h=500&fit=crop",
+        image: nicVonRuppNazare2Img,
         category: "gear",
         createdAt: "2024-03-08"
       }
@@ -8356,7 +8363,7 @@ export const athletes: Athlete[] = [
         id: "nvr-gc-nazare",
         name: "Nic's Gear for Nazaré Big Wave Season",
         description: "The Atlantic roars. Nazaré delivers. Nic paddles out into the world's biggest waves wearing his trusted gear setup, ready to push the limits of what's possible in giant surf.",
-        actionImage: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=600&fit=crop",
+        actionImage: nicVonRuppNazare1Img,
         products: [
           {
             id: "nvr-p1",
