@@ -5,44 +5,29 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Loader2 } from "lucide-react";
 import { ContentLibraryModal } from "../ContentLibraryModal";
-import { SourcesManager } from "../SourcesManager";
-import { WeeklyPackSection } from "../WeeklyPackSection";
-import { cn } from "@/lib/utils";
-import type { StudioAthleteProfile, AssetItem } from "@/hooks/useStudioAthlete";
-import type { useStudioSources } from "@/hooks/useStudioSources";
-import type { useStudioBrandStrategy } from "@/hooks/useStudioBrandStrategy";
+import type { StudioAthleteProfile, AssetItem, StudioPost } from "@/hooks/useStudioAthlete";
 
-interface StudioHomeTabProps {
-  onNavigate: (tab: string) => void;
+interface StudioMyHaloTabProps {
   profile: StudioAthleteProfile | null;
   loading: boolean;
   assets: AssetItem[];
+  posts: StudioPost[];
   onUpdateBio: (bio: string) => Promise<void>;
   onUpdateAvatar: (url: string) => Promise<void>;
   onUpdateBanner: (url: string) => Promise<void>;
   onUploadAsset: (file: File) => Promise<string | null>;
-  postCount: number;
-  engagementCount: number;
-  sources: ReturnType<typeof useStudioSources>;
-  brandStrategy: ReturnType<typeof useStudioBrandStrategy>;
-  onNavigatePublish: (draft?: { title: string; body: string; type: string }) => void;
 }
 
-export const StudioHomeTab = ({
-  onNavigate,
+export const StudioMyHaloTab = ({
   profile,
   loading,
   assets,
+  posts,
   onUpdateBio,
   onUpdateAvatar,
   onUpdateBanner,
   onUploadAsset,
-  postCount,
-  engagementCount,
-  sources,
-  brandStrategy,
-  onNavigatePublish,
-}: StudioHomeTabProps) => {
+}: StudioMyHaloTabProps) => {
   const [bioEditing, setBioEditing] = useState(false);
   const [bioTemp, setBioTemp] = useState("");
   const [bioSaving, setBioSaving] = useState(false);
@@ -65,11 +50,8 @@ export const StudioHomeTab = ({
   };
 
   const handleLibrarySelect = async (asset: AssetItem) => {
-    if (libraryTarget === "avatar") {
-      await onUpdateAvatar(asset.url);
-    } else if (libraryTarget === "banner") {
-      await onUpdateBanner(asset.url);
-    }
+    if (libraryTarget === "avatar") await onUpdateAvatar(asset.url);
+    else if (libraryTarget === "banner") await onUpdateBanner(asset.url);
     setLibraryOpen(false);
   };
 
@@ -78,16 +60,17 @@ export const StudioHomeTab = ({
     setLibraryOpen(true);
   };
 
-  const strategyStatus = brandStrategy.strategyPack?.pack_json
-    ? "ready"
-    : brandStrategy.brandProfile?.answers_json && Object.keys(brandStrategy.brandProfile.answers_json).length > 0
-    ? "in_progress"
-    : "not_started";
+  const publishedPosts = posts.filter((p) => p.status === "published").slice(0, 3);
 
   return (
     <div className="space-y-4">
       {/* Profile card */}
-      <StudioCard title="Profile">
+      <StudioCard
+        title="Profile"
+        subtitle="Your banner, avatar and name visible to fans."
+        ctaLabel="Edit images"
+        onCtaClick={() => openLibraryFor("banner")}
+      >
         <div className="relative rounded-lg overflow-hidden bg-muted h-32 md:h-40 mb-12">
           {profile.banner_url && (
             <img src={profile.banner_url} alt="Banner" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
@@ -95,23 +78,19 @@ export const StudioHomeTab = ({
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-4">
             <div className="flex items-end gap-3">
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-muted-foreground/20 border-4 border-background overflow-hidden">
+              <button onClick={() => openLibraryFor("avatar")} className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-muted-foreground/20 border-4 border-background overflow-hidden hover:ring-2 hover:ring-primary/40 transition-all">
                 {profile.avatar_url ? (
                   <img src={profile.avatar_url} alt={profile.display_name} className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-2xl">👤</div>
                 )}
-              </div>
+              </button>
               <div className="pb-1">
                 <h2 className="font-semibold text-foreground text-lg">{profile.display_name}</h2>
                 <p className="text-xs text-muted-foreground">{profile.sport}</p>
               </div>
             </div>
           </div>
-        </div>
-        <div className="flex gap-2 mt-2">
-          <Button variant="outline" size="sm" className="h-9" onClick={() => openLibraryFor("banner")}>Update banner</Button>
-          <Button variant="outline" size="sm" className="h-9" onClick={() => openLibraryFor("avatar")}>Update avatar</Button>
         </div>
       </StudioCard>
 
@@ -137,66 +116,40 @@ export const StudioHomeTab = ({
         )}
       </StudioCard>
 
-      {/* Content Library card */}
+      {/* Fan preview card */}
       <StudioCard
-        title="Content Library"
-        subtitle={`${assets.length} assets available.`}
-        ctaLabel="Open library"
-        onCtaClick={() => openLibraryFor("general")}
-      />
-
-      {/* Sources card */}
-      <SourcesManager
-        sources={sources.sources}
-        onAddSource={sources.addSource}
-        onUpdateSource={sources.updateSource}
-        onRemoveSource={sources.removeSource}
-        onSync={sources.syncSources}
-        syncing={sources.syncing}
-        loading={sources.loading}
-      />
-
-      {/* Brand & Strategy card */}
-      <StudioCard
-        title="Brand & Strategy"
-        subtitle={
-          strategyStatus === "ready"
-            ? "Your strategy pack is ready."
-            : strategyStatus === "in_progress"
-            ? "Brand profile started — continue to generate strategy."
-            : "Run a brand audit and generate your positioning strategy."
-        }
-        ctaLabel={strategyStatus === "ready" ? "View strategy" : strategyStatus === "in_progress" ? "Continue" : "Start audit"}
-        onCtaClick={() => onNavigate("strategy")}
-      />
-
-      {/* Weekly pack */}
-      <WeeklyPackSection
-        weeklyPacks={brandStrategy.weeklyPacks}
-        strategyPack={brandStrategy.strategyPack}
-        generating={brandStrategy.generating}
-        onGenerate={brandStrategy.generateWeeklyPack}
-        onNavigatePublish={onNavigatePublish}
-      />
-
-      {/* Growth snapshot */}
-      <StudioCard title="Growth snapshot (7D)" subtitle="Your key metrics at a glance.">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {[
-            { label: "Posts", value: String(postCount) },
-            { label: "Assets", value: String(assets.length) },
-            { label: "Engagements", value: String(engagementCount) },
-            { label: "Sources", value: String(sources.sources.filter(s => s.status === "connected").length) },
-          ].map((kpi) => (
-            <div key={kpi.label} className="rounded-lg bg-muted/40 p-3 text-center">
-              <p className="text-lg font-semibold">{kpi.value}</p>
-              <p className="text-xs text-muted-foreground">{kpi.label}</p>
+        title="Fan preview"
+        subtitle="This is what fans see on your athlete page."
+        ctaLabel="Open fan view"
+        onCtaClick={() => window.open(`/athlete/${profile.athlete_slug}`, "_blank")}
+      >
+        <div className="rounded-lg border border-border/40 bg-muted/20 p-4 space-y-3">
+          {/* Mini header preview */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-muted-foreground/20">
+              {profile.avatar_url && <img src={profile.avatar_url} alt="" className="w-full h-full object-cover" />}
             </div>
-          ))}
+            <div>
+              <p className="text-sm font-medium">{profile.display_name}</p>
+              <p className="text-[10px] text-muted-foreground">{profile.sport}</p>
+            </div>
+          </div>
+          {/* Mini feed preview */}
+          {publishedPosts.length > 0 ? (
+            <div className="space-y-1.5">
+              {publishedPosts.map((post) => (
+                <div key={post.id} className="flex items-center gap-2 p-2 rounded bg-muted/30">
+                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0 capitalize shrink-0">{post.type}</Badge>
+                  <span className="text-xs truncate">{post.title}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-xs text-muted-foreground text-center py-2">No published posts yet.</p>
+          )}
         </div>
       </StudioCard>
 
-      {/* Content Library Modal */}
       <ContentLibraryModal
         open={libraryOpen}
         onClose={() => setLibraryOpen(false)}
