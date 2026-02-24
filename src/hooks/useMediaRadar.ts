@@ -30,8 +30,9 @@ export interface MediaMention {
   published_at: string | null;
   snippet: string | null;
   image_url: string | null;
-  relevance_status: "unknown" | "relevant" | "irrelevant";
+  relevance_status: "unknown" | "relevant" | "irrelevant" | "uncertain";
   created_at: string;
+  raw_json?: any;
 }
 
 export interface MediaScan {
@@ -54,6 +55,7 @@ export function useMediaRadar(athleteSlug: string | null) {
   const [scans, setScans] = useState<MediaScan[]>([]);
   const [loading, setLoading] = useState(false);
   const [scanning, setScanning] = useState(false);
+  const [lastDigest, setLastDigest] = useState<string>("");
 
   const load = useCallback(async () => {
     if (!athleteSlug || !user) return;
@@ -80,7 +82,6 @@ export function useMediaRadar(athleteSlug: string | null) {
   const setupConfig = async (apiKey: string, cxId: string, athleteName: string, sport?: string, clubTeam?: string) => {
     if (!user || !athleteSlug) return;
     try {
-      // Create config
       const { error: cfgErr } = await supabase.from("media_radar_config").upsert({
         athlete_id: athleteSlug,
         user_id: user.id,
@@ -88,7 +89,6 @@ export function useMediaRadar(athleteSlug: string | null) {
       } as any, { onConflict: "athlete_id" });
       if (cfgErr) throw cfgErr;
 
-      // Create default queries
       const defaultQueries = [
         athleteName,
         `${athleteName} interview`,
@@ -101,7 +101,6 @@ export function useMediaRadar(athleteSlug: string | null) {
         await supabase.from("media_radar_queries").insert({ athlete_id: athleteSlug, query_text: qt } as any);
       }
 
-      // Store API key & CX in localStorage (per athlete)
       localStorage.setItem(`media_radar_api_key_${athleteSlug}`, apiKey);
       localStorage.setItem(`media_radar_cx_id_${athleteSlug}`, cxId);
 
@@ -109,6 +108,44 @@ export function useMediaRadar(athleteSlug: string | null) {
       toast({ title: "Media Radar configured" });
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
+    }
+  };
+
+  const runAiScan = async (athleteName: string, sport?: string, clubTeam?: string, language?: string, apiKey?: string, cxId?: string) => {
+    if (!user || !athleteSlug) return;
+    const effectiveApiKey = apiKey || localStorage.getItem(`media_radar_api_key_${athleteSlug}`) || "";
+    const effectiveCxId = cxId || localStorage.getItem(`media_radar_cx_id_${athleteSlug}`) || "";
+    if (!effectiveApiKey || !effectiveCxId) {
+      toast({ title: "API key missing", description: "Add your Google CSE API key and CX ID in Advanced settings.", variant: "destructive" });
+      return;
+    }
+
+    // Save keys locally
+    if (apiKey) localStorage.setItem(`media_radar_api_key_${athleteSlug}`, apiKey);
+    if (cxId) localStorage.setItem(`media_radar_cx_id_${athleteSlug}`, cxId);
+
+    setScanning(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("media-radar-ai-scan", {
+        body: {
+          athlete_id: athleteSlug,
+          athlete_name: athleteName,
+          sport,
+          club_team: clubTeam,
+          language: language || "all",
+          api_key: effectiveApiKey,
+          cx_id: effectiveCxId,
+        },
+      });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+      setLastDigest(data.digest || "");
+      toast({ title: "AI Scan complete", description: `Found ${data.mention_count} mentions across ${data.queries_generated} queries.` });
+      await load();
+    } catch (err: any) {
+      toast({ title: "Scan failed", description: err.message, variant: "destructive" });
+    } finally {
+      setScanning(false);
     }
   };
 
@@ -183,6 +220,11 @@ export function useMediaRadar(athleteSlug: string | null) {
     return d > new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
   });
 
+  const mentions7d = mentions.filter((m) => {
+    const d = new Date(m.created_at);
+    return d > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  });
+
   const topPublishers = (() => {
     const counts: Record<string, number> = {};
     mentions30d.forEach((m) => {
@@ -191,8 +233,18 @@ export function useMediaRadar(athleteSlug: string | null) {
     return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5);
   })();
 
+  const uncertainMentions = mentions.filter((m) => m.relevance_status === "uncertain" || m.relevance_status === "unknown");
+
   const latestScan = scans[0] || null;
   const latestNarratives: string[] = (latestScan?.narratives as any) || [];
+
+  // Extract narrative evidence from raw_json
+  const narrativesWithEvidence = latestNarratives.map((theme) => {
+    const evidence = mentions
+      .filter((m) => m.raw_json?.narrative_tag === theme && m.relevance_status !== "irrelevant")
+      .slice(0, 3);
+    return { theme, evidence };
+  });
 
   useEffect(() => { load(); }, [load]);
 
@@ -201,14 +253,19 @@ export function useMediaRadar(athleteSlug: string | null) {
     queries,
     mentions,
     mentions30d,
+    mentions7d,
     scans,
     loading,
     scanning,
     topPublishers,
     latestScan,
     latestNarratives,
+    narrativesWithEvidence,
+    uncertainMentions,
+    lastDigest,
     setupConfig,
     runScan,
+    runAiScan,
     updateRelevance,
     addQuery,
     removeQuery,
