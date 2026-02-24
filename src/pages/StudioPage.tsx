@@ -45,7 +45,7 @@ const StudioPageInner = () => {
         <MediaRadarPage
           mediaRadar={mediaRadar}
           athleteName={studio.profile?.display_name || ""}
-          athleteSport={studio.profile?.sport}
+          athleteSport={studio.profile?.sport || undefined}
           onBack={() => setShowMediaRadar(false)}
         />
       </StudioLayout>

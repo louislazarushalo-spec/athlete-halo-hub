@@ -28,26 +28,26 @@ Deno.serve(async (req) => {
     }
     const userId = user.id;
 
-    const { athlete_id, athlete_name, sport, club_team, language, api_key, cx_id } = await req.json();
+    const { athlete_id, athlete_name, sport, club_team, language } = await req.json();
     if (!athlete_id || !athlete_name) {
       return new Response(JSON.stringify({ error: "Missing athlete_id or athlete_name" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
+    // Server-side secrets — athletes never need to provide these
+    const GOOGLE_CSE_API_KEY = Deno.env.get("GOOGLE_CSE_API_KEY");
+    const GOOGLE_CSE_CX_ID = Deno.env.get("GOOGLE_CSE_CX_ID");
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+
+    if (!GOOGLE_CSE_API_KEY || !GOOGLE_CSE_CX_ID) {
+      return new Response(JSON.stringify({ error: "media_radar_not_configured" }), { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
     if (!LOVABLE_API_KEY) {
       return new Response(JSON.stringify({ error: "AI not configured" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
-    // If no API key provided, check if user has one saved (we can't scan without it)
-    const effectiveApiKey = api_key;
-    const effectiveCxId = cx_id;
-
-    if (!effectiveApiKey || !effectiveCxId) {
-      return new Response(JSON.stringify({ error: "Google CSE API key and CX ID are required. Add them in Advanced settings." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    }
-
     // Step 1: AI generates optimized queries
-    const queryGenPrompt = `You are a media monitoring expert. Generate 6-10 Google search queries to find news articles, interviews, and press coverage about this athlete.
+    const queryGenPrompt = `You are a media monitoring expert. Generate 4-6 Google search queries to find news articles, interviews, and press coverage about this athlete.
 
 ATHLETE: ${athlete_name}
 SPORT: ${sport || "unknown"}
@@ -83,7 +83,7 @@ Example: ["Arthur Cazaux tennis", "Arthur Cazaux interview -fantasy", ...]`;
     // Fallback if AI query gen fails
     if (generatedQueries.length === 0) {
       generatedQueries = [
-        athlete_name,
+        `"${athlete_name}"`,
         `${athlete_name} interview`,
         `${athlete_name} results`,
       ];
@@ -113,13 +113,13 @@ Example: ["Arthur Cazaux tennis", "Arthur Cazaux interview -fantasy", ...]`;
       .single();
     if (scanErr) throw scanErr;
 
-    // Step 2: Fetch results from Google CSE
+    // Step 2: Fetch results from Google CSE using server-side keys
     const allResults: any[] = [];
     for (const q of generatedQueries) {
       try {
         const params = new URLSearchParams({
-          key: effectiveApiKey,
-          cx: effectiveCxId,
+          key: GOOGLE_CSE_API_KEY,
+          cx: GOOGLE_CSE_CX_ID,
           q,
           num: "10",
           sort: "date",
@@ -148,7 +148,7 @@ Example: ["Arthur Cazaux tennis", "Arthur Cazaux interview -fantasy", ...]`;
       }
     }
 
-    // Step 3: AI auto-triage - classify relevance and tag narratives
+    // Step 3: AI auto-triage
     let triageResults: any[] = [];
     let narratives: string[] = [];
     let digest = "";
@@ -191,7 +191,6 @@ Return ONLY valid JSON:
             narratives = (parsed.narratives || []).map((n: any) => n.theme);
             digest = parsed.digest || "";
 
-            // Map narrative tags to results
             for (const narr of (parsed.narratives || [])) {
               for (const idx of (narr.evidence_indices || [])) {
                 if (allResults[idx]) {
