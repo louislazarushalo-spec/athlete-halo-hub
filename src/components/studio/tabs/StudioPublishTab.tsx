@@ -103,7 +103,7 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft, e
   // Landing: choose a flow
   if (!journey) {
     return (
-      <div className="space-y-4">
+      <div className="space-y-3 md:space-y-4">
         <StudioCard title="Choose a flow" subtitle="Pick how you want to create content.">
           <div className="space-y-3">
             {/* Auto-post hero */}

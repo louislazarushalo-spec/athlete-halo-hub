@@ -133,20 +133,21 @@ export const OnboardingBanner = ({
 
   return (
     <>
-      {/* Slim glass banner */}
-      <div className="rounded-xl border border-primary/30 bg-primary/5 backdrop-blur-xl p-4 mb-4 shadow-[0_0_20px_hsl(var(--primary)/0.15),0_0_40px_hsl(var(--primary)/0.05)]">
-        <div className="flex items-center justify-between gap-4 flex-wrap">
-          <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-semibold mb-0.5">Finish setup</h3>
-            <p className="text-xs text-muted-foreground">Get your Halo live in under 10 minutes.</p>
+      {/* Compact glass banner */}
+      <div className="rounded-xl border border-primary/30 bg-primary/5 backdrop-blur-xl p-3 md:p-4 mb-3 md:mb-4 shadow-[0_0_20px_hsl(var(--primary)/0.15),0_0_40px_hsl(var(--primary)/0.05)]">
+        <div className="flex items-center justify-between gap-2 md:gap-4">
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2">
+              <h3 className="text-[13px] md:text-sm font-semibold leading-tight">Finish setup</h3>
+              <span className="text-[11px] text-muted-foreground whitespace-nowrap">{doneCount}/{steps.length}</span>
+              <Progress value={progressPct} className="h-1 w-12 md:h-1.5 md:w-20 bg-primary/10 [&>div]:bg-primary" />
+            </div>
           </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <span className="text-xs text-muted-foreground whitespace-nowrap">{doneCount}/{steps.length} complete</span>
-            <Progress value={progressPct} className="h-1.5 w-20 bg-primary/10 [&>div]:bg-primary" />
-            <Button size="sm" className="h-9 bg-primary hover:bg-primary/90 text-primary-foreground shadow-md shadow-primary/20" onClick={() => setSheetOpen(true)}>
-              Continue setup
+          <div className="flex items-center gap-1.5 md:gap-3 shrink-0">
+            <Button size="sm" className="h-8 md:h-9 text-[13px] md:text-sm px-3 bg-primary hover:bg-primary/90 text-primary-foreground shadow-md shadow-primary/20" onClick={() => setSheetOpen(true)}>
+              Continue
             </Button>
-            <button onClick={handleDismiss} className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <button onClick={handleDismiss} className="text-[11px] text-muted-foreground hover:text-foreground transition-colors">
               Dismiss
             </button>
           </div>
