@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      athlete_brand_profile: {
+        Row: {
+          answers_json: Json | null
+          athlete_id: string
+          created_at: string
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          answers_json?: Json | null
+          athlete_id: string
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          answers_json?: Json | null
+          athlete_id?: string
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       athlete_content: {
         Row: {
           athlete_id: string
@@ -43,6 +70,103 @@ export type Database = {
           title?: string | null
         }
         Relationships: []
+      }
+      athlete_content_items: {
+        Row: {
+          athlete_id: string
+          created_at: string
+          external_url: string | null
+          id: string
+          media_urls: string[] | null
+          published_at: string | null
+          raw_json: Json | null
+          source_id: string | null
+          text_snippet: string | null
+          title: string | null
+          type: string
+        }
+        Insert: {
+          athlete_id: string
+          created_at?: string
+          external_url?: string | null
+          id?: string
+          media_urls?: string[] | null
+          published_at?: string | null
+          raw_json?: Json | null
+          source_id?: string | null
+          text_snippet?: string | null
+          title?: string | null
+          type?: string
+        }
+        Update: {
+          athlete_id?: string
+          created_at?: string
+          external_url?: string | null
+          id?: string
+          media_urls?: string[] | null
+          published_at?: string | null
+          raw_json?: Json | null
+          source_id?: string | null
+          text_snippet?: string | null
+          title?: string | null
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "athlete_content_items_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "athlete_sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      athlete_content_metrics: {
+        Row: {
+          comments: number | null
+          content_item_id: string
+          id: string
+          impressions: number | null
+          likes: number | null
+          pulled_at: string
+          saves: number | null
+          shares: number | null
+          views: number | null
+          watch_time: number | null
+        }
+        Insert: {
+          comments?: number | null
+          content_item_id: string
+          id?: string
+          impressions?: number | null
+          likes?: number | null
+          pulled_at?: string
+          saves?: number | null
+          shares?: number | null
+          views?: number | null
+          watch_time?: number | null
+        }
+        Update: {
+          comments?: number | null
+          content_item_id?: string
+          id?: string
+          impressions?: number | null
+          likes?: number | null
+          pulled_at?: string
+          saves?: number | null
+          shares?: number | null
+          views?: number | null
+          watch_time?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "athlete_content_metrics_content_item_id_fkey"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "athlete_content_items"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       athlete_profiles: {
         Row: {
@@ -89,6 +213,111 @@ export type Database = {
           sport?: string | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      athlete_sources: {
+        Row: {
+          athlete_id: string
+          category: string
+          channel_id: string | null
+          created_at: string
+          handle: string | null
+          id: string
+          last_synced_at: string | null
+          metadata_json: Json | null
+          status: string
+          subtype: string
+          updated_at: string
+          url: string | null
+          user_id: string
+        }
+        Insert: {
+          athlete_id: string
+          category: string
+          channel_id?: string | null
+          created_at?: string
+          handle?: string | null
+          id?: string
+          last_synced_at?: string | null
+          metadata_json?: Json | null
+          status?: string
+          subtype: string
+          updated_at?: string
+          url?: string | null
+          user_id: string
+        }
+        Update: {
+          athlete_id?: string
+          category?: string
+          channel_id?: string | null
+          created_at?: string
+          handle?: string | null
+          id?: string
+          last_synced_at?: string | null
+          metadata_json?: Json | null
+          status?: string
+          subtype?: string
+          updated_at?: string
+          url?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      athlete_strategy_pack: {
+        Row: {
+          athlete_id: string
+          created_at: string
+          id: string
+          pack_json: Json | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          athlete_id: string
+          created_at?: string
+          id?: string
+          pack_json?: Json | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          athlete_id?: string
+          created_at?: string
+          id?: string
+          pack_json?: Json | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      athlete_weekly_packs: {
+        Row: {
+          athlete_id: string
+          context: string
+          created_at: string
+          id: string
+          pack_json: Json | null
+          user_id: string
+          week_start_date: string
+        }
+        Insert: {
+          athlete_id: string
+          context?: string
+          created_at?: string
+          id?: string
+          pack_json?: Json | null
+          user_id: string
+          week_start_date: string
+        }
+        Update: {
+          athlete_id?: string
+          context?: string
+          created_at?: string
+          id?: string
+          pack_json?: Json | null
+          user_id?: string
+          week_start_date?: string
         }
         Relationships: []
       }

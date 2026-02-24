@@ -1,17 +1,18 @@
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useStudioRole } from "@/hooks/useStudioRole";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
-import { Loader2, LogOut, Home, Send, MessageCircle, DollarSign, BarChart3 } from "lucide-react";
+import { Loader2, LogOut, Home, Send, MessageCircle, DollarSign, BarChart3, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { AthleteSwitcher } from "./AthleteSwitcher";
 
 const TABS = [
   { id: "home", label: "Home", icon: Home },
   { id: "publish", label: "Publish", icon: Send },
   { id: "engage", label: "Engage", icon: MessageCircle },
   { id: "monetize", label: "Monetize", icon: DollarSign },
+  { id: "strategy", label: "Strategy", icon: Sparkles },
   { id: "analytics", label: "Analytics", icon: BarChart3 },
 ] as const;
 
@@ -77,7 +78,7 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
                   key={tab.id}
                   onClick={() => onTabChange(tab.id)}
                   className={cn(
-                    "px-4 py-1.5 text-sm font-medium rounded-md transition-all",
+                    "px-3 py-1.5 text-sm font-medium rounded-md transition-all",
                     activeTab === tab.id
                       ? "bg-background text-foreground shadow-sm"
                       : "text-muted-foreground hover:text-foreground"
@@ -88,9 +89,12 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
               ))}
             </nav>
 
-            <Button variant="ghost" size="sm" onClick={() => { logout(); navigate("/"); }}>
-              <LogOut className="h-4 w-4 mr-1" /> Exit
-            </Button>
+            <div className="flex items-center gap-2">
+              <AthleteSwitcher />
+              <Button variant="ghost" size="sm" onClick={() => { logout(); navigate("/"); }}>
+                <LogOut className="h-4 w-4 mr-1" /> Exit
+              </Button>
+            </div>
           </div>
         </header>
       )}
@@ -104,9 +108,12 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
             </div>
             <span className="font-display text-base font-semibold">Studio</span>
           </Link>
-          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => { logout(); navigate("/"); }}>
-            <LogOut className="h-4 w-4" />
-          </Button>
+          <div className="flex items-center gap-1">
+            <AthleteSwitcher />
+            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => { logout(); navigate("/"); }}>
+              <LogOut className="h-4 w-4" />
+            </Button>
+          </div>
         </header>
       )}
 
@@ -127,14 +134,14 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
                 key={tab.id}
                 onClick={() => onTabChange(tab.id)}
                 className={cn(
-                  "flex flex-col items-center gap-0.5 py-1 px-2 rounded-lg transition-colors min-w-0",
+                  "flex flex-col items-center gap-0.5 py-1 px-1.5 rounded-lg transition-colors min-w-0",
                   activeTab === tab.id
                     ? "text-primary"
                     : "text-muted-foreground"
                 )}
               >
                 <Icon className="h-5 w-5" />
-                <span className="text-[10px] font-medium leading-none">{tab.label}</span>
+                <span className="text-[9px] font-medium leading-none">{tab.label}</span>
               </button>
             );
           })}

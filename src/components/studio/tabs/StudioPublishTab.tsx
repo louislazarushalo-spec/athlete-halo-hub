@@ -27,14 +27,15 @@ interface StudioPublishTabProps {
   onCreatePost: (data: { title: string; body: string; type: string; media: string[]; publish?: boolean }) => Promise<any>;
   assets: AssetItem[];
   onUploadAsset: (file: File) => Promise<string | null>;
+  draft?: { title: string; body: string; type: string };
 }
 
-export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset }: StudioPublishTabProps) => {
-  const [journey, setJourney] = useState<Journey>(null);
-  const [template, setTemplate] = useState<string | null>(null);
-  const [step, setStep] = useState<Step>(0);
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft }: StudioPublishTabProps) => {
+  const [journey, setJourney] = useState<Journey>(() => draft ? "create" : null);
+  const [template, setTemplate] = useState<string | null>(() => draft?.type || null);
+  const [step, setStep] = useState<Step>(() => draft ? 1 : 0);
+  const [title, setTitle] = useState(() => draft?.title || "");
+  const [body, setBody] = useState(() => draft?.body || "");
   const [media, setMedia] = useState<string[]>([]);
   const [publishing, setPublishing] = useState(false);
   const [libraryOpen, setLibraryOpen] = useState(false);

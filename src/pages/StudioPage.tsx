@@ -1,18 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StudioLayout, type TabId } from "@/components/studio/StudioLayout";
 import { StudioHomeTab } from "@/components/studio/tabs/StudioHomeTab";
 import { StudioPublishTab } from "@/components/studio/tabs/StudioPublishTab";
 import { StudioEngageTab } from "@/components/studio/tabs/StudioEngageTab";
 import { StudioMonetizeTab } from "@/components/studio/tabs/StudioMonetizeTab";
 import { StudioAnalyticsTab } from "@/components/studio/tabs/StudioAnalyticsTab";
+import { BrandStrategyPage } from "@/components/studio/BrandStrategyPage";
 import { useStudioAthlete } from "@/hooks/useStudioAthlete";
+import { useStudioSources } from "@/hooks/useStudioSources";
+import { useStudioBrandStrategy } from "@/hooks/useStudioBrandStrategy";
+import { useStudioAthleteContext, StudioAthleteProvider } from "@/contexts/StudioAthleteContext";
 import { athletes as hardcodedAthletes } from "@/data/athletes";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
 
-const StudioPage = () => {
+const StudioPageInner = () => {
   const [activeTab, setActiveTab] = useState<TabId>("home");
-  const studio = useStudioAthlete();
+  const { currentAthleteSlug, managedAthletes } = useStudioAthleteContext();
+  const studio = useStudioAthlete(currentAthleteSlug);
+  const sources = useStudioSources(currentAthleteSlug);
+  const brandStrategy = useStudioBrandStrategy(currentAthleteSlug);
+
+  // Draft state for publish tab (prefilled from weekly pack)
+  const [publishDraft, setPublishDraft] = useState<{ title: string; body: string; type: string } | undefined>();
+
+  const navigateToPublish = (draft?: { title: string; body: string; type: string }) => {
+    if (draft) setPublishDraft(draft);
+    setActiveTab("publish");
+  };
 
   // Athlete setup screen
   if (!studio.loading && studio.needsSetup) {
@@ -57,6 +71,9 @@ const StudioPage = () => {
           onUploadAsset={studio.uploadAsset}
           postCount={studio.posts.length}
           engagementCount={studio.engagements.length}
+          sources={sources}
+          brandStrategy={brandStrategy}
+          onNavigatePublish={navigateToPublish}
         />
       )}
       {activeTab === "publish" && (
@@ -64,6 +81,7 @@ const StudioPage = () => {
           onCreatePost={studio.createPost}
           assets={studio.assets}
           onUploadAsset={studio.uploadAsset}
+          draft={publishDraft}
         />
       )}
       {activeTab === "engage" && (
@@ -78,6 +96,20 @@ const StudioPage = () => {
           onSaveMonetization={studio.saveMonetization}
         />
       )}
+      {activeTab === "strategy" && (
+        <BrandStrategyPage
+          brandProfile={brandStrategy.brandProfile}
+          strategyPack={brandStrategy.strategyPack}
+          contentItems={sources.contentItems}
+          sourcesCount={sources.sources.filter(s => s.status === "connected").length}
+          onSaveBrandProfile={brandStrategy.saveBrandProfile}
+          onGenerateStrategy={brandStrategy.generateStrategyPack}
+          onSyncSources={sources.syncSources}
+          generating={brandStrategy.generating}
+          syncing={sources.syncing}
+          onNavigatePublish={navigateToPublish}
+        />
+      )}
       {activeTab === "analytics" && (
         <StudioAnalyticsTab
           posts={studio.posts}
@@ -87,5 +119,11 @@ const StudioPage = () => {
     </StudioLayout>
   );
 };
+
+const StudioPage = () => (
+  <StudioAthleteProvider>
+    <StudioPageInner />
+  </StudioAthleteProvider>
+);
 
 export default StudioPage;
