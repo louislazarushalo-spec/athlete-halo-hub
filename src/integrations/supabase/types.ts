@@ -420,6 +420,152 @@ export type Database = {
         }
         Relationships: []
       }
+      media_mentions: {
+        Row: {
+          athlete_id: string
+          created_at: string
+          id: string
+          image_url: string | null
+          published_at: string | null
+          publisher: string | null
+          query_id: string | null
+          raw_json: Json | null
+          relevance_status: string
+          snippet: string | null
+          title: string
+          url: string
+        }
+        Insert: {
+          athlete_id: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          published_at?: string | null
+          publisher?: string | null
+          query_id?: string | null
+          raw_json?: Json | null
+          relevance_status?: string
+          snippet?: string | null
+          title: string
+          url: string
+        }
+        Update: {
+          athlete_id?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          published_at?: string | null
+          publisher?: string | null
+          query_id?: string | null
+          raw_json?: Json | null
+          relevance_status?: string
+          snippet?: string | null
+          title?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "media_mentions_query_id_fkey"
+            columns: ["query_id"]
+            isOneToOne: false
+            referencedRelation: "media_radar_queries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      media_radar_config: {
+        Row: {
+          athlete_id: string
+          created_at: string
+          id: string
+          is_daily_scan_enabled: boolean
+          language: string
+          provider: string
+          region: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          athlete_id: string
+          created_at?: string
+          id?: string
+          is_daily_scan_enabled?: boolean
+          language?: string
+          provider?: string
+          region?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          athlete_id?: string
+          created_at?: string
+          id?: string
+          is_daily_scan_enabled?: boolean
+          language?: string
+          provider?: string
+          region?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      media_radar_queries: {
+        Row: {
+          athlete_id: string
+          created_at: string
+          id: string
+          is_enabled: boolean
+          query_text: string
+        }
+        Insert: {
+          athlete_id: string
+          created_at?: string
+          id?: string
+          is_enabled?: boolean
+          query_text: string
+        }
+        Update: {
+          athlete_id?: string
+          created_at?: string
+          id?: string
+          is_enabled?: boolean
+          query_text?: string
+        }
+        Relationships: []
+      }
+      media_scans: {
+        Row: {
+          athlete_id: string
+          error_message: string | null
+          finished_at: string | null
+          id: string
+          mention_count: number | null
+          narratives: Json | null
+          started_at: string
+          status: string
+        }
+        Insert: {
+          athlete_id: string
+          error_message?: string | null
+          finished_at?: string | null
+          id?: string
+          mention_count?: number | null
+          narratives?: Json | null
+          started_at?: string
+          status?: string
+        }
+        Update: {
+          athlete_id?: string
+          error_message?: string | null
+          finished_at?: string | null
+          id?: string
+          mention_count?: number | null
+          narratives?: Json | null
+          started_at?: string
+          status?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           age: number | null
