@@ -11,8 +11,6 @@ import { cn } from "@/lib/utils";
 import type { StudioAthleteProfile, AssetItem } from "@/hooks/useStudioAthlete";
 import type { useStudioSources } from "@/hooks/useStudioSources";
 import type { useStudioBrandStrategy } from "@/hooks/useStudioBrandStrategy";
-import type { useMediaRadar } from "@/hooks/useMediaRadar";
-import { MediaRadarCard } from "../MediaRadarCard";
 
 interface StudioHomeTabProps {
   onNavigate: (tab: string) => void;
@@ -27,9 +25,7 @@ interface StudioHomeTabProps {
   engagementCount: number;
   sources: ReturnType<typeof useStudioSources>;
   brandStrategy: ReturnType<typeof useStudioBrandStrategy>;
-  mediaRadar: ReturnType<typeof useMediaRadar>;
   onNavigatePublish: (draft?: { title: string; body: string; type: string }) => void;
-  onOpenMediaRadar: () => void;
 }
 
 export const StudioHomeTab = ({
@@ -45,9 +41,7 @@ export const StudioHomeTab = ({
   engagementCount,
   sources,
   brandStrategy,
-  mediaRadar,
   onNavigatePublish,
-  onOpenMediaRadar,
 }: StudioHomeTabProps) => {
   const [bioEditing, setBioEditing] = useState(false);
   const [bioTemp, setBioTemp] = useState("");
@@ -162,9 +156,6 @@ export const StudioHomeTab = ({
         loading={sources.loading}
       />
 
-      {/* Media Radar card */}
-      <MediaRadarCard mediaRadar={mediaRadar} onOpen={onOpenMediaRadar} />
-
       {/* Brand & Strategy card */}
       <StudioCard
         title="Brand & Strategy"
@@ -186,7 +177,6 @@ export const StudioHomeTab = ({
         generating={brandStrategy.generating}
         onGenerate={brandStrategy.generateWeeklyPack}
         onNavigatePublish={onNavigatePublish}
-        mediaNarratives={mediaRadar.latestNarratives}
       />
 
       {/* Growth snapshot */}
