@@ -23,12 +23,12 @@ export const AthleteSwitcher = () => {
     a.display_name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleSelect = async (slug: string) => {
+  const handleSelect = (slug: string) => {
     setCurrentAthleteSlug(slug);
     setOpen(false);
     setSearch("");
-    // Ensure a DB profile exists for this athlete
-    await ensureProfile(slug);
+    // Fire-and-forget: ensure a DB profile exists (don't block UI)
+    ensureProfile(slug);
   };
 
   return (
