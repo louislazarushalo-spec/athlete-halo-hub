@@ -89,12 +89,18 @@ export default {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        "emoji-fall": {
+          "0%": { transform: "translateY(-20px) scale(1.2)", opacity: "1" },
+          "70%": { opacity: "1" },
+          "100%": { transform: "translateY(100vh) scale(0.6) rotate(40deg)", opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         shimmer: "shimmer 2s infinite",
         float: "float 3s ease-in-out infinite",
+        "emoji-fall": "emoji-fall 2s ease-in forwards",
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
