@@ -4,7 +4,7 @@ import { ChevronDown, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const AthleteSwitcher = () => {
-  const { currentAthleteSlug, setCurrentAthleteSlug, managedAthletes } = useStudioAthleteContext();
+  const { currentAthleteSlug, setCurrentAthleteSlug, managedAthletes, ensureProfile } = useStudioAthleteContext();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const ref = useRef<HTMLDivElement>(null);
@@ -19,20 +19,17 @@ export const AthleteSwitcher = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  if (managedAthletes.length <= 1) {
-    return current ? (
-      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50">
-        <div className="w-6 h-6 rounded-full overflow-hidden bg-muted">
-          {current.avatar_url && <img src={current.avatar_url} alt="" className="w-full h-full object-cover" />}
-        </div>
-        <span className="text-sm font-medium">{current.display_name}</span>
-      </div>
-    ) : null;
-  }
-
   const filtered = managedAthletes.filter((a) =>
     a.display_name.toLowerCase().includes(search.toLowerCase())
   );
+
+  const handleSelect = async (slug: string) => {
+    setCurrentAthleteSlug(slug);
+    setOpen(false);
+    setSearch("");
+    // Ensure a DB profile exists for this athlete
+    await ensureProfile(slug);
+  };
 
   return (
     <div ref={ref} className="relative">
@@ -48,7 +45,7 @@ export const AthleteSwitcher = () => {
       </button>
 
       {open && (
-        <div className="absolute top-full mt-2 right-0 w-64 bg-popover border border-border rounded-xl shadow-lg z-50 overflow-hidden">
+        <div className="absolute top-full mt-2 right-0 w-72 bg-popover border border-border rounded-xl shadow-lg z-50 overflow-hidden">
           <div className="p-2 border-b border-border/50">
             <div className="relative">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
@@ -61,11 +58,11 @@ export const AthleteSwitcher = () => {
               />
             </div>
           </div>
-          <div className="max-h-60 overflow-y-auto py-1">
+          <div className="max-h-72 overflow-y-auto py-1">
             {filtered.map((a) => (
               <button
                 key={a.slug}
-                onClick={() => { setCurrentAthleteSlug(a.slug); setOpen(false); setSearch(""); }}
+                onClick={() => handleSelect(a.slug)}
                 className={cn(
                   "w-full flex items-center gap-2.5 px-3 py-2 text-left hover:bg-muted/50 transition-colors",
                   a.slug === currentAthleteSlug && "bg-primary/5"

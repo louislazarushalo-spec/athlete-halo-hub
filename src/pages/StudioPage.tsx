@@ -5,20 +5,24 @@ import { StudioPublishTab } from "@/components/studio/tabs/StudioPublishTab";
 import { StudioEngageTab } from "@/components/studio/tabs/StudioEngageTab";
 import { StudioMonetizeTab } from "@/components/studio/tabs/StudioMonetizeTab";
 import { StudioAnalyticsTab } from "@/components/studio/tabs/StudioAnalyticsTab";
-import { BrandStrategyPage } from "@/components/studio/BrandStrategyPage";
 import { useStudioAthlete } from "@/hooks/useStudioAthlete";
 import { useStudioSources } from "@/hooks/useStudioSources";
 import { useStudioBrandStrategy } from "@/hooks/useStudioBrandStrategy";
 import { useStudioAthleteContext, StudioAthleteProvider } from "@/contexts/StudioAthleteContext";
-import { athletes as hardcodedAthletes } from "@/data/athletes";
-import { Button } from "@/components/ui/button";
 
 const StudioPageInner = () => {
   const [activeTab, setActiveTab] = useState<TabId>("home");
-  const { currentAthleteSlug, managedAthletes } = useStudioAthleteContext();
+  const { currentAthleteSlug, ensureProfile } = useStudioAthleteContext();
   const studio = useStudioAthlete(currentAthleteSlug);
   const sources = useStudioSources(currentAthleteSlug);
   const brandStrategy = useStudioBrandStrategy(currentAthleteSlug);
+
+  // Auto-create profile if it doesn't exist yet
+  useEffect(() => {
+    if (!studio.loading && studio.needsSetup && currentAthleteSlug) {
+      ensureProfile(currentAthleteSlug);
+    }
+  }, [studio.loading, studio.needsSetup, currentAthleteSlug, ensureProfile]);
 
   // Draft state for publish tab (prefilled from weekly pack)
   const [publishDraft, setPublishDraft] = useState<{ title: string; body: string; type: string } | undefined>();
@@ -27,35 +31,6 @@ const StudioPageInner = () => {
     if (draft) setPublishDraft(draft);
     setActiveTab("publish");
   };
-
-  // Athlete setup screen
-  if (!studio.loading && studio.needsSetup) {
-    return (
-      <StudioLayout activeTab={activeTab} onTabChange={setActiveTab}>
-        <div className="max-w-lg mx-auto text-center py-12">
-          <h2 className="text-xl font-semibold mb-2">Set up your Studio</h2>
-          <p className="text-sm text-muted-foreground mb-6">
-            Select the athlete profile you want to manage.
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {hardcodedAthletes.slice(0, 12).map((a) => (
-              <button
-                key={a.id}
-                onClick={() => studio.setupProfile(a.id)}
-                className="p-3 rounded-xl border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-colors text-center"
-              >
-                <div className="w-12 h-12 mx-auto rounded-full overflow-hidden bg-muted mb-2">
-                  <img src={a.avatar} alt={a.name} className="w-full h-full object-cover" />
-                </div>
-                <p className="text-xs font-medium truncate">{a.name}</p>
-                <p className="text-[10px] text-muted-foreground">{a.sport}</p>
-              </button>
-            ))}
-          </div>
-        </div>
-      </StudioLayout>
-    );
-  }
 
   return (
     <StudioLayout activeTab={activeTab} onTabChange={setActiveTab}>
