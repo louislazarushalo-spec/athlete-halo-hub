@@ -3,11 +3,9 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useStudioRole } from "@/hooks/useStudioRole";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
-import { Loader2, LogOut, MoreHorizontal, Home, Sparkles, Send, BarChart3, DollarSign } from "lucide-react";
+import { Loader2, LogOut, Home, Sparkles, Send, BarChart3, DollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AthleteSwitcher } from "./AthleteSwitcher";
-import { useState } from "react";
-import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 const TABS = [
   { id: "my-halo", label: "Halo", icon: Home },
@@ -16,9 +14,6 @@ const TABS = [
   { id: "monetize", label: "Monetize", icon: DollarSign },
   { id: "analytics", label: "Analytics", icon: BarChart3 },
 ] as const;
-
-const MOBILE_PRIMARY_IDS = ["my-halo", "copilot", "publish"] as const;
-const MOBILE_MORE_IDS = ["monetize", "analytics"] as const;
 
 type TabId = (typeof TABS)[number]["id"];
 
@@ -36,7 +31,6 @@ export const StudioLayout = ({ activeTab, onTabChange, children, onGoHome }: Stu
   const { hasAccess, loading } = useStudioRole();
   const isMobile = useIsMobile();
   const navigate = useNavigate();
-  const [moreOpen, setMoreOpen] = useState(false);
 
   if (loading) {
     return (
@@ -64,8 +58,6 @@ export const StudioLayout = ({ activeTab, onTabChange, children, onGoHome }: Stu
       </div>
     );
   }
-
-  const isMoreTab = MOBILE_MORE_IDS.includes(activeTab as any);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -125,78 +117,39 @@ export const StudioLayout = ({ activeTab, onTabChange, children, onGoHome }: Stu
         </header>
       )}
 
-      {/* Content — proper bottom padding for mobile nav */}
+      {/* Content */}
       <main className={cn("flex-1", isMobile ? "pt-1.5 pb-[calc(60px+env(safe-area-inset-bottom,0px)+8px)]" : "pt-6 pb-8")}>
         <div className={cn("container mx-auto max-w-3xl", isMobile ? "px-3" : "px-4")}>
           {children}
         </div>
       </main>
 
-      {/* Mobile bottom tab bar — safe-area aware, 56px + safe area */}
+      {/* Mobile bottom tab bar — all 5 tabs, safe-area aware */}
       {isMobile && (
-        <>
-          <nav
-            className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-t border-border/50"
-            style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
-          >
-            <div className="flex items-stretch h-14">
-              {MOBILE_PRIMARY_IDS.map((tabId) => {
-                const tab = TABS.find((t) => t.id === tabId)!;
-                const Icon = tab.icon;
-                const isActive = activeTab === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => { onTabChange(tab.id); setMoreOpen(false); }}
-                    className={cn(
-                      "flex-1 flex flex-col items-center justify-center gap-0.5 min-h-[44px] transition-colors",
-                      isActive ? "text-primary" : "text-muted-foreground"
-                    )}
-                  >
-                    <Icon className="h-[18px] w-[18px]" strokeWidth={isActive ? 2.5 : 2} />
-                    <span className="text-[10px] font-medium leading-none">{tab.label}</span>
-                  </button>
-                );
-              })}
-              <button
-                onClick={() => setMoreOpen(!moreOpen)}
-                className={cn(
-                  "flex-1 flex flex-col items-center justify-center gap-0.5 min-h-[44px] transition-colors",
-                  isMoreTab || moreOpen ? "text-primary" : "text-muted-foreground"
-                )}
-              >
-                <MoreHorizontal className="h-[18px] w-[18px]" strokeWidth={isMoreTab || moreOpen ? 2.5 : 2} />
-                <span className="text-[10px] font-medium leading-none">More</span>
-              </button>
-            </div>
-          </nav>
-
-          {/* More sheet */}
-          <Sheet open={moreOpen} onOpenChange={setMoreOpen}>
-            <SheetContent side="bottom" className="rounded-t-2xl px-4 pb-8" style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 32px)" }}>
-              <div className="w-10 h-1 rounded-full bg-muted mx-auto mb-4 mt-1" />
-              <div className="space-y-1">
-                {MOBILE_MORE_IDS.map((tabId) => {
-                  const tab = TABS.find((t) => t.id === tabId)!;
-                  const Icon = tab.icon;
-                  return (
-                    <button
-                      key={tab.id}
-                      onClick={() => { onTabChange(tab.id); setMoreOpen(false); }}
-                      className={cn(
-                        "w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-[15px] font-medium transition-colors min-h-[48px]",
-                        activeTab === tab.id ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted/50"
-                      )}
-                    >
-                      <Icon className="h-5 w-5 shrink-0" />
-                      {tab.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </SheetContent>
-          </Sheet>
-        </>
+        <nav
+          className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-t border-border/50"
+          style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+        >
+          <div className="flex items-stretch h-14">
+            {TABS.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => onTabChange(tab.id)}
+                  className={cn(
+                    "flex-1 flex flex-col items-center justify-center gap-0.5 min-h-[44px] transition-colors",
+                    isActive ? "text-primary" : "text-muted-foreground"
+                  )}
+                >
+                  <Icon className="h-[18px] w-[18px]" strokeWidth={isActive ? 2.5 : 2} />
+                  <span className="text-[9px] font-medium leading-none">{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </nav>
       )}
     </div>
   );
