@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { StudioLayout, type TabId } from "@/components/studio/StudioLayout";
-import { StudioGetStartedTab } from "@/components/studio/tabs/StudioGetStartedTab";
+import { OnboardingBanner } from "@/components/studio/OnboardingBanner";
 import { StudioMyHaloTab } from "@/components/studio/tabs/StudioMyHaloTab";
 import { StudioCopilotTab } from "@/components/studio/tabs/StudioCopilotTab";
 import { StudioPublishTab } from "@/components/studio/tabs/StudioPublishTab";
@@ -23,17 +23,10 @@ const StudioPageInner = () => {
 
   // Determine default tab
   const getDefaultTab = useCallback((): TabId => {
-    if (!studio.profile) return "get-started";
-    const profileDone = !!(studio.profile.bio && studio.profile.avatar_url && studio.profile.banner_url);
-    const sourcesDone = sources.sources.filter((s) => s.status === "connected").length > 0;
-    const strategyDone = !!(brandStrategy.strategyPack?.pack_json && (brandStrategy.strategyPack.pack_json as any)?.positioning_statement);
-    const weeklyDone = brandStrategy.weeklyPacks.length > 0;
-    const publishDone = studio.posts.some((p) => p.status === "published");
-    const allDone = profileDone && sourcesDone && strategyDone && weeklyDone && publishDone;
-    return allDone ? "copilot" : "get-started";
-  }, [studio.profile, sources.sources, brandStrategy.strategyPack, brandStrategy.weeklyPacks, studio.posts]);
+    return "copilot";
+  }, []);
 
-  const [activeTab, setActiveTab] = useState<TabId>("get-started");
+  const [activeTab, setActiveTab] = useState<TabId>("copilot");
   const [initialized, setInitialized] = useState(false);
   const [showStrategy, setShowStrategy] = useState(false);
   const [showSources, setShowSources] = useState(false);
@@ -83,15 +76,15 @@ const StudioPageInner = () => {
 
   return (
     <StudioLayout activeTab={activeTab} onTabChange={setActiveTab}>
-      {activeTab === "get-started" && (
-        <StudioGetStartedTab
+      {/* Onboarding banner on Copilot and My Halo */}
+      {(activeTab === "copilot" || activeTab === "my-halo") && (
+        <OnboardingBanner
           profile={studio.profile}
           sources={sources.sources}
           strategyPack={brandStrategy.strategyPack}
           brandProfileAnswers={brandStrategy.brandProfile?.answers_json as Record<string, any> | null}
           weeklyPacks={brandStrategy.weeklyPacks}
           posts={studio.posts}
-          loading={studio.loading}
           onNavigate={setActiveTab}
           onOpenSources={() => setShowSources(true)}
           onOpenStrategy={() => setShowStrategy(true)}
@@ -100,6 +93,7 @@ const StudioPageInner = () => {
             setActiveTab("copilot");
           }}
           onNavigatePublish={() => navigateToPublish()}
+          athleteSlug={currentAthleteSlug}
         />
       )}
 
