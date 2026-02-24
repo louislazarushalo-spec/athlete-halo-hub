@@ -7,12 +7,13 @@ import { ArthurDataHub } from "./DataHub/ArthurDataHub";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ReactionBar } from "@/components/feed/ReactionBar";
+import { CommentsSheet } from "@/components/feed/CommentsSheet";
+import { FallingEmojiOverlay } from "@/components/feed/FallingEmojiOverlay";
 import {
   ArrowLeft,
   Calendar,
   MapPin,
-  Heart,
-  MessageCircle,
   Play,
   Users,
   BarChart3,
@@ -73,6 +74,7 @@ const MediaFrame = ({ src, alt, ratio = "1:1" }: { src: string; alt: string; rat
 /* ─── Feed Card ─── */
 const FeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: string; name: string }) => {
   const config = platformConfig[item.platform] || platformConfig.instagram;
+  const [commentOpen, setCommentOpen] = useState(false);
 
   if (item.type === "social") {
     return (
@@ -85,13 +87,11 @@ const FeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: s
           </div>
         </div>
         {item.image && <MediaFrame src={item.image} alt="Post" ratio="1:1" />}
-        <div className="px-4 py-3 space-y-2">
+        <div className="px-4 py-3">
           <p className="text-[14px] leading-[1.45] text-foreground/90 line-clamp-3">{item.content}</p>
-          <div className="flex items-center gap-5 text-muted-foreground text-[12px]">
-            {item.stats?.likes != null && <span className="flex items-center gap-1"><Heart className="h-3.5 w-3.5" />{formatNumber(item.stats.likes)}</span>}
-            {item.stats?.comments != null && <span className="flex items-center gap-1"><MessageCircle className="h-3.5 w-3.5" />{formatNumber(item.stats.comments)}</span>}
-          </div>
         </div>
+        <ReactionBar postId={item.id} onCommentClick={() => setCommentOpen(true)} />
+        <CommentsSheet postId={item.id} open={commentOpen} onOpenChange={setCommentOpen} />
       </article>
     );
   }
@@ -124,6 +124,8 @@ const FeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: s
           <h4 className="text-[14px] font-semibold text-foreground line-clamp-2 leading-snug">{item.title}</h4>
           <p className="text-[12px] text-muted-foreground mt-1">{formatNumber(item.stats?.views || 0)} views</p>
         </div>
+        <ReactionBar postId={item.id} onCommentClick={() => setCommentOpen(true)} />
+        <CommentsSheet postId={item.id} open={commentOpen} onOpenChange={setCommentOpen} />
       </article>
     );
   }
@@ -153,6 +155,8 @@ const FeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: s
             </div>
           )}
         </div>
+        <ReactionBar postId={item.id} onCommentClick={() => setCommentOpen(true)} />
+        <CommentsSheet postId={item.id} open={commentOpen} onOpenChange={setCommentOpen} />
       </article>
     );
   }
@@ -160,7 +164,48 @@ const FeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: s
   return null;
 };
 
-/* ─── Top Fan Avatar ─── */
+/* ─── Program Feed Card ─── */
+const ProgramFeedCard = ({ item }: { item: MediaFeedItem }) => {
+  const [commentOpen, setCommentOpen] = useState(false);
+  return (
+    <article className="bg-card border border-border/40 rounded-2xl overflow-hidden">
+      {item.image && <MediaFrame src={item.image} alt={item.title || "Program"} ratio="1:1" />}
+      <div className="px-4 py-3 space-y-2">
+        <Badge variant="secondary" className="text-[10px]">Program</Badge>
+        <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{item.title}</h4>
+        <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
+        <Link to="/training/arthur-cazaux">
+          <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1">
+            View program <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
+          </Button>
+        </Link>
+      </div>
+      <ReactionBar postId={item.id} onCommentClick={() => setCommentOpen(true)} />
+      <CommentsSheet postId={item.id} open={commentOpen} onOpenChange={setCommentOpen} />
+    </article>
+  );
+};
+
+/* ─── Cause Feed Card ─── */
+const CauseFeedCard = ({ item }: { item: MediaFeedItem }) => {
+  const [commentOpen, setCommentOpen] = useState(false);
+  return (
+    <article className="bg-card border border-border/40 rounded-2xl overflow-hidden">
+      {item.image && <MediaFrame src={item.image} alt={item.title || "Cause"} ratio="1:1" />}
+      <div className="px-4 py-3 space-y-2">
+        <Badge variant="secondary" className="text-[10px]">Cause</Badge>
+        <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{item.title}</h4>
+        <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
+        <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1">
+          Learn more <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
+        </Button>
+      </div>
+      <ReactionBar postId={item.id} onCommentClick={() => setCommentOpen(true)} />
+      <CommentsSheet postId={item.id} open={commentOpen} onOpenChange={setCommentOpen} />
+    </article>
+  );
+};
+
 const TopFanAvatar = ({ fan }: { fan: typeof TOP_FANS[number] }) => {
   const rankColors = ["bg-primary", "bg-muted-foreground/70", "bg-muted-foreground/50"];
   const badgeBg = fan.id <= 3 ? rankColors[fan.id - 1] : "bg-muted-foreground/40";
@@ -266,6 +311,7 @@ export const ArthurNewPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <FallingEmojiOverlay />
       {/* ─── 1. Hero Banner ─── */}
       <section className="relative h-[44vh] min-h-[260px] max-h-[400px] overflow-hidden">
         <img src={resolvedBanner} alt={`${athlete.name} banner`} className="w-full h-full object-cover" />
@@ -376,36 +422,10 @@ export const ArthurNewPage = () => {
               allFeedItems.map((item) => {
                 const extended = item as any;
                 if (extended._cardType === "program") {
-                  return (
-                    <article key={item.id} className="bg-card border border-border/40 rounded-2xl overflow-hidden">
-                      {item.image && <MediaFrame src={item.image} alt={item.title || "Program"} ratio="1:1" />}
-                      <div className="px-4 py-3 space-y-2">
-                        <Badge variant="secondary" className="text-[10px]">Program</Badge>
-                        <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{item.title}</h4>
-                        <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
-                        <Link to="/training/arthur-cazaux">
-                          <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1">
-                            View program <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
-                          </Button>
-                        </Link>
-                      </div>
-                    </article>
-                  );
+                  return <ProgramFeedCard key={item.id} item={item} />;
                 }
                 if (extended._cardType === "cause") {
-                  return (
-                    <article key={item.id} className="bg-card border border-border/40 rounded-2xl overflow-hidden">
-                      {item.image && <MediaFrame src={item.image} alt={item.title || "Cause"} ratio="1:1" />}
-                      <div className="px-4 py-3 space-y-2">
-                        <Badge variant="secondary" className="text-[10px]">Cause</Badge>
-                        <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{item.title}</h4>
-                        <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
-                        <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1">
-                          Learn more <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
-                        </Button>
-                      </div>
-                    </article>
-                  );
+                  return <CauseFeedCard key={item.id} item={item} />;
                 }
                 return <FeedCard key={item.id} item={item} avatarSrc={resolvedAvatar} name={athlete.name} />;
               })
