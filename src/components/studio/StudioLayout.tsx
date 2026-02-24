@@ -3,7 +3,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useStudioRole } from "@/hooks/useStudioRole";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
-import { Loader2, LogOut, Home, Send, MessageCircle, DollarSign, BarChart3, Sparkles } from "lucide-react";
+import { Loader2, LogOut, Home, Send, MessageCircle, DollarSign, BarChart3 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AthleteSwitcher } from "./AthleteSwitcher";
 
@@ -12,7 +12,6 @@ const TABS = [
   { id: "publish", label: "Publish", icon: Send },
   { id: "engage", label: "Engage", icon: MessageCircle },
   { id: "monetize", label: "Monetize", icon: DollarSign },
-  { id: "strategy", label: "Strategy", icon: Sparkles },
   { id: "analytics", label: "Analytics", icon: BarChart3 },
 ] as const;
 

@@ -76,6 +76,16 @@ export function useStudioAthlete(athleteSlug?: string | null) {
   const [monetization, setMonetization] = useState<StudioMonetizationConfig[]>([]);
   const [assets, setAssets] = useState<AssetItem[]>([]);
 
+  // Reset state when slug changes to prevent stale data
+  useEffect(() => {
+    setProfile(null);
+    setPosts([]);
+    setEngagements([]);
+    setMonetization([]);
+    setAssets([]);
+    setNeedsSetup(false);
+  }, [athleteSlug]);
+
   // Load athlete profile - either by slug or by user_id
   const loadProfile = useCallback(async () => {
     if (!user) return;
