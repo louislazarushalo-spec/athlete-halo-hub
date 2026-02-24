@@ -15,8 +15,6 @@ import {
   MessageCircle,
   Play,
   Users,
-  UserPlus,
-  Check,
   BarChart3,
   Rss,
   ExternalLink,
@@ -28,12 +26,12 @@ import sponsorLacoste from "@/assets/sponsor-lacoste.png";
 import sponsorBabolat from "@/assets/sponsor-babolat.png";
 import sponsorExtia from "@/assets/sponsor-extia.png";
 
+/* ─── Tabs ─── */
 const TABS = [
   { id: "events", label: "Events", icon: Calendar },
   { id: "feed", label: "Feed", icon: Rss },
   { id: "datahub", label: "Data Hub", icon: BarChart3 },
 ] as const;
-
 type TabId = (typeof TABS)[number]["id"];
 
 const formatNumber = (num: number): string => {
@@ -41,6 +39,20 @@ const formatNumber = (num: number): string => {
   if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
   return num.toString();
 };
+
+/* ─── Placeholder top fans ─── */
+const TOP_FANS = [
+  { id: 1, name: "Léa M.", initials: "LM", hue: 210 },
+  { id: 2, name: "Marc D.", initials: "MD", hue: 220 },
+  { id: 3, name: "Sophie R.", initials: "SR", hue: 200 },
+  { id: 4, name: "Thomas B.", initials: "TB", hue: 230 },
+  { id: 5, name: "Emma L.", initials: "EL", hue: 195 },
+  { id: 6, name: "Jules P.", initials: "JP", hue: 240 },
+  { id: 7, name: "Camille V.", initials: "CV", hue: 205 },
+  { id: 8, name: "Hugo F.", initials: "HF", hue: 215 },
+  { id: 9, name: "Chloé G.", initials: "CG", hue: 225 },
+  { id: 10, name: "Raphaël N.", initials: "RN", hue: 235 },
+];
 
 const platformConfig: Record<string, { label: string; bgClass: string; textClass: string; icon?: string }> = {
   instagram: { label: "Instagram", bgClass: "bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400", textClass: "text-white" },
@@ -51,15 +63,10 @@ const platformConfig: Record<string, { label: string; bgClass: string; textClass
   bbc: { label: "BBC Sport", bgClass: "bg-orange-600", textClass: "text-white", icon: "BBC" },
 };
 
-/* ─── Media Frame (only 1:1 and 4:5) ─── */
+/* ─── Media Frame ─── */
 const MediaFrame = ({ src, alt, ratio = "1:1" }: { src: string; alt: string; ratio?: "1:1" | "4:5" }) => (
   <div className={cn("relative w-full overflow-hidden bg-muted", ratio === "4:5" ? "aspect-[4/5]" : "aspect-square")}>
-    <img
-      src={src}
-      alt={alt}
-      className="absolute inset-0 w-full h-full object-cover"
-      onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
-    />
+    <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }} />
   </div>
 );
 
@@ -68,7 +75,6 @@ const FeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: s
   const config = platformConfig[item.platform] || platformConfig.instagram;
 
   if (item.type === "social") {
-    const hasImage = !!item.image;
     return (
       <article className="bg-card border border-border/40 rounded-2xl overflow-hidden">
         <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border/30">
@@ -78,16 +84,12 @@ const FeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: s
             <span className="text-[11px] text-muted-foreground">{config.label} · {item.timestamp}</span>
           </div>
         </div>
-        {hasImage && <MediaFrame src={item.image} alt="Post" ratio="1:1" />}
+        {item.image && <MediaFrame src={item.image} alt="Post" ratio="1:1" />}
         <div className="px-4 py-3 space-y-2">
           <p className="text-[14px] leading-[1.45] text-foreground/90 line-clamp-3">{item.content}</p>
           <div className="flex items-center gap-5 text-muted-foreground text-[12px]">
-            {item.stats?.likes != null && (
-              <span className="flex items-center gap-1"><Heart className="h-3.5 w-3.5" />{formatNumber(item.stats.likes)}</span>
-            )}
-            {item.stats?.comments != null && (
-              <span className="flex items-center gap-1"><MessageCircle className="h-3.5 w-3.5" />{formatNumber(item.stats.comments)}</span>
-            )}
+            {item.stats?.likes != null && <span className="flex items-center gap-1"><Heart className="h-3.5 w-3.5" />{formatNumber(item.stats.likes)}</span>}
+            {item.stats?.comments != null && <span className="flex items-center gap-1"><MessageCircle className="h-3.5 w-3.5" />{formatNumber(item.stats.comments)}</span>}
           </div>
         </div>
       </article>
@@ -105,13 +107,13 @@ const FeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: s
             <span className="text-[13px] font-semibold text-foreground truncate block">{config.label}</span>
             <span className="text-[11px] text-muted-foreground">{item.timestamp}</span>
           </div>
-          <Badge variant="secondary" className="text-[10px] bg-red-600/20 text-red-400 border-red-500/20">Video</Badge>
+          <Badge variant="secondary" className="text-[10px] bg-destructive/20 text-destructive border-destructive/20">Video</Badge>
         </div>
         <div className="relative aspect-[4/5] overflow-hidden">
           <img src={item.image} alt={item.title || "Video"} className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }} />
           <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent flex items-center justify-center">
-            <div className="w-14 h-14 rounded-full bg-red-600 flex items-center justify-center shadow-2xl">
-              <Play className="h-6 w-6 text-white ml-0.5" fill="white" />
+            <div className="w-14 h-14 rounded-full bg-destructive flex items-center justify-center shadow-2xl">
+              <Play className="h-6 w-6 text-destructive-foreground ml-0.5" fill="currentColor" />
             </div>
           </div>
           {item.stats?.duration && (
@@ -158,7 +160,31 @@ const FeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: s
   return null;
 };
 
-/* ─── Main Page ─── */
+/* ─── Top Fan Avatar ─── */
+const TopFanAvatar = ({ fan }: { fan: typeof TOP_FANS[number] }) => {
+  const rankColors = ["bg-primary", "bg-muted-foreground/70", "bg-muted-foreground/50"];
+  const badgeBg = fan.id <= 3 ? rankColors[fan.id - 1] : "bg-muted-foreground/40";
+  return (
+    <div className="flex flex-col items-center gap-1 shrink-0 w-14">
+      <div className="relative">
+        <div
+          className="w-12 h-12 rounded-full flex items-center justify-center text-[13px] font-bold text-primary-foreground"
+          style={{ background: `hsl(${fan.hue}, 45%, 35%)` }}
+        >
+          {fan.initials}
+        </div>
+        <span className={cn("absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-primary-foreground border-2 border-background", badgeBg)}>
+          {fan.id}
+        </span>
+      </div>
+      <span className="text-[10px] text-muted-foreground truncate w-full text-center">{fan.name}</span>
+    </div>
+  );
+};
+
+/* ═══════════════════════════════════════════════
+   MAIN PAGE
+   ═══════════════════════════════════════════════ */
 export const ArthurNewPage = () => {
   const navigate = useNavigate();
   const athlete = getAthleteById("arthur-cazaux")!;
@@ -169,20 +195,21 @@ export const ArthurNewPage = () => {
   const resolvedBio = bio || athlete.bio;
 
   const [activeTab, setActiveTab] = useState<TabId>("feed");
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [isFan, setIsFan] = useState(false);
 
-  const handleFollow = () => {
-    setIsFollowing(!isFollowing);
-    toast({ title: isFollowing ? "Unfollowed" : "Following!", description: isFollowing ? `You unfollowed ${athlete.name}` : `You're now following ${athlete.name}` });
+  const handleBeAFan = () => {
+    setIsFan(!isFan);
+    toast({
+      title: isFan ? "Unfollowed" : "You're a fan! 🎉",
+      description: isFan ? `You unfollowed ${athlete.name}` : `You're now following ${athlete.name}`,
+    });
   };
 
-  /* ─── Programs from training posts ─── */
+  /* ─── Programs + Cause ─── */
   const programs = athlete.training || [];
-
-  /* ─── Cause ─── */
   const cause = athlete.cause;
 
-  /* ─── Feed data (unified: social + video + article + programs + causes) ─── */
+  /* ─── Feed data ─── */
   const socialItems: (MediaFeedItem & { _cardType?: string })[] = [
     ...studioPosts.map((p) => ({
       id: p.id,
@@ -237,16 +264,15 @@ export const ArthurNewPage = () => {
   const upcoming = sortedEvents.filter((e) => new Date(parseInt(e.year), monthToNum[e.month] || 0, parseInt(e.date)) >= now);
   const recent = sortedEvents.filter((e) => new Date(parseInt(e.year), monthToNum[e.month] || 0, parseInt(e.date)) < now).reverse();
 
-
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* ─── Hero Banner ─── */}
-      <section className="relative h-[52vh] min-h-[300px] max-h-[480px] overflow-hidden">
+      {/* ─── 1. Hero Banner ─── */}
+      <section className="relative h-[44vh] min-h-[260px] max-h-[400px] overflow-hidden">
         <img src={resolvedBanner} alt={`${athlete.name} banner`} className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
 
-        {/* Top bar: Back + Follow */}
-        <div className="absolute top-0 inset-x-0 z-50 flex items-center justify-between px-3 pt-3">
+        {/* Back button */}
+        <div className="absolute top-0 left-0 z-50 px-3 pt-3">
           <Button
             variant="ghost"
             size="icon"
@@ -256,69 +282,89 @@ export const ArthurNewPage = () => {
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
-          <Button
-            variant={isFollowing ? "secondary" : "default"}
-            size="sm"
-            onClick={handleFollow}
-            className="h-9 text-[13px] rounded-full px-5 shadow-lg"
-          >
-            {isFollowing ? <Check className="h-3.5 w-3.5 mr-1.5" /> : <UserPlus className="h-3.5 w-3.5 mr-1.5" />}
-            {isFollowing ? "Following" : "Follow"}
-          </Button>
         </div>
 
-        {/* Hero content – centered on mobile */}
-        <div className="absolute bottom-0 inset-x-0 px-4 pb-4 flex flex-col items-center text-center md:items-start md:text-left md:px-8 md:pb-6">
-          {/* Avatar — clean, no overlays, no badges */}
-          <div className="w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden border-[3px] border-background shadow-xl mb-3">
+        {/* Hero content – centered */}
+        <div className="absolute bottom-0 inset-x-0 px-4 pb-4 flex flex-col items-center text-center">
+          <div className="w-24 h-24 rounded-full overflow-hidden border-[3px] border-background shadow-xl mb-3">
             <img src={resolvedAvatar} alt={athlete.name} className="w-full h-full object-cover object-top" />
           </div>
+          <h1 className="font-display text-[22px] font-bold text-foreground drop-shadow-lg leading-tight">{athlete.name}</h1>
+          <p className="text-[13px] text-foreground/70 mt-1 line-clamp-2 max-w-xs">{resolvedBio}</p>
 
-          <h1 className="font-display text-[22px] md:text-4xl font-bold text-foreground drop-shadow-lg leading-tight">{athlete.name}</h1>
-          <p className="text-[13px] md:text-base text-foreground/80 mt-1 line-clamp-2 max-w-md">{resolvedBio}</p>
-
-          {/* Fans count */}
-          <div className="flex items-center gap-1 text-foreground/70 text-[12px] mt-2">
-            <Users className="h-3.5 w-3.5" />
-            <span>{athlete.followers.toLocaleString()} fans</span>
+          {/* Stats row */}
+          <div className="flex items-center gap-4 mt-2 text-[12px] text-foreground/60">
+            <div className="flex items-center gap-1">
+              <Users className="h-3.5 w-3.5" />
+              <span className="font-semibold text-foreground/80">{formatNumber(athlete.followers)}</span>
+              <span>Fans</span>
+            </div>
           </div>
 
           {/* Sponsors strip */}
-          <div className="flex items-center gap-3 mt-3 overflow-x-auto max-w-full">
-            <img src={sponsorLacoste} alt="Lacoste" className="h-4 md:h-6 object-contain opacity-70" />
-            <img src={sponsorBabolat} alt="Babolat" className="h-4 md:h-6 object-contain opacity-70" />
-            <img src={sponsorExtia} alt="Extia" className="h-4 md:h-6 object-contain opacity-70" />
+          <div className="flex items-center gap-3 mt-3">
+            <img src={sponsorLacoste} alt="Lacoste" className="h-4 object-contain opacity-60" />
+            <img src={sponsorBabolat} alt="Babolat" className="h-4 object-contain opacity-60" />
+            <img src={sponsorExtia} alt="Extia" className="h-4 object-contain opacity-60" />
           </div>
         </div>
       </section>
 
-      {/* ─── Sticky Tabs ─── */}
-      <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-b border-border/40">
+      {/* ─── 2. BE A FAN CTA ─── */}
+      <div className="px-4 py-4">
+        <Button
+          onClick={handleBeAFan}
+          className={cn(
+            "w-full h-14 rounded-full text-[16px] font-bold tracking-wide transition-all shadow-lg",
+            isFan
+              ? "bg-muted text-foreground hover:bg-muted/80 border border-border"
+              : "bg-foreground text-background hover:bg-foreground/90"
+          )}
+        >
+          {isFan ? "✓  YOU'RE A FAN" : "BE A FAN"}
+        </Button>
+      </div>
+
+      {/* ─── 3. Top Fans This Week ─── */}
+      <div className="px-4 pb-4">
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-[15px] font-semibold text-foreground">Top fans this week</h2>
+          <button className="text-[13px] text-primary font-medium min-h-[44px] flex items-center">See more</button>
+        </div>
         <ScrollArea className="w-full">
-          <div className="flex justify-start md:justify-center gap-1 px-3 py-2 min-w-max">
-            {TABS.map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                onClick={() => setActiveTab(id)}
-                className={cn(
-                  "flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-medium transition-all min-h-[44px] shrink-0",
-                  activeTab === id
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "text-muted-foreground hover:bg-muted/50"
-                )}
-              >
-                <Icon className="h-4 w-4" />
-                {label}
-              </button>
+          <div className="flex gap-3 pb-1">
+            {TOP_FANS.map((fan) => (
+              <TopFanAvatar key={fan.id} fan={fan} />
             ))}
           </div>
           <ScrollBar orientation="horizontal" className="invisible" />
         </ScrollArea>
       </div>
 
-      {/* ─── Tab Content ─── */}
+      {/* ─── 4. Sticky Tabs ─── */}
+      <div className="sticky top-0 z-40 bg-background/95 backdrop-blur-md border-y border-border/40">
+        <div className="flex justify-center gap-1 px-3 py-2">
+          {TABS.map(({ id, label, icon: Icon }) => (
+            <button
+              key={id}
+              onClick={() => setActiveTab(id)}
+              className={cn(
+                "flex items-center gap-1.5 px-5 py-2.5 rounded-full text-[13px] font-medium transition-all min-h-[44px] shrink-0",
+                activeTab === id
+                  ? "bg-primary text-primary-foreground shadow-md"
+                  : "text-muted-foreground hover:bg-muted/50"
+              )}
+            >
+              <Icon className="h-4 w-4" />
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* ─── 5. Tab Content ─── */}
       <main className="px-4 py-4 md:px-8 md:py-6 max-w-3xl mx-auto pb-20">
-        {/* ── FEED (no filter chips) ── */}
+        {/* FEED */}
         {activeTab === "feed" && (
           <div className="space-y-4 animate-fade-in">
             {allFeedItems.length === 0 ? (
@@ -337,7 +383,7 @@ export const ArthurNewPage = () => {
                         <Badge variant="secondary" className="text-[10px]">Program</Badge>
                         <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{item.title}</h4>
                         <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
-                        <Link to={`/training/arthur-cazaux`}>
+                        <Link to="/training/arthur-cazaux">
                           <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1">
                             View program <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
                           </Button>
@@ -367,7 +413,7 @@ export const ArthurNewPage = () => {
           </div>
         )}
 
-        {/* ── EVENTS ── */}
+        {/* EVENTS */}
         {activeTab === "events" && (
           <div className="space-y-4 animate-fade-in">
             {upcoming.length === 0 && recent.length === 0 ? (
@@ -380,17 +426,13 @@ export const ArthurNewPage = () => {
                 {upcoming.length > 0 && (
                   <>
                     <h3 className="text-[16px] font-semibold text-foreground">Upcoming</h3>
-                    {upcoming.map((event) => (
-                      <EventCard key={event.id} event={event} />
-                    ))}
+                    {upcoming.map((event) => <EventCard key={event.id} event={event} />)}
                   </>
                 )}
                 {recent.length > 0 && (
                   <>
                     <h3 className="text-[16px] font-semibold text-foreground mt-6">Recent</h3>
-                    {recent.slice(0, 5).map((event) => (
-                      <EventCard key={event.id} event={event} past />
-                    ))}
+                    {recent.slice(0, 5).map((event) => <EventCard key={event.id} event={event} past />)}
                   </>
                 )}
               </>
@@ -398,7 +440,7 @@ export const ArthurNewPage = () => {
           </div>
         )}
 
-        {/* ── DATA HUB ── */}
+        {/* DATA HUB */}
         {activeTab === "datahub" && (
           <div className="animate-fade-in">
             <ArthurDataHub />
@@ -413,13 +455,10 @@ export const ArthurNewPage = () => {
 const EventCard = ({ event, past }: { event: any; past?: boolean }) => {
   const isMajor = event.category?.includes("Grand Slam") || event.category?.includes("Major") || event.category?.includes("Finals");
   return (
-    <article className={cn(
-      "bg-card border border-border/40 rounded-2xl overflow-hidden flex",
-      past && "opacity-60"
-    )}>
+    <article className={cn("bg-card border border-border/40 rounded-2xl overflow-hidden flex", past && "opacity-60")}>
       <div className={cn(
-        "w-16 shrink-0 flex flex-col items-center justify-center py-3 text-white",
-        isMajor ? "bg-gradient-to-b from-primary to-primary/70" : "bg-gradient-to-b from-blue-600 to-blue-800"
+        "w-16 shrink-0 flex flex-col items-center justify-center py-3",
+        isMajor ? "bg-primary text-primary-foreground" : "bg-primary/60 text-primary-foreground"
       )}>
         <span className="text-[10px] font-semibold uppercase tracking-wider">{event.month}</span>
         <span className="text-2xl font-bold leading-none my-0.5">{event.date}</span>
@@ -430,7 +469,7 @@ const EventCard = ({ event, past }: { event: any; past?: boolean }) => {
           <span className="text-base">{event.countryFlag}</span>
           <h4 className="text-[14px] font-semibold text-foreground line-clamp-1">{event.name}</h4>
         </div>
-        <Badge className={cn(event.categoryColor, "text-white border-0 text-[10px] font-semibold shadow-sm")}>
+        <Badge className={cn(event.categoryColor, "text-primary-foreground border-0 text-[10px] font-semibold shadow-sm")}>
           {isMajor && "🏆 "}{event.category}
         </Badge>
         <div className="flex items-center gap-1 text-muted-foreground text-[11px] mt-1.5">
