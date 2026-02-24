@@ -4,7 +4,7 @@ import { StudioGetStartedTab } from "@/components/studio/tabs/StudioGetStartedTa
 import { StudioMyHaloTab } from "@/components/studio/tabs/StudioMyHaloTab";
 import { StudioCopilotTab } from "@/components/studio/tabs/StudioCopilotTab";
 import { StudioPublishTab } from "@/components/studio/tabs/StudioPublishTab";
-import { StudioEngageTab } from "@/components/studio/tabs/StudioEngageTab";
+
 import { StudioMonetizeTab } from "@/components/studio/tabs/StudioMonetizeTab";
 import { StudioAnalyticsTab } from "@/components/studio/tabs/StudioAnalyticsTab";
 import { BrandStrategyPage } from "@/components/studio/BrandStrategyPage";
@@ -136,11 +136,6 @@ const StudioPageInner = () => {
           assets={studio.assets}
           onUploadAsset={studio.uploadAsset}
           draft={publishDraft}
-        />
-      )}
-
-      {activeTab === "engage" && (
-        <StudioEngageTab
           engagements={studio.engagements}
           onCreateEngagement={studio.createEngagement}
         />

@@ -13,13 +13,12 @@ const TABS = [
   { id: "my-halo", label: "My Halo" },
   { id: "copilot", label: "Copilot" },
   { id: "publish", label: "Publish" },
-  { id: "engage", label: "Engage" },
   { id: "monetize", label: "Monetize" },
   { id: "analytics", label: "Analytics" },
 ] as const;
 
 const MOBILE_PRIMARY = ["get-started", "my-halo", "copilot", "publish"] as const;
-const MOBILE_MORE = ["engage", "monetize", "analytics"] as const;
+const MOBILE_MORE = ["monetize", "analytics"] as const;
 
 type TabId = (typeof TABS)[number]["id"];
 
@@ -153,7 +152,6 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
                 </button>
               );
             })}
-            {/* More button */}
             <button
               onClick={() => setMoreOpen(!moreOpen)}
               className={cn(
@@ -166,7 +164,6 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
             </button>
           </nav>
 
-          {/* More dropdown */}
           {moreOpen && (
             <div className="fixed bottom-14 left-0 right-0 z-50 bg-background border-t border-border/50 px-4 py-2 space-y-1">
               {MOBILE_MORE.map((tabId) => {
