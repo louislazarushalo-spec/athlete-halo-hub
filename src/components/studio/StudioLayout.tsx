@@ -9,7 +9,6 @@ import { AthleteSwitcher } from "./AthleteSwitcher";
 import { useState } from "react";
 
 const TABS = [
-  { id: "get-started", label: "Get started" },
   { id: "my-halo", label: "My Halo" },
   { id: "copilot", label: "Copilot" },
   { id: "publish", label: "Publish" },
@@ -17,7 +16,7 @@ const TABS = [
   { id: "analytics", label: "Analytics" },
 ] as const;
 
-const MOBILE_PRIMARY = ["get-started", "my-halo", "copilot", "publish"] as const;
+const MOBILE_PRIMARY = ["my-halo", "copilot", "publish"] as const;
 const MOBILE_MORE = ["monetize", "analytics"] as const;
 
 type TabId = (typeof TABS)[number]["id"];
