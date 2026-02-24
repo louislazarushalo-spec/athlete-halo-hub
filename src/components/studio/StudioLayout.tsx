@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useStudioRole } from "@/hooks/useStudioRole";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -25,11 +25,12 @@ interface StudioLayoutProps {
   activeTab: TabId;
   onTabChange: (tab: TabId) => void;
   children: React.ReactNode;
+  onGoHome?: () => void;
 }
 
 export type { TabId };
 
-export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutProps) => {
+export const StudioLayout = ({ activeTab, onTabChange, children, onGoHome }: StudioLayoutProps) => {
   const { logout } = useAuth();
   const { hasAccess, loading } = useStudioRole();
   const isMobile = useIsMobile();
@@ -71,12 +72,12 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
       {!isMobile && (
         <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border/50">
           <div className="container mx-auto px-4 flex items-center justify-between h-14">
-            <Link to="/home" className="flex items-center gap-2">
+            <button onClick={() => onGoHome ? onGoHome() : navigate("/home")} className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-dark via-primary to-blue-light flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-xs">H</span>
               </div>
               <span className="font-display text-lg font-semibold">Studio</span>
-            </Link>
+            </button>
 
             <nav className="flex items-center bg-muted/50 rounded-lg p-1 gap-0.5">
               {TABS.map((tab) => (
@@ -108,12 +109,12 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
       {/* Mobile top bar */}
       {isMobile && (
         <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border/50 px-4 flex items-center justify-between h-12">
-          <Link to="/home" className="flex items-center gap-1.5">
+          <button onClick={() => onGoHome ? onGoHome() : navigate("/home")} className="flex items-center gap-1.5">
             <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-dark via-primary to-blue-light flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-[10px]">H</span>
             </div>
             <span className="font-display text-base font-semibold">Studio</span>
-          </Link>
+          </button>
           <div className="flex items-center gap-1">
             <AthleteSwitcher />
             <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => { logout(); navigate("/"); }}>

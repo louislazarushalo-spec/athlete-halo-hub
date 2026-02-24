@@ -134,7 +134,7 @@ export const OnboardingBanner = ({
   return (
     <>
       {/* Slim glass banner */}
-      <div className="rounded-xl border border-border/40 bg-background/60 backdrop-blur-xl p-4 mb-4">
+      <div className="rounded-xl border border-primary/30 bg-primary/5 backdrop-blur-xl p-4 mb-4 shadow-[0_0_20px_hsl(var(--primary)/0.15),0_0_40px_hsl(var(--primary)/0.05)]">
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div className="flex-1 min-w-0">
             <h3 className="text-sm font-semibold mb-0.5">Finish setup</h3>
@@ -142,8 +142,8 @@ export const OnboardingBanner = ({
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <span className="text-xs text-muted-foreground whitespace-nowrap">{doneCount}/{steps.length} complete</span>
-            <Progress value={progressPct} className="h-1.5 w-20" />
-            <Button size="sm" className="h-9" onClick={() => setSheetOpen(true)}>
+            <Progress value={progressPct} className="h-1.5 w-20 bg-primary/10 [&>div]:bg-primary" />
+            <Button size="sm" className="h-9 bg-primary hover:bg-primary/90 text-primary-foreground shadow-md shadow-primary/20" onClick={() => setSheetOpen(true)}>
               Continue setup
             </Button>
             <button onClick={handleDismiss} className="text-xs text-muted-foreground hover:text-foreground transition-colors">
