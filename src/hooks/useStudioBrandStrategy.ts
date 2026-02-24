@@ -81,12 +81,12 @@ export function useStudioBrandStrategy(athleteSlug: string | null) {
     }
   };
 
-  const generateStrategyPack = async (contentItems: any[], brandAnswers: Record<string, any>, mediaRadarData?: { mentions_count: number; top_publishers: [string, number][]; narratives: string[] }) => {
+  const generateStrategyPack = async (contentItems: any[], brandAnswers: Record<string, any>) => {
     if (!user || !athleteSlug) return;
     setGenerating(true);
     try {
       const { data, error } = await supabase.functions.invoke("studio-generate-strategy", {
-        body: { athlete_id: athleteSlug, content_items: contentItems, brand_answers: brandAnswers, media_radar: mediaRadarData },
+        body: { athlete_id: athleteSlug, content_items: contentItems, brand_answers: brandAnswers },
       });
       if (error) throw error;
 
@@ -111,12 +111,12 @@ export function useStudioBrandStrategy(athleteSlug: string | null) {
     }
   };
 
-  const generateWeeklyPack = async (context: string, strategyPackData: Record<string, any>, mediaNarratives?: string[]) => {
+  const generateWeeklyPack = async (context: string, strategyPackData: Record<string, any>) => {
     if (!user || !athleteSlug) return;
     setGenerating(true);
     try {
       const { data, error } = await supabase.functions.invoke("studio-generate-weekly-pack", {
-        body: { athlete_id: athleteSlug, context, strategy_pack: strategyPackData, media_narratives: mediaNarratives },
+        body: { athlete_id: athleteSlug, context, strategy_pack: strategyPackData },
       });
       if (error) throw error;
 

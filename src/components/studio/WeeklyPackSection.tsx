@@ -10,9 +10,8 @@ interface WeeklyPackSectionProps {
   weeklyPacks: WeeklyPack[];
   strategyPack: StrategyPack | null;
   generating: boolean;
-  onGenerate: (context: string, strategyPackData: Record<string, any>, mediaNarratives?: string[]) => Promise<void>;
+  onGenerate: (context: string, strategyPackData: Record<string, any>) => Promise<void>;
   onNavigatePublish: (draft?: { title: string; body: string; type: string }) => void;
-  mediaNarratives?: string[];
 }
 
 export const WeeklyPackSection = ({
@@ -21,7 +20,6 @@ export const WeeklyPackSection = ({
   generating,
   onGenerate,
   onNavigatePublish,
-  mediaNarratives,
 }: WeeklyPackSectionProps) => {
   const [context, setContext] = useState("training");
 
@@ -29,7 +27,7 @@ export const WeeklyPackSection = ({
   const posts = (latestPack?.pack_json as any)?.posts || [];
 
   const handleGenerate = () => {
-    onGenerate(context, strategyPack?.pack_json || {}, mediaNarratives);
+    onGenerate(context, strategyPack?.pack_json || {});
   };
 
   return (

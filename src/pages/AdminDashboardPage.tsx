@@ -6,7 +6,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Users, Image, ArrowRight, Clock } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { AdminSearchProviderSettings } from "@/components/studio/AdminSearchProviderSettings";
+
 
 const AdminDashboardPage = () => {
   const { user } = useAuth();
@@ -135,10 +135,6 @@ const AdminDashboardPage = () => {
           </div>
         )}
 
-        {/* Search Provider Settings */}
-        <div className="mt-8">
-          <AdminSearchProviderSettings />
-        </div>
       </div>
     </Layout>
   );
