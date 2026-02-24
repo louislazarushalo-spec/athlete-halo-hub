@@ -56,6 +56,7 @@ import { CassandreExclusiveZone } from "@/components/athletes/CassandreExclusive
 import { PierreExclusiveZone } from "@/components/athletes/PierreExclusiveZone";
 import { TommyExclusiveZone } from "@/components/athletes/TommyExclusiveZone";
 import { NicExclusiveZone } from "@/components/athletes/NicExclusiveZone";
+import { ArthurNewPage } from "@/components/athletes/ArthurNewPage";
 import { CassandreHighlights } from "@/components/athletes/CassandreHighlights";
 import { PierreHighlights } from "@/components/athletes/PierreHighlights";
 import { useSubscription } from "@/contexts/SubscriptionContext";
@@ -311,6 +312,16 @@ const MediaFeedCard = ({ item, athlete, avatarOverride }: { item: MediaFeedItem;
 
 const AthletePage = () => {
   const { id } = useParams<{ id: string }>();
+
+  // Arthur Cazaux gets the new 3-tab layout
+  if (id === "arthur-cazaux") {
+    return <ArthurNewPage />;
+  }
+
+  return <LegacyAthletePage id={id} />;
+};
+
+const LegacyAthletePage = ({ id }: { id: string | undefined }) => {
   const navigate = useNavigate();
   const athlete = getAthleteById(id || "");
   const { avatarUrl: dbAvatar, bannerUrl: dbBanner, bio: dbBio, studioPosts } = useAthleteProfile(id);
