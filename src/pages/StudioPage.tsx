@@ -54,10 +54,12 @@ const StudioPageInner = () => {
     setActiveTab("publish");
   };
 
+  const goToCopilot = () => { setShowStrategy(false); setActiveTab("copilot"); };
+
   // Brand Strategy page overlay
   if (showStrategy) {
     return (
-      <StudioLayout activeTab={activeTab} onTabChange={(tab) => { setShowStrategy(false); setActiveTab(tab); }}>
+      <StudioLayout activeTab={activeTab} onTabChange={(tab) => { setShowStrategy(false); setActiveTab(tab); }} onGoHome={goToCopilot}>
         <BrandStrategyPage
           brandProfile={brandStrategy.brandProfile}
           strategyPack={brandStrategy.strategyPack}
@@ -75,27 +77,25 @@ const StudioPageInner = () => {
   }
 
   return (
-    <StudioLayout activeTab={activeTab} onTabChange={setActiveTab}>
-      {/* Onboarding banner on Copilot and My Halo */}
-      {(activeTab === "copilot" || activeTab === "my-halo") && (
-        <OnboardingBanner
-          profile={studio.profile}
-          sources={sources.sources}
-          strategyPack={brandStrategy.strategyPack}
-          brandProfileAnswers={brandStrategy.brandProfile?.answers_json as Record<string, any> | null}
-          weeklyPacks={brandStrategy.weeklyPacks}
-          posts={studio.posts}
-          onNavigate={setActiveTab}
-          onOpenSources={() => setShowSources(true)}
-          onOpenStrategy={() => setShowStrategy(true)}
-          onGenerateWeeklyPack={() => {
-            brandStrategy.generateWeeklyPack("training", brandStrategy.strategyPack?.pack_json || {});
-            setActiveTab("copilot");
-          }}
-          onNavigatePublish={() => navigateToPublish()}
-          athleteSlug={currentAthleteSlug}
-        />
-      )}
+    <StudioLayout activeTab={activeTab} onTabChange={setActiveTab} onGoHome={goToCopilot}>
+      {/* Onboarding banner on all sections */}
+      <OnboardingBanner
+        profile={studio.profile}
+        sources={sources.sources}
+        strategyPack={brandStrategy.strategyPack}
+        brandProfileAnswers={brandStrategy.brandProfile?.answers_json as Record<string, any> | null}
+        weeklyPacks={brandStrategy.weeklyPacks}
+        posts={studio.posts}
+        onNavigate={setActiveTab}
+        onOpenSources={() => setShowSources(true)}
+        onOpenStrategy={() => setShowStrategy(true)}
+        onGenerateWeeklyPack={() => {
+          brandStrategy.generateWeeklyPack("training", brandStrategy.strategyPack?.pack_json || {});
+          setActiveTab("copilot");
+        }}
+        onNavigatePublish={() => navigateToPublish()}
+        athleteSlug={currentAthleteSlug}
+      />
 
       {activeTab === "my-halo" && (
         <StudioMyHaloTab
