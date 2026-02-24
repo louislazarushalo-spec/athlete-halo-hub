@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -336,6 +336,9 @@ const AccountPage = () => {
             </div>
             <h1 className="font-display text-2xl md:text-3xl font-bold mb-2">My Account</h1>
             <p className="text-muted-foreground text-sm">Manage your profile and preferences</p>
+            <Link to="/studio" className="inline-block mt-3">
+              <Button variant="outline" size="sm">Open Studio</Button>
+            </Link>
           </div>
 
           <div className="space-y-8">

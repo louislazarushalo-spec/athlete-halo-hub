@@ -44,6 +44,54 @@ export type Database = {
         }
         Relationships: []
       }
+      athlete_profiles: {
+        Row: {
+          athlete_slug: string
+          avatar_url: string | null
+          banner_url: string | null
+          bio: string | null
+          created_at: string
+          display_name: string
+          earned_channels: Json | null
+          id: string
+          owned_channels: Json | null
+          social_sources: Json | null
+          sport: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          athlete_slug: string
+          avatar_url?: string | null
+          banner_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string
+          earned_channels?: Json | null
+          id?: string
+          owned_channels?: Json | null
+          social_sources?: Json | null
+          sport?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          athlete_slug?: string
+          avatar_url?: string | null
+          banner_url?: string | null
+          bio?: string | null
+          created_at?: string
+          display_name?: string
+          earned_channels?: Json | null
+          id?: string
+          owned_channels?: Json | null
+          social_sources?: Json | null
+          sport?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       contest_entries: {
         Row: {
           athlete_id: string
@@ -200,6 +248,123 @@ export type Database = {
           postcode?: string | null
           sports_preferences?: string[] | null
           street?: string | null
+        }
+        Relationships: []
+      }
+      studio_engagements: {
+        Row: {
+          athlete_id: string
+          created_at: string
+          description: string | null
+          id: string
+          payload: Json | null
+          status: string
+          title: string
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          athlete_id: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          payload?: Json | null
+          status?: string
+          title?: string
+          type: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          athlete_id?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          payload?: Json | null
+          status?: string
+          title?: string
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      studio_monetization: {
+        Row: {
+          athlete_id: string
+          config: Json | null
+          created_at: string
+          id: string
+          status: string
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          athlete_id: string
+          config?: Json | null
+          created_at?: string
+          id?: string
+          status?: string
+          type: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          athlete_id?: string
+          config?: Json | null
+          created_at?: string
+          id?: string
+          status?: string
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      studio_posts: {
+        Row: {
+          athlete_id: string
+          body: string | null
+          created_at: string
+          id: string
+          media: string[] | null
+          published_at: string | null
+          scheduled_at: string | null
+          status: string
+          title: string
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          athlete_id: string
+          body?: string | null
+          created_at?: string
+          id?: string
+          media?: string[] | null
+          published_at?: string | null
+          scheduled_at?: string | null
+          status?: string
+          title?: string
+          type?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          athlete_id?: string
+          body?: string | null
+          created_at?: string
+          id?: string
+          media?: string[] | null
+          published_at?: string | null
+          scheduled_at?: string | null
+          status?: string
+          title?: string
+          type?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
