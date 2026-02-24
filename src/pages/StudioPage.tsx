@@ -96,20 +96,6 @@ const StudioPageInner = () => {
           onSaveMonetization={studio.saveMonetization}
         />
       )}
-      {activeTab === "strategy" && (
-        <BrandStrategyPage
-          brandProfile={brandStrategy.brandProfile}
-          strategyPack={brandStrategy.strategyPack}
-          contentItems={sources.contentItems}
-          sourcesCount={sources.sources.filter(s => s.status === "connected").length}
-          onSaveBrandProfile={brandStrategy.saveBrandProfile}
-          onGenerateStrategy={brandStrategy.generateStrategyPack}
-          onSyncSources={sources.syncSources}
-          generating={brandStrategy.generating}
-          syncing={sources.syncing}
-          onNavigatePublish={navigateToPublish}
-        />
-      )}
       {activeTab === "analytics" && (
         <StudioAnalyticsTab
           posts={studio.posts}
