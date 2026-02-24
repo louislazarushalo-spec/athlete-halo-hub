@@ -94,10 +94,10 @@ export function useStudioAthlete(athleteSlug?: string | null) {
       let query = supabase.from("athlete_profiles").select("*");
 
       if (athleteSlug) {
-        query = query.eq("athlete_slug", athleteSlug).eq("user_id", user.id);
-      } else {
-        query = query.eq("user_id", user.id);
+        query = query.eq("athlete_slug", athleteSlug);
       }
+      // Don't filter by user_id - admin users need to see all profiles
+      // RLS policies handle access control
 
       const { data, error } = await query.maybeSingle();
       if (error) throw error;
@@ -106,7 +106,23 @@ export function useStudioAthlete(athleteSlug?: string | null) {
         setProfile(data as unknown as StudioAthleteProfile);
         setNeedsSetup(false);
       } else {
-        setProfile(null);
+        // No DB profile yet — build a temporary one from hardcoded data
+        const athlete = hardcodedAthletes.find((a) => a.id === athleteSlug);
+        if (athlete) {
+          setProfile({
+            id: "",
+            user_id: user.id,
+            athlete_slug: athlete.id,
+            display_name: athlete.name,
+            bio: athlete.bio || "",
+            avatar_url: athlete.avatar || "",
+            banner_url: athlete.banner || "",
+            sport: athlete.sport || "",
+            social_sources: {},
+            owned_channels: {},
+            earned_channels: {},
+          } as StudioAthleteProfile);
+        }
         setNeedsSetup(true);
       }
     } catch (err) {
