@@ -138,6 +138,7 @@ const StudioPageInner = () => {
           draft={publishDraft}
           engagements={studio.engagements}
           onCreateEngagement={studio.createEngagement}
+          posts={studio.posts}
         />
       )}
 

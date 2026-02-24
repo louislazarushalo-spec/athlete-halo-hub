@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getAthleteById, MediaFeedItem, AthleteEvent } from "@/data/athletes";
+import { useAthleteProfile } from "@/hooks/useAthleteProfile";
 import { getEventsBySport } from "@/data/sportEvents";
 import { 
   UserPlus, 
@@ -121,7 +122,8 @@ const platformConfig: Record<string, { label: string; bgClass: string; textClass
 };
 
 // MediaFeedCard component
-const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlete }) => {
+const MediaFeedCard = ({ item, athlete, avatarOverride }: { item: MediaFeedItem; athlete: Athlete; avatarOverride?: string }) => {
+  const avatarSrc = avatarOverride || athlete.avatar;
   const config = platformConfig[item.platform];
 
   // Social Post (Instagram/Twitter)
@@ -132,7 +134,7 @@ const MediaFeedCard = ({ item, athlete }: { item: MediaFeedItem; athlete: Athlet
     const socialContent = (
       <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in">
         <div className="p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-border/50">
-          <img src={athlete.avatar} alt={athlete.name} className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-primary/20" />
+          <img src={avatarSrc} alt={athlete.name} className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-primary/20" />
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-1.5 md:gap-2 flex-wrap">
               <span className="font-semibold text-sm md:text-base text-foreground truncate">{athlete.name}</span>
@@ -311,6 +313,13 @@ const AthletePage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const athlete = getAthleteById(id || "");
+  const { avatarUrl: dbAvatar, bannerUrl: dbBanner, bio: dbBio, studioPosts } = useAthleteProfile(id);
+  
+  // Use DB data when available, fall back to static
+  const resolvedAvatar = dbAvatar || athlete?.avatar || "";
+  const resolvedBanner = dbBanner || athlete?.banner || "";
+  const resolvedBio = dbBio || athlete?.bio || "";
+  
   const [isFollowing, setIsFollowing] = useState(false);
   const [activeMainTab, setActiveMainTab] = useState<string>("life");
   const [activeLifeTab, setActiveLifeTab] = useState<"events" | "news" | "music" | "community" | "datahub">("events");
@@ -375,7 +384,7 @@ const AthletePage = () => {
         {/* Hero Banner - Full Width */}
         <section className={`relative ${isCustomAthlete ? "h-[50vh] min-h-[320px]" : "h-[40vh] min-h-[300px]"} sm:h-[45vh] md:h-[55vh] sm:min-h-[350px] md:min-h-[400px] max-h-[600px] overflow-hidden`}>
           <img
-            src={athlete.banner}
+            src={resolvedBanner}
             alt={`${athlete.name} banner`}
             className={`w-full h-full object-cover ${isPierreGasly ? "object-[center_25%] sm:object-[center_30%] md:object-center" : ""}`}
           />
@@ -404,7 +413,7 @@ const AthletePage = () => {
               <div className="relative group">
                 <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-xl sm:rounded-2xl overflow-hidden border-2 sm:border-4 border-background shadow-2xl ring-2 ring-primary/20">
                   <img
-                    src={athlete.avatar}
+                    src={resolvedAvatar}
                     alt={athlete.name}
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
@@ -819,13 +828,44 @@ const AthletePage = () => {
                   <PierreHighlights />
                 ) : (
                   <div className="max-w-3xl mx-auto space-y-5">
+                    {/* Studio published posts */}
+                    {studioPosts.length > 0 && studioPosts.map((post, index) => (
+                      <article
+                        key={post.id}
+                        className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300 animate-fade-in"
+                        style={{ animationDelay: `${index * 0.05}s` }}
+                      >
+                        <div className="p-3 md:p-4 flex items-center gap-2 md:gap-3 border-b border-border/50">
+                          <img src={resolvedAvatar} alt={athlete.name} className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-primary/20" />
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-1.5 md:gap-2 flex-wrap">
+                              <span className="font-semibold text-sm md:text-base text-foreground truncate">{athlete.name}</span>
+                              <Badge variant="secondary" className="text-[10px] md:text-xs capitalize">{post.type.replace("_", " ")}</Badge>
+                            </div>
+                            <span className="text-[10px] md:text-xs text-muted-foreground">
+                              {post.published_at ? new Date(post.published_at).toLocaleDateString() : ""}
+                            </span>
+                          </div>
+                        </div>
+                        {post.media && post.media.length > 0 && (
+                          <div className="relative aspect-video overflow-hidden">
+                            <img src={post.media[0]} alt={post.title} className="w-full h-full object-cover" />
+                          </div>
+                        )}
+                        <div className="p-3 md:p-4 space-y-2">
+                          <h4 className="font-semibold text-sm md:text-base text-foreground">{post.title}</h4>
+                          {post.body && <p className="text-xs md:text-sm text-muted-foreground line-clamp-3">{post.body}</p>}
+                        </div>
+                      </article>
+                    ))}
+                    {/* Static media feed */}
                     {athlete.mediaFeed.map((item, index) => (
                       <div 
                         key={item.id} 
                         className="animate-fade-in"
-                        style={{ animationDelay: `${index * 0.05}s` }}
+                        style={{ animationDelay: `${(studioPosts.length + index) * 0.05}s` }}
                       >
-                        <MediaFeedCard item={item} athlete={athlete} />
+                        <MediaFeedCard item={item} athlete={athlete} avatarOverride={resolvedAvatar} />
                       </div>
                     ))}
                   </div>
