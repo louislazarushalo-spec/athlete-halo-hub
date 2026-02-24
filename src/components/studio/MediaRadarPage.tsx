@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { Loader2, ArrowLeft, ExternalLink, ThumbsUp, ThumbsDown, Plus, Trash2, Search, Sparkles, Settings2, AlertCircle } from "lucide-react";
+import { Loader2, ArrowLeft, ExternalLink, ThumbsUp, ThumbsDown, Plus, Trash2, Search, Sparkles, AlertTriangle, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { useMediaRadar, MediaMention } from "@/hooks/useMediaRadar";
 
@@ -12,134 +12,33 @@ interface MediaRadarPageProps {
   mediaRadar: ReturnType<typeof useMediaRadar>;
   athleteName: string;
   athleteSport?: string;
-  athleteClub?: string;
   onBack: () => void;
 }
 
 type DateFilter = "7d" | "30d" | "all";
-type RelevanceFilter = "all" | "relevant" | "irrelevant" | "uncertain" | "unknown";
-type ViewMode = "setup" | "dashboard" | "queries" | "advanced";
+type RelevanceFilter = "all" | "relevant" | "irrelevant" | "unknown";
+type ViewMode = "dashboard" | "queries";
 
-export const MediaRadarPage = ({ mediaRadar, athleteName, athleteSport, athleteClub, onBack }: MediaRadarPageProps) => {
+export const MediaRadarPage = ({ mediaRadar, athleteName, athleteSport, onBack }: MediaRadarPageProps) => {
   const [dateFilter, setDateFilter] = useState<DateFilter>("30d");
   const [relevanceFilter, setRelevanceFilter] = useState<RelevanceFilter>("all");
   const [publisherFilter, setPublisherFilter] = useState("");
   const [newQuery, setNewQuery] = useState("");
-
-  // Advanced settings
-  const [apiKey, setApiKey] = useState(() => localStorage.getItem(`media_radar_api_key_${mediaRadar.config?.athlete_id || ""}`) || "");
-  const [cxId, setCxId] = useState(() => localStorage.getItem(`media_radar_cx_id_${mediaRadar.config?.athlete_id || ""}`) || "");
   const [language, setLanguage] = useState("all");
+  const [view, setView] = useState<ViewMode>("dashboard");
 
-  const hasKeys = !!(apiKey || localStorage.getItem(`media_radar_api_key_${mediaRadar.config?.athlete_id || ""}`));
-
-  // View mode
-  const initialView: ViewMode = mediaRadar.config && mediaRadar.mentions.length > 0 ? "dashboard" : "setup";
-  const [view, setView] = useState<ViewMode>(initialView);
-
-  // AI Setup screen
-  if (view === "setup") {
+  // Service unavailable state
+  if (mediaRadar.serviceAvailable === false) {
     return (
       <div className="space-y-4">
         <Button variant="ghost" size="sm" onClick={onBack}><ArrowLeft className="h-4 w-4 mr-1" /> Back</Button>
-
-        <StudioCard title="Media Radar — AI Setup" subtitle="Let AI find and analyze your press coverage automatically.">
-          <div className="space-y-5">
-            {/* Pre-filled athlete info */}
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="text-xs font-medium text-muted-foreground mb-1 block">Athlete</label>
-                <div className="h-10 flex items-center px-3 rounded-md bg-muted/40 text-sm">{athleteName || "—"}</div>
-              </div>
-              <div>
-                <label className="text-xs font-medium text-muted-foreground mb-1 block">Sport</label>
-                <div className="h-10 flex items-center px-3 rounded-md bg-muted/40 text-sm">{athleteSport || "—"}</div>
-              </div>
-              <div>
-                <label className="text-xs font-medium text-muted-foreground mb-1 block">Team / Club</label>
-                <div className="h-10 flex items-center px-3 rounded-md bg-muted/40 text-sm">{athleteClub || "—"}</div>
-              </div>
-              <div>
-                <label className="text-xs font-medium text-muted-foreground mb-1 block">Language</label>
-                <select value={language} onChange={(e) => setLanguage(e.target.value)} className="h-10 w-full rounded-md bg-muted/40 px-3 text-sm border-0 focus:ring-2 focus:ring-ring">
-                  <option value="all">All</option>
-                  <option value="en">English</option>
-                  <option value="fr">French</option>
-                </select>
-              </div>
-            </div>
-
-            {/* API key check */}
-            {!hasKeys && (
-              <div className="p-3 rounded-lg bg-destructive/5 border border-destructive/20 flex items-start gap-2">
-                <AlertCircle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-sm font-medium text-destructive">Search API key required</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">You need a Google CSE API key to scan. Add it in Advanced settings below.</p>
-                </div>
-              </div>
-            )}
-
-            <div className="space-y-2">
-              <p className="text-xs text-muted-foreground">AI will generate optimized search queries, run the scan, auto-classify results as relevant/uncertain/irrelevant, and extract key narratives from your coverage.</p>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <Button variant="ghost" size="sm" className="text-xs" onClick={() => setView("advanced")}>
-                <Settings2 className="h-3.5 w-3.5 mr-1" /> Advanced settings
-              </Button>
-              <Button
-                onClick={() => {
-                  mediaRadar.runAiScan(athleteName, athleteSport, athleteClub, language, apiKey, cxId);
-                  if (hasKeys) setView("dashboard");
-                }}
-                disabled={mediaRadar.scanning || !hasKeys}
-              >
-                {mediaRadar.scanning ? (
-                  <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Running AI scan...</>
-                ) : (
-                  <><Sparkles className="h-4 w-4 mr-2" /> Start AI scan</>
-                )}
-              </Button>
-            </div>
-          </div>
-        </StudioCard>
-      </div>
-    );
-  }
-
-  // Advanced settings
-  if (view === "advanced") {
-    return (
-      <div className="space-y-4">
-        <Button variant="ghost" size="sm" onClick={() => setView(mediaRadar.config ? "dashboard" : "setup")}>
-          <ArrowLeft className="h-4 w-4 mr-1" /> Back
-        </Button>
-
-        <StudioCard title="Advanced settings" subtitle="Configure your search API provider.">
-          <div className="space-y-4">
-            <div>
-              <label className="text-sm font-medium mb-1 block">Google CSE API Key</label>
-              <Input value={apiKey} onChange={(e) => setApiKey(e.target.value)} placeholder="AIza..." type="password" />
-              <p className="text-xs text-muted-foreground mt-1">Get one at <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener noreferrer" className="underline">Google Cloud Console</a></p>
-            </div>
-            <div>
-              <label className="text-sm font-medium mb-1 block">Custom Search Engine ID (CX)</label>
-              <Input value={cxId} onChange={(e) => setCxId(e.target.value)} placeholder="abc123..." />
-              <p className="text-xs text-muted-foreground mt-1">Create one at <a href="https://programmablesearchengine.google.com/" target="_blank" rel="noopener noreferrer" className="underline">Programmable Search Engine</a></p>
-            </div>
-            <div className="flex gap-2 justify-end">
-              <Button
-                size="sm"
-                onClick={() => {
-                  if (apiKey) localStorage.setItem(`media_radar_api_key_${mediaRadar.config?.athlete_id || ""}`, apiKey);
-                  if (cxId) localStorage.setItem(`media_radar_cx_id_${mediaRadar.config?.athlete_id || ""}`, cxId);
-                  setView(mediaRadar.config ? "dashboard" : "setup");
-                }}
-              >
-                Save
-              </Button>
-            </div>
+        <StudioCard title="Media Radar" subtitle="Latest web coverage about you.">
+          <div className="flex flex-col items-center gap-3 py-8">
+            <AlertTriangle className="h-8 w-8 text-muted-foreground" />
+            <p className="text-sm text-muted-foreground text-center">Media Radar is temporarily unavailable.</p>
+            <Button variant="outline" size="sm" onClick={() => mediaRadar.runScan(athleteName, athleteSport, undefined, language)}>
+              <RefreshCw className="h-4 w-4 mr-1" /> Retry
+            </Button>
           </div>
         </StudioCard>
       </div>
@@ -193,18 +92,23 @@ export const MediaRadarPage = ({ mediaRadar, athleteName, athleteSport, athleteC
       {/* Header */}
       <div className="flex items-center justify-between">
         <Button variant="ghost" size="sm" onClick={onBack}><ArrowLeft className="h-4 w-4 mr-1" /> Back</Button>
-        <div className="flex gap-2">
-          <Button variant="ghost" size="sm" className="h-8 text-xs" onClick={() => setView("advanced")}>
-            <Settings2 className="h-3.5 w-3.5 mr-1" /> Settings
-          </Button>
-          <Button variant="outline" size="sm" className="h-8" onClick={() => setView("queries")}>Manage queries</Button>
-          <Button size="sm" className="h-8" onClick={() => mediaRadar.runAiScan(athleteName, athleteSport, athleteClub, language)} disabled={mediaRadar.scanning}>
-            {mediaRadar.scanning ? <><Loader2 className="h-4 w-4 animate-spin mr-1" /> Scanning...</> : <><Sparkles className="h-4 w-4 mr-1" /> Run AI scan</>}
+        <div className="flex gap-2 items-center">
+          <select value={language} onChange={(e) => setLanguage(e.target.value)} className="h-8 rounded-md bg-muted/40 px-2 text-xs border-0 focus:ring-2 focus:ring-ring">
+            <option value="all">All languages</option>
+            <option value="en">English</option>
+            <option value="fr">French</option>
+          </select>
+          <Button variant="outline" size="sm" className="h-8 text-xs" onClick={() => setView("queries")}>Manage queries</Button>
+          <Button size="sm" className="h-8" onClick={() => mediaRadar.runScan(athleteName, athleteSport, undefined, language)} disabled={mediaRadar.scanning}>
+            {mediaRadar.scanning ? <><Loader2 className="h-4 w-4 animate-spin mr-1" /> Scanning...</> : <><Sparkles className="h-4 w-4 mr-1" /> Run scan now</>}
           </Button>
         </div>
       </div>
 
-      <h1 className="text-xl font-semibold">Media Radar</h1>
+      <div>
+        <h1 className="text-xl font-semibold">Media Radar</h1>
+        <p className="text-sm text-muted-foreground">Latest web coverage about you.</p>
+      </div>
 
       {/* Digest */}
       {mediaRadar.lastDigest && (
@@ -313,9 +217,9 @@ export const MediaRadarPage = ({ mediaRadar, athleteName, athleteSport, athleteC
           </Button>
         ))}
         <span className="text-muted-foreground text-xs">|</span>
-        {(["all", "relevant", "uncertain", "irrelevant"] as RelevanceFilter[]).map((f) => (
+        {(["all", "relevant", "irrelevant"] as RelevanceFilter[]).map((f) => (
           <Button key={f} variant={relevanceFilter === f ? "default" : "outline"} size="sm" className="h-7 text-xs capitalize" onClick={() => setRelevanceFilter(f)}>
-            {f === "all" ? "All" : f === "relevant" ? "About me" : f === "uncertain" ? "Uncertain" : "Not about me"}
+            {f === "all" ? "All" : f === "relevant" ? "About me" : "Not about me"}
           </Button>
         ))}
         <div className="relative ml-auto">
@@ -328,11 +232,11 @@ export const MediaRadarPage = ({ mediaRadar, athleteName, athleteSport, athleteC
       {filteredMentions.length === 0 ? (
         <div className="text-center py-10">
           <p className="text-muted-foreground text-sm">
-            {mediaRadar.mentions.length === 0 ? "No coverage yet. Run an AI scan to find mentions." : "No mentions match your filters."}
+            {mediaRadar.mentions.length === 0 ? "No coverage yet. Click \"Run scan now\" to find mentions." : "No mentions match your filters."}
           </p>
           {mediaRadar.mentions.length === 0 && (
-            <Button size="sm" className="mt-3" onClick={() => setView("setup")} disabled={mediaRadar.scanning}>
-              <Sparkles className="h-4 w-4 mr-1" /> Start AI scan
+            <Button size="sm" className="mt-3" onClick={() => mediaRadar.runScan(athleteName, athleteSport, undefined, language)} disabled={mediaRadar.scanning}>
+              <Sparkles className="h-4 w-4 mr-1" /> Run scan now
             </Button>
           )}
         </div>
@@ -350,6 +254,15 @@ export const MediaRadarPage = ({ mediaRadar, athleteName, athleteSport, athleteC
           Last scan: {new Date(mediaRadar.latestScan.started_at).toLocaleString()} — {mediaRadar.latestScan.status}
           {mediaRadar.latestScan.error_message && <span className="text-destructive"> ({mediaRadar.latestScan.error_message})</span>}
         </p>
+      )}
+
+      {/* Error with retry */}
+      {mediaRadar.latestScan?.status === "error" && (
+        <div className="text-center">
+          <Button variant="outline" size="sm" onClick={() => mediaRadar.runScan(athleteName, athleteSport, undefined, language)} disabled={mediaRadar.scanning}>
+            <RefreshCw className="h-4 w-4 mr-1" /> Retry scan
+          </Button>
+        </div>
       )}
     </div>
   );

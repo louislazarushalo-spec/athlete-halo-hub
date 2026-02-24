@@ -26,11 +26,18 @@ Deno.serve(async (req) => {
     if (userErr || !user) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
-    const userId = user.id;
 
-    const { athlete_id, api_key, cx_id } = await req.json();
-    if (!athlete_id || !api_key || !cx_id) {
-      return new Response(JSON.stringify({ error: "Missing athlete_id, api_key, or cx_id" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    const { athlete_id } = await req.json();
+    if (!athlete_id) {
+      return new Response(JSON.stringify({ error: "Missing athlete_id" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    // Server-side secrets
+    const GOOGLE_CSE_API_KEY = Deno.env.get("GOOGLE_CSE_API_KEY");
+    const GOOGLE_CSE_CX_ID = Deno.env.get("GOOGLE_CSE_CX_ID");
+
+    if (!GOOGLE_CSE_API_KEY || !GOOGLE_CSE_CX_ID) {
+      return new Response(JSON.stringify({ error: "media_radar_not_configured" }), { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
     // Create scan record
@@ -60,8 +67,8 @@ Deno.serve(async (req) => {
     for (const q of queries) {
       try {
         const params = new URLSearchParams({
-          key: api_key,
-          cx: cx_id,
+          key: GOOGLE_CSE_API_KEY,
+          cx: GOOGLE_CSE_CX_ID,
           q: q.query_text,
           num: "10",
           sort: "date",
@@ -84,7 +91,6 @@ Deno.serve(async (req) => {
           const publisher = item.displayLink || new URL(url).hostname;
           const imageUrl = item.pagemap?.cse_image?.[0]?.src || null;
 
-          // Upsert (dedupe by athlete_id + url)
           const { error: upsertErr } = await supabase
             .from("media_mentions")
             .upsert(
@@ -126,7 +132,7 @@ ${titlesSnippets}
 
 Return format: ["Narrative 1", "Narrative 2", ...]`;
 
-        const aiRes = await fetch("https://ai-gateway.lovable.dev/chat/completions", {
+        const aiRes = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
           method: "POST",
           headers: { "Authorization": `Bearer ${LOVABLE_API_KEY}`, "Content-Type": "application/json" },
           body: JSON.stringify({ model: "google/gemini-2.5-flash-lite", messages: [{ role: "user", content: narrativePrompt }], temperature: 0.5 }),

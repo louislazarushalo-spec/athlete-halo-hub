@@ -1,6 +1,5 @@
 import { StudioCard } from "./StudioCard";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles } from "lucide-react";
 import type { useMediaRadar } from "@/hooks/useMediaRadar";
 
 interface MediaRadarCardProps {
@@ -9,7 +8,6 @@ interface MediaRadarCardProps {
 }
 
 export const MediaRadarCard = ({ mediaRadar, onOpen }: MediaRadarCardProps) => {
-  const isConfigured = !!mediaRadar.config;
   const hasMentions = mediaRadar.mentions.length > 0;
   const lastScan = mediaRadar.latestScan;
 
@@ -17,10 +15,10 @@ export const MediaRadarCard = ({ mediaRadar, onOpen }: MediaRadarCardProps) => {
     <StudioCard
       title="Media Radar"
       subtitle="Track articles and coverage about you across the web."
-      ctaLabel={isConfigured && hasMentions ? "Open" : "Set up with AI"}
+      ctaLabel="Open"
       onCtaClick={onOpen}
     >
-      {isConfigured && hasMentions ? (
+      {hasMentions ? (
         <div className="space-y-3">
           <div className="grid grid-cols-3 gap-3">
             <div className="rounded-lg bg-muted/40 p-3 text-center">
@@ -55,12 +53,9 @@ export const MediaRadarCard = ({ mediaRadar, onOpen }: MediaRadarCardProps) => {
           )}
         </div>
       ) : (
-        <div className="flex items-center gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
-          <Sparkles className="h-5 w-5 text-primary shrink-0" />
-          <p className="text-sm text-muted-foreground">
-            AI will generate search queries, scan the web, classify results, and extract key narratives — all in one click.
-          </p>
-        </div>
+        <p className="text-sm text-muted-foreground">
+          No coverage tracked yet. Open Media Radar and run a scan to find web mentions.
+        </p>
       )}
     </StudioCard>
   );
