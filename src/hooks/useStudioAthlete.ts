@@ -221,9 +221,9 @@ export function useStudioAthlete(athleteSlug?: string | null) {
         body: mf.content,
         media: mf.image ? [mf.image] : [],
         status: "published",
-        published_at: mf.timestamp,
+        published_at: new Date().toISOString(),
         scheduled_at: null,
-        created_at: mf.timestamp,
+        created_at: new Date().toISOString(),
       }));
       
       // DB posts first, then static (avoid duplicates)
