@@ -3,21 +3,22 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useStudioRole } from "@/hooks/useStudioRole";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
-import { Loader2, LogOut, MoreHorizontal } from "lucide-react";
+import { Loader2, LogOut, MoreHorizontal, Home, Sparkles, Send, BarChart3, DollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AthleteSwitcher } from "./AthleteSwitcher";
 import { useState } from "react";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 const TABS = [
-  { id: "my-halo", label: "My Halo" },
-  { id: "copilot", label: "Copilot" },
-  { id: "publish", label: "Publish" },
-  { id: "monetize", label: "Monetize" },
-  { id: "analytics", label: "Analytics" },
+  { id: "my-halo", label: "Halo", icon: Home },
+  { id: "copilot", label: "Copilot", icon: Sparkles },
+  { id: "publish", label: "Publish", icon: Send },
+  { id: "monetize", label: "Monetize", icon: DollarSign },
+  { id: "analytics", label: "Analytics", icon: BarChart3 },
 ] as const;
 
-const MOBILE_PRIMARY = ["my-halo", "copilot", "publish"] as const;
-const MOBILE_MORE = ["monetize", "analytics"] as const;
+const MOBILE_PRIMARY_IDS = ["my-halo", "copilot", "publish"] as const;
+const MOBILE_MORE_IDS = ["monetize", "analytics"] as const;
 
 type TabId = (typeof TABS)[number]["id"];
 
@@ -64,7 +65,7 @@ export const StudioLayout = ({ activeTab, onTabChange, children, onGoHome }: Stu
     );
   }
 
-  const isMoreTab = MOBILE_MORE.includes(activeTab as any);
+  const isMoreTab = MOBILE_MORE_IDS.includes(activeTab as any);
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -106,83 +107,95 @@ export const StudioLayout = ({ activeTab, onTabChange, children, onGoHome }: Stu
         </header>
       )}
 
-      {/* Mobile top bar */}
+      {/* Mobile top bar — compact 44px */}
       {isMobile && (
-        <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-xl border-b border-border/50 px-4 flex items-center justify-between h-12">
+        <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/50 px-3 flex items-center justify-between h-11">
           <button onClick={() => onGoHome ? onGoHome() : navigate("/home")} className="flex items-center gap-1.5">
             <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-dark via-primary to-blue-light flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-[10px]">H</span>
             </div>
-            <span className="font-display text-base font-semibold">Studio</span>
+            <span className="font-display text-[15px] font-semibold">Studio</span>
           </button>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-0.5">
             <AthleteSwitcher />
             <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => { logout(); navigate("/"); }}>
-              <LogOut className="h-4 w-4" />
+              <LogOut className="h-3.5 w-3.5" />
             </Button>
           </div>
         </header>
       )}
 
-      {/* Content */}
-      <main className={cn("flex-1 pb-20 md:pb-8", isMobile ? "pt-2" : "pt-6")}>
-        <div className="container mx-auto px-4 max-w-3xl">
+      {/* Content — proper bottom padding for mobile nav */}
+      <main className={cn("flex-1", isMobile ? "pt-1.5 pb-[calc(60px+env(safe-area-inset-bottom,0px)+8px)]" : "pt-6 pb-8")}>
+        <div className={cn("container mx-auto max-w-3xl", isMobile ? "px-3" : "px-4")}>
           {children}
         </div>
       </main>
 
-      {/* Mobile bottom tab bar */}
+      {/* Mobile bottom tab bar — safe-area aware, 56px + safe area */}
       {isMobile && (
         <>
-          <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-t border-border/50 flex items-center justify-around h-14 px-1">
-            {MOBILE_PRIMARY.map((tabId) => {
-              const tab = TABS.find((t) => t.id === tabId)!;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => { onTabChange(tab.id); setMoreOpen(false); }}
-                  className={cn(
-                    "flex flex-col items-center justify-center py-1 px-1.5 rounded-lg transition-colors min-w-0 flex-1",
-                    activeTab === tab.id
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                  )}
-                >
-                  <span className="text-[10px] font-medium leading-tight text-center">{tab.label}</span>
-                </button>
-              );
-            })}
-            <button
-              onClick={() => setMoreOpen(!moreOpen)}
-              className={cn(
-                "flex flex-col items-center justify-center py-1 px-1.5 rounded-lg transition-colors min-w-0 flex-1",
-                isMoreTab || moreOpen ? "text-primary" : "text-muted-foreground"
-              )}
-            >
-              <MoreHorizontal className="h-4 w-4 mb-0.5" />
-              <span className="text-[10px] font-medium leading-tight">More</span>
-            </button>
-          </nav>
-
-          {moreOpen && (
-            <div className="fixed bottom-14 left-0 right-0 z-50 bg-background border-t border-border/50 px-4 py-2 space-y-1">
-              {MOBILE_MORE.map((tabId) => {
+          <nav
+            className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-t border-border/50"
+            style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+          >
+            <div className="flex items-stretch h-14">
+              {MOBILE_PRIMARY_IDS.map((tabId) => {
                 const tab = TABS.find((t) => t.id === tabId)!;
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
                 return (
                   <button
                     key={tab.id}
                     onClick={() => { onTabChange(tab.id); setMoreOpen(false); }}
                     className={cn(
-                      "w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
-                      activeTab === tab.id ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      "flex-1 flex flex-col items-center justify-center gap-0.5 min-h-[44px] transition-colors",
+                      isActive ? "text-primary" : "text-muted-foreground"
                     )}
                   >
-                    {tab.label}
+                    <Icon className="h-[18px] w-[18px]" strokeWidth={isActive ? 2.5 : 2} />
+                    <span className="text-[10px] font-medium leading-none">{tab.label}</span>
                   </button>
                 );
               })}
+              <button
+                onClick={() => setMoreOpen(!moreOpen)}
+                className={cn(
+                  "flex-1 flex flex-col items-center justify-center gap-0.5 min-h-[44px] transition-colors",
+                  isMoreTab || moreOpen ? "text-primary" : "text-muted-foreground"
+                )}
+              >
+                <MoreHorizontal className="h-[18px] w-[18px]" strokeWidth={isMoreTab || moreOpen ? 2.5 : 2} />
+                <span className="text-[10px] font-medium leading-none">More</span>
+              </button>
             </div>
-          )}
+          </nav>
+
+          {/* More sheet */}
+          <Sheet open={moreOpen} onOpenChange={setMoreOpen}>
+            <SheetContent side="bottom" className="rounded-t-2xl px-4 pb-8" style={{ paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 32px)" }}>
+              <div className="w-10 h-1 rounded-full bg-muted mx-auto mb-4 mt-1" />
+              <div className="space-y-1">
+                {MOBILE_MORE_IDS.map((tabId) => {
+                  const tab = TABS.find((t) => t.id === tabId)!;
+                  const Icon = tab.icon;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => { onTabChange(tab.id); setMoreOpen(false); }}
+                      className={cn(
+                        "w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-[15px] font-medium transition-colors min-h-[48px]",
+                        activeTab === tab.id ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted/50"
+                      )}
+                    >
+                      <Icon className="h-5 w-5 shrink-0" />
+                      {tab.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </SheetContent>
+          </Sheet>
         </>
       )}
     </div>

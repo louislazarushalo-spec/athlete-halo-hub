@@ -58,7 +58,7 @@ export const StudioCopilotTab = ({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 md:space-y-4">
       {/* Brand & Strategy card */}
       <StudioCard
         title="Brand & Strategy"
