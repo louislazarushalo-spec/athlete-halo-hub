@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StudioCard } from "../StudioCard";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 import type { StudioPost, StudioEngagement } from "@/hooks/useStudioAthlete";
 
 const TIME_RANGES = ["7D", "30D", "90D", "All"];
@@ -15,86 +16,78 @@ export const StudioAnalyticsTab = ({ posts, engagements, followerCount }: Studio
   const [range, setRange] = useState("7D");
 
   const publishedPosts = posts.filter((p) => p.status === "published");
-  const activeEngagements = engagements.filter((e) => e.status === "active");
-  const hasData = publishedPosts.length > 0 || activeEngagements.length > 0;
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold">Analytics</h2>
-        <div className="flex items-center bg-muted/50 rounded-lg p-0.5 gap-0.5">
+      {/* Macro KPIs */}
+      <StudioCard title="Macro KPIs" subtitle="Your key metrics at a glance.">
+        <div className="flex items-center gap-2 mb-3">
           {TIME_RANGES.map((r) => (
             <button
               key={r}
               onClick={() => setRange(r)}
               className={cn(
                 "px-3 py-1 text-xs font-medium rounded-md transition-all",
-                range === r ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"
+                range === r ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-foreground"
               )}
             >{r}</button>
           ))}
         </div>
-      </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {[
+            { label: "Views", value: "—" },
+            { label: "Opt-ins", value: String(followerCount ?? "—") },
+            { label: "Engagement", value: String(engagements.filter(e => e.status === "active").length) },
+            { label: "Purchases", value: "—" },
+          ].map((kpi) => (
+            <div key={kpi.label} className="rounded-lg bg-muted/30 p-3 text-center">
+              <p className="text-lg font-semibold">{kpi.value}</p>
+              <p className="text-xs text-muted-foreground">{kpi.label}</p>
+            </div>
+          ))}
+        </div>
+      </StudioCard>
 
-      {/* Macro KPIs */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {[
-          { label: "Published posts", value: String(publishedPosts.length) },
-          { label: "Active engagements", value: String(activeEngagements.length) },
-          { label: "Total posts", value: String(posts.length) },
-          { label: "Followers", value: followerCount != null ? String(followerCount) : "—" },
-        ].map((kpi) => (
-          <div key={kpi.label} className="rounded-xl border border-border/60 bg-card p-4 text-center">
-            <p className="text-xl font-bold">{kpi.value}</p>
-            <p className="text-xs text-muted-foreground mt-0.5">{kpi.label}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Audience placeholder */}
-      <StudioCard title="Audience" subtitle="Who's following and engaging with you.">
-        {hasData ? (
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <p className="text-xs text-muted-foreground mb-2">Demographics</p>
-              <div className="space-y-1.5">
-                {[
-                  { label: "18–24", pct: 35 },
-                  { label: "25–34", pct: 40 },
-                  { label: "35–44", pct: 15 },
-                  { label: "45+", pct: 10 },
-                ].map((d) => (
-                  <div key={d.label} className="flex items-center gap-2">
-                    <span className="text-xs w-10 text-muted-foreground">{d.label}</span>
-                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                      <div className="h-full bg-primary/60 rounded-full" style={{ width: `${d.pct}%` }} />
-                    </div>
-                    <span className="text-xs text-muted-foreground w-8 text-right">{d.pct}%</span>
+      {/* Audience */}
+      <StudioCard title="Audience" subtitle="Demographics and retention overview.">
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <p className="text-xs text-muted-foreground mb-2">Demographics</p>
+            <div className="space-y-1.5">
+              {[
+                { label: "18–24", pct: 35 },
+                { label: "25–34", pct: 40 },
+                { label: "35–44", pct: 15 },
+                { label: "45+", pct: 10 },
+              ].map((d) => (
+                <div key={d.label} className="flex items-center gap-2">
+                  <span className="text-xs w-10 text-muted-foreground">{d.label}</span>
+                  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
+                    <div className="h-full bg-primary/60 rounded-full" style={{ width: `${d.pct}%` }} />
                   </div>
-                ))}
-              </div>
+                  <span className="text-xs text-muted-foreground w-8 text-right">{d.pct}%</span>
+                </div>
+              ))}
             </div>
-            <div>
-              <p className="text-xs text-muted-foreground mb-2">Retention</p>
-              <div className="space-y-2">
-                <div className="text-center p-3 rounded-lg bg-muted/30">
-                  <p className="text-lg font-semibold">68%</p>
-                  <p className="text-xs text-muted-foreground">Returning</p>
-                </div>
-                <div className="text-center p-3 rounded-lg bg-muted/30">
-                  <p className="text-lg font-semibold">32%</p>
-                  <p className="text-xs text-muted-foreground">New</p>
-                </div>
+          </div>
+          <div>
+            <p className="text-xs text-muted-foreground mb-2">New vs Returning</p>
+            <div className="space-y-2">
+              <div className="text-center p-3 rounded-lg bg-muted/30">
+                <p className="text-lg font-semibold">68%</p>
+                <p className="text-xs text-muted-foreground">Returning</p>
+              </div>
+              <div className="text-center p-3 rounded-lg bg-muted/30">
+                <p className="text-lg font-semibold">32%</p>
+                <p className="text-xs text-muted-foreground">New</p>
               </div>
             </div>
           </div>
-        ) : (
-          <p className="text-sm text-muted-foreground text-center py-4">Connect sources to unlock audience analytics.</p>
-        )}
+        </div>
       </StudioCard>
 
       {/* Content performance */}
-      <StudioCard title="Content performance" subtitle="Your posts ordered by publish date.">
+      <StudioCard title="Content performance" subtitle="Your top posts by publish date.">
         {publishedPosts.length > 0 ? (
           <div className="overflow-x-auto -mx-1">
             <table className="w-full text-sm">
@@ -119,7 +112,7 @@ export const StudioAnalyticsTab = ({ posts, engagements, followerCount }: Studio
             </table>
           </div>
         ) : (
-          <p className="text-sm text-muted-foreground text-center py-4">No published posts yet. Create your first post to see analytics.</p>
+          <p className="text-sm text-muted-foreground text-center py-4">No published posts yet.</p>
         )}
       </StudioCard>
     </div>

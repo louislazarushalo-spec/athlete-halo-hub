@@ -3,17 +3,23 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useStudioRole } from "@/hooks/useStudioRole";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
-import { Loader2, LogOut, Home, Send, MessageCircle, DollarSign, BarChart3 } from "lucide-react";
+import { Loader2, LogOut, MoreHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AthleteSwitcher } from "./AthleteSwitcher";
+import { useState } from "react";
 
 const TABS = [
-  { id: "home", label: "Home", icon: Home },
-  { id: "publish", label: "Publish", icon: Send },
-  { id: "engage", label: "Engage", icon: MessageCircle },
-  { id: "monetize", label: "Monetize", icon: DollarSign },
-  { id: "analytics", label: "Analytics", icon: BarChart3 },
+  { id: "get-started", label: "Get started" },
+  { id: "my-halo", label: "My Halo" },
+  { id: "copilot", label: "Copilot" },
+  { id: "publish", label: "Publish" },
+  { id: "engage", label: "Engage" },
+  { id: "monetize", label: "Monetize" },
+  { id: "analytics", label: "Analytics" },
 ] as const;
+
+const MOBILE_PRIMARY = ["get-started", "my-halo", "copilot", "publish"] as const;
+const MOBILE_MORE = ["engage", "monetize", "analytics"] as const;
 
 type TabId = (typeof TABS)[number]["id"];
 
@@ -30,6 +36,7 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
   const { hasAccess, loading } = useStudioRole();
   const isMobile = useIsMobile();
   const navigate = useNavigate();
+  const [moreOpen, setMoreOpen] = useState(false);
 
   if (loading) {
     return (
@@ -58,6 +65,8 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
     );
   }
 
+  const isMoreTab = MOBILE_MORE.includes(activeTab as any);
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Desktop top nav */}
@@ -77,7 +86,7 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
                   key={tab.id}
                   onClick={() => onTabChange(tab.id)}
                   className={cn(
-                    "px-3 py-1.5 text-sm font-medium rounded-md transition-all",
+                    "px-2.5 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap",
                     activeTab === tab.id
                       ? "bg-background text-foreground shadow-sm"
                       : "text-muted-foreground hover:text-foreground"
@@ -125,26 +134,59 @@ export const StudioLayout = ({ activeTab, onTabChange, children }: StudioLayoutP
 
       {/* Mobile bottom tab bar */}
       {isMobile && (
-        <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-t border-border/50 flex items-center justify-around h-16 px-1">
-          {TABS.map((tab) => {
-            const Icon = tab.icon;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => onTabChange(tab.id)}
-                className={cn(
-                  "flex flex-col items-center gap-0.5 py-1 px-1.5 rounded-lg transition-colors min-w-0",
-                  activeTab === tab.id
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                )}
-              >
-                <Icon className="h-5 w-5" />
-                <span className="text-[9px] font-medium leading-none">{tab.label}</span>
-              </button>
-            );
-          })}
-        </nav>
+        <>
+          <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-t border-border/50 flex items-center justify-around h-14 px-1">
+            {MOBILE_PRIMARY.map((tabId) => {
+              const tab = TABS.find((t) => t.id === tabId)!;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => { onTabChange(tab.id); setMoreOpen(false); }}
+                  className={cn(
+                    "flex flex-col items-center justify-center py-1 px-1.5 rounded-lg transition-colors min-w-0 flex-1",
+                    activeTab === tab.id
+                      ? "text-primary"
+                      : "text-muted-foreground"
+                  )}
+                >
+                  <span className="text-[10px] font-medium leading-tight text-center">{tab.label}</span>
+                </button>
+              );
+            })}
+            {/* More button */}
+            <button
+              onClick={() => setMoreOpen(!moreOpen)}
+              className={cn(
+                "flex flex-col items-center justify-center py-1 px-1.5 rounded-lg transition-colors min-w-0 flex-1",
+                isMoreTab || moreOpen ? "text-primary" : "text-muted-foreground"
+              )}
+            >
+              <MoreHorizontal className="h-4 w-4 mb-0.5" />
+              <span className="text-[10px] font-medium leading-tight">More</span>
+            </button>
+          </nav>
+
+          {/* More dropdown */}
+          {moreOpen && (
+            <div className="fixed bottom-14 left-0 right-0 z-50 bg-background border-t border-border/50 px-4 py-2 space-y-1">
+              {MOBILE_MORE.map((tabId) => {
+                const tab = TABS.find((t) => t.id === tabId)!;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => { onTabChange(tab.id); setMoreOpen(false); }}
+                    className={cn(
+                      "w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                      activeTab === tab.id ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    )}
+                  >
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </>
       )}
     </div>
   );
