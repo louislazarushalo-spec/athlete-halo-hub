@@ -26,11 +26,16 @@ interface BrandStrategyPageProps {
   contentItems: ContentItem[];
   sourcesCount: number;
   onSaveBrandProfile: (answers: Record<string, any>) => Promise<void>;
-  onGenerateStrategy: (contentItems: ContentItem[], brandAnswers: Record<string, any>) => Promise<void>;
+  onGenerateStrategy: (contentItems: ContentItem[], brandAnswers: Record<string, any>, mediaRadarData?: any) => Promise<void>;
   onSyncSources: () => Promise<void>;
   generating: boolean;
   syncing: boolean;
   onNavigatePublish: (draft?: { title: string; body: string; type: string }) => void;
+  // Media Radar integration
+  mediaRadarMentions30d?: number;
+  mediaRadarTopPublishers?: [string, number][];
+  mediaRadarNarratives?: string[];
+  onOpenMediaRadar?: () => void;
 }
 
 export const BrandStrategyPage = ({
@@ -44,6 +49,10 @@ export const BrandStrategyPage = ({
   generating,
   syncing,
   onNavigatePublish,
+  mediaRadarMentions30d = 0,
+  mediaRadarTopPublishers = [],
+  mediaRadarNarratives = [],
+  onOpenMediaRadar,
 }: BrandStrategyPageProps) => {
   const [step, setStep] = useState(() => {
     if (strategyPack?.pack_json?.positioning_statement) return 3;
@@ -65,7 +74,11 @@ export const BrandStrategyPage = ({
   };
 
   const handleGenerate = async () => {
-    await onGenerateStrategy(contentItems, answers);
+    await onGenerateStrategy(contentItems, answers, {
+      mentions_count: mediaRadarMentions30d,
+      top_publishers: mediaRadarTopPublishers,
+      narratives: mediaRadarNarratives,
+    });
     setStep(3);
   };
 
@@ -116,9 +129,47 @@ export const BrandStrategyPage = ({
       {step === 1 && (
         <StudioCard title="Audit" subtitle="Review what performs and how you're perceived.">
           <div className="space-y-3">
-            {contentItems.length === 0 ? (
-              <p className="text-sm text-muted-foreground py-4 text-center">No content items yet. Connect sources first or continue to define your brand.</p>
-            ) : (
+            {/* Media Radar insights */}
+            {(mediaRadarMentions30d > 0 || mediaRadarNarratives.length > 0) && (
+              <div className="p-3 rounded-lg bg-primary/5 border border-primary/10">
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="text-sm font-medium text-primary">Media Radar insights</h4>
+                  {onOpenMediaRadar && <Button variant="ghost" size="sm" className="h-7 text-xs" onClick={onOpenMediaRadar}>Open Media Radar</Button>}
+                </div>
+                <div className="grid grid-cols-2 gap-2 mb-2">
+                  <div className="text-center p-2 rounded bg-background/60">
+                    <p className="text-lg font-semibold">{mediaRadarMentions30d}</p>
+                    <p className="text-[10px] text-muted-foreground">Mentions (30d)</p>
+                  </div>
+                  <div className="text-center p-2 rounded bg-background/60">
+                    <p className="text-lg font-semibold">{mediaRadarTopPublishers.length}</p>
+                    <p className="text-[10px] text-muted-foreground">Publishers</p>
+                  </div>
+                </div>
+                {mediaRadarTopPublishers.length > 0 && (
+                  <div className="mb-2">
+                    <p className="text-xs font-medium mb-1">Top publishers</p>
+                    <div className="flex flex-wrap gap-1">
+                      {mediaRadarTopPublishers.slice(0, 5).map(([name, count]) => (
+                        <Badge key={name} variant="secondary" className="text-[10px]">{name} ({count})</Badge>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {mediaRadarNarratives.length > 0 && (
+                  <div>
+                    <p className="text-xs font-medium mb-1">Key narratives</p>
+                    {mediaRadarNarratives.map((n, i) => (
+                      <p key={i} className="text-xs text-muted-foreground">• {n}</p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {contentItems.length === 0 && mediaRadarMentions30d === 0 ? (
+              <p className="text-sm text-muted-foreground py-4 text-center">No content items or media mentions yet. Connect sources or set up Media Radar first.</p>
+            ) : contentItems.length > 0 ? (
               <>
                 <div>
                   <h4 className="text-sm font-medium mb-2">Top content ({contentItems.length} items)</h4>
@@ -135,7 +186,7 @@ export const BrandStrategyPage = ({
                   </div>
                 </div>
               </>
-            )}
+            ) : null}
             <div className="flex gap-2 justify-end">
               <Button variant="ghost" size="sm" onClick={() => setStep(0)}>Back</Button>
               <Button variant="outline" size="sm" onClick={() => setStep(2)}>
@@ -237,6 +288,32 @@ export const BrandStrategyPage = ({
                         <p className="text-xs text-muted-foreground mt-0.5">{s.description}</p>
                       </div>
                     ))}
+                  </div>
+                </StudioCard>
+              )}
+
+              {/* Media Radar in Strategy Pack */}
+              {(mediaRadarNarratives.length > 0 || mediaRadarTopPublishers.length > 0) && (
+                <StudioCard title="Media Radar insights">
+                  <div className="space-y-3">
+                    {mediaRadarNarratives.length > 0 && (
+                      <div>
+                        <p className="text-xs font-medium mb-1">Top narratives</p>
+                        {mediaRadarNarratives.map((n, i) => (
+                          <p key={i} className="text-xs text-muted-foreground">• {n}</p>
+                        ))}
+                      </div>
+                    )}
+                    {mediaRadarTopPublishers.length > 0 && (
+                      <div>
+                        <p className="text-xs font-medium mb-1">Top publishers</p>
+                        <div className="flex flex-wrap gap-1">
+                          {mediaRadarTopPublishers.map(([name, count]) => (
+                            <Badge key={name} variant="secondary" className="text-[10px]">{name} ({count})</Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </StudioCard>
               )}

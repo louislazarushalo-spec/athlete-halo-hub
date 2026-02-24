@@ -9,7 +9,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { athlete_id, content_items, brand_answers } = await req.json();
+    const { athlete_id, content_items, brand_answers, media_radar } = await req.json();
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
@@ -22,6 +22,19 @@ Deno.serve(async (req) => {
 
     const brandContext = brand_answers ? JSON.stringify(brand_answers, null, 2) : "No brand profile defined yet.";
 
+    // Media Radar context
+    let mediaRadarContext = "No media radar data available.";
+    if (media_radar && (media_radar.mentions_count > 0 || media_radar.narratives?.length > 0)) {
+      const parts = [`${media_radar.mentions_count || 0} media mentions in the last 30 days.`];
+      if (media_radar.top_publishers?.length > 0) {
+        parts.push(`Top publishers: ${media_radar.top_publishers.map((p: any) => `${p[0]} (${p[1]})`).join(", ")}`);
+      }
+      if (media_radar.narratives?.length > 0) {
+        parts.push(`Key narratives: ${media_radar.narratives.join("; ")}`);
+      }
+      mediaRadarContext = parts.join("\n");
+    }
+
     const prompt = `You are a sports brand strategist. Based on the athlete's content performance and brand definition, generate a comprehensive Brand Strategy Pack.
 
 ATHLETE: ${athlete_id}
@@ -31,6 +44,9 @@ ${contentSummary || "No content items available yet."}
 
 BRAND DEFINITION:
 ${brandContext}
+
+MEDIA RADAR (press coverage):
+${mediaRadarContext}
 
 Generate a JSON strategy pack with this exact structure:
 {
@@ -58,7 +74,9 @@ Generate a JSON strategy pack with this exact structure:
   "audit_summary": {
     "patterns_that_work": ["Pattern 1", "Pattern 2"],
     "perception_summary": "How the athlete is perceived based on content",
-    "opportunities": ["Opportunity 1", "Opportunity 2", "Opportunity 3"]
+    "opportunities": ["Opportunity 1", "Opportunity 2", "Opportunity 3"],
+    "top_narratives": ["Narrative from media coverage 1", "Narrative 2"],
+    "top_publishers": ["Publisher 1", "Publisher 2"]
   }
 }
 

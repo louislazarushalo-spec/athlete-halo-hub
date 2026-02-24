@@ -9,7 +9,7 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { athlete_id, context, strategy_pack } = await req.json();
+    const { athlete_id, context, strategy_pack, media_narratives } = await req.json();
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
@@ -17,6 +17,7 @@ Deno.serve(async (req) => {
     }
 
     const strategyContext = strategy_pack ? JSON.stringify(strategy_pack, null, 2) : "No strategy pack available.";
+    const narrativesContext = media_narratives?.length > 0 ? `\nMEDIA NARRATIVES (what the press is talking about):\n${media_narratives.map((n: string) => `- ${n}`).join("\n")}\nConsider referencing these narratives in post suggestions (e.g., "Press is talking about X → create a BTS post about X").` : "";
 
     const prompt = `You are a sports content strategist. Generate a weekly content pack for an athlete.
 
@@ -25,6 +26,7 @@ WEEK CONTEXT: ${context} (the athlete is currently in a ${context} phase)
 
 STRATEGY PACK:
 ${strategyContext}
+${narrativesContext}
 
 Generate exactly 6-8 suggested posts as a JSON array. Each post should have:
 {
