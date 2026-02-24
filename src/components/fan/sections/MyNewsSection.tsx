@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { athletes } from "@/data/athletes";
+import { Badge } from "@/components/ui/badge";
 import { Instagram, Twitter, Youtube, Newspaper } from "lucide-react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 // Hardcoded followed athletes for demo
 const followedAthleteIds = ["arthur-cazaux", "tommy-fleetwood", "elisa-balsamo"];
 
-// Platform icons and labels
-const platformConfig = {
+const platformConfig: Record<string, { icon: any; label: string; color: string }> = {
   instagram: { icon: Instagram, label: "Instagram", color: "text-pink-500" },
   twitter: { icon: Twitter, label: "X", color: "text-sky-500" },
   youtube: { icon: Youtube, label: "YouTube", color: "text-red-500" },
@@ -15,7 +17,6 @@ const platformConfig = {
   bbc: { icon: Newspaper, label: "BBC Sport", color: "text-orange-500" },
 };
 
-// Helper to format relative time
 const formatRelativeTime = (timestamp: string) => {
   const now = new Date();
   const date = new Date(timestamp);
@@ -29,8 +30,33 @@ const formatRelativeTime = (timestamp: string) => {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 };
 
+interface StudioPostNews {
+  id: string;
+  athlete_id: string;
+  type: string;
+  title: string;
+  body: string;
+  media: string[];
+  published_at: string;
+}
+
 export const MyNewsSection = () => {
   const followedAthletes = athletes.filter(a => followedAthleteIds.includes(a.id));
+  const [studioPosts, setStudioPosts] = useState<StudioPostNews[]>([]);
+  
+  // Fetch published studio posts
+  useEffect(() => {
+    supabase
+      .from("studio_posts")
+      .select("id, athlete_id, type, title, body, media, published_at")
+      .eq("status", "published")
+      .in("athlete_id", followedAthleteIds)
+      .order("published_at", { ascending: false })
+      .limit(10)
+      .then(({ data }) => {
+        if (data) setStudioPosts(data as unknown as StudioPostNews[]);
+      });
+  }, []);
   
   // Aggregate all mediaFeed items from followed athletes
   const allNews = followedAthletes.flatMap(athlete => 
@@ -40,13 +66,12 @@ export const MyNewsSection = () => {
     }))
   );
 
-  // Shuffle array to randomize, then sort by date (recent first)
   const shuffled = [...allNews].sort(() => Math.random() - 0.5);
   const sortedNews = shuffled.sort((a, b) => 
     new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
   );
 
-  if (sortedNews.length === 0) return null;
+  if (sortedNews.length === 0 && studioPosts.length === 0) return null;
 
   return (
     <section className="mb-8 md:mb-12">
@@ -55,25 +80,52 @@ export const MyNewsSection = () => {
         <p className="text-sm md:text-base text-muted-foreground">Latest updates from your athletes.</p>
       </div>
       <div className="space-y-3 md:space-y-4">
+        {/* Studio published posts first */}
+        {studioPosts.map((post) => {
+          const athlete = followedAthletes.find(a => a.id === post.athlete_id);
+          if (!athlete) return null;
+          return (
+            <Link key={post.id} to={`/athlete/${post.athlete_id}`} className="group block">
+              <article className="glass-card p-3 md:p-4 transition-all duration-300 hover:border-primary/30 hover:shadow-glow-soft">
+                <div className="flex gap-3 md:gap-4">
+                  {post.media && post.media.length > 0 && (
+                    <div className="relative w-20 h-16 md:w-32 md:h-24 rounded-lg overflow-hidden shrink-0">
+                      <img src={post.media[0]} alt={post.title} className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2 flex-wrap">
+                      <img src={athlete.avatar} alt={athlete.name} className="w-5 h-5 md:w-6 md:h-6 rounded-full object-cover object-top" />
+                      <span className="text-xs md:text-sm text-muted-foreground">{athlete.name}</span>
+                      <Badge variant="secondary" className="text-[10px] capitalize">{post.type.replace("_", " ")}</Badge>
+                    </div>
+                    <h3 className="font-semibold text-xs md:text-sm mb-0.5 md:mb-1 line-clamp-1 group-hover:text-primary transition-colors">
+                      {post.title}
+                    </h3>
+                    {post.body && (
+                      <p className="text-muted-foreground text-xs md:text-sm line-clamp-2">{post.body}</p>
+                    )}
+                    <div className="flex items-center gap-2 mt-1.5 text-[10px] md:text-xs text-muted-foreground">
+                      <span className="font-medium text-foreground/70">{formatRelativeTime(post.published_at)}</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </Link>
+          );
+        })}
+        
+        {/* Static media feed items */}
         {sortedNews.map((item) => {
           const config = platformConfig[item.platform] || platformConfig.instagram;
           const Icon = config.icon;
           
           return (
-            <Link
-              key={item.id}
-              to={`/athlete/${item.athlete.id}`}
-              className="group block"
-            >
+            <Link key={item.id} to={`/athlete/${item.athlete.id}`} className="group block">
               <article className="glass-card p-3 md:p-4 transition-all duration-300 hover:border-primary/30 hover:shadow-glow-soft">
                 <div className="flex gap-3 md:gap-4">
-                  {/* Image */}
                   <div className="relative w-20 h-16 md:w-32 md:h-24 rounded-lg overflow-hidden shrink-0">
-                    <img
-                      src={item.image}
-                      alt={item.title || item.content}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                    <img src={item.image} alt={item.title || item.content} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                     {item.type === 'video' && (
                       <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                         <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center">
@@ -82,15 +134,9 @@ export const MyNewsSection = () => {
                       </div>
                     )}
                   </div>
-
-                  {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-1.5 md:gap-2 mb-1.5 md:mb-2 flex-wrap">
-                      <img
-                        src={item.athlete.avatar}
-                        alt={item.athlete.name}
-                        className="w-5 h-5 md:w-6 md:h-6 rounded-full object-cover object-top"
-                      />
+                      <img src={item.athlete.avatar} alt={item.athlete.name} className="w-5 h-5 md:w-6 md:h-6 rounded-full object-cover object-top" />
                       <span className="text-xs md:text-sm text-muted-foreground">{item.athlete.name}</span>
                       <span className="text-muted-foreground hidden sm:inline">•</span>
                       <span className={`hidden sm:inline-flex items-center gap-1 text-xs ${config.color}`}>
@@ -103,9 +149,7 @@ export const MyNewsSection = () => {
                         {item.title}
                       </h3>
                     )}
-                    <p className="text-muted-foreground text-xs md:text-sm line-clamp-2">
-                      {item.content}
-                    </p>
+                    <p className="text-muted-foreground text-xs md:text-sm line-clamp-2">{item.content}</p>
                     <div className="flex items-center gap-2 md:gap-3 mt-1.5 md:mt-2 text-[10px] md:text-xs text-muted-foreground">
                       <span className="font-medium text-foreground/70">{formatRelativeTime(item.timestamp)}</span>
                       {item.stats?.likes && <span className="hidden sm:inline">• {item.stats.likes.toLocaleString()} likes</span>}

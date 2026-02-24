@@ -40,9 +40,10 @@ interface StudioPublishTabProps {
   draft?: { title: string; body: string; type: string };
   engagements: StudioEngagement[];
   onCreateEngagement: (data: { type: string; title: string; description: string; payload?: Record<string, any> }) => Promise<any>;
+  posts?: Array<{ id: string; type: string; title: string; body: string; media: string[]; status: string; published_at: string | null; created_at: string }>;
 }
 
-export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft, engagements, onCreateEngagement }: StudioPublishTabProps) => {
+export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft, engagements, onCreateEngagement, posts = [] }: StudioPublishTabProps) => {
   const [journey, setJourney] = useState<Journey>(() => draft ? "create" : null);
   const [template, setTemplate] = useState<string | null>(() => draft?.type || null);
   const [step, setStep] = useState<Step>(() => draft ? 1 : 0);
@@ -60,7 +61,8 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft, e
 
   const steps = journey === "auto" ? AUTO_STEPS : CREATE_STEPS;
   const activeEngagements = engagements.filter((e) => e.status === "active");
-
+  const publishedPosts = posts.filter((p) => p.status === "published");
+  const draftPosts = posts.filter((p) => p.status === "draft");
   const resetAll = () => {
     setJourney(null);
     setTemplate(null);
@@ -178,6 +180,28 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft, e
                     <p className="text-xs text-muted-foreground">{m.description || "No description"}</p>
                   </div>
                   <Badge variant="outline" className="text-[10px] shrink-0">Active</Badge>
+                </div>
+              ))}
+            </div>
+          </StudioCard>
+        )}
+
+        {/* My Posts list */}
+        {(publishedPosts.length > 0 || draftPosts.length > 0) && (
+          <StudioCard title="My posts" subtitle={`${publishedPosts.length} published, ${draftPosts.length} drafts`}>
+            <div className="space-y-2">
+              {[...publishedPosts, ...draftPosts].slice(0, 10).map((p) => (
+                <div key={p.id} className="flex items-center justify-between p-3 rounded-lg bg-muted/20 border border-border/30">
+                  <div className="min-w-0 flex-1 mr-3">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <Badge variant="secondary" className="text-[10px] px-1.5 py-0 capitalize">{p.type.replace("_", " ")}</Badge>
+                      <span className="text-sm font-medium truncate">{p.title || "Untitled"}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">
+                      {p.published_at ? `Published ${new Date(p.published_at).toLocaleDateString()}` : `Draft — ${new Date(p.created_at).toLocaleDateString()}`}
+                    </p>
+                  </div>
+                  <Badge variant={p.status === "published" ? "default" : "outline"} className="text-[10px] shrink-0 capitalize">{p.status}</Badge>
                 </div>
               ))}
             </div>
