@@ -19,8 +19,6 @@ import {
   Check,
   BarChart3,
   Rss,
-  Dumbbell,
-  HandHeart,
   ExternalLink,
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
@@ -31,10 +29,8 @@ import sponsorBabolat from "@/assets/sponsor-babolat.png";
 import sponsorExtia from "@/assets/sponsor-extia.png";
 
 const TABS = [
-  { id: "feed", label: "Feed", icon: Rss },
   { id: "events", label: "Events", icon: Calendar },
-  { id: "programs", label: "Programs", icon: Dumbbell },
-  { id: "causes", label: "Causes", icon: HandHeart },
+  { id: "feed", label: "Feed", icon: Rss },
   { id: "datahub", label: "Data Hub", icon: BarChart3 },
 ] as const;
 
@@ -180,8 +176,14 @@ export const ArthurNewPage = () => {
     toast({ title: isFollowing ? "Unfollowed" : "Following!", description: isFollowing ? `You unfollowed ${athlete.name}` : `You're now following ${athlete.name}` });
   };
 
-  /* ─── Feed data (unified, no filter) ─── */
-  const allFeedItems: MediaFeedItem[] = [
+  /* ─── Programs from training posts ─── */
+  const programs = athlete.training || [];
+
+  /* ─── Cause ─── */
+  const cause = athlete.cause;
+
+  /* ─── Feed data (unified: social + video + article + programs + causes) ─── */
+  const socialItems: (MediaFeedItem & { _cardType?: string })[] = [
     ...studioPosts.map((p) => ({
       id: p.id,
       type: (p.type === "video" ? "video" : p.type === "article" ? "article" : "social") as MediaFeedItem["type"],
@@ -195,6 +197,34 @@ export const ArthurNewPage = () => {
     ...athlete.mediaFeed,
   ];
 
+  const programItems: (MediaFeedItem & { _cardType?: string })[] = programs.map((p, i) => ({
+    id: `program-${i}`,
+    type: "social" as MediaFeedItem["type"],
+    platform: "instagram" as MediaFeedItem["platform"],
+    title: p.title,
+    content: p.description || "",
+    image: p.image || "",
+    timestamp: "",
+    stats: {},
+    _cardType: "program",
+  }));
+
+  const causeItems: (MediaFeedItem & { _cardType?: string })[] = cause
+    ? [{
+        id: "cause-main",
+        type: "social" as MediaFeedItem["type"],
+        platform: "instagram" as MediaFeedItem["platform"],
+        title: cause.title,
+        content: cause.story || "",
+        image: cause.image || "",
+        timestamp: "",
+        stats: {},
+        _cardType: "cause",
+      }]
+    : [];
+
+  const allFeedItems = [...socialItems, ...programItems, ...causeItems];
+
   /* ─── Events ─── */
   const events = athlete.events || getEventsBySport(athlete.sport, athlete.gender);
   const now = new Date();
@@ -207,11 +237,6 @@ export const ArthurNewPage = () => {
   const upcoming = sortedEvents.filter((e) => new Date(parseInt(e.year), monthToNum[e.month] || 0, parseInt(e.date)) >= now);
   const recent = sortedEvents.filter((e) => new Date(parseInt(e.year), monthToNum[e.month] || 0, parseInt(e.date)) < now).reverse();
 
-  /* ─── Programs from training posts ─── */
-  const programs = athlete.training || [];
-
-  /* ─── Cause ─── */
-  const cause = athlete.cause;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -302,9 +327,42 @@ export const ArthurNewPage = () => {
                 <p>No posts yet.</p>
               </div>
             ) : (
-              allFeedItems.map((item) => (
-                <FeedCard key={item.id} item={item} avatarSrc={resolvedAvatar} name={athlete.name} />
-              ))
+              allFeedItems.map((item) => {
+                const extended = item as any;
+                if (extended._cardType === "program") {
+                  return (
+                    <article key={item.id} className="bg-card border border-border/40 rounded-2xl overflow-hidden">
+                      {item.image && <MediaFrame src={item.image} alt={item.title || "Program"} ratio="1:1" />}
+                      <div className="px-4 py-3 space-y-2">
+                        <Badge variant="secondary" className="text-[10px]">Program</Badge>
+                        <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{item.title}</h4>
+                        <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
+                        <Link to={`/training/arthur-cazaux`}>
+                          <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1">
+                            View program <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
+                          </Button>
+                        </Link>
+                      </div>
+                    </article>
+                  );
+                }
+                if (extended._cardType === "cause") {
+                  return (
+                    <article key={item.id} className="bg-card border border-border/40 rounded-2xl overflow-hidden">
+                      {item.image && <MediaFrame src={item.image} alt={item.title || "Cause"} ratio="1:1" />}
+                      <div className="px-4 py-3 space-y-2">
+                        <Badge variant="secondary" className="text-[10px]">Cause</Badge>
+                        <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{item.title}</h4>
+                        <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
+                        <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1">
+                          Learn more <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
+                        </Button>
+                      </div>
+                    </article>
+                  );
+                }
+                return <FeedCard key={item.id} item={item} avatarSrc={resolvedAvatar} name={athlete.name} />;
+              })
             )}
           </div>
         )}
@@ -336,92 +394,6 @@ export const ArthurNewPage = () => {
                   </>
                 )}
               </>
-            )}
-          </div>
-        )}
-
-        {/* ── PROGRAMS ── */}
-        {activeTab === "programs" && (
-          <div className="space-y-4 animate-fade-in">
-            {programs.length === 0 ? (
-              <div className="text-center py-16 text-muted-foreground text-[14px]">
-                <Dumbbell className="h-10 w-10 mx-auto mb-3 opacity-40" />
-                <p>No programs available yet.</p>
-              </div>
-            ) : (
-              programs.map((program) => (
-                <article key={program.id} className="bg-card border border-border/40 rounded-2xl overflow-hidden">
-                  {program.image && (
-                    <div className="relative aspect-[16/9] overflow-hidden">
-                      <img
-                        src={program.image}
-                        alt={program.title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
-                      />
-                    </div>
-                  )}
-                  <div className="px-4 py-3 space-y-2">
-                    <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{program.title}</h4>
-                    <p className="text-[13px] text-muted-foreground line-clamp-2">{program.description}</p>
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <Badge variant="secondary" className="text-[10px]">Training</Badge>
-                    </div>
-                    <Link to={`/training/arthur-cazaux`}>
-                      <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1">
-                        View program
-                        <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
-                      </Button>
-                    </Link>
-                  </div>
-                </article>
-              ))
-            )}
-          </div>
-        )}
-
-        {/* ── CAUSES ── */}
-        {activeTab === "causes" && (
-          <div className="space-y-4 animate-fade-in">
-            {!cause ? (
-              <div className="text-center py-16 text-muted-foreground text-[14px]">
-                <HandHeart className="h-10 w-10 mx-auto mb-3 opacity-40" />
-                <p>No causes listed yet.</p>
-              </div>
-            ) : (
-              <article className="bg-card border border-border/40 rounded-2xl overflow-hidden">
-                {cause.image && (
-                  <div className="relative aspect-[16/9] overflow-hidden">
-                    <img
-                      src={cause.image}
-                      alt={cause.title}
-                      className="w-full h-full object-cover"
-                      onError={(e) => { (e.target as HTMLImageElement).src = "/placeholder.svg"; }}
-                    />
-                  </div>
-                )}
-                <div className="px-4 py-4 space-y-3">
-                  <h4 className="text-[16px] font-semibold text-foreground">{cause.title}</h4>
-                  <p className="text-[13px] text-muted-foreground line-clamp-3">{cause.story}</p>
-                  {/* Progress */}
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between text-[12px]">
-                      <span className="text-foreground font-medium">{cause.currency}{cause.raised.toLocaleString()} raised</span>
-                      <span className="text-muted-foreground">of {cause.currency}{cause.target.toLocaleString()}</span>
-                    </div>
-                    <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
-                      <div
-                        className="h-full rounded-full bg-primary transition-all"
-                        style={{ width: `${Math.min(100, (cause.raised / cause.target) * 100)}%` }}
-                      />
-                    </div>
-                  </div>
-                  <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full">
-                    Learn more
-                    <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
-                  </Button>
-                </div>
-              </article>
             )}
           </div>
         )}
