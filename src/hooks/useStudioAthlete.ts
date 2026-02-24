@@ -65,7 +65,7 @@ export interface AssetItem {
   created_at?: string;
 }
 
-export function useStudioAthlete() {
+export function useStudioAthlete(athleteSlug?: string | null) {
   const { user } = useAuth();
   const { toast } = useToast();
   const [profile, setProfile] = useState<StudioAthleteProfile | null>(null);
@@ -76,22 +76,27 @@ export function useStudioAthlete() {
   const [monetization, setMonetization] = useState<StudioMonetizationConfig[]>([]);
   const [assets, setAssets] = useState<AssetItem[]>([]);
 
-  // Load athlete profile
+  // Load athlete profile - either by slug or by user_id
   const loadProfile = useCallback(async () => {
     if (!user) return;
+    setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from("athlete_profiles")
-        .select("*")
-        .eq("user_id", user.id)
-        .maybeSingle();
+      let query = supabase.from("athlete_profiles").select("*");
 
+      if (athleteSlug) {
+        query = query.eq("athlete_slug", athleteSlug).eq("user_id", user.id);
+      } else {
+        query = query.eq("user_id", user.id);
+      }
+
+      const { data, error } = await query.maybeSingle();
       if (error) throw error;
 
       if (data) {
         setProfile(data as unknown as StudioAthleteProfile);
         setNeedsSetup(false);
       } else {
+        setProfile(null);
         setNeedsSetup(true);
       }
     } catch (err) {
@@ -99,12 +104,11 @@ export function useStudioAthlete() {
     } finally {
       setLoading(false);
     }
-  }, [user]);
+  }, [user, athleteSlug]);
 
-  // Setup profile by linking to a hardcoded athlete
-  const setupProfile = async (athleteSlug: string) => {
+  const setupProfile = async (slug: string) => {
     if (!user) return;
-    const athlete = hardcodedAthletes.find((a) => a.id === athleteSlug);
+    const athlete = hardcodedAthletes.find((a) => a.id === slug);
     if (!athlete) return;
 
     try {
@@ -112,7 +116,7 @@ export function useStudioAthlete() {
         .from("athlete_profiles")
         .insert({
           user_id: user.id,
-          athlete_slug: athleteSlug,
+          athlete_slug: slug,
           display_name: athlete.name,
           bio: athlete.bio,
           avatar_url: athlete.avatar,
@@ -132,14 +136,10 @@ export function useStudioAthlete() {
     }
   };
 
-  // Update bio
   const updateBio = async (newBio: string) => {
     if (!user || !profile) return;
     try {
-      const { error } = await supabase
-        .from("athlete_profiles")
-        .update({ bio: newBio })
-        .eq("user_id", user.id);
+      const { error } = await supabase.from("athlete_profiles").update({ bio: newBio }).eq("id", profile.id);
       if (error) throw error;
       setProfile((p) => p ? { ...p, bio: newBio } : p);
       toast({ title: "Bio updated" });
@@ -148,14 +148,10 @@ export function useStudioAthlete() {
     }
   };
 
-  // Update avatar
   const updateAvatar = async (url: string) => {
     if (!user || !profile) return;
     try {
-      const { error } = await supabase
-        .from("athlete_profiles")
-        .update({ avatar_url: url })
-        .eq("user_id", user.id);
+      const { error } = await supabase.from("athlete_profiles").update({ avatar_url: url }).eq("id", profile.id);
       if (error) throw error;
       setProfile((p) => p ? { ...p, avatar_url: url } : p);
       toast({ title: "Avatar updated" });
@@ -164,14 +160,10 @@ export function useStudioAthlete() {
     }
   };
 
-  // Update banner
   const updateBanner = async (url: string) => {
     if (!user || !profile) return;
     try {
-      const { error } = await supabase
-        .from("athlete_profiles")
-        .update({ banner_url: url })
-        .eq("user_id", user.id);
+      const { error } = await supabase.from("athlete_profiles").update({ banner_url: url }).eq("id", profile.id);
       if (error) throw error;
       setProfile((p) => p ? { ...p, banner_url: url } : p);
       toast({ title: "Banner updated" });
@@ -180,7 +172,6 @@ export function useStudioAthlete() {
     }
   };
 
-  // Load posts
   const loadPosts = useCallback(async () => {
     if (!profile) return;
     try {
@@ -196,7 +187,6 @@ export function useStudioAthlete() {
     }
   }, [profile]);
 
-  // Create and publish a post
   const createPost = async (postData: { title: string; body: string; type: string; media: string[]; publish?: boolean }) => {
     if (!user || !profile) return null;
     try {
@@ -224,7 +214,6 @@ export function useStudioAthlete() {
     }
   };
 
-  // Load engagements
   const loadEngagements = useCallback(async () => {
     if (!profile) return;
     try {
@@ -240,7 +229,6 @@ export function useStudioAthlete() {
     }
   }, [profile]);
 
-  // Create engagement
   const createEngagement = async (engData: { type: string; title: string; description: string; payload?: Record<string, any> }) => {
     if (!user || !profile) return null;
     try {
@@ -267,7 +255,6 @@ export function useStudioAthlete() {
     }
   };
 
-  // Load monetization configs
   const loadMonetization = useCallback(async () => {
     if (!profile) return;
     try {
@@ -283,11 +270,9 @@ export function useStudioAthlete() {
     }
   }, [profile]);
 
-  // Save monetization config
   const saveMonetization = async (monData: { type: string; config: Record<string, any> }) => {
     if (!user || !profile) return null;
     try {
-      // Check if config already exists for this type
       const existing = monetization.find((m) => m.type === monData.type);
       if (existing) {
         const { error } = await supabase
@@ -315,7 +300,6 @@ export function useStudioAthlete() {
     }
   };
 
-  // Build assets from hardcoded athlete data + uploaded content
   const buildAssets = useCallback(() => {
     if (!profile) return;
     const slug = profile.athlete_slug;
@@ -323,40 +307,22 @@ export function useStudioAthlete() {
     const items: AssetItem[] = [];
 
     if (athlete) {
-      // Avatar & banner
       if (athlete.avatar) items.push({ id: `avatar-${slug}`, url: athlete.avatar, type: "photo", title: "Avatar" });
       if (athlete.banner) items.push({ id: `banner-${slug}`, url: athlete.banner, type: "photo", title: "Banner" });
-
-      // Training/life/gear posts images
       [...athlete.training, ...athlete.life, ...athlete.gear].forEach((post) => {
-        if (post.image) {
-          items.push({ id: post.id, url: post.image, type: "photo", title: post.title, created_at: post.createdAt });
-        }
+        if (post.image) items.push({ id: post.id, url: post.image, type: "photo", title: post.title, created_at: post.createdAt });
       });
-
-      // Products images
       athlete.products.forEach((product) => {
-        if (product.image) {
-          items.push({ id: product.id, url: product.image, type: "photo", title: product.name });
-        }
+        if (product.image) items.push({ id: product.id, url: product.image, type: "photo", title: product.name });
       });
-
-      // Gear collection action images
       athlete.gearCollections?.forEach((gc) => {
-        if (gc.actionImage) {
-          items.push({ id: gc.id, url: gc.actionImage, type: "photo", title: gc.name });
-        }
+        if (gc.actionImage) items.push({ id: gc.id, url: gc.actionImage, type: "photo", title: gc.name });
       });
-
-      // Media feed images
       athlete.mediaFeed?.forEach((mf) => {
-        if (mf.image) {
-          items.push({ id: mf.id, url: mf.image, type: "photo", title: mf.title || mf.content.slice(0, 40) });
-        }
+        if (mf.image) items.push({ id: mf.id, url: mf.image, type: "photo", title: mf.title || mf.content.slice(0, 40) });
       });
     }
 
-    // Add media from studio posts
     posts.forEach((post) => {
       post.media?.forEach((url, i) => {
         items.push({ id: `post-media-${post.id}-${i}`, url, type: "photo", title: post.title });
@@ -366,19 +332,14 @@ export function useStudioAthlete() {
     setAssets(items);
   }, [profile, posts]);
 
-  // Upload asset to storage
   const uploadAsset = async (file: File): Promise<string | null> => {
     if (!profile) return null;
     try {
       const ext = file.name.split(".").pop();
       const path = `${profile.athlete_slug}/${Date.now()}.${ext}`;
-      const { error } = await supabase.storage
-        .from("athlete-content")
-        .upload(path, file);
+      const { error } = await supabase.storage.from("athlete-content").upload(path, file);
       if (error) throw error;
-      const { data: urlData } = supabase.storage
-        .from("athlete-content")
-        .getPublicUrl(path);
+      const { data: urlData } = supabase.storage.from("athlete-content").getPublicUrl(path);
       return urlData.publicUrl;
     } catch (err: any) {
       toast({ title: "Upload failed", description: err.message, variant: "destructive" });
@@ -389,9 +350,6 @@ export function useStudioAthlete() {
   useEffect(() => { loadProfile(); }, [loadProfile]);
   useEffect(() => { if (profile) { loadPosts(); loadEngagements(); loadMonetization(); } }, [profile, loadPosts, loadEngagements, loadMonetization]);
   useEffect(() => { buildAssets(); }, [buildAssets]);
-
-  // Get the linked hardcoded athlete data for fan-facing info
-  const hardcodedAthlete = profile ? hardcodedAthletes.find((a) => a.id === profile.athlete_slug) : null;
 
   return {
     profile,
@@ -409,7 +367,6 @@ export function useStudioAthlete() {
     saveMonetization,
     assets,
     uploadAsset,
-    hardcodedAthlete,
     loadPosts,
     loadEngagements,
   };
