@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
-import { athletes as hardcodedAthletes } from "@/data/athletes";
+import { athletes as hardcodedAthletes, type MediaFeedItem } from "@/data/athletes";
 import { useToast } from "@/hooks/use-toast";
 
 export interface StudioAthleteProfile {
@@ -207,7 +207,27 @@ export function useStudioAthlete(athleteSlug?: string | null) {
         .eq("athlete_id", profile.athlete_slug)
         .order("created_at", { ascending: false });
       if (error) throw error;
-      setPosts((data as unknown as StudioPost[]) || []);
+      
+      const dbPosts = (data as unknown as StudioPost[]) || [];
+      
+      // Merge static mediaFeed items as "published" posts so Studio shows the same content fans see
+      const athlete = hardcodedAthletes.find((a) => a.id === profile.athlete_slug);
+      const staticPosts: StudioPost[] = (athlete?.mediaFeed || []).map((mf: MediaFeedItem) => ({
+        id: `static-${mf.id}`,
+        athlete_id: profile.athlete_slug,
+        user_id: profile.user_id,
+        type: mf.type === "social" ? "social" : mf.type === "video" ? "video" : "article",
+        title: mf.title || mf.content.slice(0, 60),
+        body: mf.content,
+        media: mf.image ? [mf.image] : [],
+        status: "published",
+        published_at: mf.timestamp,
+        scheduled_at: null,
+        created_at: mf.timestamp,
+      }));
+      
+      // DB posts first, then static (avoid duplicates)
+      setPosts([...dbPosts, ...staticPosts]);
     } catch (err) {
       console.error("Error loading posts:", err);
     }
