@@ -6,13 +6,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Loader2 } from "lucide-react";
 import { ContentLibraryModal } from "../ContentLibraryModal";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import type { AssetItem } from "@/hooks/useStudioAthlete";
+import type { AssetItem, StudioEngagement } from "@/hooks/useStudioAthlete";
 
-type Journey = null | "auto" | "create";
+type Journey = null | "auto" | "create" | "engage";
 type Step = number;
 
-const TEMPLATES = [
+const POST_TEMPLATES = [
   { id: "bts", label: "BTS post", desc: "Training / Travel / Recovery / Routine" },
   { id: "access", label: "Direct access", desc: "Q&A / Live / Voice note" },
   { id: "participate", label: "Weekly prompt", desc: "Vote / Ask / Try" },
@@ -20,6 +21,13 @@ const TEMPLATES = [
   { id: "recap", label: "Result / announcement recap", desc: "Result / Announcement" },
   { id: "spotlight", label: "Fan spotlight", desc: "Highlight a fan moment" },
   { id: "challenge", label: "Community challenge", desc: "Launch a challenge for fans" },
+];
+
+const ENGAGE_TEMPLATES = [
+  { type: "poll", label: "Poll", desc: "Ask fans a quick question with multiple choices." },
+  { type: "predictor", label: "Predictor", desc: "Let fans predict match scores or outcomes." },
+  { type: "qna", label: "Q&A", desc: "Open a question round and answer fan questions." },
+  { type: "live_discussion", label: "Live discussion", desc: "Fan-to-fan thread during a match." },
 ];
 
 const AUTO_STEPS = ["Sources", "Draft", "Preview", "Publish"];
@@ -30,9 +38,11 @@ interface StudioPublishTabProps {
   assets: AssetItem[];
   onUploadAsset: (file: File) => Promise<string | null>;
   draft?: { title: string; body: string; type: string };
+  engagements: StudioEngagement[];
+  onCreateEngagement: (data: { type: string; title: string; description: string; payload?: Record<string, any> }) => Promise<any>;
 }
 
-export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft }: StudioPublishTabProps) => {
+export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft, engagements, onCreateEngagement }: StudioPublishTabProps) => {
   const [journey, setJourney] = useState<Journey>(() => draft ? "create" : null);
   const [template, setTemplate] = useState<string | null>(() => draft?.type || null);
   const [step, setStep] = useState<Step>(() => draft ? 1 : 0);
@@ -42,7 +52,14 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft }:
   const [publishing, setPublishing] = useState(false);
   const [libraryOpen, setLibraryOpen] = useState(false);
 
+  // Engage dialog state
+  const [engageType, setEngageType] = useState<string | null>(null);
+  const [engageTitle, setEngageTitle] = useState("");
+  const [engageDesc, setEngageDesc] = useState("");
+  const [engageSaving, setEngageSaving] = useState(false);
+
   const steps = journey === "auto" ? AUTO_STEPS : CREATE_STEPS;
+  const activeEngagements = engagements.filter((e) => e.status === "active");
 
   const resetAll = () => {
     setJourney(null);
@@ -71,12 +88,23 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft }:
     setLibraryOpen(false);
   };
 
+  const handleEngageCreate = async () => {
+    if (!engageType || !engageTitle.trim()) return;
+    setEngageSaving(true);
+    await onCreateEngagement({ type: engageType, title: engageTitle, description: engageDesc });
+    setEngageSaving(false);
+    setEngageType(null);
+    setEngageTitle("");
+    setEngageDesc("");
+  };
+
+  // Landing: choose a flow
   if (!journey) {
     return (
       <div className="space-y-4">
-        {/* Choose a flow */}
         <StudioCard title="Choose a flow" subtitle="Pick how you want to create content.">
           <div className="space-y-3">
+            {/* Auto-post hero */}
             <button
               onClick={() => { setJourney("auto"); setStep(0); }}
               className="w-full text-left rounded-lg border border-primary/30 bg-primary/5 p-4 hover:border-primary/50 transition-colors"
@@ -94,10 +122,11 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft }:
               <div className="flex-1 h-px bg-border/50" />
             </div>
 
+            {/* Create a post templates */}
             <div>
               <p className="text-sm font-semibold mb-2">Create a post — choose a template</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {TEMPLATES.map((t) => (
+                {POST_TEMPLATES.map((t) => (
                   <button
                     key={t.id}
                     onClick={() => { setJourney("create"); setTemplate(t.id); setStep(1); setTitle(t.label + " — "); }}
@@ -109,12 +138,75 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft }:
                 ))}
               </div>
             </div>
+
+            <div className="flex items-center gap-3">
+              <div className="flex-1 h-px bg-border/50" />
+              <span className="text-xs text-muted-foreground">or engage</span>
+              <div className="flex-1 h-px bg-border/50" />
+            </div>
+
+            {/* Engage templates */}
+            <div>
+              <p className="text-sm font-semibold mb-2">Launch an engagement</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {ENGAGE_TEMPLATES.map((t) => (
+                  <button
+                    key={t.type}
+                    onClick={() => { setEngageType(t.type); setEngageTitle(""); setEngageDesc(""); }}
+                    className="text-left p-3 rounded-lg border border-border/40 hover:border-primary/40 hover:bg-primary/5 transition-colors"
+                  >
+                    <p className="text-sm font-medium">{t.label}</p>
+                    <p className="text-xs text-muted-foreground">{t.desc}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </StudioCard>
+
+        {/* Active engagements */}
+        {activeEngagements.length > 0 && (
+          <StudioCard title="Active engagements" subtitle="Currently running engagement features.">
+            <div className="space-y-2">
+              {activeEngagements.slice(0, 5).map((m) => (
+                <div key={m.id} className="flex items-center justify-between p-3 rounded-lg bg-muted/20 border border-border/30">
+                  <div className="min-w-0 flex-1 mr-3">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <Badge variant="secondary" className="text-[10px] px-1.5 py-0 capitalize">{m.type.replace("_", " ")}</Badge>
+                      <span className="text-sm font-medium truncate">{m.title}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{m.description || "No description"}</p>
+                  </div>
+                  <Badge variant="outline" className="text-[10px] shrink-0">Active</Badge>
+                </div>
+              ))}
+            </div>
+          </StudioCard>
+        )}
+
+        {/* Engage creation dialog */}
+        <Dialog open={!!engageType} onOpenChange={(v) => !v && setEngageType(null)}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle className="capitalize">Create {engageType?.replace("_", " ")}</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-3 mt-2">
+              <Input value={engageTitle} onChange={(e) => setEngageTitle(e.target.value)} placeholder="Title" />
+              <Textarea value={engageDesc} onChange={(e) => setEngageDesc(e.target.value)} placeholder="Description (optional)" className="min-h-[80px]" />
+              <div className="flex justify-end gap-2">
+                <Button variant="ghost" size="sm" className="h-9" onClick={() => setEngageType(null)}>Cancel</Button>
+                <Button size="sm" className="h-9" onClick={handleEngageCreate} disabled={engageSaving || !engageTitle.trim()}>
+                  {engageSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : "Create"}
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     );
   }
 
+  // Active journey
   return (
     <div className="space-y-4">
       {/* Stepper */}
@@ -135,7 +227,6 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft }:
         </div>
       </div>
 
-      {/* Auto-post: Sources step */}
       {journey === "auto" && step === 0 && (
         <StudioCard title="Auto-post preview" subtitle="This feature is coming soon. You can still create posts manually.">
           <div className="text-center py-4">
@@ -145,9 +236,8 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft }:
         </StudioCard>
       )}
 
-      {/* Create own: Create step */}
       {journey === "create" && step === 1 && (
-        <StudioCard title="Create post" subtitle={`Template: ${TEMPLATES.find(t => t.id === template)?.label || ""}`}>
+        <StudioCard title="Create post" subtitle={`Template: ${POST_TEMPLATES.find(t => t.id === template)?.label || ""}`}>
           <div className="space-y-3">
             <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Post title" />
             <Textarea value={body} onChange={(e) => setBody(e.target.value)} placeholder="Write your post..." className="min-h-[120px]" />
@@ -180,7 +270,6 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft }:
         </StudioCard>
       )}
 
-      {/* Preview step */}
       {step === 2 && (
         <StudioCard title="Preview" subtitle="This is how fans will see your post.">
           <div className="rounded-lg border border-border/50 p-4 bg-muted/20">
@@ -204,7 +293,6 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft }:
         </StudioCard>
       )}
 
-      {/* Published step */}
       {step === 3 && (
         <StudioCard title="Published" subtitle="Your post is now live on the fan feed.">
           <div className="text-center py-6">
