@@ -17,6 +17,16 @@ const MONETIZE_CARDS = [
 
 const SETUP_STEPS = ["Type", "Build", "Preview", "Post"];
 
+const monetizeCardStyle = {
+  background: "linear-gradient(155deg, hsl(220 30% 14%) 0%, hsl(220 40% 9%) 100%)",
+  border: "1.5px solid hsl(220 60% 40% / 0.45)",
+  boxShadow:
+    "0 0 0 0.5px hsl(220 60% 50% / 0.15), " +
+    "inset 0 1px 0 0 hsl(220 60% 60% / 0.1), " +
+    "0 0 20px -2px hsl(220 80% 55% / 0.25), " +
+    "0 6px 24px -6px hsl(0 0% 0% / 0.5)",
+};
+
 interface StudioMonetizeTabProps {
   monetization: StudioMonetizationConfig[];
   onSaveMonetization: (data: { type: string; config: Record<string, any> }) => Promise<any>;
@@ -179,14 +189,15 @@ export const StudioMonetizeTab = ({ monetization, onSaveMonetization }: StudioMo
         Set up ways for fans to support you.
       </h2>
 
-      <div className="space-y-2.5">
+      <div className="space-y-3">
         {MONETIZE_CARDS.map((card) => {
           const existing = getExisting(card.type);
           return (
             <button
               key={card.type}
               onClick={() => openFlow(card.type)}
-              className="w-full text-left rounded-xl border border-border/60 bg-card p-3.5 md:p-5 hover:border-primary/40 transition-colors"
+              className="w-full text-left rounded-2xl p-4 md:p-5 transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+              style={monetizeCardStyle}
             >
               <div className="flex items-center justify-between gap-3">
                 <div className="min-w-0 flex-1">
@@ -200,7 +211,7 @@ export const StudioMonetizeTab = ({ monetization, onSaveMonetization }: StudioMo
                       </Badge>
                     )}
                   </div>
-                  <p className="text-[12px] md:text-sm text-muted-foreground mt-0.5 leading-snug line-clamp-2">
+                  <p className="text-[11px] md:text-sm text-muted-foreground mt-0.5 leading-snug line-clamp-2">
                     {card.subtitle}
                   </p>
                 </div>
