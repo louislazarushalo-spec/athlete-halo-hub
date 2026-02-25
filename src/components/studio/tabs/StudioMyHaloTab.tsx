@@ -72,14 +72,26 @@ export const StudioMyHaloTab = ({
         ctaLabel="Edit images"
         onCtaClick={() => openLibraryFor("banner")}
       >
-        <div className="relative rounded-lg overflow-hidden bg-muted h-32 md:h-40 mb-12">
+        <div
+          onClick={() => openLibraryFor("banner")}
+          className="relative rounded-lg overflow-hidden bg-muted h-32 md:h-40 mb-12 w-full group cursor-pointer"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === "Enter") openLibraryFor("banner"); }}
+        >
           {profile.banner_url && (
             <img src={resolveAssetUrl(profile.banner_url)} alt="Banner" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+          {/* Hover overlay hint */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center pointer-events-none">
+            <span className="text-xs font-medium text-white/0 group-hover:text-white/90 transition-colors select-none">
+              Tap to edit banner
+            </span>
+          </div>
           <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-4">
             <div className="flex items-end gap-3">
-              <button onClick={() => openLibraryFor("avatar")} className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-muted-foreground/20 border-4 border-background overflow-hidden hover:ring-2 hover:ring-primary/40 transition-all">
+              <button onClick={(e) => { e.stopPropagation(); openLibraryFor("avatar"); }} className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-muted-foreground/20 border-4 border-background overflow-hidden hover:ring-2 hover:ring-primary/40 transition-all">
                 {profile.avatar_url ? (
                   <img src={resolveAssetUrl(profile.avatar_url)} alt={profile.display_name} className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
                 ) : (
