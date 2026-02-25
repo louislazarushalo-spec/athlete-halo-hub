@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Athlete } from "@/data/athletes";
 import { Lock, Unlock, Crown } from "lucide-react";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 
 interface HomepageAthleteCardProps {
   athlete: Athlete;
@@ -9,6 +10,8 @@ interface HomepageAthleteCardProps {
 }
 
 export const HomepageAthleteCard = ({ athlete, index = 0, hideAccessLabels = false }: HomepageAthleteCardProps) => {
+  const { resolve } = useAthleteProfiles();
+  const resolved = resolve(athlete.id, athlete.avatar, athlete.banner, athlete.bio);
   // Check if athlete is a custom/premium athlete
   const isCustomAthlete = athlete.id === "arthur-cazaux" || athlete.id === "matthieu-jalibert" || athlete.id === "cassandre-beaugrand";
 
@@ -22,7 +25,7 @@ export const HomepageAthleteCard = ({ athlete, index = 0, hideAccessLabels = fal
         {/* Large Image */}
         <div className="relative aspect-[3/4] overflow-hidden">
           <img
-            src={athlete.avatar}
+            src={resolved.avatar}
             alt={athlete.name}
             loading="lazy"
             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"

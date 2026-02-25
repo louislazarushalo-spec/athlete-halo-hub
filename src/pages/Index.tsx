@@ -2,7 +2,8 @@ import { MinimalHeader } from "@/components/layout/MinimalHeader";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { HomepageAthleteCard } from "@/components/athletes/HomepageAthleteCard";
-import { athletes } from "@/data/athletes";
+import { athletes as staticAthletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { ChevronRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useMemo, useRef, useEffect } from "react";
@@ -12,6 +13,7 @@ const Index = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
+  const { athletes } = useAthleteProfiles();
 
   // Redirect to /home if logged in
   useEffect(() => {

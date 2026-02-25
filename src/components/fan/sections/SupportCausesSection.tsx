@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Button } from "@/components/ui/button";
 import { Heart, ChevronRight } from "lucide-react";
 
@@ -11,6 +11,7 @@ const featuredCauses = [
 ];
 
 export const SupportCausesSection = () => {
+  const { athletes } = useAthleteProfiles();
   const causes = featuredCauses.map((fc) => {
     const athlete = athletes.find((a) => a.id === fc.athleteId);
     return { athlete, cause: athlete?.cause, customTitle: fc.title };

@@ -1,4 +1,4 @@
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { AthleteCard } from "@/components/athletes/AthleteCard";
 
 interface FilteredAthletesSectionProps {
@@ -6,6 +6,7 @@ interface FilteredAthletesSectionProps {
 }
 
 export const FilteredAthletesSection = ({ sport }: FilteredAthletesSectionProps) => {
+  const { athletes } = useAthleteProfiles();
   const filteredAthletes = athletes
     .filter((athlete) => athlete.sport.toLowerCase() === sport.toLowerCase())
     .sort(() => Math.random() - 0.5);

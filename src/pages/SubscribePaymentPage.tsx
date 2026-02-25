@@ -8,11 +8,13 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { useAthleteProfile } from "@/hooks/useAthleteProfile";
 
 const SubscribePaymentPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const athlete = getAthleteById(id || "");
+  const { avatarUrl: resolvedAvatar, bannerUrl: resolvedBanner } = useAthleteProfile(id);
   const { isAuthenticated, user } = useAuth();
   const { isSubscribed, subscribe, isLoading } = useSubscription();
   
@@ -106,7 +108,7 @@ const SubscribePaymentPage = () => {
       {/* Blurred Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center blur-xl scale-110"
-        style={{ backgroundImage: `url(${athlete.banner})` }}
+        style={{ backgroundImage: `url(${resolvedBanner || athlete.banner})` }}
       />
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
 
@@ -123,7 +125,7 @@ const SubscribePaymentPage = () => {
 
         {/* Athlete Avatar */}
         <img 
-          src={athlete.avatar} 
+          src={resolvedAvatar || athlete.avatar} 
           alt={athlete.name}
           className="w-20 h-20 rounded-full object-cover border-4 border-primary shadow-2xl mb-6"
         />

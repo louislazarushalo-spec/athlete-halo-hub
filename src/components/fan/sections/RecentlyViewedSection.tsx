@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { ChevronRight } from "lucide-react";
 
-// Simulated recently viewed athletes
-const recentlyViewedAthletes = athletes.slice(0, 3);
-
 export const RecentlyViewedSection = () => {
+  const { athletes } = useAthleteProfiles();
+  const recentlyViewedAthletes = athletes.slice(0, 3);
   if (recentlyViewedAthletes.length === 0) return null;
 
   return (

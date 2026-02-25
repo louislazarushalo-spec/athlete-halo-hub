@@ -2,7 +2,8 @@ import { useState, useMemo } from "react";
 import { FanSidebar } from "@/components/fan/FanSidebar";
 import { MobileNav } from "@/components/fan/MobileNav";
 import { HomepageAthleteCard } from "@/components/athletes/HomepageAthleteCard";
-import { athletes } from "@/data/athletes";
+import { athletes as staticAthletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Link } from "react-router-dom";
 
 const ExplorePage = () => {
+  const { athletes } = useAthleteProfiles();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilter, setActiveFilter] = useState("All");
 

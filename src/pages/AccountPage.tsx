@@ -11,6 +11,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { User, Loader2, X, Search, Check } from "lucide-react";
 import { z } from "zod";
 import {
@@ -69,6 +70,7 @@ interface ProfileData {
 const AccountPage = () => {
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const { resolve } = useAthleteProfiles();
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -504,7 +506,7 @@ const AccountPage = () => {
                           className="flex items-center gap-1.5 pr-1"
                         >
                           <img
-                            src={athlete.avatar}
+                            src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar}
                             alt={athlete.name}
                             className="w-5 h-5 rounded-full object-cover object-top"
                           />
@@ -546,7 +548,7 @@ const AccountPage = () => {
                               className="flex items-center gap-3 cursor-pointer"
                             >
                               <img
-                                src={athlete.avatar}
+                                src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar}
                                 alt={athlete.name}
                                 className="w-8 h-8 rounded-full object-cover object-top"
                               />

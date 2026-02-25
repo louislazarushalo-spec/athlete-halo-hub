@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 
 export const DiscoverAllSection = () => {
+  const { athletes } = useAthleteProfiles();
   return (
     <section className="mb-12">
       <div className="mb-6">

@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { AthleteCard } from "@/components/athletes/AthleteCard";
 
-// Recommended athletes based on follows
-const recommendedAthletes = athletes.slice(0, 4);
-
 export const ForYouSection = () => {
+  const { athletes } = useAthleteProfiles();
+  const recommendedAthletes = athletes.slice(0, 4);
   return (
     <section className="mb-12">
       <div className="mb-6">

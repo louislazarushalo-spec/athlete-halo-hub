@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Button } from "@/components/ui/button";
 import { Play, ChevronRight } from "lucide-react";
 
@@ -11,6 +11,7 @@ const featuredTrainings = [
 ];
 
 export const ExploreTrainingsSection = () => {
+  const { athletes } = useAthleteProfiles();
   const trainings = featuredTrainings.map((ft) => {
     const athlete = athletes.find((a) => a.id === ft.athleteId);
     const training = athlete?.training[0];

@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Check, ArrowLeft, Sparkles } from "lucide-react";
 import { useSubscription } from "@/contexts/SubscriptionContext";
 import { useEffect } from "react";
+import { useAthleteProfile } from "@/hooks/useAthleteProfile";
 
 const SubscribePage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const athlete = getAthleteById(id || "");
+  const { avatarUrl: resolvedAvatar, bannerUrl: resolvedBanner } = useAthleteProfile(id);
   const { isSubscribed } = useSubscription();
 
   // Redirect if already subscribed
@@ -43,7 +45,7 @@ const SubscribePage = () => {
       {/* Blurred Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center blur-xl scale-110"
-        style={{ backgroundImage: `url(${athlete.banner})` }}
+        style={{ backgroundImage: `url(${resolvedBanner || athlete.banner})` }}
       />
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
 
@@ -60,7 +62,7 @@ const SubscribePage = () => {
 
         {/* Athlete Avatar */}
         <img 
-          src={athlete.avatar} 
+          src={resolvedAvatar || athlete.avatar} 
           alt={athlete.name}
           className="w-24 h-24 rounded-full object-cover border-4 border-primary shadow-2xl mb-6"
         />

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { tennisEvents, golfEvents, womenCyclingEvents } from "@/data/sportEvents";
 import { Calendar, ChevronRight } from "lucide-react";
 
@@ -13,6 +13,7 @@ const monthToNumber: Record<string, number> = {
 };
 
 export const UpcomingEventsSection = () => {
+  const { athletes } = useAthleteProfiles();
   const followedAthletes = athletes.filter(a => followedAthleteIds.includes(a.id));
   
   // Get ONE event per followed athlete (next upcoming)

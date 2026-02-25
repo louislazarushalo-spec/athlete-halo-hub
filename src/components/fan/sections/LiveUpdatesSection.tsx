@@ -1,19 +1,10 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Dumbbell, Heart, Package } from "lucide-react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 // Hardcoded followed athletes
 const followedAthleteIds = ["arthur-cazaux", "tommy-fleetwood", "elisa-balsamo"];
-
-// Only show followed athletes with simulated recent updates
-const activeAthletes = athletes
-  .filter(a => followedAthleteIds.includes(a.id))
-  .map((athlete, index) => ({
-    ...athlete,
-    recentUpdate: index % 3 === 0 ? "training" : index % 3 === 1 ? "life" : "gear",
-    updatedAgo: `${Math.floor(Math.random() * 12) + 1}h ago`,
-  }));
 
 const updateColors = {
   training: "ring-emerald-500",
@@ -28,6 +19,14 @@ const updateIcons = {
 };
 
 export const LiveUpdatesSection = () => {
+  const { athletes } = useAthleteProfiles();
+  const activeAthletes = athletes
+    .filter(a => followedAthleteIds.includes(a.id))
+    .map((athlete, index) => ({
+      ...athlete,
+      recentUpdate: index % 3 === 0 ? "training" : index % 3 === 1 ? "life" : "gear",
+      updatedAgo: `${Math.floor(Math.random() * 12) + 1}h ago`,
+    }));
   if (activeAthletes.length === 0) return null;
 
   return (
