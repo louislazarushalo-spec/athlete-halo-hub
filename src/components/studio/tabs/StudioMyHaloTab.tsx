@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StudioCard } from "../StudioCard";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2 } from "lucide-react";
 import { ContentLibraryModal } from "../ContentLibraryModal";
 import { resolveAssetUrl } from "@/lib/assetResolver";
+import { supabase } from "@/integrations/supabase/client";
 import type { StudioAthleteProfile, AssetItem, StudioPost } from "@/hooks/useStudioAthlete";
 
 interface StudioMyHaloTabProps {
@@ -34,6 +35,22 @@ export const StudioMyHaloTab = ({
   const [bioSaving, setBioSaving] = useState(false);
   const [libraryOpen, setLibraryOpen] = useState(false);
   const [libraryTarget, setLibraryTarget] = useState<"avatar" | "banner" | "general">("general");
+  const [fanPosts, setFanPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (!profile?.athlete_slug) return;
+    const fetchPosts = async () => {
+      const { data } = await supabase
+        .from("studio_posts")
+        .select("id, athlete_id, type, title, body, media, published_at, status")
+        .eq("athlete_id", profile.athlete_slug)
+        .eq("status", "published")
+        .order("published_at", { ascending: false })
+        .limit(10);
+      setFanPosts(data || []);
+    };
+    fetchPosts();
+  }, [profile?.athlete_slug, posts]);
 
   if (loading || !profile) {
     return (
@@ -61,10 +78,9 @@ export const StudioMyHaloTab = ({
     setLibraryOpen(true);
   };
 
-  const publishedPosts = posts.filter((p) => p.status === "published").slice(0, 3);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-2.5">
       {/* Profile card */}
       <StudioCard
         title="Profile"
@@ -74,7 +90,7 @@ export const StudioMyHaloTab = ({
       >
         <div
           onClick={() => openLibraryFor("banner")}
-          className="relative rounded-lg overflow-hidden bg-muted h-32 md:h-40 mb-12 w-full group cursor-pointer"
+          className="relative rounded-lg overflow-hidden bg-muted h-32 md:h-40 mb-4 w-full group cursor-pointer"
           role="button"
           tabIndex={0}
           onKeyDown={(e) => { if (e.key === "Enter") openLibraryFor("banner"); }}
@@ -83,24 +99,23 @@ export const StudioMyHaloTab = ({
             <img src={resolveAssetUrl(profile.banner_url)} alt="Banner" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-          {/* Hover overlay hint */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center pointer-events-none">
             <span className="text-xs font-medium text-white/0 group-hover:text-white/90 transition-colors select-none">
               Tap to edit banner
             </span>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-4">
+          <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-3">
             <div className="flex items-end gap-3">
-              <button onClick={(e) => { e.stopPropagation(); openLibraryFor("avatar"); }} className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-muted-foreground/20 border-4 border-background overflow-hidden hover:ring-2 hover:ring-primary/40 transition-all">
+              <button onClick={(e) => { e.stopPropagation(); openLibraryFor("avatar"); }} className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-muted-foreground/20 border-[3px] border-background overflow-hidden hover:ring-2 hover:ring-primary/40 transition-all">
                 {profile.avatar_url ? (
                   <img src={resolveAssetUrl(profile.avatar_url)} alt={profile.display_name} className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-2xl">👤</div>
                 )}
               </button>
-              <div className="pb-1">
-                <h2 className="font-semibold text-foreground text-lg">{profile.display_name}</h2>
-                <p className="text-xs text-muted-foreground">{profile.sport}</p>
+              <div className="pb-0.5">
+                <h2 className="font-semibold text-foreground text-base leading-tight">{profile.display_name}</h2>
+                <p className="text-[11px] text-muted-foreground">{profile.sport}</p>
               </div>
             </div>
           </div>
@@ -129,37 +144,57 @@ export const StudioMyHaloTab = ({
         )}
       </StudioCard>
 
-      {/* Fan preview card */}
+      {/* Fan preview card — mirrors real fan page */}
       <StudioCard
         title="Fan preview"
         subtitle="This is what fans see on your athlete page."
         ctaLabel="Open fan view"
         onCtaClick={() => window.open(`/athlete/${profile.athlete_slug}`, "_blank")}
       >
-        <div className="rounded-lg border border-border/40 bg-muted/20 p-4 space-y-3">
-          {/* Mini header preview */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-muted-foreground/20">
-              {profile.avatar_url && <img src={resolveAssetUrl(profile.avatar_url)} alt="" className="w-full h-full object-cover" />}
-            </div>
-            <div>
-              <p className="text-sm font-medium">{profile.display_name}</p>
-              <p className="text-[10px] text-muted-foreground">{profile.sport}</p>
+        <div className="rounded-lg border border-border/40 bg-muted/20 overflow-hidden">
+          {/* Mini banner + avatar (mirrors fan page header) */}
+          <div className="relative h-20 bg-muted">
+            {profile.banner_url && (
+              <img src={resolveAssetUrl(profile.banner_url)} alt="" className="w-full h-full object-cover" />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+            <div className="absolute -bottom-5 left-3">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-muted-foreground/20 border-2 border-background">
+                {profile.avatar_url && <img src={resolveAssetUrl(profile.avatar_url)} alt="" className="w-full h-full object-cover" />}
+              </div>
             </div>
           </div>
-          {/* Mini feed preview */}
-          {publishedPosts.length > 0 ? (
-            <div className="space-y-1.5">
-              {publishedPosts.map((post) => (
-                <div key={post.id} className="flex items-center gap-2 p-2 rounded bg-muted/30">
-                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0 capitalize shrink-0">{post.type}</Badge>
-                  <span className="text-xs truncate">{post.title}</span>
+          <div className="px-3 pt-7 pb-2">
+            <p className="text-sm font-semibold leading-tight">{profile.display_name}</p>
+            <p className="text-[10px] text-muted-foreground">{profile.sport}</p>
+            {profile.bio && <p className="text-[11px] text-muted-foreground mt-1 line-clamp-2">{profile.bio}</p>}
+          </div>
+          {/* Published feed — same data as fan page */}
+          <div className="px-3 pb-3 space-y-1.5 max-h-[220px] overflow-y-auto">
+            {fanPosts.length > 0 ? (
+              fanPosts.map((post) => (
+                <div key={post.id} className="flex items-start gap-2 p-2 rounded-md bg-muted/30">
+                  {post.media && post.media.length > 0 && post.media[0] && (
+                    <div className="w-12 h-10 rounded overflow-hidden shrink-0 bg-muted">
+                      <img src={resolveAssetUrl(post.media[0])} alt="" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1.5 mb-0.5">
+                      <Badge variant="secondary" className="text-[9px] px-1 py-0 capitalize shrink-0">{post.type?.replace("_", " ")}</Badge>
+                      {post.published_at && (
+                        <span className="text-[9px] text-muted-foreground">{new Date(post.published_at).toLocaleDateString()}</span>
+                      )}
+                    </div>
+                    <span className="text-[11px] font-medium leading-tight line-clamp-1 block">{post.title}</span>
+                    {post.body && <span className="text-[10px] text-muted-foreground line-clamp-1 block">{post.body}</span>}
+                  </div>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-xs text-muted-foreground text-center py-2">No published posts yet.</p>
-          )}
+              ))
+            ) : (
+              <p className="text-xs text-muted-foreground text-center py-3">No published posts yet.</p>
+            )}
+          </div>
         </div>
       </StudioCard>
 
