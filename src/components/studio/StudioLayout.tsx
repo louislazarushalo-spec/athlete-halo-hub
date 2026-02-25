@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
+
 import { useStudioRole } from "@/hooks/useStudioRole";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
@@ -27,7 +27,6 @@ interface StudioLayoutProps {
 export type { TabId };
 
 export const StudioLayout = ({ activeTab, onTabChange, children, onGoHome }: StudioLayoutProps) => {
-  const { logout } = useAuth();
   const { hasAccess, loading } = useStudioRole();
   const isMobile = useIsMobile();
   const navigate = useNavigate();
@@ -91,7 +90,7 @@ export const StudioLayout = ({ activeTab, onTabChange, children, onGoHome }: Stu
 
             <div className="flex items-center gap-2">
               <AthleteSwitcher />
-              <Button variant="ghost" size="sm" onClick={() => { logout(); navigate("/"); }}>
+              <Button variant="ghost" size="sm" onClick={() => navigate("/home")}>
                 <LogOut className="h-4 w-4 mr-1" /> Exit
               </Button>
             </div>
@@ -110,7 +109,7 @@ export const StudioLayout = ({ activeTab, onTabChange, children, onGoHome }: Stu
           </button>
           <div className="flex items-center gap-0.5">
             <AthleteSwitcher />
-            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => { logout(); navigate("/"); }}>
+            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => navigate("/home")}>
               <LogOut className="h-3.5 w-3.5" />
             </Button>
           </div>
