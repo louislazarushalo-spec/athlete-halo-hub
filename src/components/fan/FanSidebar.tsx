@@ -1,9 +1,10 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Home, Compass, MessageCircle, Bell, Settings, Smartphone, ChevronDown, LogOut, User } from "lucide-react";
-import { athletes, getAthleteById } from "@/data/athletes";
+import { getAthleteById } from "@/data/athletes";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
+import { useFollowedAthletes } from "@/hooks/useFollowedAthletes";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,23 +22,18 @@ const navItems = [
   { label: "Settings", icon: Settings, path: "/settings" },
 ];
 
-// Followed athletes: Arthur Cazaux, Tommy Fleetwood, Cassandre Beaugrand
-const followedAthleteIds = ['arthur-cazaux', 'tommy-fleetwood', 'cassandre-beaugrand'];
-const followedAthletes = followedAthleteIds
-  .map(id => getAthleteById(id))
-  .filter(Boolean) as typeof athletes;
-
 // Simulated recently viewed: Pierre Gasly, Paul Pogba, Iga Swiatek
 const recentlyViewedIds = ['pierre-gasly', 'paul-pogba', 'iga-swiatek'];
 const recentlyViewed = recentlyViewedIds
   .map(id => getAthleteById(id))
-  .filter(Boolean) as typeof athletes;
+  .filter(Boolean) as ReturnType<typeof getAthleteById>[];
 
 export const FanSidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const { resolve } = useAthleteProfiles();
+  const { followedIds, loading } = useFollowedAthletes();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const handleLogout = async () => {
@@ -49,6 +45,11 @@ export const FanSidebar = () => {
   const userEmail = user?.email || "";
   const userName = user?.user_metadata?.full_name || userEmail.split("@")[0] || "User";
   const userInitials = userName.substring(0, 2).toUpperCase();
+
+  // DB-driven followed athletes
+  const followedAthletes = followedIds
+    .map(id => getAthleteById(id))
+    .filter(Boolean) as ReturnType<typeof getAthleteById>[];
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-card border-r border-border flex flex-col z-50">
@@ -86,31 +87,37 @@ export const FanSidebar = () => {
       {/* Divider */}
       <div className="mx-5 my-2 border-t border-border" />
 
-      {/* My Followed Athletes */}
+      {/* My Followed Athletes - DB driven */}
       <div className="px-5 py-3 flex-1 overflow-y-auto">
         <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
           My Followed Athletes
         </h3>
         <div className="space-y-2">
-          {followedAthletes.map((athlete) => (
-            <Link
-              key={athlete.id}
-              to={`/athlete/${athlete.id}`}
-              className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-muted/50 transition-colors group"
-            >
-              <img
-                src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar}
-                alt={athlete.name}
-                className="w-8 h-8 rounded-full object-cover object-top ring-2 ring-transparent group-hover:ring-primary/30 transition-all"
-              />
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate group-hover:text-primary transition-colors">
-                  {athlete.name}
-                </p>
-                <p className="text-xs text-muted-foreground truncate">{athlete.sport}</p>
-              </div>
-            </Link>
-          ))}
+          {loading ? (
+            <p className="text-xs text-muted-foreground">Loading…</p>
+          ) : followedAthletes.length === 0 ? (
+            <p className="text-xs text-muted-foreground">No athletes followed yet.</p>
+          ) : (
+            followedAthletes.map((athlete) => (
+              <Link
+                key={athlete.id}
+                to={`/athlete/${athlete.id}`}
+                className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-muted/50 transition-colors group"
+              >
+                <img
+                  src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar}
+                  alt={athlete.name}
+                  className="w-8 h-8 rounded-full object-cover object-top ring-2 ring-transparent group-hover:ring-primary/30 transition-all"
+                />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium truncate group-hover:text-primary transition-colors">
+                    {athlete.name}
+                  </p>
+                  <p className="text-xs text-muted-foreground truncate">{athlete.sport}</p>
+                </div>
+              </Link>
+            ))
+          )}
         </div>
 
         {/* Recently Viewed */}
@@ -120,17 +127,17 @@ export const FanSidebar = () => {
         <div className="space-y-2">
           {recentlyViewed.map((athlete) => (
             <Link
-              key={`recent-${athlete.id}`}
-              to={`/athlete/${athlete.id}`}
+              key={`recent-${athlete!.id}`}
+              to={`/athlete/${athlete!.id}`}
               className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-muted/50 transition-colors group"
             >
               <img
-                src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar}
-                alt={athlete.name}
+                src={resolve(athlete!.id, athlete!.avatar, athlete!.banner).avatar}
+                alt={athlete!.name}
                 className="w-7 h-7 rounded-full object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity"
               />
               <p className="text-sm text-muted-foreground truncate group-hover:text-foreground transition-colors">
-                {athlete.name}
+                {athlete!.name}
               </p>
             </Link>
           ))}

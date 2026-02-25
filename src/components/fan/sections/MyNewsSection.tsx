@@ -47,7 +47,7 @@ export const MyNewsSection = () => {
 
   return (
     <section className="mb-8">
-      <h2 className="font-display text-lg font-semibold mb-3">Feed</h2>
+      <h2 className="font-display text-lg font-semibold mb-3">From your athletes</h2>
       <div className="space-y-4">
         {feedItems.slice(0, 30).map((item) => (
           <UnifiedFeedItem

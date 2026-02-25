@@ -203,25 +203,30 @@ export const UnifiedAthletePage = ({ athlete, fromStudio = false, dataHubCompone
 
       {/* ─── 2. BE A FAN CTA ─── */}
       <div className="px-4 py-4">
-        <button
-          onClick={handleBeAFan}
-          className={cn(
-            "w-full min-h-[52px] rounded-full text-[16px] font-bold tracking-wide transition-all duration-200 relative overflow-hidden",
-            isFan
-              ? "bg-primary/15 text-primary border border-primary/30 hover:bg-primary/20"
-              : "text-primary-foreground hover:brightness-110 active:brightness-90"
-          )}
-          style={
-            !isFan
-              ? {
-                  background: "linear-gradient(135deg, hsl(220 85% 45%), hsl(217 91% 60%), hsl(210 100% 70%))",
-                  boxShadow: "0 0 24px hsl(217 91% 60% / 0.35), 0 4px 12px hsl(220 85% 45% / 0.3)",
-                }
-              : undefined
-          }
-        >
-          {isFan ? "✓  FAN" : "BE A FAN"}
-        </button>
+        {isFan ? (
+          <div className="flex flex-col items-center gap-2">
+            <div className="w-full min-h-[52px] rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center gap-2 text-primary">
+              <span className="text-[16px] font-bold tracking-wide">✓ You're already part of the gang</span>
+            </div>
+            <button
+              onClick={handleBeAFan}
+              className="text-[12px] text-muted-foreground hover:text-destructive transition-colors"
+            >
+              Unfollow
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={handleBeAFan}
+            className="w-full min-h-[52px] rounded-full text-[16px] font-bold tracking-wide transition-all duration-200 relative overflow-hidden text-primary-foreground hover:brightness-110 active:brightness-90"
+            style={{
+              background: "linear-gradient(135deg, hsl(220 85% 45%), hsl(217 91% 60%), hsl(210 100% 70%))",
+              boxShadow: "0 0 24px hsl(217 91% 60% / 0.35), 0 4px 12px hsl(220 85% 45% / 0.3)",
+            }}
+          >
+            BE A FAN
+          </button>
+        )}
       </div>
 
       {/* ─── 3. Top Fans This Week ─── */}
