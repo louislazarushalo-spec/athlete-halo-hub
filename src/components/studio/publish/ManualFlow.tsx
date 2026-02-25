@@ -7,12 +7,10 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2 } from "lucide-react";
 import { PublishStepper } from "./PublishStepper";
 import { ContentLibraryModal } from "../ContentLibraryModal";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import type { AssetItem, StudioEngagement } from "@/hooks/useStudioAthlete";
+import type { AssetItem } from "@/hooks/useStudioAthlete";
 
 const MANUAL_STEPS = ["Choose type", "Compose", "Preview", "Publish"];
 
-// --- Type definitions ---
 type ContentCategory = "post" | "program" | "engagement";
 
 const POST_FORMATS = [
@@ -58,7 +56,7 @@ const ENGAGEMENT_TYPES = [
 ];
 
 interface ManualFlowProps {
-  onChangeFlow: () => void;
+  onBack: () => void;
   onCreatePost: (data: { title: string; body: string; type: string; media: string[]; publish?: boolean }) => Promise<any>;
   onCreateEngagement: (data: { type: string; title: string; description: string; payload?: Record<string, any> }) => Promise<any>;
   assets: AssetItem[];
@@ -66,23 +64,18 @@ interface ManualFlowProps {
   draft?: { title: string; body: string; type: string };
 }
 
-export const ManualFlow = ({ onChangeFlow, onCreatePost, onCreateEngagement, assets, onUploadAsset, draft }: ManualFlowProps) => {
+export const ManualFlow = ({ onBack, onCreatePost, onCreateEngagement, assets, onUploadAsset, draft }: ManualFlowProps) => {
   const [step, setStep] = useState(draft ? 1 : 0);
   const [category, setCategory] = useState<ContentCategory | null>(draft ? "post" : null);
   const [subType, setSubType] = useState<string>(draft?.type || "photo");
 
-  // Compose state
   const [title, setTitle] = useState(draft?.title || "");
   const [body, setBody] = useState(draft?.body || "");
   const [media, setMedia] = useState<string[]>([]);
   const [libraryOpen, setLibraryOpen] = useState(false);
   const [publishing, setPublishing] = useState(false);
 
-  const handleSelectCategory = (cat: ContentCategory) => {
-    setCategory(cat);
-    // For post, stay on step 0 to pick format/idea
-    // For program and engagement, also stay for subtype selection
-  };
+  const hasDraft = title.length > 0 || body.length > 0;
 
   const handleSelectSubType = (type: string) => {
     setSubType(type);
@@ -123,43 +116,29 @@ export const ManualFlow = ({ onChangeFlow, onCreatePost, onCreateEngagement, ass
     setLibraryOpen(false);
   };
 
-  const resetAll = () => {
-    setStep(0);
-    setCategory(null);
-    setSubType("photo");
-    setTitle("");
-    setBody("");
-    setMedia([]);
-  };
-
   return (
     <div className="space-y-3">
-      <PublishStepper steps={MANUAL_STEPS} currentStep={step} onChangeFlow={onChangeFlow} />
+      <PublishStepper steps={MANUAL_STEPS} currentStep={step} onBack={onBack} confirmLeave={hasDraft} />
 
       {/* Step 0 — Choose type */}
       {step === 0 && !category && (
         <div className="space-y-3">
-          {/* Post card */}
           <button
-            onClick={() => handleSelectCategory("post")}
+            onClick={() => setCategory("post")}
             className="w-full text-left rounded-xl border border-border/60 bg-card p-4 hover:border-primary/40 transition-colors min-h-[56px]"
           >
             <p className="text-[15px] font-semibold mb-0.5">Post</p>
             <p className="text-xs text-muted-foreground">Photo, Video, Text, or Audio</p>
           </button>
-
-          {/* Program card */}
           <button
-            onClick={() => handleSelectCategory("program")}
+            onClick={() => setCategory("program")}
             className="w-full text-left rounded-xl border border-border/60 bg-card p-4 hover:border-primary/40 transition-colors min-h-[56px]"
           >
             <p className="text-[15px] font-semibold mb-0.5">Program</p>
             <p className="text-xs text-muted-foreground">Fitness, Skills, Nutrition, or Mental</p>
           </button>
-
-          {/* Engagement card */}
           <button
-            onClick={() => handleSelectCategory("engagement")}
+            onClick={() => setCategory("engagement")}
             className="w-full text-left rounded-xl border border-border/60 bg-card p-4 hover:border-primary/40 transition-colors min-h-[56px]"
           >
             <p className="text-[15px] font-semibold mb-0.5">Engagement</p>
@@ -168,7 +147,6 @@ export const ManualFlow = ({ onChangeFlow, onCreatePost, onCreateEngagement, ass
         </div>
       )}
 
-      {/* Step 0 — Post subtype + ideas */}
       {step === 0 && category === "post" && (
         <StudioCard title="What kind of post?" subtitle="Pick a format or tap an idea to get started.">
           <div className="space-y-4">
@@ -183,7 +161,6 @@ export const ManualFlow = ({ onChangeFlow, onCreatePost, onCreateEngagement, ass
                 </button>
               ))}
             </div>
-
             <div>
               <p className="text-xs text-muted-foreground mb-2 font-medium">Suggested ideas</p>
               <div className="flex flex-wrap gap-1.5">
@@ -198,7 +175,6 @@ export const ManualFlow = ({ onChangeFlow, onCreatePost, onCreateEngagement, ass
                 ))}
               </div>
             </div>
-
             <Button variant="ghost" size="sm" className="h-11 text-sm" onClick={() => setCategory(null)}>
               ← Back to types
             </Button>
@@ -206,7 +182,6 @@ export const ManualFlow = ({ onChangeFlow, onCreatePost, onCreateEngagement, ass
         </StudioCard>
       )}
 
-      {/* Step 0 — Program subtype */}
       {step === 0 && category === "program" && (
         <StudioCard title="Program category" subtitle="What type of program are you creating?">
           <div className="space-y-2">
@@ -227,7 +202,6 @@ export const ManualFlow = ({ onChangeFlow, onCreatePost, onCreateEngagement, ass
         </StudioCard>
       )}
 
-      {/* Step 0 — Engagement subtype */}
       {step === 0 && category === "engagement" && (
         <StudioCard title="Engagement type" subtitle="Choose the engagement format.">
           <div className="space-y-2">
@@ -263,14 +237,9 @@ export const ManualFlow = ({ onChangeFlow, onCreatePost, onCreateEngagement, ass
             <Textarea
               value={body}
               onChange={(e) => setBody(e.target.value)}
-              placeholder={
-                category === "engagement"
-                  ? "Description, rules, or details..."
-                  : "Write your post..."
-              }
+              placeholder={category === "engagement" ? "Description, rules, or details..." : "Write your post..."}
               className="min-h-[120px] text-sm"
             />
-
             {category !== "engagement" && (
               <>
                 {media.length > 0 && (
@@ -280,7 +249,7 @@ export const ManualFlow = ({ onChangeFlow, onCreatePost, onCreateEngagement, ass
                         <img src={url} alt="" className="w-full h-full object-cover" />
                         <button
                           onClick={() => setMedia((prev) => prev.filter((_, j) => j !== i))}
-                          className="absolute top-0.5 right-0.5 w-5 h-5 bg-background/80 rounded-full text-xs flex items-center justify-center min-h-[20px]"
+                          className="absolute top-0.5 right-0.5 w-5 h-5 bg-background/80 rounded-full text-xs flex items-center justify-center"
                         >×</button>
                       </div>
                     ))}
@@ -339,7 +308,7 @@ export const ManualFlow = ({ onChangeFlow, onCreatePost, onCreateEngagement, ass
           <div className="text-center py-6">
             <span className="text-4xl mb-3 block">🎉</span>
             <p className="text-sm text-muted-foreground mb-4">Fans can see it now.</p>
-            <Button size="sm" className="h-11 text-sm" onClick={() => { resetAll(); onChangeFlow(); }}>Create another</Button>
+            <Button size="sm" className="h-11 text-sm" onClick={onBack}>Create another</Button>
           </div>
         </StudioCard>
       )}

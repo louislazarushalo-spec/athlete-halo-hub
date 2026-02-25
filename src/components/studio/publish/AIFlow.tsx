@@ -11,19 +11,20 @@ import type { AssetItem } from "@/hooks/useStudioAthlete";
 const AI_STEPS = ["Sources", "Draft", "Preview", "Publish"];
 
 interface AIFlowProps {
-  onChangeFlow: () => void;
+  onBack: () => void;
   onCreatePost: (data: { title: string; body: string; type: string; media: string[]; publish?: boolean }) => Promise<any>;
   assets: AssetItem[];
 }
 
-export const AIFlow = ({ onChangeFlow, onCreatePost, assets }: AIFlowProps) => {
+export const AIFlow = ({ onBack, onCreatePost, assets }: AIFlowProps) => {
   const [step, setStep] = useState(0);
   const [sources, setSources] = useState({ webCoverage: true, socialPosts: true, notes: false });
   const [draft, setDraft] = useState({ title: "", body: "" });
   const [publishing, setPublishing] = useState(false);
 
+  const hasDraft = draft.title.length > 0 || draft.body.length > 0;
+
   const handleGenerateDraft = () => {
-    // Simulate AI draft generation
     setDraft({
       title: "Match recap — latest performance",
       body: "Great win today! The preparation paid off and the support from fans was incredible. More to come this season. 💪",
@@ -46,7 +47,7 @@ export const AIFlow = ({ onChangeFlow, onCreatePost, assets }: AIFlowProps) => {
 
   return (
     <div className="space-y-3">
-      <PublishStepper steps={AI_STEPS} currentStep={step} onChangeFlow={onChangeFlow} />
+      <PublishStepper steps={AI_STEPS} currentStep={step} onBack={onBack} confirmLeave={hasDraft} />
 
       {step === 0 && (
         <StudioCard title="Choose your sources" subtitle="Select what the AI should use to generate your post.">
@@ -126,7 +127,7 @@ export const AIFlow = ({ onChangeFlow, onCreatePost, assets }: AIFlowProps) => {
           <div className="text-center py-6">
             <span className="text-4xl mb-3 block">🎉</span>
             <p className="text-sm text-muted-foreground mb-4">Your AI-generated post is live and visible to fans.</p>
-            <Button size="sm" className="h-11 text-sm" onClick={onChangeFlow}>Create another</Button>
+            <Button size="sm" className="h-11 text-sm" onClick={onBack}>Create another</Button>
           </div>
         </StudioCard>
       )}
