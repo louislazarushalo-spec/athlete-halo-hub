@@ -22,19 +22,13 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft, e
   const resetFlow = () => setFlow(null);
 
   if (flow === "ai") {
-    return (
-      <AIFlow
-        onChangeFlow={resetFlow}
-        onCreatePost={onCreatePost}
-        assets={assets}
-      />
-    );
+    return <AIFlow onBack={resetFlow} onCreatePost={onCreatePost} assets={assets} />;
   }
 
   if (flow === "manual") {
     return (
       <ManualFlow
-        onChangeFlow={resetFlow}
+        onBack={resetFlow}
         onCreatePost={onCreatePost}
         onCreateEngagement={onCreateEngagement}
         assets={assets}
@@ -44,10 +38,5 @@ export const StudioPublishTab = ({ onCreatePost, assets, onUploadAsset, draft, e
     );
   }
 
-  return (
-    <PublishLanding
-      onSelectAI={() => setFlow("ai")}
-      onSelectManual={() => setFlow("manual")}
-    />
-  );
+  return <PublishLanding onSelectAI={() => setFlow("ai")} onSelectManual={() => setFlow("manual")} />;
 };
