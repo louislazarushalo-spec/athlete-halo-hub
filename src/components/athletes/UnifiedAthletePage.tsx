@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAthleteProfile } from "@/hooks/useAthleteProfile";
+import { useFollowedAthletes } from "@/hooks/useFollowedAthletes";
 import { useStudioRole } from "@/hooks/useStudioRole";
 import { getEventsBySport } from "@/data/sportEvents";
 import { Badge } from "@/components/ui/badge";
@@ -106,16 +107,17 @@ export const UnifiedAthletePage = ({ athlete, fromStudio = false, dataHubCompone
   const navigate = useNavigate();
   const { avatarUrl, bannerUrl, bio, studioPosts } = useAthleteProfile(athlete.id);
   const { hasAccess: hasStudioAccess } = useStudioRole();
+  const { isFollowing, toggleFollow } = useFollowedAthletes();
 
   const resolvedAvatar = avatarUrl || athlete.avatar;
   const resolvedBanner = bannerUrl || athlete.banner;
   const resolvedBio = bio || athlete.bio;
 
   const [activeTab, setActiveTab] = useState<TabId>("feed");
-  const [isFan, setIsFan] = useState(false);
+  const isFan = isFollowing(athlete.id);
 
   const handleBeAFan = () => {
-    setIsFan(!isFan);
+    toggleFollow(athlete.id);
     toast({
       title: isFan ? "Unfollowed" : "You're a fan! 🎉",
       description: isFan ? `You unfollowed ${athlete.name}` : `You're now following ${athlete.name}`,
