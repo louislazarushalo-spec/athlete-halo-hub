@@ -17,7 +17,8 @@ const ExplorePage = () => {
 
   // Extract unique sports from athletes data
   const sportFilters = useMemo(() => {
-    const sports = [...new Set(athletes.map((athlete) => athlete.sport))].sort();
+    const sports = [...new Set(athletes.map((athlete) => athlete.sport))] as string[];
+    sports.sort();
     return ["All", ...sports];
   }, []);
 
