@@ -9,7 +9,7 @@ import { PublishStepper } from "./PublishStepper";
 import { ContentLibraryModal } from "../ContentLibraryModal";
 import type { AssetItem } from "@/hooks/useStudioAthlete";
 
-const MANUAL_STEPS = ["Choose type", "Compose", "Preview", "Publish"];
+const MANUAL_STEPS = ["Type", "Build", "Preview", "Post"];
 
 type ContentCategory = "post" | "program" | "engagement";
 
