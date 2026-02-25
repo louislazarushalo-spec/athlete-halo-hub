@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useStudioRole } from "@/hooks/useStudioRole";
 import { getAthleteById, MediaFeedItem } from "@/data/athletes";
 import { useAthleteProfile } from "@/hooks/useAthleteProfile";
 import { getEventsBySport } from "@/data/sportEvents";
@@ -319,10 +320,11 @@ const TopFanAvatar = ({ fan }: { fan: typeof TOP_FANS[number] }) => {
 /* ═══════════════════════════════════════════════
    MAIN PAGE
    ═══════════════════════════════════════════════ */
-export const ArthurNewPage = () => {
+export const ArthurNewPage = ({ fromStudio = false }: { fromStudio?: boolean }) => {
   const navigate = useNavigate();
   const athlete = getAthleteById("arthur-cazaux")!;
   const { avatarUrl, bannerUrl, bio, studioPosts } = useAthleteProfile("arthur-cazaux");
+  const { hasAccess: hasStudioAccess } = useStudioRole();
 
   const resolvedAvatar = avatarUrl || athlete.avatar;
   const resolvedBanner = bannerUrl || athlete.banner;
@@ -441,16 +443,26 @@ export const ArthurNewPage = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
 
         {/* Back button */}
-        <div className="absolute top-0 left-0 z-50 px-3 pt-3">
+        <div className="absolute top-0 left-0 right-0 z-50 px-3 pt-3 flex items-center justify-between">
           <Button
             variant="ghost"
             size="icon"
             className="bg-background/50 backdrop-blur-sm hover:bg-background/70 h-10 w-10 rounded-full"
-            onClick={() => navigate("/home")}
+            onClick={() => navigate(fromStudio ? "/studio" : "/home")}
             aria-label="Go back"
           >
             <ArrowLeft className="h-5 w-5" />
           </Button>
+          {fromStudio && hasStudioAccess && (
+            <Button
+              variant="secondary"
+              size="sm"
+              className="bg-background/50 backdrop-blur-sm hover:bg-background/70 text-xs h-8"
+              onClick={() => navigate("/studio")}
+            >
+              ← Back to Studio
+            </Button>
+          )}
         </div>
 
         {/* Hero content – centered */}

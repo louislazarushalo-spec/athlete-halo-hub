@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { StudioCard } from "../StudioCard";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,6 +30,7 @@ export const StudioMyHaloTab = ({
   onUpdateBanner,
   onUploadAsset,
 }: StudioMyHaloTabProps) => {
+  const navigate = useNavigate();
   const [bioEditing, setBioEditing] = useState(false);
   const [bioTemp, setBioTemp] = useState("");
   const [bioSaving, setBioSaving] = useState(false);
@@ -136,7 +138,7 @@ export const StudioMyHaloTab = ({
         title="Feed preview"
         subtitle="The feed items fans see on your athlete page."
         ctaLabel="Open fan view"
-        onCtaClick={() => window.open(`/athlete/${profile.athlete_slug}`, "_blank")}
+        onCtaClick={() => navigate(`/athlete/${profile.athlete_slug}?from=studio`)}
       >
         <div className="rounded-lg border border-border/40 bg-muted/20 overflow-hidden">
           <div className="px-3 py-2 space-y-1.5 max-h-[300px] overflow-y-auto">
