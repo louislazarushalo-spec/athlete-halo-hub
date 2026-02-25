@@ -375,7 +375,7 @@ export const ArthurNewPage = () => {
       <div className="px-4 pb-4">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-[15px] font-semibold text-foreground">Top fans this week</h2>
-          <button className="text-[13px] text-primary font-medium min-h-[44px] flex items-center">See more</button>
+          <button onClick={() => navigate("/athlete/arthur-cazaux/fans")} className="text-[13px] text-primary font-medium min-h-[44px] flex items-center">See more</button>
         </div>
         <ScrollArea className="w-full">
           <div className="flex gap-3 pb-1">
