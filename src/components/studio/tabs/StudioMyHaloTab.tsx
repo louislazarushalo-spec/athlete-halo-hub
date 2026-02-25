@@ -144,33 +144,15 @@ export const StudioMyHaloTab = ({
         )}
       </StudioCard>
 
-      {/* Fan preview card — mirrors real fan page */}
+      {/* Feed preview card — shows only feed items fans see */}
       <StudioCard
-        title="Fan preview"
-        subtitle="This is what fans see on your athlete page."
+        title="Feed preview"
+        subtitle="The feed items fans see on your athlete page."
         ctaLabel="Open fan view"
         onCtaClick={() => window.open(`/athlete/${profile.athlete_slug}`, "_blank")}
       >
         <div className="rounded-lg border border-border/40 bg-muted/20 overflow-hidden">
-          {/* Mini banner + avatar (mirrors fan page header) */}
-          <div className="relative h-20 bg-muted">
-            {profile.banner_url && (
-              <img src={resolveAssetUrl(profile.banner_url)} alt="" className="w-full h-full object-cover" />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
-            <div className="absolute -bottom-5 left-3">
-              <div className="w-10 h-10 rounded-full overflow-hidden bg-muted-foreground/20 border-2 border-background">
-                {profile.avatar_url && <img src={resolveAssetUrl(profile.avatar_url)} alt="" className="w-full h-full object-cover" />}
-              </div>
-            </div>
-          </div>
-          <div className="px-3 pt-7 pb-2">
-            <p className="text-sm font-semibold leading-tight">{profile.display_name}</p>
-            <p className="text-[10px] text-muted-foreground">{profile.sport}</p>
-            {profile.bio && <p className="text-[11px] text-muted-foreground mt-1 line-clamp-2">{profile.bio}</p>}
-          </div>
-          {/* Published feed — same data as fan page */}
-          <div className="px-3 pb-3 space-y-1.5 max-h-[220px] overflow-y-auto">
+          <div className="px-3 py-2 space-y-1.5 max-h-[300px] overflow-y-auto">
             {fanPosts.length > 0 ? (
               fanPosts.map((post) => (
                 <div key={post.id} className="flex items-start gap-2 p-2 rounded-md bg-muted/30">

@@ -225,9 +225,24 @@ export function useStudioAthlete(athleteSlug?: string | null) {
         scheduled_at: null,
         created_at: new Date().toISOString(),
       }));
+
+      // Merge Kit Room (gearCollections) as "published" kit_room posts
+      const kitRoomPosts: StudioPost[] = (athlete?.gearCollections || []).map((gc) => ({
+        id: `static-kit-${gc.id}`,
+        athlete_id: profile.athlete_slug,
+        user_id: profile.user_id,
+        type: "kit_room",
+        title: gc.name,
+        body: gc.description || `${gc.products.length} item${gc.products.length !== 1 ? "s" : ""} from partner brands`,
+        media: gc.actionImage ? [gc.actionImage] : [],
+        status: "published",
+        published_at: new Date().toISOString(),
+        scheduled_at: null,
+        created_at: new Date().toISOString(),
+      }));
       
-      // DB posts first, then static (avoid duplicates)
-      setPosts([...dbPosts, ...staticPosts]);
+      // DB posts first, then static, then kit room (avoid duplicates)
+      setPosts([...dbPosts, ...staticPosts, ...kitRoomPosts]);
     } catch (err) {
       console.error("Error loading posts:", err);
     }

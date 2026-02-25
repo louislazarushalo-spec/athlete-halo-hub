@@ -836,7 +836,7 @@ const LegacyAthletePage = ({ id }: { id: string | undefined }) => {
                   <PierreHighlights />
                 ) : (
                   <div className="max-w-3xl mx-auto space-y-5">
-                    {/* Studio published posts */}
+                    {/* Studio published posts (includes kit_room items from useAthleteProfile) */}
                     {studioPosts.length > 0 && studioPosts.map((post, index) => (
                       <article
                         key={post.id}
