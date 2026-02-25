@@ -18,7 +18,17 @@ interface StudioCopilotTabProps {
   onOpenSources: () => void;
 }
 
-const glowCardStyle = {
+const greyGlowCardStyle = {
+  background: "linear-gradient(155deg, hsl(220 10% 15%) 0%, hsl(220 10% 10%) 100%)",
+  border: "1.5px solid hsl(220 10% 30% / 0.5)",
+  boxShadow:
+    "0 0 0 0.5px hsl(220 10% 40% / 0.15), " +
+    "inset 0 1px 0 0 hsl(220 10% 50% / 0.1), " +
+    "0 0 20px -2px hsl(220 10% 40% / 0.2), " +
+    "0 6px 24px -6px hsl(0 0% 0% / 0.5)",
+};
+
+const blueGlowCardStyle = {
   background: "linear-gradient(155deg, hsl(220 30% 14%) 0%, hsl(220 40% 9%) 100%)",
   border: "1.5px solid hsl(220 60% 40% / 0.45)",
   boxShadow:
@@ -64,7 +74,7 @@ export const StudioCopilotTab = ({
   return (
     <div className="space-y-3">
       {/* ── 1) Connect sources ── */}
-      <div className="rounded-2xl p-4 md:p-5" style={glowCardStyle}>
+      <div className="rounded-2xl p-4 md:p-5" style={greyGlowCardStyle}>
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0 flex-1">
             <h3 className="text-[15px] md:text-base font-semibold text-foreground leading-tight line-clamp-1">
@@ -86,7 +96,7 @@ export const StudioCopilotTab = ({
       </div>
 
       {/* ── 2) Brand & Strategy ── */}
-      <div className="rounded-2xl p-4 md:p-5" style={glowCardStyle}>
+      <div className="rounded-2xl p-4 md:p-5" style={greyGlowCardStyle}>
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0 flex-1">
             <h3 className="text-[15px] md:text-base font-semibold text-foreground leading-tight line-clamp-1">
@@ -111,7 +121,7 @@ export const StudioCopilotTab = ({
       <button
         onClick={() => setView("weekly-pack-flow")}
         className="w-full text-left rounded-2xl p-5 md:p-6 transition-all hover:scale-[1.01] active:scale-[0.99]"
-        style={glowCardStyle}
+        style={blueGlowCardStyle}
       >
         <div className="flex flex-col items-center text-center gap-2 py-3">
           <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-1">
