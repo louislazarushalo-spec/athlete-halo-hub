@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { StudioCard } from "../StudioCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Loader2 } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { Loader2 } from "lucide-react";
+import { PublishStepper } from "../publish/PublishStepper";
 import type { StudioMonetizationConfig } from "@/hooks/useStudioAthlete";
 
 const MONETIZE_CARDS = [
@@ -16,13 +15,16 @@ const MONETIZE_CARDS = [
   { type: "paid_live", title: "Paid live", subtitle: "Host exclusive paid live sessions with your community.", cta: "Set up paid live" },
 ];
 
+const SETUP_STEPS = ["Type", "Build", "Preview", "Post"];
+
 interface StudioMonetizeTabProps {
   monetization: StudioMonetizationConfig[];
   onSaveMonetization: (data: { type: string; config: Record<string, any> }) => Promise<any>;
 }
 
 export const StudioMonetizeTab = ({ monetization, onSaveMonetization }: StudioMonetizeTabProps) => {
-  const [editType, setEditType] = useState<string | null>(null);
+  const [activeType, setActiveType] = useState<string | null>(null);
+  const [step, setStep] = useState(1); // start at Build (skip Type since card selection = Type)
   const [formName, setFormName] = useState("");
   const [formDesc, setFormDesc] = useState("");
   const [formPrice, setFormPrice] = useState("");
@@ -30,67 +32,191 @@ export const StudioMonetizeTab = ({ monetization, onSaveMonetization }: StudioMo
 
   const getExisting = (type: string) => monetization.find((m) => m.type === type);
 
-  const openSetup = (type: string) => {
+  const openFlow = (type: string) => {
     const existing = getExisting(type);
-    setEditType(type);
+    setActiveType(type);
+    setStep(1); // skip Type, land on Build
     setFormName((existing?.config as any)?.name || "");
     setFormDesc((existing?.config as any)?.description || "");
     setFormPrice((existing?.config as any)?.price || "");
   };
 
-  const handleSave = async () => {
-    if (!editType) return;
+  const resetFlow = () => {
+    setActiveType(null);
+    setStep(1);
+    setFormName("");
+    setFormDesc("");
+    setFormPrice("");
+  };
+
+  const hasDraft = formName.length > 0 || formDesc.length > 0 || formPrice.length > 0;
+
+  const handleActivate = async () => {
+    if (!activeType) return;
     setSaving(true);
     await onSaveMonetization({
-      type: editType,
+      type: activeType,
       config: { name: formName, description: formDesc, price: formPrice },
     });
     setSaving(false);
-    setEditType(null);
+    setStep(3);
   };
 
-  return (
-    <div className="space-y-4">
-      <h2 className="text-lg font-semibold">Monetize</h2>
+  const activeLabel = activeType ? MONETIZE_CARDS.find((c) => c.type === activeType)?.title || activeType : "";
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {MONETIZE_CARDS.map((card) => {
-          const existing = getExisting(card.type);
-          return (
-            <StudioCard
-              key={card.type}
-              title={card.title}
-              subtitle={card.subtitle}
-              ctaLabel={existing ? "Edit" : card.cta}
-              onCtaClick={() => openSetup(card.type)}
-            >
-              {existing && (
-                <Badge variant="secondary" className="text-[10px] capitalize">{existing.status}</Badge>
-              )}
-            </StudioCard>
-          );
-        })}
-      </div>
+  // ─── Setup flow (stepper-based) ───
+  if (activeType) {
+    return (
+      <div className="space-y-3">
+        <PublishStepper steps={SETUP_STEPS} currentStep={step} onBack={resetFlow} confirmLeave={hasDraft} />
 
-      <Dialog open={!!editType} onOpenChange={(v) => !v && setEditType(null)}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle className="capitalize">Set up {editType?.replace("_", " ")}</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-3 mt-2">
-            <Input value={formName} onChange={(e) => setFormName(e.target.value)} placeholder="Name / tier" />
-            <Textarea value={formDesc} onChange={(e) => setFormDesc(e.target.value)} placeholder="Description" className="min-h-[60px]" />
-            <Input value={formPrice} onChange={(e) => setFormPrice(e.target.value)} placeholder="Price (€)" type="number" />
-            <p className="text-xs text-muted-foreground">Payment processing is not enabled yet. This saves as a draft.</p>
-            <div className="flex justify-end gap-2">
-              <Button variant="ghost" size="sm" className="h-9" onClick={() => setEditType(null)}>Cancel</Button>
-              <Button size="sm" className="h-9" onClick={handleSave} disabled={saving}>
-                {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : "Save draft"}
+        {/* Step 1 — Build */}
+        {step === 1 && (
+          <div className="rounded-xl border border-border/60 bg-card p-3.5 md:p-6">
+            <div className="mb-1">
+              <h3 className="text-[15px] md:text-base font-semibold text-foreground leading-tight">
+                Set up {activeLabel}
+              </h3>
+              <p className="text-[12px] md:text-sm text-muted-foreground mt-0.5 leading-snug">
+                Configure the basics. You can refine later.
+              </p>
+            </div>
+            <div className="space-y-3 mt-4">
+              <Input
+                value={formName}
+                onChange={(e) => setFormName(e.target.value)}
+                placeholder="Name / tier"
+                className="h-11 text-sm"
+              />
+              <Textarea
+                value={formDesc}
+                onChange={(e) => setFormDesc(e.target.value)}
+                placeholder="Description for fans"
+                className="min-h-[100px] text-sm"
+              />
+              <Input
+                value={formPrice}
+                onChange={(e) => setFormPrice(e.target.value)}
+                placeholder="Price (€)"
+                type="number"
+                className="h-11 text-sm"
+              />
+            </div>
+            <div className="flex justify-end gap-2 mt-4">
+              <Button variant="ghost" size="sm" className="h-11 text-sm" onClick={resetFlow}>
+                Cancel
+              </Button>
+              <Button
+                size="sm"
+                className="h-11 text-sm"
+                onClick={() => setStep(2)}
+                disabled={!formName.trim()}
+              >
+                Preview
               </Button>
             </div>
           </div>
-        </DialogContent>
-      </Dialog>
+        )}
+
+        {/* Step 2 — Preview */}
+        {step === 2 && (
+          <div className="rounded-xl border border-border/60 bg-card p-3.5 md:p-6">
+            <div className="mb-1">
+              <h3 className="text-[15px] md:text-base font-semibold text-foreground leading-tight">
+                Preview
+              </h3>
+              <p className="text-[12px] md:text-sm text-muted-foreground mt-0.5 leading-snug">
+                This is how fans will see it.
+              </p>
+            </div>
+            <div className="rounded-lg border border-border/50 p-4 bg-muted/20 mt-4">
+              <Badge variant="secondary" className="text-[10px] mb-2 capitalize">
+                {activeType?.replace("_", " ")}
+              </Badge>
+              <h4 className="font-semibold text-sm mb-1">{formName || "Untitled"}</h4>
+              <p className="text-sm text-muted-foreground whitespace-pre-wrap">
+                {formDesc || "No description."}
+              </p>
+              {formPrice && (
+                <p className="text-sm font-semibold mt-2">€{formPrice}</p>
+              )}
+            </div>
+            <p className="text-xs text-muted-foreground mt-3">
+              Payment processing is not enabled yet. This saves as a draft.
+            </p>
+            <div className="flex justify-end gap-2 mt-4">
+              <Button variant="ghost" size="sm" className="h-11 text-sm" onClick={() => setStep(1)}>
+                Edit
+              </Button>
+              <Button size="sm" className="h-11 text-sm" onClick={handleActivate} disabled={saving}>
+                {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : "Activate"}
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 3 — Done */}
+        {step === 3 && (
+          <div className="rounded-xl border border-border/60 bg-card p-3.5 md:p-6">
+            <div className="text-center py-6">
+              <span className="text-4xl mb-3 block">🎉</span>
+              <h3 className="text-[15px] font-semibold mb-1">{activeLabel} activated</h3>
+              <p className="text-sm text-muted-foreground mb-4">Saved as draft. You can edit anytime.</p>
+              <Button size="sm" className="h-11 text-sm" onClick={resetFlow}>
+                Back to Monetize
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // ─── Landing ───
+  return (
+    <div className="space-y-4">
+      <h2 className="text-lg md:text-xl font-semibold text-foreground">
+        Set up ways for fans to support you.
+      </h2>
+
+      <div className="space-y-2.5">
+        {MONETIZE_CARDS.map((card) => {
+          const existing = getExisting(card.type);
+          return (
+            <button
+              key={card.type}
+              onClick={() => openFlow(card.type)}
+              className="w-full text-left rounded-xl border border-border/60 bg-card p-3.5 md:p-5 hover:border-primary/40 transition-colors"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-[15px] md:text-base font-semibold text-foreground leading-tight line-clamp-1">
+                      {card.title}
+                    </h3>
+                    {existing && (
+                      <Badge variant="secondary" className="text-[10px] capitalize shrink-0">
+                        {existing.status}
+                      </Badge>
+                    )}
+                  </div>
+                  <p className="text-[12px] md:text-sm text-muted-foreground mt-0.5 leading-snug line-clamp-2">
+                    {card.subtitle}
+                  </p>
+                </div>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="shrink-0 h-9 text-[13px] md:text-sm pointer-events-none"
+                  tabIndex={-1}
+                >
+                  {existing ? "Edit" : card.cta}
+                </Button>
+              </div>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 };
