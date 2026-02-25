@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { StudioCard } from "../StudioCard";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2 } from "lucide-react";
 import { ContentLibraryModal } from "../ContentLibraryModal";
 import { resolveAssetUrl } from "@/lib/assetResolver";
-import { supabase } from "@/integrations/supabase/client";
 import type { StudioAthleteProfile, AssetItem, StudioPost } from "@/hooks/useStudioAthlete";
 
 interface StudioMyHaloTabProps {
@@ -35,22 +34,10 @@ export const StudioMyHaloTab = ({
   const [bioSaving, setBioSaving] = useState(false);
   const [libraryOpen, setLibraryOpen] = useState(false);
   const [libraryTarget, setLibraryTarget] = useState<"avatar" | "banner" | "general">("general");
-  const [fanPosts, setFanPosts] = useState<any[]>([]);
-
-  useEffect(() => {
-    if (!profile?.athlete_slug) return;
-    const fetchPosts = async () => {
-      const { data } = await supabase
-        .from("studio_posts")
-        .select("id, athlete_id, type, title, body, media, published_at, status")
-        .eq("athlete_id", profile.athlete_slug)
-        .eq("status", "published")
-        .order("published_at", { ascending: false })
-        .limit(10);
-      setFanPosts(data || []);
-    };
-    fetchPosts();
-  }, [profile?.athlete_slug, posts]);
+  // Use the already-merged posts prop (DB + static + kit room) filtered to published
+  const fanPosts = posts
+    .filter((p) => p.status === "published")
+    .slice(0, 15);
 
   if (loading || !profile) {
     return (
