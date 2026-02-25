@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { StudioAthleteProfile, StudioPost } from "@/hooks/useStudioAthlete";
 import type { AthleteSource } from "@/hooks/useStudioSources";
@@ -165,12 +166,19 @@ export const OnboardingBanner = ({
           <div className="space-y-2">
             {steps.map((step) => {
               const style = STATUS_STYLES[step.status];
+              const isDone = step.status === "done";
               return (
-                <div
+                <button
                   key={step.key}
-                  className="flex items-center justify-between p-3 rounded-lg bg-muted/20 border border-border/30"
+                  onClick={step.onCta}
+                  className={cn(
+                    "w-full flex items-center gap-3 p-3 rounded-lg border text-left transition-colors min-h-[56px]",
+                    isDone
+                      ? "bg-muted/10 border-border/20 opacity-70"
+                      : "bg-muted/20 border-border/30 hover:bg-muted/30 hover:border-primary/30 active:bg-muted/40"
+                  )}
                 >
-                  <div className="min-w-0 flex-1 mr-3">
+                  <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2 mb-0.5">
                       <span className="text-sm font-medium">{step.title}</span>
                       <Badge variant="secondary" className={cn("text-[10px] px-1.5 py-0", style.className)}>
@@ -179,16 +187,10 @@ export const OnboardingBanner = ({
                     </div>
                     <p className="text-xs text-muted-foreground">{step.why}</p>
                   </div>
-                  <Button
-                    variant={step.status === "done" ? "ghost" : "outline"}
-                    size="sm"
-                    className="h-9 shrink-0"
-                    disabled={step.status === "done"}
-                    onClick={step.onCta}
-                  >
-                    {step.ctaLabel}
-                  </Button>
-                </div>
+                  {!isDone && (
+                    <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
+                  )}
+                </button>
               );
             })}
           </div>
