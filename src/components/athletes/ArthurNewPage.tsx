@@ -446,7 +446,7 @@ export const ArthurNewPage = () => {
             variant="ghost"
             size="icon"
             className="bg-background/50 backdrop-blur-sm hover:bg-background/70 h-10 w-10 rounded-full"
-            onClick={() => (window.history.length > 1 ? navigate(-1) : navigate("/home"))}
+            onClick={() => navigate("/home")}
             aria-label="Go back"
           >
             <ArrowLeft className="h-5 w-5" />
