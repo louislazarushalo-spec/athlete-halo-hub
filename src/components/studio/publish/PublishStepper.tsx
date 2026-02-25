@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { ArrowLeft } from "lucide-react";
+import { ChevronLeft, Check } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,7 +16,6 @@ interface PublishStepperProps {
   steps: string[];
   currentStep: number;
   onBack: () => void;
-  /** If true, show a confirm dialog before navigating back */
   confirmLeave?: boolean;
 }
 
@@ -33,32 +32,40 @@ export const PublishStepper = ({ steps, currentStep, onBack, confirmLeave }: Pub
 
   return (
     <>
-      <div className="sticky top-[44px] md:top-14 z-40 bg-background/90 backdrop-blur-sm py-2 -mx-4 px-4">
-        <div className="flex items-center gap-3">
+      <div className="sticky top-[44px] md:top-14 z-40 bg-background/90 backdrop-blur-sm -mx-4 px-4">
+        <div className="flex items-center h-11 gap-1 overflow-hidden whitespace-nowrap">
+          {/* Back button */}
           <button
             onClick={handleBack}
-            className="flex items-center justify-center shrink-0 w-11 h-11 rounded-full hover:bg-muted/50 transition-colors"
+            className="flex items-center justify-center shrink-0 w-9 h-9 rounded-full hover:bg-muted/50 transition-colors -ml-1"
             aria-label="Back"
           >
-            <ArrowLeft className="h-5 w-5" />
+            <ChevronLeft className="h-5 w-5" />
           </button>
-          <div className="flex items-center gap-1 ml-auto">
-            {steps.map((s, i) => (
-              <div key={s} className="flex items-center gap-1">
-                <span
-                  className={cn(
-                    "text-[11px] md:text-xs font-medium px-2 py-1 rounded-full transition-colors",
-                    i === currentStep
-                      ? "bg-primary text-primary-foreground"
-                      : i < currentStep
-                        ? "text-primary"
+
+          {/* Stepper — single line, never wraps */}
+          <div className="flex items-center gap-0.5 min-w-0">
+            {steps.map((label, i) => (
+              <div key={label} className="flex items-center gap-0.5 shrink-0">
+                {i < currentStep ? (
+                  /* Completed: small check dot */
+                  <span className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/20">
+                    <Check className="h-3 w-3 text-primary" />
+                  </span>
+                ) : (
+                  <span
+                    className={cn(
+                      "text-[11px] font-medium px-1.5 py-0.5 rounded-full leading-none",
+                      i === currentStep
+                        ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground"
-                  )}
-                >
-                  {s}
-                </span>
+                    )}
+                  >
+                    {label}
+                  </span>
+                )}
                 {i < steps.length - 1 && (
-                  <span className={cn("text-[10px]", i < currentStep ? "text-primary/50" : "text-muted-foreground/40")}>→</span>
+                  <span className="text-[9px] text-muted-foreground/40 mx-0.5">›</span>
                 )}
               </div>
             ))}

@@ -8,7 +8,7 @@ import { Loader2 } from "lucide-react";
 import { PublishStepper } from "./PublishStepper";
 import type { AssetItem } from "@/hooks/useStudioAthlete";
 
-const AI_STEPS = ["Sources", "Draft", "Preview", "Publish"];
+const AI_STEPS = ["Type", "Build", "Preview", "Post"];
 
 interface AIFlowProps {
   onBack: () => void;
