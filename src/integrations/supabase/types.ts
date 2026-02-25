@@ -345,6 +345,42 @@ export type Database = {
         }
         Relationships: []
       }
+      fan_engagement_weekly: {
+        Row: {
+          athlete_id: string
+          comments_count: number
+          id: string
+          participation_count: number
+          reactions_count: number
+          score: number
+          updated_at: string
+          user_id: string
+          week_start_date: string
+        }
+        Insert: {
+          athlete_id: string
+          comments_count?: number
+          id?: string
+          participation_count?: number
+          reactions_count?: number
+          score?: number
+          updated_at?: string
+          user_id: string
+          week_start_date: string
+        }
+        Update: {
+          athlete_id?: string
+          comments_count?: number
+          id?: string
+          participation_count?: number
+          reactions_count?: number
+          score?: number
+          updated_at?: string
+          user_id?: string
+          week_start_date?: string
+        }
+        Relationships: []
+      }
       fan_questions: {
         Row: {
           answer: string | null
