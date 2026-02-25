@@ -7,6 +7,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { SubscriptionProvider } from "@/contexts/SubscriptionContext";
+import { AthleteProfilesProvider } from "@/hooks/useAthleteProfiles";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
@@ -46,8 +47,9 @@ const App = () => (
     <ThemeProvider>
       <AuthProvider>
         <SubscriptionProvider>
-          <CartProvider>
-            <TooltipProvider>
+          <AthleteProfilesProvider>
+            <CartProvider>
+              <TooltipProvider>
               <Toaster />
               <Sonner />
               <BrowserRouter>
@@ -108,7 +110,8 @@ const App = () => (
                 </Routes>
               </BrowserRouter>
             </TooltipProvider>
-          </CartProvider>
+            </CartProvider>
+          </AthleteProfilesProvider>
         </SubscriptionProvider>
       </AuthProvider>
     </ThemeProvider>

@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout/Layout";
 import { AthleteCard } from "@/components/athletes/AthleteCard";
-import { athletes } from "@/data/athletes";
+import { athletes as staticAthletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
@@ -10,6 +11,7 @@ const sportFilters = ["All", "Rugby", "Football", "Tennis", "Swimming", "Basketb
 const sortOptions = ["Trending", "Most Followed", "New"];
 
 const AthletesPage = () => {
+  const { athletes } = useAthleteProfiles();
   const [activeFilter, setActiveFilter] = useState("All");
   const [sortBy, setSortBy] = useState("Trending");
   const [searchQuery, setSearchQuery] = useState("");

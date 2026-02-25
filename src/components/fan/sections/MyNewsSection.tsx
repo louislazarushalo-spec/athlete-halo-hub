@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Badge } from "@/components/ui/badge";
 import { Instagram, Twitter, Youtube, Newspaper } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -41,6 +41,7 @@ interface StudioPostNews {
 }
 
 export const MyNewsSection = () => {
+  const { athletes } = useAthleteProfiles();
   const followedAthletes = athletes.filter(a => followedAthleteIds.includes(a.id));
   const [studioPosts, setStudioPosts] = useState<StudioPostNews[]>([]);
   

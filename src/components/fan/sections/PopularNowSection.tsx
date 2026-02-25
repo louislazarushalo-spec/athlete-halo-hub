@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { ChevronRight } from "lucide-react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
@@ -8,6 +8,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 const followedAthleteIds = ["arthur-cazaux", "tommy-fleetwood", "elisa-balsamo"];
 
 export const PopularNowSection = () => {
+  const { athletes } = useAthleteProfiles();
   // Randomly select athletes excluding followed ones
   const randomAthletes = useMemo(() => {
     const available = athletes.filter(a => !followedAthleteIds.includes(a.id));

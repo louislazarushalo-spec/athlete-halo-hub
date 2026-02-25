@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Check, Sparkles, ArrowRight } from "lucide-react";
 import { useEffect } from "react";
 import { useSubscription } from "@/contexts/SubscriptionContext";
+import { useAthleteProfile } from "@/hooks/useAthleteProfile";
 
 const SubscribeSuccessPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const athlete = getAthleteById(id || "");
+  const { avatarUrl: resolvedAvatar, bannerUrl: resolvedBanner } = useAthleteProfile(id);
   const { isSubscribed, isLoading } = useSubscription();
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const SubscribeSuccessPage = () => {
       {/* Blurred Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center blur-xl scale-110"
-        style={{ backgroundImage: `url(${athlete.banner})` }}
+        style={{ backgroundImage: `url(${resolvedBanner || athlete.banner})` }}
       />
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
 
@@ -57,7 +59,7 @@ const SubscribeSuccessPage = () => {
 
         {/* Athlete Avatar */}
         <img 
-          src={athlete.avatar} 
+          src={resolvedAvatar || athlete.avatar} 
           alt={athlete.name}
           className="w-20 h-20 rounded-full object-cover border-4 border-primary shadow-2xl mb-6"
         />

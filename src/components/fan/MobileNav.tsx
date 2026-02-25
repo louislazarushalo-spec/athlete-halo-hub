@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Home, Compass, MessageCircle, Bell, Settings, X, LogOut, User, Menu } from "lucide-react";
 import { athletes, getAthleteById } from "@/data/athletes";
 import { useAuth } from "@/contexts/AuthContext";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
@@ -23,6 +24,7 @@ export const MobileNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { resolve } = useAthleteProfiles();
   const [open, setOpen] = useState(false);
 
   const handleLogout = async () => {
@@ -90,7 +92,7 @@ export const MobileNav = () => {
                 className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-muted/50 transition-colors"
               >
                 <img
-                  src={athlete.avatar}
+                  src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar}
                   alt={athlete.name}
                   className="w-8 h-8 rounded-full object-cover object-top"
                 />

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 
@@ -12,6 +12,7 @@ const featuredProducts = [
 ];
 
 export const GearTheyUseSection = () => {
+  const { athletes } = useAthleteProfiles();
   const products = featuredProducts.map((fp) => {
     const athlete = athletes.find((a) => a.id === fp.athleteId);
     const product = athlete?.products.find((p) => p.name === fp.productName);

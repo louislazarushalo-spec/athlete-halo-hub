@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Play, ChevronRight } from "lucide-react";
 
 // Hardcoded followed athletes for demo
 const followedAthleteIds = ["arthur-cazaux", "tommy-fleetwood", "elisa-balsamo"];
 
 export const TrainLikeThemSection = () => {
+  const { athletes } = useAthleteProfiles();
   // Get trainings from followed athletes
   const trainings = followedAthleteIds.map(athleteId => {
     const athlete = athletes.find(a => a.id === athleteId);

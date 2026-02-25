@@ -1,14 +1,9 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Dumbbell, Heart, Package } from "lucide-react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
-// Simulated active athletes with recent updates
-const activeAthletes = athletes.slice(0, 6).map((athlete, index) => ({
-  ...athlete,
-  recentUpdate: index % 3 === 0 ? "training" : index % 3 === 1 ? "life" : "gear",
-  updatedAgo: `${Math.floor(Math.random() * 12) + 1}h ago`,
-}));
+// Module-scope constants only
 
 const updateIcons = {
   training: Dumbbell,
@@ -23,6 +18,12 @@ const updateLabels = {
 };
 
 export const ActiveNowSection = () => {
+  const { athletes } = useAthleteProfiles();
+  const activeAthletes = athletes.slice(0, 6).map((athlete, index) => ({
+    ...athlete,
+    recentUpdate: index % 3 === 0 ? "training" : index % 3 === 1 ? "life" : "gear",
+    updatedAgo: `${Math.floor(Math.random() * 12) + 1}h ago`,
+  }));
   return (
     <section className="mb-12">
       <div className="mb-6">

@@ -4,6 +4,7 @@ import { PostCard } from "@/components/posts/PostCard";
 import { Badge } from "@/components/ui/badge";
 import { athletes } from "@/data/athletes";
 import { useState, useEffect } from "react";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Link } from "react-router-dom";
 import { Dumbbell, Heart, Package, Grid } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -26,6 +27,7 @@ interface StudioPostItem {
 }
 
 const FeedPage = () => {
+  const { resolve } = useAthleteProfiles();
   const [activeFilter, setActiveFilter] = useState("all");
   const [studioPosts, setStudioPosts] = useState<StudioPostItem[]>([]);
   
@@ -117,7 +119,7 @@ const FeedPage = () => {
                       <Link key={post.id} to={`/athlete/${post.athlete_id}`}>
                         <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
                           <div className="p-3 md:p-4 flex items-center gap-3 border-b border-border/50">
-                            <img src={athlete.avatar} alt={athlete.name} className="w-8 h-8 rounded-full object-cover" />
+                            <img src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar} alt={athlete.name} className="w-8 h-8 rounded-full object-cover" />
                             <div className="flex-1 min-w-0">
                               <span className="font-semibold text-sm">{athlete.name}</span>
                               <Badge variant="secondary" className="ml-2 text-[10px] capitalize">{post.type.replace("_", " ")}</Badge>

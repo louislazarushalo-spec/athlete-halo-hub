@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { athletes } from "@/data/athletes";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Button } from "@/components/ui/button";
 
 // Hardcoded followed athletes for demo
 const followedAthleteIds = ["arthur-cazaux", "tommy-fleetwood", "elisa-balsamo"];
 
 export const GearYourAthletesTrustSection = () => {
+  const { athletes } = useAthleteProfiles();
   // Get gear from followed athletes
   const gearItems = followedAthleteIds.flatMap(athleteId => {
     const athlete = athletes.find(a => a.id === athleteId);

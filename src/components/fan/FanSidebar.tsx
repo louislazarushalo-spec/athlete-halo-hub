@@ -3,6 +3,7 @@ import { Home, Compass, MessageCircle, Bell, Settings, Smartphone, ChevronDown, 
 import { athletes, getAthleteById } from "@/data/athletes";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,6 +37,7 @@ export const FanSidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { resolve } = useAthleteProfiles();
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   const handleLogout = async () => {
@@ -97,7 +99,7 @@ export const FanSidebar = () => {
               className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-muted/50 transition-colors group"
             >
               <img
-                src={athlete.avatar}
+                src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar}
                 alt={athlete.name}
                 className="w-8 h-8 rounded-full object-cover object-top ring-2 ring-transparent group-hover:ring-primary/30 transition-all"
               />
@@ -123,7 +125,7 @@ export const FanSidebar = () => {
               className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-muted/50 transition-colors group"
             >
               <img
-                src={athlete.avatar}
+                src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar}
                 alt={athlete.name}
                 className="w-7 h-7 rounded-full object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity"
               />
