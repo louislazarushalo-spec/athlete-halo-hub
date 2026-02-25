@@ -358,17 +358,25 @@ export const ArthurNewPage = () => {
 
       {/* ─── 2. BE A FAN CTA ─── */}
       <div className="px-4 py-4">
-        <Button
+        <button
           onClick={handleBeAFan}
           className={cn(
-            "w-full h-14 rounded-full text-[16px] font-bold tracking-wide transition-all shadow-lg",
+            "w-full min-h-[52px] rounded-full text-[16px] font-bold tracking-wide transition-all duration-200 relative overflow-hidden",
             isFan
-              ? "bg-muted text-foreground hover:bg-muted/80 border border-border"
-              : "bg-foreground text-background hover:bg-foreground/90"
+              ? "bg-primary/15 text-primary border border-primary/30 hover:bg-primary/20"
+              : "text-primary-foreground hover:brightness-110 active:brightness-90"
           )}
+          style={
+            !isFan
+              ? {
+                  background: "linear-gradient(135deg, hsl(220 85% 45%), hsl(217 91% 60%), hsl(210 100% 70%))",
+                  boxShadow: "0 0 24px hsl(217 91% 60% / 0.35), 0 4px 12px hsl(220 85% 45% / 0.3)",
+                }
+              : undefined
+          }
         >
-          {isFan ? "✓  YOU'RE A FAN" : "BE A FAN"}
-        </Button>
+          {isFan ? "✓  FAN" : "BE A FAN"}
+        </button>
       </div>
 
       {/* ─── 3. Top Fans This Week ─── */}
