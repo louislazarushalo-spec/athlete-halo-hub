@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Loader2 } from "lucide-react";
 import { ContentLibraryModal } from "../ContentLibraryModal";
+import { resolveAssetUrl } from "@/lib/assetResolver";
 import type { StudioAthleteProfile, AssetItem, StudioPost } from "@/hooks/useStudioAthlete";
 
 interface StudioMyHaloTabProps {
@@ -73,14 +74,14 @@ export const StudioMyHaloTab = ({
       >
         <div className="relative rounded-lg overflow-hidden bg-muted h-32 md:h-40 mb-12">
           {profile.banner_url && (
-            <img src={profile.banner_url} alt="Banner" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+            <img src={resolveAssetUrl(profile.banner_url)} alt="Banner" className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between p-4">
             <div className="flex items-end gap-3">
               <button onClick={() => openLibraryFor("avatar")} className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-muted-foreground/20 border-4 border-background overflow-hidden hover:ring-2 hover:ring-primary/40 transition-all">
                 {profile.avatar_url ? (
-                  <img src={profile.avatar_url} alt={profile.display_name} className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+                  <img src={resolveAssetUrl(profile.avatar_url)} alt={profile.display_name} className="w-full h-full object-cover" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-2xl">👤</div>
                 )}
@@ -127,7 +128,7 @@ export const StudioMyHaloTab = ({
           {/* Mini header preview */}
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full overflow-hidden bg-muted-foreground/20">
-              {profile.avatar_url && <img src={profile.avatar_url} alt="" className="w-full h-full object-cover" />}
+              {profile.avatar_url && <img src={resolveAssetUrl(profile.avatar_url)} alt="" className="w-full h-full object-cover" />}
             </div>
             <div>
               <p className="text-sm font-medium">{profile.display_name}</p>

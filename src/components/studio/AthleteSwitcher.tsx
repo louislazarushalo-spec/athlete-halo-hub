@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useStudioAthleteContext } from "@/contexts/StudioAthleteContext";
 import { ChevronDown, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { resolveAssetUrl } from "@/lib/assetResolver";
 
 export const AthleteSwitcher = () => {
   const { currentAthleteSlug, setCurrentAthleteSlug, managedAthletes, ensureProfile } = useStudioAthleteContext();
@@ -38,7 +39,7 @@ export const AthleteSwitcher = () => {
         className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted/50 hover:bg-muted transition-colors"
       >
         <div className="w-6 h-6 rounded-full overflow-hidden bg-muted-foreground/20">
-          {current?.avatar_url && <img src={current.avatar_url} alt="" className="w-full h-full object-cover" />}
+          {current?.avatar_url && <img src={resolveAssetUrl(current.avatar_url)} alt="" className="w-full h-full object-cover" />}
         </div>
         <span className="text-sm font-medium max-w-[120px] truncate">{current?.display_name || "Select athlete"}</span>
         <ChevronDown className={cn("h-3.5 w-3.5 text-muted-foreground transition-transform", open && "rotate-180")} />
@@ -69,7 +70,7 @@ export const AthleteSwitcher = () => {
                 )}
               >
                 <div className="w-7 h-7 rounded-full overflow-hidden bg-muted-foreground/20 shrink-0">
-                  {a.avatar_url && <img src={a.avatar_url} alt="" className="w-full h-full object-cover" />}
+                  {a.avatar_url && <img src={resolveAssetUrl(a.avatar_url)} alt="" className="w-full h-full object-cover" />}
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-medium truncate">{a.display_name}</p>

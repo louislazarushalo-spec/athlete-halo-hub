@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { resolveAssetUrl } from "@/lib/assetResolver";
 import { getAthleteById, Athlete } from "@/data/athletes";
 
 export interface AthleteProfileData {
@@ -89,10 +90,10 @@ export function useAthleteProfile(athleteId: string | undefined): AthleteProfile
 
   // Merge: DB wins over static when values are non-empty
   const avatarUrl = (dbProfile?.avatar_url && dbProfile.avatar_url.length > 0)
-    ? dbProfile.avatar_url
+    ? resolveAssetUrl(dbProfile.avatar_url)
     : (athlete?.avatar || "");
   const bannerUrl = (dbProfile?.banner_url && dbProfile.banner_url.length > 0)
-    ? dbProfile.banner_url
+    ? resolveAssetUrl(dbProfile.banner_url)
     : (athlete?.banner || "");
   const bio = (dbProfile?.bio && dbProfile.bio.length > 0)
     ? dbProfile.bio
