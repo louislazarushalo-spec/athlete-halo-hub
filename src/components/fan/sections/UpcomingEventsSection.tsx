@@ -20,21 +20,28 @@ export const UpcomingEventsSection = () => {
 
   const now = new Date();
 
-  // Find next 5 upcoming events across all followed athletes
-  const upcomingEvents = followedAthletes
-    .flatMap((athlete) => {
+  // One next event per followed athlete
+  const nextPerAthlete = followedAthletes
+    .map((athlete) => {
       const events = athlete.events || getEventsBySport(athlete.sport, athlete.gender);
-      return events.map((e) => ({
-        ...e,
-        athlete,
-        sortDate: new Date(parseInt(e.year), monthToNumber[e.month] ?? 0, parseInt(e.date)),
-      }));
+      const upcoming = events
+        .map((e) => ({
+          ...e,
+          athlete,
+          sortDate: new Date(parseInt(e.year), monthToNumber[e.month] ?? 0, parseInt(e.date)),
+        }))
+        .filter((e) => e.sortDate >= now)
+        .sort((a, b) => a.sortDate.getTime() - b.sortDate.getTime());
+      return upcoming[0] ?? null;
     })
-    .filter((e) => e.sortDate >= now)
-    .sort((a, b) => a.sortDate.getTime() - b.sortDate.getTime())
-    .slice(0, 5);
+    .filter(Boolean)
+    .sort((a, b) => a!.sortDate.getTime() - b!.sortDate.getTime()) as Array<{
+      id: string; name: string; date: string; month: string; year: string;
+      category: string; countryFlag: string; location: string;
+      athlete: (typeof followedAthletes)[number]; sortDate: Date;
+    }>;
 
-  if (upcomingEvents.length === 0) {
+  if (nextPerAthlete.length === 0) {
     return (
       <section className="mb-6">
         <h2 className="font-display text-lg font-semibold mb-3">Next events</h2>
@@ -50,8 +57,8 @@ export const UpcomingEventsSection = () => {
     <section className="mb-6">
       <h2 className="font-display text-lg font-semibold mb-3">Next events</h2>
       <div className="space-y-2">
-        {upcomingEvents.map((event, idx) => (
-          <Link key={`${event.id}-${idx}`} to={`/athlete/${event.athlete.id}`} className="group block">
+        {nextPerAthlete.map((event) => (
+          <Link key={event.athlete.id} to={`/athlete/${event.athlete.id}`} className="group block">
             <article className="rounded-2xl border border-border/40 bg-card p-4 transition-all hover:border-primary/30 flex items-center gap-3">
               <img
                 src={event.athlete.avatar}
@@ -67,9 +74,7 @@ export const UpcomingEventsSection = () => {
                 </p>
                 <div className="flex items-center gap-1.5 mt-1 text-[11px] text-muted-foreground">
                   <Calendar className="h-3 w-3" />
-                  <span>
-                    {event.date} {event.month} {event.year}
-                  </span>
+                  <span>{event.date} {event.month} {event.year}</span>
                   <span>{event.countryFlag}</span>
                 </div>
               </div>
