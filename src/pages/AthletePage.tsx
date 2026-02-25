@@ -407,10 +407,7 @@ const LegacyAthletePage = ({ id }: { id: string | undefined }) => {
             variant="ghost"
             size="icon"
             className="absolute top-4 right-4 sm:right-auto sm:left-4 bg-background/60 backdrop-blur-sm hover:bg-background/80 z-50 h-10 w-10 touch-manipulation"
-            onClick={() => {
-              if (window.history.length > 1) navigate(-1);
-              else navigate("/home");
-            }}
+            onClick={() => navigate("/home")}
             aria-label="Go back"
           >
             <ArrowLeft className="h-5 w-5" />
