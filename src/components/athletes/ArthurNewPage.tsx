@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { getAthleteById, MediaFeedItem } from "@/data/athletes";
 import { useAthleteProfile } from "@/hooks/useAthleteProfile";
 import { getEventsBySport } from "@/data/sportEvents";
+import { arthurTrainingData, arthurExclusiveZoneData } from "@/data/athleteContent";
 import { ArthurDataHub } from "./DataHub/ArthurDataHub";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,6 +20,8 @@ import {
   BarChart3,
   Rss,
   ExternalLink,
+  Trophy,
+  MessageCircle,
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
@@ -164,14 +167,26 @@ const FeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: s
   return null;
 };
 
-/* ─── Program Feed Card ─── */
-const ProgramFeedCard = ({ item }: { item: MediaFeedItem }) => {
+/* ─── Program Feed Card (with category tag) ─── */
+const ProgramFeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem & { _category?: string }; avatarSrc: string; name: string }) => {
   const [commentOpen, setCommentOpen] = useState(false);
   return (
     <article className="bg-card border border-border/40 rounded-2xl overflow-hidden">
+      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border/30">
+        <img src={avatarSrc} alt={name} className="w-8 h-8 rounded-full object-cover object-top ring-1 ring-border" />
+        <div className="flex-1 min-w-0">
+          <span className="text-[13px] font-semibold text-foreground truncate block">{name}</span>
+          <span className="text-[11px] text-muted-foreground">Program</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          {(item as any)._category && (
+            <Badge variant="outline" className="text-[10px] border-primary/30 text-primary">{(item as any)._category}</Badge>
+          )}
+          <Badge variant="secondary" className="text-[10px]">Program</Badge>
+        </div>
+      </div>
       {item.image && <MediaFrame src={item.image} alt={item.title || "Program"} ratio="1:1" />}
       <div className="px-4 py-3 space-y-2">
-        <Badge variant="secondary" className="text-[10px]">Program</Badge>
         <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{item.title}</h4>
         <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
         <Link to="/training/arthur-cazaux">
@@ -187,18 +202,92 @@ const ProgramFeedCard = ({ item }: { item: MediaFeedItem }) => {
 };
 
 /* ─── Cause Feed Card ─── */
-const CauseFeedCard = ({ item }: { item: MediaFeedItem }) => {
+const CauseFeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem; avatarSrc: string; name: string }) => {
   const [commentOpen, setCommentOpen] = useState(false);
   return (
     <article className="bg-card border border-border/40 rounded-2xl overflow-hidden">
+      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border/30">
+        <img src={avatarSrc} alt={name} className="w-8 h-8 rounded-full object-cover object-top ring-1 ring-border" />
+        <div className="flex-1 min-w-0">
+          <span className="text-[13px] font-semibold text-foreground truncate block">{name}</span>
+          <span className="text-[11px] text-muted-foreground">Cause</span>
+        </div>
+        <Badge variant="secondary" className="text-[10px]">Cause</Badge>
+      </div>
       {item.image && <MediaFrame src={item.image} alt={item.title || "Cause"} ratio="1:1" />}
       <div className="px-4 py-3 space-y-2">
-        <Badge variant="secondary" className="text-[10px]">Cause</Badge>
         <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{item.title}</h4>
         <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
         <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1">
           Learn more <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
         </Button>
+      </div>
+      <ReactionBar postId={item.id} onCommentClick={() => setCommentOpen(true)} />
+      <CommentsSheet postId={item.id} open={commentOpen} onOpenChange={setCommentOpen} />
+    </article>
+  );
+};
+
+/* ─── Prize Draw Feed Card ─── */
+const PrizeDrawFeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem & { _badge?: string }; avatarSrc: string; name: string }) => {
+  const [commentOpen, setCommentOpen] = useState(false);
+  return (
+    <article className="bg-card border border-border/40 rounded-2xl overflow-hidden">
+      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border/30">
+        <img src={avatarSrc} alt={name} className="w-8 h-8 rounded-full object-cover object-top ring-1 ring-border" />
+        <div className="flex-1 min-w-0">
+          <span className="text-[13px] font-semibold text-foreground truncate block">{name}</span>
+          <span className="text-[11px] text-muted-foreground">Prize draw</span>
+        </div>
+        <Badge variant="secondary" className="text-[10px] bg-primary/15 text-primary border-primary/30">
+          <Trophy className="h-3 w-3 mr-1" />Prize draw
+        </Badge>
+      </div>
+      <div className="px-4 py-3 space-y-2">
+        <h4 className="text-[15px] font-semibold text-foreground line-clamp-2">{item.title}</h4>
+        <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
+        {(item as any)._badge && (
+          <span className="text-[11px] text-primary font-medium">{(item as any)._badge}</span>
+        )}
+        <div>
+          <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1" onClick={() => toast({ title: "Prize draw", description: "Entry flow coming soon!" })}>
+            Enter <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
+          </Button>
+        </div>
+      </div>
+      <ReactionBar postId={item.id} onCommentClick={() => setCommentOpen(true)} />
+      <CommentsSheet postId={item.id} open={commentOpen} onOpenChange={setCommentOpen} />
+    </article>
+  );
+};
+
+/* ─── Live Discussion Feed Card ─── */
+const LiveDiscussionFeedCard = ({ item, avatarSrc, name }: { item: MediaFeedItem & { _participants?: number; _lastActive?: string }; avatarSrc: string; name: string }) => {
+  const [commentOpen, setCommentOpen] = useState(false);
+  return (
+    <article className="bg-card border border-border/40 rounded-2xl overflow-hidden">
+      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border/30">
+        <img src={avatarSrc} alt={name} className="w-8 h-8 rounded-full object-cover object-top ring-1 ring-border" />
+        <div className="flex-1 min-w-0">
+          <span className="text-[13px] font-semibold text-foreground truncate block">{name}</span>
+          <span className="text-[11px] text-muted-foreground">Discussion</span>
+        </div>
+        <Badge variant="secondary" className="text-[10px] bg-accent/15 text-accent-foreground border-accent/30">
+          <MessageCircle className="h-3 w-3 mr-1" />Live
+        </Badge>
+      </div>
+      <div className="px-4 py-3 space-y-2">
+        <h4 className="text-[15px] font-semibold text-foreground line-clamp-2">{item.title}</h4>
+        <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
+        <div className="flex items-center gap-3 text-[11px] text-muted-foreground">
+          {(item as any)._participants && <span><Users className="h-3 w-3 inline mr-1" />{(item as any)._participants} fans</span>}
+          {(item as any)._lastActive && <span>Active {(item as any)._lastActive}</span>}
+        </div>
+        <div>
+          <Button variant="outline" size="sm" className="h-9 text-[13px] rounded-full mt-1" onClick={() => toast({ title: "Live discussion", description: "Join flow coming soon!" })}>
+            Join <ExternalLink className="h-3.5 w-3.5 ml-1.5" />
+          </Button>
+        </div>
       </div>
       <ReactionBar postId={item.id} onCommentClick={() => setCommentOpen(true)} />
       <CommentsSheet postId={item.id} open={commentOpen} onOpenChange={setCommentOpen} />
@@ -250,12 +339,13 @@ export const ArthurNewPage = () => {
     });
   };
 
-  /* ─── Programs + Cause ─── */
-  const programs = athlete.training || [];
+  /* ─── Cause ─── */
   const cause = athlete.cause;
 
   /* ─── Feed data ─── */
-  const socialItems: (MediaFeedItem & { _cardType?: string })[] = [
+  type ExtendedFeedItem = MediaFeedItem & { _cardType?: string; _category?: string; _badge?: string; _participants?: number; _lastActive?: string };
+
+  const socialItems: ExtendedFeedItem[] = [
     ...studioPosts.map((p) => ({
       id: p.id,
       type: (p.type === "video" ? "video" : p.type === "article" ? "article" : "social") as MediaFeedItem["type"],
@@ -269,19 +359,52 @@ export const ArthurNewPage = () => {
     ...athlete.mediaFeed,
   ];
 
-  const programItems: (MediaFeedItem & { _cardType?: string })[] = programs.map((p, i) => ({
-    id: `program-${i}`,
+  /* Map ALL programs from arthurTrainingData (16 total: 4 categories × 4 programs) */
+  const programItems: ExtendedFeedItem[] = arthurTrainingData.categories.flatMap((cat) =>
+    cat.programs.map((p) => ({
+      id: `program-${cat.id}-${p.id}`,
+      type: "social" as MediaFeedItem["type"],
+      platform: "instagram" as MediaFeedItem["platform"],
+      title: p.title,
+      content: p.description || "",
+      image: p.image || "",
+      timestamp: "",
+      stats: {},
+      _cardType: "program",
+      _category: cat.title,
+    }))
+  );
+
+  /* Map ALL prize draws from arthurExclusiveZoneData (4 total) */
+  const prizeDrawItems: ExtendedFeedItem[] = arthurExclusiveZoneData.prizeDraws.map((pd) => ({
+    id: `prize-draw-${pd.id}`,
     type: "social" as MediaFeedItem["type"],
     platform: "instagram" as MediaFeedItem["platform"],
-    title: p.title,
-    content: p.description || "",
-    image: p.image || "",
+    title: pd.title,
+    content: pd.description,
+    image: "",
     timestamp: "",
     stats: {},
-    _cardType: "program",
+    _cardType: "prize_draw",
+    _badge: pd.badge,
   }));
 
-  const causeItems: (MediaFeedItem & { _cardType?: string })[] = cause
+  /* Map ALL discussion threads from arthurExclusiveZoneData (4 total) */
+  const discussionItems: ExtendedFeedItem[] = arthurExclusiveZoneData.discussionThreads.map((dt) => ({
+    id: `discussion-${dt.id}`,
+    type: "social" as MediaFeedItem["type"],
+    platform: "instagram" as MediaFeedItem["platform"],
+    title: dt.title,
+    content: dt.description,
+    image: "",
+    timestamp: "",
+    stats: {},
+    _cardType: "live_discussion",
+    _participants: dt.participants,
+    _lastActive: dt.lastActive,
+  }));
+
+  const causeItems: ExtendedFeedItem[] = cause
     ? [{
         id: "cause-main",
         type: "social" as MediaFeedItem["type"],
@@ -295,7 +418,7 @@ export const ArthurNewPage = () => {
       }]
     : [];
 
-  const allFeedItems = [...socialItems, ...programItems, ...causeItems];
+  const allFeedItems: ExtendedFeedItem[] = [...socialItems, ...programItems, ...prizeDrawItems, ...discussionItems, ...causeItems];
 
   /* ─── Events ─── */
   const events = athlete.events || getEventsBySport(athlete.sport, athlete.gender);
@@ -428,12 +551,17 @@ export const ArthurNewPage = () => {
               </div>
             ) : (
               allFeedItems.map((item) => {
-                const extended = item as any;
-                if (extended._cardType === "program") {
-                  return <ProgramFeedCard key={item.id} item={item} />;
+                if (item._cardType === "program") {
+                  return <ProgramFeedCard key={item.id} item={item} avatarSrc={resolvedAvatar} name={athlete.name} />;
                 }
-                if (extended._cardType === "cause") {
-                  return <CauseFeedCard key={item.id} item={item} />;
+                if (item._cardType === "cause") {
+                  return <CauseFeedCard key={item.id} item={item} avatarSrc={resolvedAvatar} name={athlete.name} />;
+                }
+                if (item._cardType === "prize_draw") {
+                  return <PrizeDrawFeedCard key={item.id} item={item} avatarSrc={resolvedAvatar} name={athlete.name} />;
+                }
+                if (item._cardType === "live_discussion") {
+                  return <LiveDiscussionFeedCard key={item.id} item={item} avatarSrc={resolvedAvatar} name={athlete.name} />;
                 }
                 return <FeedCard key={item.id} item={item} avatarSrc={resolvedAvatar} name={athlete.name} />;
               })
