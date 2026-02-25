@@ -35,6 +35,7 @@ import AdminUsersPage from "./pages/AdminUsersPage";
 import AdminContentPage from "./pages/AdminContentPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import StudioPage from "./pages/StudioPage";
+import TopFansPage from "./pages/TopFansPage";
 
 import NotFound from "./pages/NotFound";
 
@@ -69,6 +70,7 @@ const App = () => (
                     </ProtectedRoute>
                   } />
                   <Route path="/athlete/:id" element={<AthletePage />} />
+                  <Route path="/athlete/:id/fans" element={<TopFansPage />} />
                   <Route path="/athlete/:id/cause" element={
                     <ProtectedRoute>
                       <CausePage />
