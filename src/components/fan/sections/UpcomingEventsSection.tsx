@@ -20,8 +20,8 @@ export const UpcomingEventsSection = () => {
 
   const now = new Date();
 
-  // Find next upcoming event across all followed athletes
-  const nextEvent = followedAthletes
+  // Find next 5 upcoming events across all followed athletes
+  const upcomingEvents = followedAthletes
     .flatMap((athlete) => {
       const events = athlete.events || getEventsBySport(athlete.sport, athlete.gender);
       return events.map((e) => ({
@@ -31,12 +31,13 @@ export const UpcomingEventsSection = () => {
       }));
     })
     .filter((e) => e.sortDate >= now)
-    .sort((a, b) => a.sortDate.getTime() - b.sortDate.getTime())[0];
+    .sort((a, b) => a.sortDate.getTime() - b.sortDate.getTime())
+    .slice(0, 5);
 
-  if (!nextEvent) {
+  if (upcomingEvents.length === 0) {
     return (
       <section className="mb-6">
-        <h2 className="font-display text-lg font-semibold mb-3">Next event</h2>
+        <h2 className="font-display text-lg font-semibold mb-3">Next events</h2>
         <div className="rounded-2xl border border-border/40 bg-card p-5 text-center">
           <Calendar className="h-7 w-7 mx-auto mb-2 text-muted-foreground/50" />
           <p className="text-sm text-muted-foreground">No upcoming events yet.</p>
@@ -47,31 +48,35 @@ export const UpcomingEventsSection = () => {
 
   return (
     <section className="mb-6">
-      <h2 className="font-display text-lg font-semibold mb-3">Next event</h2>
-      <Link to={`/athlete/${nextEvent.athlete.id}`} className="group block">
-        <article className="rounded-2xl border border-border/40 bg-card p-4 transition-all hover:border-primary/30 flex items-center gap-3">
-          <img
-            src={nextEvent.athlete.avatar}
-            alt={nextEvent.athlete.name}
-            className="w-12 h-12 rounded-full object-cover object-top ring-2 ring-border shrink-0"
-          />
-          <div className="flex-1 min-w-0">
-            <h3 className="text-[14px] font-semibold text-foreground line-clamp-1 group-hover:text-primary transition-colors">
-              {nextEvent.name}
-            </h3>
-            <p className="text-[12px] text-muted-foreground mt-0.5">
-              {nextEvent.athlete.name} · {nextEvent.category}
-            </p>
-            <div className="flex items-center gap-1.5 mt-1 text-[11px] text-muted-foreground">
-              <Calendar className="h-3 w-3" />
-              <span>
-                {nextEvent.date} {nextEvent.month} {nextEvent.year}
-              </span>
-              <span>{nextEvent.countryFlag}</span>
-            </div>
-          </div>
-        </article>
-      </Link>
+      <h2 className="font-display text-lg font-semibold mb-3">Next events</h2>
+      <div className="space-y-2">
+        {upcomingEvents.map((event, idx) => (
+          <Link key={`${event.id}-${idx}`} to={`/athlete/${event.athlete.id}`} className="group block">
+            <article className="rounded-2xl border border-border/40 bg-card p-4 transition-all hover:border-primary/30 flex items-center gap-3">
+              <img
+                src={event.athlete.avatar}
+                alt={event.athlete.name}
+                className="w-10 h-10 rounded-full object-cover object-top ring-2 ring-border shrink-0"
+              />
+              <div className="flex-1 min-w-0">
+                <h3 className="text-[14px] font-semibold text-foreground line-clamp-1 group-hover:text-primary transition-colors">
+                  {event.name}
+                </h3>
+                <p className="text-[12px] text-muted-foreground mt-0.5">
+                  {event.athlete.name} · {event.category}
+                </p>
+                <div className="flex items-center gap-1.5 mt-1 text-[11px] text-muted-foreground">
+                  <Calendar className="h-3 w-3" />
+                  <span>
+                    {event.date} {event.month} {event.year}
+                  </span>
+                  <span>{event.countryFlag}</span>
+                </div>
+              </div>
+            </article>
+          </Link>
+        ))}
+      </div>
     </section>
   );
 };

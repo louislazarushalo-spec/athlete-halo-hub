@@ -25,6 +25,31 @@ const exclusiveDataMap: Record<string, ExclusiveData> = {
 };
 
 /**
+ * Convert relative timestamps like "2 hours ago", "3 days ago" to ISO strings.
+ * Uses a deterministic seed based on item id so dates don't shift on every render.
+ */
+function resolveTimestamp(relativeStr: string, itemId: string): string {
+  const now = new Date();
+  const match = relativeStr.match(/^(\d+)\s+(hour|hours|day|days|week|weeks|minute|minutes)/i);
+  if (match) {
+    const val = parseInt(match[1]);
+    const unit = match[2].toLowerCase().replace(/s$/, "");
+    const ms =
+      unit === "minute" ? val * 60_000 :
+      unit === "hour" ? val * 3_600_000 :
+      unit === "day" ? val * 86_400_000 :
+      unit === "week" ? val * 7 * 86_400_000 : 0;
+    return new Date(now.getTime() - ms).toISOString();
+  }
+  // Fallback: hash-based offset (1-14 days) for items without parseable timestamps
+  let hash = 0;
+  for (let i = 0; i < itemId.length; i++) hash = (hash * 31 + itemId.charCodeAt(i)) | 0;
+  const offsetDays = (Math.abs(hash) % 14) + 1;
+  const offsetHours = Math.abs(hash) % 24;
+  return new Date(now.getTime() - offsetDays * 86_400_000 - offsetHours * 3_600_000).toISOString();
+}
+
+/**
  * Builds a unified feed array for any athlete, merging:
  * - Studio DB posts (passed in)
  * - Static media feed items
@@ -49,12 +74,15 @@ export function buildUnifiedFeed(
       title: p.title,
       content: p.body || "",
       image: p.media?.[0] || "",
-      timestamp: p.published_at ? new Date(p.published_at).toLocaleDateString() : "",
+      timestamp: p.published_at || "",
       stats: {},
     }));
 
-  /* 2. Static media feed */
-  const socialItems: ExtendedFeedItem[] = athlete.mediaFeed.map((item) => ({ ...item }));
+  /* 2. Static media feed — convert relative timestamps to ISO */
+  const socialItems: ExtendedFeedItem[] = athlete.mediaFeed.map((item) => ({
+    ...item,
+    timestamp: resolveTimestamp(item.timestamp, `${slug}-${item.id}`),
+  }));
 
   /* 3. Training programs */
   const trainingData = trainingDataMap[slug];
@@ -67,7 +95,7 @@ export function buildUnifiedFeed(
           title: p.title,
           content: p.description || "",
           image: p.image || "",
-          timestamp: "",
+          timestamp: resolveTimestamp("", `program-${slug}-${cat.id}-${p.id}`),
           stats: {},
           _cardType: "program",
           _category: cat.title,
@@ -86,7 +114,7 @@ export function buildUnifiedFeed(
         title: pd.title,
         content: pd.description,
         image: "",
-        timestamp: "",
+        timestamp: resolveTimestamp("", `prize-${slug}-${pd.id}`),
         stats: {},
         _cardType: "prize_draw",
         _badge: pd.badge,
@@ -101,7 +129,7 @@ export function buildUnifiedFeed(
         title: dt.title,
         content: dt.description,
         image: "",
-        timestamp: "",
+        timestamp: resolveTimestamp("", `discuss-${slug}-${dt.id}`),
         stats: {},
         _cardType: "live_discussion",
         _participants: dt.participants,
@@ -117,7 +145,7 @@ export function buildUnifiedFeed(
     title: gc.name,
     content: gc.description,
     image: gc.actionImage || gc.products?.[0]?.image || "",
-    timestamp: "",
+    timestamp: resolveTimestamp("", `kit-${slug}-${gc.id}`),
     stats: {},
     _cardType: "kit_room",
     _products: gc.products.map((p) => ({ name: p.name, brand: p.category, image: p.image })),
@@ -132,7 +160,7 @@ export function buildUnifiedFeed(
         title: athlete.cause.title,
         content: athlete.cause.story || "",
         image: athlete.cause.image || "",
-        timestamp: "",
+        timestamp: resolveTimestamp("", `cause-${slug}`),
         stats: {},
         _cardType: "cause",
       }]
