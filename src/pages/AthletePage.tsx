@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { AthleteHeader } from "@/components/layout/AthleteHeader";
 import { Footer } from "@/components/layout/Footer";
@@ -60,6 +60,7 @@ import { ArthurNewPage } from "@/components/athletes/ArthurNewPage";
 import { CassandreHighlights } from "@/components/athletes/CassandreHighlights";
 import { PierreHighlights } from "@/components/athletes/PierreHighlights";
 import { useSubscription } from "@/contexts/SubscriptionContext";
+import { useStudioRole } from "@/hooks/useStudioRole";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 // Sponsor logos for Arthur Cazaux
@@ -312,19 +313,22 @@ const MediaFeedCard = ({ item, athlete, avatarOverride }: { item: MediaFeedItem;
 
 const AthletePage = () => {
   const { id } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
+  const fromStudio = searchParams.get("from") === "studio";
 
   // Arthur Cazaux gets the new 3-tab layout
   if (id === "arthur-cazaux") {
-    return <ArthurNewPage />;
+    return <ArthurNewPage fromStudio={fromStudio} />;
   }
 
-  return <LegacyAthletePage id={id} />;
+  return <LegacyAthletePage id={id} fromStudio={fromStudio} />;
 };
 
-const LegacyAthletePage = ({ id }: { id: string | undefined }) => {
+const LegacyAthletePage = ({ id, fromStudio }: { id: string | undefined; fromStudio: boolean }) => {
   const navigate = useNavigate();
   const athlete = getAthleteById(id || "");
   const { avatarUrl: dbAvatar, bannerUrl: dbBanner, bio: dbBio, studioPosts } = useAthleteProfile(id);
+  const { hasAccess: hasStudioAccess } = useStudioRole();
   
   // Use DB data when available, fall back to static
   const resolvedAvatar = dbAvatar || athlete?.avatar || "";
@@ -402,16 +406,28 @@ const LegacyAthletePage = ({ id }: { id: string | undefined }) => {
           {/* Grey transparent gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-muted/40" />
           
-          {/* Back Button - right on mobile to avoid avatar overlap */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-4 right-4 sm:right-auto sm:left-4 bg-background/60 backdrop-blur-sm hover:bg-background/80 z-50 h-10 w-10 touch-manipulation"
-            onClick={() => navigate("/home")}
-            aria-label="Go back"
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
+          {/* Back Button */}
+          <div className="absolute top-4 right-4 sm:right-auto sm:left-4 z-50 flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="bg-background/60 backdrop-blur-sm hover:bg-background/80 h-10 w-10 touch-manipulation"
+              onClick={() => navigate(fromStudio ? "/studio" : "/home")}
+              aria-label="Go back"
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+          </div>
+          {fromStudio && hasStudioAccess && (
+            <Button
+              variant="secondary"
+              size="sm"
+              className="absolute top-4 right-4 z-50 bg-background/60 backdrop-blur-sm hover:bg-background/80 text-xs h-8"
+              onClick={() => navigate("/studio")}
+            >
+              ← Back to Studio
+            </Button>
+          )}
         
         {/* Hero Content Overlay */}
         <div className="absolute inset-0 flex items-end">
