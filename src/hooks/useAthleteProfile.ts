@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { resolveAssetUrl } from "@/lib/assetResolver";
-import { getAthleteById, Athlete } from "@/data/athletes";
+import { getAthleteById, Athlete, GearCollection } from "@/data/athletes";
 
 export interface AthleteProfileData {
   /** The static athlete data (always available if athlete exists) */
@@ -80,7 +80,22 @@ export function useAthleteProfile(athleteId: string | undefined): AthleteProfile
         setDbProfile(null);
       }
 
-      setStudioPosts((postsRes.data as unknown as StudioPostPublic[]) || []);
+      const dbPosts = (postsRes.data as unknown as StudioPostPublic[]) || [];
+
+      // Merge Kit Room (gearCollections) as feed items
+      const staticAthlete = getAthleteById(athleteId);
+      const kitRoomPosts: StudioPostPublic[] = (staticAthlete?.gearCollections || []).map((gc) => ({
+        id: `kit-${gc.id}`,
+        athlete_id: athleteId,
+        type: "kit_room",
+        title: gc.name,
+        body: gc.description || `${gc.products.length} item${gc.products.length !== 1 ? "s" : ""} from partner brands`,
+        media: gc.actionImage ? [gc.actionImage] : [],
+        published_at: new Date().toISOString(),
+        created_at: new Date().toISOString(),
+      }));
+
+      setStudioPosts([...dbPosts, ...kitRoomPosts]);
       setLoading(false);
     };
 
