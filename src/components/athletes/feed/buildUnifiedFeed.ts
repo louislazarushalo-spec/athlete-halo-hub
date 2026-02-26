@@ -79,10 +79,24 @@ export function buildUnifiedFeed(
     }));
 
   /* 2. Static media feed — convert relative timestamps to ISO */
-  const socialItems: ExtendedFeedItem[] = athlete.mediaFeed.map((item) => ({
-    ...item,
-    timestamp: resolveTimestamp(item.timestamp, `${slug}-${item.id}`),
-  }));
+  /*
+   * Filter out items whose image is a scraped/stock external URL.
+   * Real athlete images are bundled assets (start with "/" or "data:") or empty (text-only posts).
+   * External URLs (https://images.unsplash.com etc.) are generic stock images.
+   * Items explicitly marked media_origin = 'athlete' | 'social' | 'upload' bypass the filter.
+   */
+  const isScrapedImage = (img: string, origin?: string): boolean => {
+    if (origin && origin !== 'scraped_web') return false; // explicitly marked as real
+    if (!img || img === '') return false; // text-only post, keep it
+    return img.startsWith('http://') || img.startsWith('https://');
+  };
+
+  const socialItems: ExtendedFeedItem[] = athlete.mediaFeed
+    .filter((item) => !isScrapedImage(item.image, item.media_origin))
+    .map((item) => ({
+      ...item,
+      timestamp: resolveTimestamp(item.timestamp, `${slug}-${item.id}`),
+    }));
 
   /* 3. Training programs */
   const trainingData = trainingDataMap[slug];

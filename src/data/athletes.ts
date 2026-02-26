@@ -151,6 +151,8 @@ import nicKitCrewImg from "@/assets/nic-kit-crew.png";
 import nicKitWatchImg from "@/assets/nic-kit-watch.png";
 import nicKitOutfitImg from "@/assets/nic-kit-outfit.png";
 
+export type MediaOrigin = 'athlete' | 'social' | 'upload' | 'scraped_web' | 'generated';
+
 export interface MediaFeedItem {
   id: string;
   type: 'social' | 'article' | 'video';
@@ -160,6 +162,7 @@ export interface MediaFeedItem {
   image: string;
   timestamp: string;
   url?: string;
+  media_origin?: MediaOrigin;
   stats?: {
     likes?: number;
     comments?: number;
