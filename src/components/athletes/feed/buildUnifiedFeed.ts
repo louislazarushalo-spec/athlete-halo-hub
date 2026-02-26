@@ -163,6 +163,9 @@ export function buildUnifiedFeed(
     stats: {},
     _cardType: "kit_room",
     _products: gc.products.map((p) => ({ name: p.name, brand: p.category, image: p.image })),
+    _shoppableProducts: gc.products,
+    _hotspots: gc.hotspots,
+    _collectionName: gc.name,
   }));
 
   /* 6. Cause */
