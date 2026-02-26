@@ -54,7 +54,9 @@ export function useFollowedAthletes() {
           .from("followed_athletes")
           .insert({ user_id: user.id, athlete_id: athleteId });
         if (error) {
-          // Rollback
+          // If duplicate key, the follow already exists — keep optimistic state
+          if (error.code === "23505") return;
+          // Rollback on other errors
           setFollowedIds((prev) => prev.filter((id) => id !== athleteId));
         }
       }
