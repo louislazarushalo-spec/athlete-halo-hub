@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAthleteProfile } from "@/hooks/useAthleteProfile";
-import { useFollowedAthletes } from "@/hooks/useFollowedAthletes";
+import { useFollowedAthletes, useFollowedAthleteStatus } from "@/hooks/useFollowedAthletes";
 import { useStudioRole } from "@/hooks/useStudioRole";
 import { getEventsBySport } from "@/data/sportEvents";
 import { Badge } from "@/components/ui/badge";
@@ -107,14 +107,14 @@ export const UnifiedAthletePage = ({ athlete, fromStudio = false, dataHubCompone
   const navigate = useNavigate();
   const { avatarUrl, bannerUrl, bio, studioPosts } = useAthleteProfile(athlete.id);
   const { hasAccess: hasStudioAccess } = useStudioRole();
-  const { isFollowing, toggleFollow } = useFollowedAthletes();
+  const { toggleFollow } = useFollowedAthletes();
+  const { isFollowing: isFan, loading: followStatusLoading } = useFollowedAthleteStatus(athlete.id);
 
   const resolvedAvatar = avatarUrl || athlete.avatar;
   const resolvedBanner = bannerUrl || athlete.banner;
   const resolvedBio = bio || athlete.bio;
 
   const [activeTab, setActiveTab] = useState<TabId>("feed");
-  const isFan = isFollowing(athlete.id);
 
   const handleBeAFan = () => {
     toggleFollow(athlete.id);
@@ -203,7 +203,9 @@ export const UnifiedAthletePage = ({ athlete, fromStudio = false, dataHubCompone
 
       {/* ─── 2. BE A FAN CTA ─── */}
       <div className="px-4 py-4">
-        {isFan ? (
+        {followStatusLoading ? (
+          <div className="w-full min-h-[52px] rounded-full bg-muted animate-pulse" aria-hidden="true" />
+        ) : isFan ? (
           <div className="flex flex-col items-center gap-2">
             <div className="w-full min-h-[52px] rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center gap-2 text-primary">
               <span className="text-[16px] font-bold tracking-wide">✓ You're already part of the gang</span>
