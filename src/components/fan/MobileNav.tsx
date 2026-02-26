@@ -1,8 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Home, Compass, MessageCircle, Bell, Settings, X, LogOut, User, Menu } from "lucide-react";
-import { athletes, getAthleteById } from "@/data/athletes";
+import { getAthleteById } from "@/data/athletes";
 import { useAuth } from "@/contexts/AuthContext";
 import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
+import { useFollowedAthletes } from "@/hooks/useFollowedAthletes";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
@@ -15,17 +16,17 @@ const navItems = [
   { label: "Settings", icon: Settings, path: "/settings" },
 ];
 
-const followedAthleteIds = ['arthur-cazaux', 'tommy-fleetwood', 'elisa-balsamo'];
-const followedAthletes = followedAthleteIds
-  .map(id => getAthleteById(id))
-  .filter(Boolean) as typeof athletes;
-
 export const MobileNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const { resolve } = useAthleteProfiles();
+  const { followedIds, loading: followLoading } = useFollowedAthletes();
   const [open, setOpen] = useState(false);
+
+  const followedAthletes = followedIds
+    .map(id => getAthleteById(id))
+    .filter(Boolean) as NonNullable<ReturnType<typeof getAthleteById>>[];
 
   const handleLogout = async () => {
     await logout();
@@ -84,24 +85,30 @@ export const MobileNav = () => {
             My Followed Athletes
           </h3>
           <div className="space-y-2">
-            {followedAthletes.map((athlete) => (
-              <Link
-                key={athlete.id}
-                to={`/athlete/${athlete.id}`}
-                onClick={() => setOpen(false)}
-                className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-muted/50 transition-colors"
-              >
-                <img
-                  src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar}
-                  alt={athlete.name}
-                  className="w-8 h-8 rounded-full object-cover object-top"
-                />
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">{athlete.name}</p>
-                  <p className="text-xs text-muted-foreground truncate">{athlete.sport}</p>
-                </div>
-              </Link>
-            ))}
+            {followLoading ? (
+              <p className="text-xs text-muted-foreground">Loading…</p>
+            ) : followedAthletes.length === 0 ? (
+              <p className="text-xs text-muted-foreground">No athletes followed yet.</p>
+            ) : (
+              followedAthletes.map((athlete) => (
+                <Link
+                  key={athlete.id}
+                  to={`/athlete/${athlete.id}`}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-muted/50 transition-colors"
+                >
+                  <img
+                    src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar}
+                    alt={athlete.name}
+                    className="w-8 h-8 rounded-full object-cover object-top"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium truncate">{athlete.name}</p>
+                    <p className="text-xs text-muted-foreground truncate">{athlete.sport}</p>
+                  </div>
+                </Link>
+              ))
+            )}
           </div>
         </div>
 
