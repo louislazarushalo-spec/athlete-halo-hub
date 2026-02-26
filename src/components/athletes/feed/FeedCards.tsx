@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ReactionBar } from "@/components/feed/ReactionBar";
 import { CommentsSheet } from "@/components/feed/CommentsSheet";
+import { ShoppableMediaOverlay } from "@/components/feed/ShoppableMediaOverlay";
 import {
   Play,
   Trophy,
@@ -25,6 +26,12 @@ export type ExtendedFeedItem = MediaFeedItem & {
   _lastActive?: string;
   _athleteSlug?: string;
   _products?: Array<{ name: string; brand?: string; image?: string }>;
+  /** Full product objects for shoppable feed items */
+  _shoppableProducts?: import("@/data/athletes").Product[];
+  /** Hotspot positions keyed by product ID {x: 0-100, y: 0-100} */
+  _hotspots?: Record<string, { x: number; y: number }>;
+  /** Collection name for shoppable items */
+  _collectionName?: string;
 };
 
 const platformConfig: Record<string, { label: string; bgClass: string; textClass: string; icon?: string }> = {
@@ -278,6 +285,16 @@ export const LiveDiscussionFeedCard = ({ item, avatarSrc, name }: { item: Extend
 /* ─── Kit Room Feed Card ─── */
 export const KitRoomFeedCard = ({ item, avatarSrc, name }: { item: ExtendedFeedItem; avatarSrc: string; name: string }) => {
   const [commentOpen, setCommentOpen] = useState(false);
+
+  // Build hotspot array from the map
+  const hotspots = item._hotspots
+    ? Object.entries(item._hotspots).map(([productId, pos]) => ({
+        productId,
+        x: pos.x,
+        y: pos.y,
+      }))
+    : [];
+
   return (
     <article className="bg-card border border-border/40 rounded-2xl overflow-hidden">
       <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border/30">
@@ -290,7 +307,21 @@ export const KitRoomFeedCard = ({ item, avatarSrc, name }: { item: ExtendedFeedI
           <ShoppingBag className="h-3 w-3 mr-1" />Kit Room
         </Badge>
       </div>
-      {item.image && <MediaFrame src={item.image} alt={item.title || "Kit Room"} ratio="1:1" />}
+
+      {/* Shoppable media with hotspots */}
+      {item.image && item._shoppableProducts && item._shoppableProducts.length > 0 ? (
+        <ShoppableMediaOverlay
+          src={item.image}
+          alt={item.title || "Kit Room"}
+          products={item._shoppableProducts}
+          hotspots={hotspots}
+          collectionName={item._collectionName}
+          ratio="1:1"
+        />
+      ) : item.image ? (
+        <MediaFrame src={item.image} alt={item.title || "Kit Room"} ratio="1:1" />
+      ) : null}
+
       <div className="px-4 py-3 space-y-2">
         <h4 className="text-[15px] font-semibold text-foreground line-clamp-1">{item.title}</h4>
         <p className="text-[13px] text-muted-foreground line-clamp-2">{item.content}</p>
