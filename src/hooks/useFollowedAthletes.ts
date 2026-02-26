@@ -1,43 +1,78 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 
+const followedAthletesKey = (userId?: string) => ["followed-athletes", userId] as const;
+const followedAthleteStatusKey = (userId?: string, athleteId?: string) =>
+  ["followed-athlete-status", userId, athleteId] as const;
+
+export function useFollowedAthleteStatus(athleteId: string) {
+  const { user } = useAuth();
+
+  const query = useQuery({
+    queryKey: followedAthleteStatusKey(user?.id, athleteId),
+    enabled: Boolean(user?.id && athleteId),
+    staleTime: 0,
+    refetchOnMount: "always",
+    refetchOnWindowFocus: true,
+    queryFn: async () => {
+      if (!user?.id || !athleteId) return false;
+
+      const { data, error } = await supabase
+        .from("followed_athletes")
+        .select("id")
+        .eq("user_id", user.id)
+        .eq("athlete_id", athleteId)
+        .maybeSingle();
+
+      if (error) throw error;
+      return Boolean(data?.id);
+    },
+  });
+
+  return {
+    isFollowing: query.data ?? false,
+    loading: query.isLoading || query.isFetching,
+    refetch: query.refetch,
+  };
+}
+
 export function useFollowedAthletes() {
   const { user } = useAuth();
-  const [followedIds, setFollowedIds] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
+  const queryClient = useQueryClient();
 
-  useEffect(() => {
-    if (!user) {
-      setFollowedIds([]);
-      setLoading(false);
-      return;
-    }
-    setLoading(true);
-    supabase
-      .from("followed_athletes")
-      .select("athlete_id")
-      .eq("user_id", user.id)
-      .then(({ data }) => {
-        setFollowedIds((data || []).map((r) => r.athlete_id));
-        setLoading(false);
-      });
-  }, [user]);
+  const followedQuery = useQuery({
+    queryKey: followedAthletesKey(user?.id),
+    enabled: Boolean(user?.id),
+    staleTime: 0,
+    refetchOnMount: "always",
+    refetchOnWindowFocus: true,
+    queryFn: async () => {
+      if (!user?.id) return [] as string[];
+
+      const { data, error } = await supabase
+        .from("followed_athletes")
+        .select("athlete_id")
+        .eq("user_id", user.id);
+
+      if (error) throw error;
+      return (data || []).map((row) => row.athlete_id);
+    },
+  });
+
+  const followedIds = followedQuery.data ?? [];
 
   const isFollowing = useCallback(
     (athleteId: string) => followedIds.includes(athleteId),
     [followedIds],
   );
 
-  const toggleFollow = useCallback(
-    async (athleteId: string) => {
-      if (!user) return;
-      const alreadyFollowing = followedIds.includes(athleteId);
+  const mutation = useMutation({
+    mutationFn: async (athleteId: string) => {
+      if (!user?.id) return;
 
-      // Optimistic update
-      setFollowedIds((prev) =>
-        alreadyFollowing ? prev.filter((id) => id !== athleteId) : [...prev, athleteId],
-      );
+      const alreadyFollowing = followedIds.includes(athleteId);
 
       if (alreadyFollowing) {
         const { error } = await supabase
@@ -45,24 +80,67 @@ export function useFollowedAthletes() {
           .delete()
           .eq("user_id", user.id)
           .eq("athlete_id", athleteId);
-        if (error) {
-          // Rollback
-          setFollowedIds((prev) => [...prev, athleteId]);
-        }
-      } else {
-        const { error } = await supabase
-          .from("followed_athletes")
-          .insert({ user_id: user.id, athlete_id: athleteId });
-        if (error) {
-          // If duplicate key, the follow already exists — keep optimistic state
-          if (error.code === "23505") return;
-          // Rollback on other errors
-          setFollowedIds((prev) => prev.filter((id) => id !== athleteId));
-        }
+
+        if (error) throw error;
+        return;
       }
+
+      const { error } = await supabase
+        .from("followed_athletes")
+        .upsert(
+          { user_id: user.id, athlete_id: athleteId },
+          { onConflict: "user_id,athlete_id", ignoreDuplicates: true },
+        );
+
+      if (error) throw error;
     },
-    [user, followedIds],
+    onMutate: async (athleteId) => {
+      if (!user?.id) return;
+
+      await queryClient.cancelQueries({ queryKey: followedAthletesKey(user.id) });
+      await queryClient.cancelQueries({ queryKey: followedAthleteStatusKey(user.id, athleteId) });
+
+      const previousFollowed = queryClient.getQueryData<string[]>(followedAthletesKey(user.id)) ?? [];
+      const nextFollowed = previousFollowed.includes(athleteId)
+        ? previousFollowed.filter((id) => id !== athleteId)
+        : [...previousFollowed, athleteId];
+
+      queryClient.setQueryData(followedAthletesKey(user.id), nextFollowed);
+      queryClient.setQueryData(followedAthleteStatusKey(user.id, athleteId), nextFollowed.includes(athleteId));
+
+      return { previousFollowed, athleteId };
+    },
+    onError: (_error, _athleteId, context) => {
+      if (!user?.id || !context) return;
+
+      queryClient.setQueryData(followedAthletesKey(user.id), context.previousFollowed);
+      queryClient.setQueryData(
+        followedAthleteStatusKey(user.id, context.athleteId),
+        context.previousFollowed.includes(context.athleteId),
+      );
+    },
+    onSettled: async (_data, _error, athleteId) => {
+      if (!user?.id) return;
+
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: followedAthletesKey(user.id) }),
+        queryClient.invalidateQueries({ queryKey: followedAthleteStatusKey(user.id, athleteId) }),
+      ]);
+    },
+  });
+
+  const toggleFollow = useCallback(
+    async (athleteId: string) => {
+      await mutation.mutateAsync(athleteId);
+    },
+    [mutation],
   );
 
-  return { followedIds, isFollowing, toggleFollow, loading };
+  return {
+    followedIds,
+    isFollowing,
+    toggleFollow,
+    loading: followedQuery.isLoading || followedQuery.isFetching,
+  };
 }
+
