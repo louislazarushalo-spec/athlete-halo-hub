@@ -37,6 +37,7 @@ import AdminContentPage from "./pages/AdminContentPage";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import StudioPage from "./pages/StudioPage";
 import TopFansPage from "./pages/TopFansPage";
+import ProfilePage from "./pages/ProfilePage";
 
 import NotFound from "./pages/NotFound";
 
@@ -88,6 +89,11 @@ const App = () => (
                   <Route path="/account" element={
                     <ProtectedRoute>
                       <AccountPage />
+                    </ProtectedRoute>
+                  } />
+                  <Route path="/profile" element={
+                    <ProtectedRoute>
+                      <ProfilePage />
                     </ProtectedRoute>
                   } />
                   <Route path="/subscribe/:id" element={<SubscribePage />} />

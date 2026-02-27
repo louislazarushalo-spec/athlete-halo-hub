@@ -128,7 +128,7 @@ export const MobileNav = () => {
               variant="outline"
               size="sm"
               className="flex-1"
-              onClick={() => { navigate("/account"); setOpen(false); }}
+              onClick={() => { navigate("/profile"); setOpen(false); }}
             >
               <User className="h-4 w-4 mr-2" />
               Account
