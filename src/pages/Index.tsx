@@ -58,8 +58,8 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
 
-          {/* Top spacer — pushes content down ~30% */}
-          <div className="flex-[3]" />
+          {/* Top spacer — pushes content down ~35% */}
+          <div className="flex-[4]" />
 
           {/* Content block */}
           <div className="relative z-10 w-full px-5 sm:px-6">
@@ -82,11 +82,11 @@ const Index = () => {
               </p>
 
               {/* CTA */}
-              <div className="w-full sm:max-w-xs animate-fade-up opacity-0 stagger-3" style={{ animationFillMode: 'forwards' }}>
+              <div className="w-full max-w-[220px] sm:max-w-[240px] animate-fade-up opacity-0 stagger-3" style={{ animationFillMode: 'forwards' }}>
                 <Link to="/signup" className="block">
-                  <Button variant="hero" size="xl" className="w-full rounded-full">
+                  <Button size="lg" className="w-full rounded-full bg-gradient-to-r from-primary to-[hsl(220,80%,55%)] hover:from-primary/90 hover:to-[hsl(220,80%,50%)] text-primary-foreground shadow-lg shadow-primary/20 text-sm font-semibold h-11">
                     Explore athletes
-                    <ChevronRight className="h-5 w-5" />
+                    <ChevronRight className="h-4 w-4" />
                   </Button>
                 </Link>
               </div>
