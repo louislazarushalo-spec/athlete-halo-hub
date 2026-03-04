@@ -8418,9 +8418,10 @@ export const athletes: Athlete[] = [
         type: "social",
         platform: "instagram",
         content: "Nazaré never disappoints 🌊 When the Atlantic awakens, we answer the call. This is what we live for 🇵🇹💪",
-        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=800&fit=crop",
+        image: nicVonRuppNazare1Img,
         timestamp: "1 hour ago",
-        stats: { likes: 45200, comments: 1287 }
+        stats: { likes: 45200, comments: 1287 },
+        media_origin: "athlete" as const
       },
       {
         id: "nvr-mf2",
@@ -8437,9 +8438,10 @@ export const athletes: Athlete[] = [
         platform: "espn",
         title: "Nic Von Rupp: Portugal's Big Wave Pioneer",
         content: "The Portuguese surfer continues to push the boundaries of what's possible at Nazaré, cementing his legacy as one of the sport's most fearless competitors...",
-        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=400&fit=crop",
+        image: nicVonRuppWaveImg,
         timestamp: "8 hours ago",
-        stats: { readTime: "6 min read" }
+        stats: { readTime: "6 min read" },
+        media_origin: "athlete" as const
       },
       {
         id: "nvr-mf4",
@@ -8447,18 +8449,20 @@ export const athletes: Athlete[] = [
         platform: "youtube",
         title: "POV: Riding a 60ft Wave at Nazaré",
         content: "Experience the raw power of Nazaré from Nic's perspective as he drops into one of the biggest waves of the season.",
-        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=450&fit=crop",
+        image: nicVonRuppNazare2Img,
         timestamp: "12 hours ago",
-        stats: { views: 892000, duration: "4:32" }
+        stats: { views: 892000, duration: "4:32" },
+        media_origin: "athlete" as const
       },
       {
         id: "nvr-mf5",
         type: "social",
         platform: "instagram",
         content: "Training never stops 💪 Breath-hold work and ocean conditioning. When the big day comes, you have to be ready 🌊",
-        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=800&fit=crop",
+        image: nicVonRuppPortraitImg,
         timestamp: "18 hours ago",
-        stats: { likes: 28900, comments: 654 }
+        stats: { likes: 28900, comments: 654 },
+        media_origin: "athlete" as const
       },
       {
         id: "nvr-mf6",
@@ -8466,9 +8470,10 @@ export const athletes: Athlete[] = [
         platform: "bbc",
         title: "The Science Behind Nazaré's Monster Waves",
         content: "BBC Sport explores how underwater canyons create the world's biggest surfable waves, featuring insights from big wave surfer Nic Von Rupp...",
-        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=400&fit=crop",
+        image: nicVonRuppImg,
         timestamp: "2 days ago",
-        stats: { readTime: "5 min read" }
+        stats: { readTime: "5 min read" },
+        media_origin: "athlete" as const
       },
       {
         id: "nvr-mf7",
@@ -8476,9 +8481,10 @@ export const athletes: Athlete[] = [
         platform: "youtube",
         title: "Big Wave Season 2024: Best Moments Compilation",
         content: "Relive the most incredible rides from this year's big wave season featuring Nic Von Rupp and the world's top chargers.",
-        image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=800&h=450&fit=crop",
+        image: nicVonRuppBannerImg,
         timestamp: "3 days ago",
-        stats: { views: 1250000, duration: "12:18" }
+        stats: { views: 1250000, duration: "12:18" },
+        media_origin: "athlete" as const
       },
       {
         id: "nvr-mf8",
