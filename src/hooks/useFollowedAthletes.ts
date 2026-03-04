@@ -13,9 +13,10 @@ export function useFollowedAthleteStatus(athleteId: string) {
   const query = useQuery({
     queryKey: followedAthleteStatusKey(user?.id, athleteId),
     enabled: Boolean(user?.id && athleteId),
-    staleTime: 0,
-    refetchOnMount: "always",
-    refetchOnWindowFocus: true,
+    staleTime: 30_000,
+    gcTime: 5 * 60_000,
+    refetchOnMount: true,
+    refetchOnWindowFocus: false,
     queryFn: async () => {
       if (!user?.id || !athleteId) return false;
 
@@ -33,7 +34,7 @@ export function useFollowedAthleteStatus(athleteId: string) {
 
   return {
     isFollowing: query.data ?? false,
-    loading: query.isLoading || query.isFetching,
+    loading: query.isLoading,
     refetch: query.refetch,
   };
 }
@@ -45,9 +46,10 @@ export function useFollowedAthletes() {
   const followedQuery = useQuery({
     queryKey: followedAthletesKey(user?.id),
     enabled: Boolean(user?.id),
-    staleTime: 0,
-    refetchOnMount: "always",
-    refetchOnWindowFocus: true,
+    staleTime: 30_000,
+    gcTime: 5 * 60_000,
+    refetchOnMount: true,
+    refetchOnWindowFocus: false,
     queryFn: async () => {
       if (!user?.id) return [] as string[];
 
@@ -140,7 +142,7 @@ export function useFollowedAthletes() {
     followedIds,
     isFollowing,
     toggleFollow,
-    loading: followedQuery.isLoading || followedQuery.isFetching,
+    loading: followedQuery.isLoading,
   };
 }
 
