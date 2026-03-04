@@ -94,6 +94,10 @@ export default {
           "70%": { opacity: "1" },
           "100%": { transform: "translateY(100vh) scale(0.6) rotate(40deg)", opacity: "0" },
         },
+        "splash-enter": {
+          "0%": { opacity: "0", transform: "scale(0.92)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -101,6 +105,7 @@ export default {
         shimmer: "shimmer 2s infinite",
         float: "float 3s ease-in-out infinite",
         "emoji-fall": "emoji-fall 2s ease-in forwards",
+        "splash-enter": "splash-enter 0.5s ease-out forwards",
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
