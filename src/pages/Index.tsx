@@ -75,17 +75,27 @@ const Index = () => {
 
               {/* Subtitle — new copy */}
               <p className="text-sm sm:text-base text-muted-foreground max-w-sm sm:max-w-md mx-auto mb-5 sm:mb-6 leading-relaxed line-clamp-2 animate-fade-up opacity-0 stagger-2" style={{ animationFillMode: 'forwards' }}>
-                Exclusive access to their real lives — and a closer connection.
+                Where fans belong - and the journey unfolds.
               </p>
 
-              {/* FOMO athlete faces */}
-              <div className="flex items-center justify-center mb-5 sm:mb-6 animate-fade-up opacity-0 stagger-2" style={{ animationFillMode: 'forwards' }}>
-                <div className="flex -space-x-2.5 overflow-x-auto scrollbar-none">
+              {/* Single primary CTA */}
+              <div className="w-full sm:max-w-xs animate-fade-up opacity-0 stagger-3 mb-6 sm:mb-8" style={{ animationFillMode: 'forwards' }}>
+                <Link to="/signup" className="block">
+                  <Button variant="hero" size="xl" className="w-full rounded-full">
+                    Explore athletes
+                    <ChevronRight className="h-5 w-5" />
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Premium athlete tiles row */}
+              <div className="w-full animate-fade-up opacity-0 stagger-4" style={{ animationFillMode: 'forwards' }}>
+                <div className="flex gap-2.5 overflow-x-auto scrollbar-none snap-x snap-mandatory px-1 pb-2">
                   {fomoFaces.map((athlete) => (
                     <Link
                       key={athlete.id}
-                      to="/signup"
-                      className="shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full ring-2 ring-background overflow-hidden hover:scale-110 hover:z-10 transition-transform"
+                      to={`/athlete/${athlete.id}`}
+                      className="shrink-0 snap-start w-[72px] h-[96px] sm:w-[80px] sm:h-[106px] rounded-xl overflow-hidden border border-border/30 transition-all duration-200 hover:border-primary/40 hover:shadow-[0_0_12px_hsl(var(--primary)/0.25)] active:shadow-[0_0_16px_hsl(var(--primary)/0.35)] active:scale-[0.97]"
                     >
                       <img
                         src={athlete.avatar}
@@ -96,16 +106,6 @@ const Index = () => {
                     </Link>
                   ))}
                 </div>
-              </div>
-
-              {/* Single primary CTA */}
-              <div className="w-full sm:max-w-xs animate-fade-up opacity-0 stagger-3" style={{ animationFillMode: 'forwards' }}>
-                <Link to="/signup" className="block">
-                  <Button variant="hero" size="xl" className="w-full rounded-full">
-                    Explore athletes
-                    <ChevronRight className="h-5 w-5" />
-                  </Button>
-                </Link>
               </div>
 
               {/* Scroll affordance */}
