@@ -1,19 +1,21 @@
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { PostCard } from "@/components/posts/PostCard";
-import { Badge } from "@/components/ui/badge";
 import { athletes } from "@/data/athletes";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
 import { Link } from "react-router-dom";
-import { Dumbbell, Heart, Package, Grid } from "lucide-react";
+import { Dumbbell, Heart, Package, Grid, ShoppingBag, Trophy, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { buildUnifiedFeed } from "@/components/athletes/feed/buildUnifiedFeed";
+import { UnifiedFeedItem, type ExtendedFeedItem } from "@/components/athletes/feed/FeedCards";
 
 const filterOptions = [
   { key: "all", label: "All", icon: Grid },
-  { key: "training", label: "My Training", icon: Dumbbell },
-  { key: "life", label: "My Life", icon: Heart },
-  { key: "gear", label: "My Gear", icon: Package },
+  { key: "social", label: "Social", icon: Heart },
+  { key: "program", label: "Programs", icon: Dumbbell },
+  { key: "kit_room", label: "Kit Room", icon: ShoppingBag },
+  { key: "prize_draw", label: "Prizes", icon: Trophy },
+  { key: "cause", label: "Causes", icon: MessageCircle },
 ];
 
 interface StudioPostItem {
@@ -24,6 +26,7 @@ interface StudioPostItem {
   body: string;
   media: string[];
   published_at: string;
+  status?: string;
 }
 
 const FeedPage = () => {
@@ -41,7 +44,7 @@ const FeedPage = () => {
     
     supabase
       .from("studio_posts")
-      .select("id, athlete_id, type, title, body, media, published_at")
+      .select("id, athlete_id, type, title, body, media, published_at, status")
       .eq("status", "published")
       .in("athlete_id", followedIds)
       .order("published_at", { ascending: false })
@@ -51,19 +54,37 @@ const FeedPage = () => {
       });
   }, []);
 
-  const allPosts = followedAthletes.flatMap(athlete => {
-    const posts = [
-      ...athlete.training.map(p => ({ ...p, athleteName: athlete.name, athleteId: athlete.id })),
-      ...athlete.life.map(p => ({ ...p, athleteName: athlete.name, athleteId: athlete.id })),
-      ...athlete.gear.map(p => ({ ...p, athleteName: athlete.name, athleteId: athlete.id })),
-    ];
-    return posts;
-  });
+  // Build unified feed across all followed athletes
+  const feedItems = useMemo(() => {
+    const allItems: (ExtendedFeedItem & { _athleteName: string; _avatarSrc: string; _athleteSlug: string })[] = [];
 
-  const filteredPosts = allPosts.filter(post => {
-    if (activeFilter === "all") return true;
-    return post.category === activeFilter;
-  }).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    for (const athlete of followedAthletes) {
+      const athletePosts = studioPosts.filter(p => p.athlete_id === athlete.id);
+      const resolved = resolve(athlete.id, athlete.avatar, athlete.banner);
+      const items = buildUnifiedFeed(athlete, athletePosts);
+      for (const item of items) {
+        allItems.push({
+          ...item,
+          _athleteName: athlete.name,
+          _avatarSrc: resolved.avatar,
+          _athleteSlug: athlete.id,
+        });
+      }
+    }
+
+    // Sort by timestamp descending
+    allItems.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+    return allItems;
+  }, [followedAthletes, studioPosts, resolve]);
+
+  // Filter
+  const filteredItems = useMemo(() => {
+    if (activeFilter === "all") return feedItems;
+    return feedItems.filter(item => {
+      if (activeFilter === "social") return !item._cardType; // standard social/video/article
+      return item._cardType === activeFilter;
+    });
+  }, [feedItems, activeFilter]);
 
   return (
     <Layout>
@@ -108,52 +129,21 @@ const FeedPage = () => {
               </div>
             </div>
           ) : (
-            <div className="max-w-4xl mx-auto space-y-6">
-              {/* Studio published posts */}
-              {studioPosts.length > 0 && (
-                <div className="space-y-4">
-                  {studioPosts.map((post) => {
-                    const athlete = followedAthletes.find(a => a.id === post.athlete_id);
-                    if (!athlete) return null;
-                    return (
-                      <Link key={post.id} to={`/athlete/${post.athlete_id}`}>
-                        <article className="glass-card overflow-hidden group hover:border-primary/30 hover:shadow-glow-soft transition-all duration-300">
-                          <div className="p-3 md:p-4 flex items-center gap-3 border-b border-border/50">
-                            <img src={resolve(athlete.id, athlete.avatar, athlete.banner).avatar} alt={athlete.name} className="w-8 h-8 rounded-full object-cover" />
-                            <div className="flex-1 min-w-0">
-                              <span className="font-semibold text-sm">{athlete.name}</span>
-                              <Badge variant="secondary" className="ml-2 text-[10px] capitalize">{post.type.replace("_", " ")}</Badge>
-                            </div>
-                            <span className="text-xs text-muted-foreground">{post.published_at ? new Date(post.published_at).toLocaleDateString() : ""}</span>
-                          </div>
-                          {post.media && post.media.length > 0 && (
-                            <div className="aspect-video overflow-hidden">
-                              <img src={post.media[0]} alt={post.title} className="w-full h-full object-cover" />
-                            </div>
-                          )}
-                          <div className="p-3 md:p-4">
-                            <h4 className="font-semibold text-sm mb-1">{post.title}</h4>
-                            {post.body && <p className="text-xs text-muted-foreground line-clamp-2">{post.body}</p>}
-                          </div>
-                        </article>
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
-              
-              {filteredPosts.length === 0 && studioPosts.length === 0 ? (
+            <div className="max-w-2xl mx-auto space-y-4">
+              {filteredItems.length === 0 ? (
                 <div className="text-center py-20">
                   <p className="text-muted-foreground">No posts in this category yet.</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {filteredPosts.map((post) => (
-                    <Link key={post.id} to={`/athlete/${post.athleteId}`}>
-                      <PostCard post={post} athleteName={post.athleteName} />
-                    </Link>
-                  ))}
-                </div>
+                filteredItems.slice(0, 40).map((item) => (
+                  <UnifiedFeedItem
+                    key={`${item._athleteSlug}-${item.id}`}
+                    item={item}
+                    avatarSrc={item._avatarSrc}
+                    name={item._athleteName}
+                    athleteSlug={item._athleteSlug}
+                  />
+                ))
               )}
             </div>
           )}
