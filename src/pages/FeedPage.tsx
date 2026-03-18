@@ -1,8 +1,10 @@
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { athletes } from "@/data/athletes";
+import { athletes, getAthleteById } from "@/data/athletes";
 import { useState, useEffect, useMemo } from "react";
 import { useAthleteProfiles } from "@/hooks/useAthleteProfiles";
+import { useFollowedAthletes } from "@/hooks/useFollowedAthletes";
+import { useAuth } from "@/contexts/AuthContext";
 import { Link } from "react-router-dom";
 import { Dumbbell, Heart, Package, Grid, ShoppingBag, Trophy, MessageCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -31,28 +33,41 @@ interface StudioPostItem {
 
 const FeedPage = () => {
   const { resolve } = useAthleteProfiles();
+  const { user } = useAuth();
+  const { followedIds, loading: followLoading } = useFollowedAthletes();
   const [activeFilter, setActiveFilter] = useState("all");
   const [studioPosts, setStudioPosts] = useState<StudioPostItem[]>([]);
-  
-  const followedAthletes = athletes.slice(0, 2);
+
+  // Use followed athletes if logged in, otherwise show key athletes as demo
+  const followedAthletes = useMemo(() => {
+    if (user && followedIds.length > 0) {
+      return followedIds
+        .map((id) => getAthleteById(id))
+        .filter(Boolean) as typeof athletes;
+    }
+    // Fallback: show key athletes for non-logged-in or no follows
+    const keyIds = ["pierre-gasly", "cassandre-beaugrand", "tommy-fleetwood", "arthur-cazaux", "matthieu-jalibert", "nic-von-rupp"];
+    return athletes.filter((a) => keyIds.includes(a.id));
+  }, [user, followedIds]);
+
   const hasFollowedAthletes = followedAthletes.length > 0;
 
   // Fetch published studio posts for followed athletes
   useEffect(() => {
-    const followedIds = followedAthletes.map(a => a.id);
-    if (followedIds.length === 0) return;
+    const ids = followedAthletes.map(a => a.id);
+    if (ids.length === 0) return;
     
     supabase
       .from("studio_posts")
       .select("id, athlete_id, type, title, body, media, published_at, status")
       .eq("status", "published")
-      .in("athlete_id", followedIds)
+      .in("athlete_id", ids)
       .order("published_at", { ascending: false })
-      .limit(20)
+      .limit(50)
       .then(({ data }) => {
         if (data) setStudioPosts(data as unknown as StudioPostItem[]);
       });
-  }, []);
+  }, [followedAthletes]);
 
   // Build unified feed across all followed athletes
   const feedItems = useMemo(() => {
